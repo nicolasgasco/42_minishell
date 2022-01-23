@@ -2,19 +2,20 @@
 
 The functions allowed in Minishell
 
-1. Readline:
+- Readline:
+  [On using readline]: https://web.mit.edu/gnu/doc/html/rlman_2.html
   - **readline**: will read a line from the terminal and return it, using prompt as a prompt
   - **rl_clear_history**: Clear the history list by deleting all of the entries
   - **rl_on_new_line**: Tell the update functions that we have moved onto a new (empty) line, usually after outputting a newline
   - **rl_replace_line**: Replace the contents of rl_line_buffer with text
   - **rl_redisplay**: Change what's displayed on the screen to reflect the current contents of rl_line_buffer
   - **add_history**: If you want the user to be able to get at the line later, (with C-p for example), you must call add_history () to save the line away in a history list of such lines
-2. Output:
-  - printf
-  - write
-3. Memory management:
-  - malloc
-  - free
+- Output:
+  - **printf**
+  - **write**
+- Memory management:
+  - **malloc**
+  - **free**
 - access
 - open
 - read
