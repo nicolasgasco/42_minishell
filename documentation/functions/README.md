@@ -62,6 +62,6 @@ The functions allowed in Minishell
   - **tgetent**: direct curses interface to the terminfo capability database
   - **tgetflag**: direct curses interface to the terminfo capability database
   - **tgetnum**: direct curses interface to the terminfo capability database
-- tgetstr
-- tgoto
-- tputs
+  - **tgetstr**: direct curses interface to the terminfo capability database
+  - **tgoto**: direct curses interface to the terminfo capability database
+  - **tputs**: direct curses interface to the terminfo capability database
