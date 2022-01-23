@@ -1,2 +1,3 @@
-# 42_minishell
-42 group project. A simple, bash-inspired shell. Done by @adel-cor and @ngasco.
+# Minishell
+
+> The objective of this project is for you to create a simple shell. Yes, your little bash or zsh. You will learn a lot about processes and file descriptors
