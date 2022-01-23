@@ -24,6 +24,7 @@ The functions allowed in Minishell
   - **wait3**: the wait3() and wait4() system calls are similar to waitpid(2), but additionally return resource usage information about the child in the structure pointed to by *rusage*
   - **wait4**: the wait3() and wait4() system calls are similar to waitpid(2), but additionally return resource usage information about the child in the structure pointed to by *rusage*
   - **exit**: terminates the calling process immediately.
+  - **pipe**
 - I/O:
   - open
   - read
@@ -35,19 +36,18 @@ The functions allowed in Minishell
 - Directories:
   - **getcwd**: get current working directory
   - **chdir**: change working directory
+  - **opendir**: open a directory
+  - **readdir**: read a directory
+  - **closedir**: close a directory
 - Files:
   - **stat**: get file status
   - **lstat**: if path is a symbolic link, then the link itself is stat-ed, not the file that it refers to.
   - **fstat**: the file to be stat-ed is specified by the file descriptor fd
   - **unlink**: delete a name and possibly the file it refers to
+  - **dup**: duplicate a file descriptor
+  - **dup2**:  instead of using the lowest-numbered unused file descriptor, it uses the file descriptor number specified in *newfd*
 - Programs:
   - **execve**: executes the program referred to by pathname
-- dup
-- dup2
-- pipe
-- opendir
-- readdir
-- closedir
 - strerror
 - perror
 - isatty
