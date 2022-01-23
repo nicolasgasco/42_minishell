@@ -3,7 +3,7 @@
 The functions allowed in Minishell
 
 - Readline:
-  [On using readline](https://web.mit.edu/gnu/doc/html/rlman_2.html)
+  - [On using readline](https://web.mit.edu/gnu/doc/html/rlman_2.html)
   - **readline**: will read a line from the terminal and return it, using prompt as a prompt
   - **rl_clear_history**: Clear the history list by deleting all of the entries
   - **rl_on_new_line**: Tell the update functions that we have moved onto a new (empty) line, usually after outputting a newline
