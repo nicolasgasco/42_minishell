@@ -48,18 +48,20 @@ The functions allowed in Minishell
   - **dup2**:  instead of using the lowest-numbered unused file descriptor, it uses the file descriptor number specified in *newfd*
 - Programs:
   - **execve**: executes the program referred to by pathname
-- strerror
-- perror
-- isatty
-- ttyname
-- ttyslot
-- ioctl
-- getenv
-- tcsetattr
-- tcgetattr
-- tgetent
-- tgetflag
-- tgetnum
+- Errors:
+  - **strerror**: return string describing error number
+  - **perror**:  print a system error message
+- Terminal:
+  - **isatty**: test whether a file descriptor refers to a terminal
+  - **ttyname**: return name of a terminal
+  - **ttyslot**: find the slot of the current user's terminal in some file
+  - **tcsetattr**: set the parameters associated with the terminal
+  - **tcgetattr**: get the parameters associated with the terminal
+  - **ioctl**: control device
+  - **getenv**: get an environment variable
+  - **tgetent**: direct curses interface to the terminfo capability database
+  - **tgetflag**: direct curses interface to the terminfo capability database
+  - **tgetnum**: direct curses interface to the terminfo capability database
 - tgetstr
 - tgoto
 - tputs
