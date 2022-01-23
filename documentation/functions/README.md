@@ -31,14 +31,17 @@ The functions allowed in Minishell
 - Signals:
   - **signal**: sets a function to handle signal i.e. a signal handler with signal number sig
   - **sigaction**: is used to change the action taken by a process on receipt of a specific signal
-  - **kill**: can be used to send any signal to any process group or process.
-- getcwd
-- chdir
-- stat
-- lstat
-- fstat
-- unlink
-- execve
+  - **kill**: can be used to send any signal to any process group or process
+- Directories:
+  - **getcwd**: get current working directory
+  - **chdir**: change working directory
+- Files:
+  - **stat**: get file status
+  - **lstat**: if path is a symbolic link, then the link itself is stat-ed, not the file that it refers to.
+  - **fstat**: the file to be stat-ed is specified by the file descriptor fd
+  - **unlink**: delete a name and possibly the file it refers to
+- Programs:
+  - **execve**: executes the program referred to by pathname
 - dup
 - dup2
 - pipe
