@@ -23,14 +23,15 @@ The functions allowed in Minishell
   - **waitpid**
   - **wait3**: the wait3() and wait4() system calls are similar to waitpid(2), but additionally return resource usage information about the child in the structure pointed to by *rusage*
   - **wait4**: the wait3() and wait4() system calls are similar to waitpid(2), but additionally return resource usage information about the child in the structure pointed to by *rusage*
+  - **exit**: terminates the calling process immediately.
 - I/O:
   - open
   - read
   - close
-- signal
-- sigaction
-- kill
-- exit
+- Signals:
+  - **signal**: sets a function to handle signal i.e. a signal handler with signal number sig
+  - **sigaction**: is used to change the action taken by a process on receipt of a specific signal
+  - **kill**: can be used to send any signal to any process group or process.
 - getcwd
 - chdir
 - stat
