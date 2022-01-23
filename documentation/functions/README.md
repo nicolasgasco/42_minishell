@@ -2,7 +2,7 @@
 
 The functions allowed in Minishell
 
-- readline
+- readline: will read a line from the terminal and return it, using prompt as a prompt
 - rl_clear_history
 - rl_on_new_line,
 - rl_replace_line
