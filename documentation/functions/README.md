@@ -16,15 +16,17 @@ The functions allowed in Minishell
 - Memory management:
   - **malloc**
   - **free**
-- access
-- open
-- read
-- close
-- fork
-- wait
-- waitpid
-- wait3
-- wait4
+- Processes:
+  - **access**: checks whether the calling process can access the file pathname. If pathname is a symbolic link, it is dereferenced.
+  - **fork**
+  - **wait**
+  - **waitpid**
+  - **wait3**: the wait3() and wait4() system calls are similar to waitpid(2), but additionally return resource usage information about the child in the structure pointed to by *rusage*
+  - **wait4**: the wait3() and wait4() system calls are similar to waitpid(2), but additionally return resource usage information about the child in the structure pointed to by *rusage*
+- I/O:
+  - open
+  - read
+  - close
 - signal
 - sigaction
 - kill
