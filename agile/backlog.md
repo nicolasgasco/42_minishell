@@ -6,3 +6,4 @@ Give priority from 1 to 5.
 - History
 - Executables
 - echo, cd, pwd, export, unset, env, exit
+- Redirections
