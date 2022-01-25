@@ -1,2 +1,2 @@
-# 0_ngasco
-Ngasco's first branch
+# stage
+Add progress to this branch before merging to main.
