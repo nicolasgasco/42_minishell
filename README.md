@@ -8,3 +8,4 @@ This project was done collaboratively by [adelcor](https://github.com/adelcor) a
 ## Backlog
 
 1. Creating a prompt and listening to user input
+2. Creating a working history
