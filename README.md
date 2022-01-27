@@ -8,4 +8,8 @@ This project was done collaboratively by [adelcor](https://github.com/adelcor) a
 ## Backlog
 
 1. Creating a prompt and listening to user input
-2. Creating a working history
+    - Prompt shows username and hostname
+    - Prompt has a working history
+2. Parse user input
+    - List of valid commands
+    - List of quotes
