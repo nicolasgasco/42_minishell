@@ -4,6 +4,8 @@ void	ft_init_common_data(c_data	*c_data)
 {
 	c_data->username = getenv("USER");
 	c_data->hostname = getenv("HOSTNAME");
+	if (!c_data->hostname)
+		c_data->hostname = "os";
 	c_data->prompt_text = ft_create_prompt_text(c_data->username, c_data->hostname);
 }
 

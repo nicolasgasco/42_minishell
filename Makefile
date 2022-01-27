@@ -4,8 +4,10 @@ SRCS = $(wildcard *.c)
 
 FLAGS = -Wall -Wextra -Werror
 
-$(NAME): $(OBJS)
-	@ gcc $(FLAGS) $(SRCS) -lreadline -o $(NAME)
+$(NAME): 
+	@ cd libft && make libft.a && make clean
+	@ echo "Compiling libft..."
+	@ gcc $(FLAGS) $(SRCS) libft/libft.a -lreadline -o $(NAME)
 	@ echo "Compiling Minishell..."
 
 all : $(NAME) 
