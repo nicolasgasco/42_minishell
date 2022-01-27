@@ -2,5 +2,36 @@
 
 void	ft_init_common_data(c_data	*c_data)
 {
-	c_data->username = (char *)NULL;
+	c_data->username = getenv("USER");
+	c_data->hostname = getenv("HOSTNAME");
+	c_data->prompt_text = ft_create_prompt_text(c_data->username, c_data->hostname);
+}
+
+char	*ft_create_prompt_text(char	*username, char *hostname)
+{
+	int		i;
+	int		len1;
+	int		len2;
+	char	*result;
+	
+	i = 0;
+	len1 = ft_strlen(username);
+	len2 = ft_strlen(hostname);
+	result = (char *)malloc(sizeof(char) * (len1 + len2 + 4));
+	while (i < len1)
+	{
+		result[i] = username[i];
+		i++;
+	}
+	result[i] = '@';
+	i++;
+	while (i < (len1 + len2 + 1))
+	{
+		result[i] = hostname[i - len1 - 1];
+		i++;
+	}
+	result[i] = ':';
+	result[i + 1] = ' ';
+	result[i + 2] = '\0';
+	return (result);
 }
