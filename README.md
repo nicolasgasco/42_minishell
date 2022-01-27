@@ -7,9 +7,13 @@ This project was done collaboratively by [adelcor](https://github.com/adelcor) a
 
 ## Backlog
 
-1. Creating a prompt and listening to user input
+1. Initializing project
+    - Writing Makefile
+    - Importing and checking Libft
+    - Writing header file
+2. Creating a prompt and listening to user input
     - Prompt shows username and hostname
     - Prompt has a working history
-2. Parse user input
+3. Parse user input
     - List of valid commands
     - List of quotes
