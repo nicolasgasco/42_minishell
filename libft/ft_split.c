@@ -12,29 +12,32 @@
 
 #include "libft.h"
 
-static int	ft_calc_total_len(char const *s, char c)
+int	ft_isspace(char	c)
 {
-	int	res;
+	if (c == 9 || c == 10 || c == 11 || c == 12 || c == 13 || c == 32)
+		return (1);
+	return (0);
+}
+
+static int	ft_calc_total_len(char const *s)
+{
 	int	i;
 	int	tot_words;
 
 	tot_words = 0;
 	i = 0;
-	res = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] != c)
-			res++;
-		else if (s[i] == c && s[i - 1] && s[i - 1] != c)
+		if (ft_isspace(s[i]) == 1 && s[i - 1] && ft_isspace(s[i - 1]) == 0)
 			tot_words++;
 		i++;
 	}
-	if (s[i - 1] != c)
+	if (ft_isspace(s[i - 1]) == 0)
 		tot_words += 1;
 	return (tot_words);
 }
 
-static void	ft_write_strings_to_array(char const *s, char c, char **result)
+static void	ft_write_strings_to_array(char const *s, char **result)
 {
 	int		i;
 	int		start;
@@ -43,7 +46,7 @@ static void	ft_write_strings_to_array(char const *s, char c, char **result)
 	start = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] == c && s[i - 1] != c)
+		if (ft_isspace(s[i]) == 1 && ft_isspace(s[i - 1]) == 0)
 		{
 			if (i - start != 0)
 			{
@@ -52,35 +55,36 @@ static void	ft_write_strings_to_array(char const *s, char c, char **result)
 			}
 			start = i + 1;
 		}
-		else if (s[i] == c && s[i - 1] == c)
+		else if (ft_isspace(s[i]) == 1 && ft_isspace(s[i - 1]) == 1)
 			start++;
 		i++;
 	}
-	if (s[i - 1] != c)
+	if (ft_isspace(s[i - 1]) == 0)
+	{
 		*result = ft_substr(s, start, i - start);
-	if (s[i - 1] != c)
 		result++;
+	}
 	*result = NULL;
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s)
 {
 	char	**result;
 
 	if (!s)
 		return (NULL);
-	if (s[0] == '\0' || ft_calc_total_len(s, c) == 0)
+	if (s[0] == '\0' || ft_strlen(s) == 0)
 	{
-		result = (char **)malloc(sizeof(char *) + 1);
+		result = (char **)malloc(sizeof(char *));
 		result[0] = NULL;
 		return (result);
 	}
-	result = (char **)malloc((ft_calc_total_len(s, c) + 1) * sizeof(char *));
+	result = (char **)malloc(ft_calc_total_len(s) * sizeof(char *) + 1);
 	if (result == NULL)
 	{
 		free(result);
 		return (NULL);
 	}
-	ft_write_strings_to_array(s, c, result);
+	ft_write_strings_to_array(s, result);
 	return (result);
 }
