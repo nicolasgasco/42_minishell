@@ -24,7 +24,7 @@ void    ft_check_cmd(char *cmd)
     else if (ft_strncmp(cmd, "env", 3) == 0)
         printf("%s\n", cmd);
     else if (ft_strncmp(cmd, "exit", 4) == 0)
-        printf("%s\n", cmd);
+        exit(1);
     else
         printf("Unknown command\n");
 }
