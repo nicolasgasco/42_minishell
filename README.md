@@ -16,5 +16,14 @@
     - Check if command is known or valid
     - List of quotes
 
-4. Error validation:
+4. Commands:
+    - **echo** with option -n
+    - **cd** with only a relative or absolute path
+    - **pwd** with no options
+    - **export** with no options
+    - **unset** with no options
+    - **env** with no options or arguments
+    - **exit** with no options
+
+5. Error validation:
     - Input too long?
