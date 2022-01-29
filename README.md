@@ -11,5 +11,6 @@
     - Prompt shows username and hostname
     - Prompt has a working history
 3. Parse user input
+    - Separate by word and trim spaces
     - List of valid commands
     - List of quotes
