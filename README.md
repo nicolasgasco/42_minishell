@@ -14,3 +14,8 @@
     - Separate by word and trim spaces
     - List of valid commands
     - List of quotes
+.
+.
+.
+x. Error validation:
+    - Input too long?
