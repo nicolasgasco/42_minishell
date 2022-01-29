@@ -12,7 +12,8 @@
     - Prompt has a working history
 3. Parse user input
     - Separate by word and trim spaces
-    - List of valid commands
+    - Check if input is too long
+    - Check if command is known or valid
     - List of quotes
 
 4. Error validation:
