@@ -16,7 +16,7 @@ void    ft_check_cmd(char *cmd)
     else if (ft_strncmp(cmd, "cd", 2) == 0)
         printf("%s\n", cmd);
     else if (ft_strncmp(cmd, "pwd", 3) == 0)
-        printf("%s\n", cmd);
+        printf("%s\n", getenv("PWD"));
     else if (ft_strncmp(cmd, "export", 6) == 0)
         printf("%s\n", cmd);
     else if (ft_strncmp(cmd, "unset", 5) == 0)
