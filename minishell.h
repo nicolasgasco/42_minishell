@@ -14,6 +14,7 @@ typedef struct CommonData
 	char	*prompt_text;
 	char	**tokens;
 	char	*cmd;
+	char	**paths;
 } c_data;
 
 // TBD
