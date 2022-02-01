@@ -11,7 +11,8 @@
 2. Creating a prompt and listening to user input
     - Prompt shows username and hostname
     - Prompt has a working history
-    - Prompt shows new line when open quote
+    - Prompt shows new line when open quote:
+        - Interpreting number of outer quotes 
 
 3. Parse user input
     - Separate by word and trim spaces
