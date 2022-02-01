@@ -19,7 +19,6 @@
     - Separate by word and trim spaces
     - Check if input is too long
     - Check if command is known or valid
-    - List of quotes
     - Interpret \
 
 4. Commands:
