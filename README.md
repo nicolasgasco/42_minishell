@@ -5,7 +5,7 @@
 
 1. Initializing project
     - Writing Makefile
-    - Importing and checking Libft
+    - Importing Libft
     - Writing header file
 
 2. Creating a prompt and listening to user input
