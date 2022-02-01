@@ -1,0 +1,67 @@
+# Functions
+
+The functions allowed in Minishell
+
+- Readline:
+  - [On using readline](https://web.mit.edu/gnu/doc/html/rlman_2.html)
+  - **readline**: will read a line from the terminal and return it, using prompt as a prompt
+  - **rl_clear_history**: Clear the history list by deleting all of the entries
+  - **rl_on_new_line**: Tell the update functions that we have moved onto a new (empty) line, usually after outputting a newline
+  - **rl_replace_line**: Replace the contents of rl_line_buffer with text
+  - **rl_redisplay**: Change what's displayed on the screen to reflect the current contents of rl_line_buffer
+  - **add_history**: If you want the user to be able to get at the line later, (with C-p for example), you must call add_history () to save the line away in a history list of such lines
+- Output:
+  - **printf**
+  - **write**
+- Memory management:
+  - **malloc**
+  - **free**
+- Processes:
+  - **access**: checks whether the calling process can access the file pathname. If pathname is a symbolic link, it is dereferenced.
+  - **fork**
+  - **wait**
+  - **waitpid**
+  - **wait3**: the wait3() and wait4() system calls are similar to waitpid(2), but additionally return resource usage information about the child in the structure pointed to by *rusage*
+  - **wait4**: the wait3() and wait4() system calls are similar to waitpid(2), but additionally return resource usage information about the child in the structure pointed to by *rusage*
+  - **exit**: terminates the calling process immediately.
+  - **pipe**
+- I/O:
+  - open
+  - read
+  - close
+- Signals:
+  - **signal**: sets a function to handle signal i.e. a signal handler with signal number sig
+  - **sigaction**: is used to change the action taken by a process on receipt of a specific signal
+  - **kill**: can be used to send any signal to any process group or process
+- Directories:
+  - **getcwd**: get current working directory
+  - **chdir**: change working directory
+  - **opendir**: open a directory
+  - **readdir**: read a directory
+  - **closedir**: close a directory
+- Files:
+  - **stat**: get file status
+  - **lstat**: if path is a symbolic link, then the link itself is stat-ed, not the file that it refers to.
+  - **fstat**: the file to be stat-ed is specified by the file descriptor fd
+  - **unlink**: delete a name and possibly the file it refers to
+  - **dup**: duplicate a file descriptor
+  - **dup2**:  instead of using the lowest-numbered unused file descriptor, it uses the file descriptor number specified in *newfd*
+- Programs:
+  - **execve**: executes the program referred to by pathname
+- Errors:
+  - **strerror**: return string describing error number
+  - **perror**:  print a system error message
+- Terminal:
+  - **isatty**: test whether a file descriptor refers to a terminal
+  - **ttyname**: return name of a terminal
+  - **ttyslot**: find the slot of the current user's terminal in some file
+  - **tcsetattr**: set the parameters associated with the terminal
+  - **tcgetattr**: get the parameters associated with the terminal
+  - **ioctl**: control device
+  - **getenv**: get an environment variable
+  - **tgetent**: direct curses interface to the terminfo capability database
+  - **tgetflag**: direct curses interface to the terminfo capability database
+  - **tgetnum**: direct curses interface to the terminfo capability database
+  - **tgetstr**: direct curses interface to the terminfo capability database
+  - **tgoto**: direct curses interface to the terminfo capability database
+  - **tputs**: direct curses interface to the terminfo capability database
