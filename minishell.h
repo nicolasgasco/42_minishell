@@ -9,6 +9,7 @@
 
 typedef struct CommonData
 {
+	char	**envp;
 	char	*username;
 	char	*hostname;
 	char	*prompt_text;
@@ -21,7 +22,7 @@ typedef struct CommonData
 void	ft_print_array(char **str_array);
 
 // Init
-void ft_init_common_data(c_data *c_data);
+void ft_init_common_data(c_data *c_data, char *envp[]);
 char *ft_create_prompt_text(char *username, char *hostname);
 
 // Prompt

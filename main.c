@@ -16,7 +16,7 @@ void	ft_start_loop(c_data *c_data)
 	}
 }
 
-int	main(int argc, char *argv[])
+int	main(int argc, char *argv[], char *envp[])
 {
 	c_data	c_data;
 		
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[])
 		printf("Error: arguments\n");
 		return (1);
 	}
-	ft_init_common_data(&c_data);
+	ft_init_common_data(&c_data, envp);
 	ft_start_loop(&c_data);
 	return (0);
 }
