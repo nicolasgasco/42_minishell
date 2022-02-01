@@ -13,7 +13,7 @@
     - Prompt has a working history
     - Prompt shows new line when open quote:
         - Interpreting number of outer quotes
-        - Parsing ' inside of quotes
+        - Converting ' int \' when used inside of quotes
 
 3. Parse user input
     - Separate by word and trim spaces
