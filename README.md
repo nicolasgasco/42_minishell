@@ -10,6 +10,7 @@
 
 2. Creating a prompt and listening to user input
     - Prompt shows username and hostname
+        - Fallback in case there are no variables
     - Prompt has a working history
     - Prompt keeps showing new prompt line if quotes are not closed:
         - Interpreting number of outer quotes
