@@ -11,7 +11,7 @@
 2. Creating a prompt and listening to user input
     - Prompt shows username and hostname
     - Prompt has a working history
-    - Prompt shows new line when open quote:
+    - Prompt keeps showing new prompt line if quotes are not closed:
         - Interpreting number of outer quotes
         - Converting ' int \' when used inside of quotes
 
