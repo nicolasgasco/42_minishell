@@ -12,7 +12,8 @@
     - Prompt shows username and hostname
     - Prompt has a working history
     - Prompt shows new line when open quote:
-        - Interpreting number of outer quotes 
+        - Interpreting number of outer quotes
+        - Parsing ' inside of quotes
 
 3. Parse user input
     - Separate by word and trim spaces
