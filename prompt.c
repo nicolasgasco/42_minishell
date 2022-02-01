@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+// Reading user input
 char	*rl_gets(char *line_read, char *prompt_text)
 {
 	if (line_read)
