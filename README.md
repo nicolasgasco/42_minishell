@@ -7,14 +7,18 @@
     - Writing Makefile
     - Importing and checking Libft
     - Writing header file
+
 2. Creating a prompt and listening to user input
     - Prompt shows username and hostname
     - Prompt has a working history
+    - Prompt shows new line when open quote
+
 3. Parse user input
     - Separate by word and trim spaces
     - Check if input is too long
     - Check if command is known or valid
     - List of quotes
+    - Interpret \
 
 4. Commands:
     - **echo** with option -n
