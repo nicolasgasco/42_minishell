@@ -1,6 +1,7 @@
 #include "minishell.h"
 
-void ft_start_loop(c_data *c_data)
+// Main loop, input is saved and tokenized
+void	ft_start_loop(c_data *c_data)
 {
 	char	*line_read;
 
@@ -23,7 +24,8 @@ void ft_start_loop(c_data *c_data)
 	}
 }
 
-int main(int argc, char *argv[], char *envp[])
+// Program doesn't accept arguments
+int	main(int argc, char *argv[], char *envp[])
 {
 	c_data c_data;
 

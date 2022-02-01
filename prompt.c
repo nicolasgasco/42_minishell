@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+// Look for opening quote and check if it's closed or not
 int ft_are_quotes_even(char *line)
 {
 	int 	i;
@@ -30,6 +31,7 @@ int ft_are_quotes_even(char *line)
 	return (0);
 }
 
+// Accepts user input
 char	*rl_gets(char *line_read, char *prompt_text)
 {
 	char	*result;

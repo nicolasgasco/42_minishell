@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+// All the global variables required by the program
 void	ft_init_common_data(c_data	*c_data, char **envp)
 {
 	c_data->envp = envp;
@@ -13,6 +14,7 @@ void	ft_init_common_data(c_data	*c_data, char **envp)
 	c_data->prompt_newline_text = "> ";
 }
 
+// The text shown when prompting user for input, e.g. username@hostname
 char	*ft_create_prompt_text(char	*username, char *hostname)
 {
 	int		i;

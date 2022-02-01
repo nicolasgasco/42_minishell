@@ -19,7 +19,7 @@ typedef struct CommonData
 	char	**paths;
 } c_data;
 
-// TBD
+// TBD WILL BE DELETED
 void	ft_print_array(char **str_array);
 
 // Init
