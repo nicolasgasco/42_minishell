@@ -33,6 +33,7 @@
 
 4. Commands:
     - Parse path variable
+    - Save return values of executed commands
     - Fork before execution with **execve**
         - **echo** with option -n
         - **cd** with only a relative or absolute path
