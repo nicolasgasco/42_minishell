@@ -15,6 +15,9 @@
     - Prompt keeps showing new prompt line if quotes are not closed:
         - Interpreting number of outer quotes
         - Converting ' into \\' when used inside of quotes
+        1. Brace expansion ?
+        2. Tilde expansion ?
+        3. Shell parameter expansion ?
 
 3. Parse user input
     - Separate by word and trim spaces
