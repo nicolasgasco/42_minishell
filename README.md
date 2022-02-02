@@ -15,15 +15,15 @@
     - Prompt keeps showing new prompt line if quotes are not closed:
         - Interpreting number of outer quotes
         - Converting ' into \\' when used inside of quotes
-        1. Brace expansion ?
-        2. Tilde expansion ?
-        3. Shell parameter expansion ?
-        4. Command substitution ?
-        5. Arithmetic expansion ?
-        6. Process substitution ?
-        7. Word splitting ?
-        8. Filename expansion ?
-        9. Quote removal ?
+            1. Brace expansion ?
+            2. Tilde expansion ?
+            3. Shell parameter expansion ?
+            4. Command substitution ?
+            5. Arithmetic expansion ?
+            6. Process substitution ?
+            7. Word splitting ?
+            8. Filename expansion ?
+            9. Quote removal ?
 
 3. Parse user input
     - Separate by word and trim spaces
