@@ -14,7 +14,7 @@
     - Prompt has a working history
     - Prompt keeps showing new prompt line if quotes are not closed:
         - Interpreting number of outer quotes
-        - Converting ' int \' when used inside of quotes
+        - Converting ' into \\' when used inside of quotes
 
 3. Parse user input
     - Separate by word and trim spaces
