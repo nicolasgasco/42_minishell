@@ -15,6 +15,7 @@
     - Prompt keeps showing new prompt line if quotes are not closed:
         - Interpreting number of outer quotes
         - Converting ' into \\' when used inside of quotes
+            - https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html#Shell-Expansions
             1. Brace expansion ?
             2. Tilde expansion ?
             3. Shell parameter expansion ?
