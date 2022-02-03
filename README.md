@@ -13,6 +13,8 @@
         - Fallback in case there are no variables
     - Prompt has a working history
     - Prompt keeps showing new prompt line if quotes are not closed:
+        - Escape character
+        - Backticks
         - Interpreting number of outer quotes
         - Converting ' into \\' when used inside of quotes
             - https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html#Shell-Expansions
