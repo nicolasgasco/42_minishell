@@ -43,6 +43,6 @@
         - **unset** with no options
         - **env** with no options or arguments
         - **exit** with no options
-
+4. Signals
 5. Error validation:
     - Input too long?
