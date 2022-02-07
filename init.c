@@ -1,15 +1,35 @@
 #include "minishell.h"
 
+// Function to init envp
+
+void	init_envp(char **envp, c_data	*c_data)
+{
+	int	i;
+	i = 0;
+	while(envp[i])
+		i++;
+	c_data->envp = malloc(sizeof(char *) * (i + 1));
+	i = -1;
+	while(envp[++i])
+		c_data->envp[i] = ft_strdup(envp[i]);
+	c_data->envp[i] = NULL;
+}
+
+
 // All the global variables required by the program
 void	ft_init_common_data(c_data	*c_data, char **envp)
 {
-	c_data->envp = envp;
+	init_envp(envp, c_data);
 	c_data->username = getenv("USER");
 	if (!c_data->username)
 		c_data->username = "username";
 	c_data->hostname = getenv("HOSTNAME");
 	if (!c_data->hostname)
 		c_data->hostname = "os";
+	printf("\n||WAR MACHINE IS READY||\n\n");
+	printf("Project Minishell.\n\n");
+	printf("Made with love by NICO GASCO & TONI DEL CORRAL.\n\n");
+	printf("Welcome %s, you are now in charge. Good Luck.\n\n", c_data->username);
 	c_data->prompt_text = ft_create_prompt_text(c_data->username, c_data->hostname);
 }
 

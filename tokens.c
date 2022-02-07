@@ -9,21 +9,21 @@ char    **ft_tokenize(char *line, c_data *c_data)
     return result;
 }
 
-void    ft_check_cmd(char *cmd)
+void    ft_check_cmd(c_data *c_data)
 {
-    if (ft_strncmp(cmd, "echo", 4) == 0)
-        printf("%s\n", cmd);
-    else if (ft_strncmp(cmd, "cd", 2) == 0)
-        printf("%s\n", cmd);
-    else if (ft_strncmp(cmd, "pwd", 3) == 0)
-        printf("%s\n", cmd);
-    else if (ft_strncmp(cmd, "export", 6) == 0)
-        printf("%s\n", cmd);
-    else if (ft_strncmp(cmd, "unset", 5) == 0)
-        printf("%s\n", cmd);
-    else if (ft_strncmp(cmd, "env", 3) == 0)
-        printf("%s\n", cmd);
-    else if (ft_strncmp(cmd, "exit", 4) == 0)
+    if (ft_strncmp(c_data->cmd, "echo", 4) == 0)
+        printf("%s\n", c_data->cmd);
+    else if (ft_strncmp(c_data->cmd, "cd", 2) == 0)
+        printf("%s\n", c_data ->cmd);
+    else if (ft_strncmp(c_data->cmd, "pwd", 3) == 0)
+	    built_pwd();
+    else if (ft_strncmp(c_data->cmd, "export", 6) == 0)
+        printf("%s\n", c_data->cmd);
+    else if (ft_strncmp(c_data->cmd, "unset", 5) == 0)
+        printf("%s\n", c_data->cmd);
+    else if (ft_strncmp(c_data->cmd, "env", 3) == 0)
+	    built_envp(c_data);
+    else if (ft_strncmp(c_data->cmd, "exit", 4) == 0)
         exit(1);
     else
         printf("Unknown command\n");

@@ -30,6 +30,10 @@ char *rl_gets(char *line_read, char *prompt_text);
 
 // Tokenization
 char	**ft_tokenize(char *line, c_data *c_data);
-void	ft_check_cmd(char *cmd);
+void	ft_check_cmd(c_data *c_data);
+
+//Builtins
+void	built_envp(c_data *c_data);
+void	built_pwd(void);
 
 #endif

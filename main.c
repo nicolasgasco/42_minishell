@@ -1,5 +1,7 @@
 #include "minishell.h"
 
+
+
 // Main loop, input is saved and tokenized
 void	ft_start_loop(c_data *c_data)
 {
@@ -10,10 +12,14 @@ void	ft_start_loop(c_data *c_data)
 	while (1)
 	{
 		line_read = rl_gets(line_read, c_data->prompt_text);
+		if(*line_read)
+		{
 		c_data->tokens = ft_tokenize(line_read, c_data);
 		c_data->paths = ft_splitc(getenv("PATH"), ':');
-		ft_check_cmd(c_data->cmd);
+		ft_check_cmd(c_data);
+		}
 		i++;
+		
 	}
 }
 

@@ -8,7 +8,8 @@ $(NAME):
 	@ cd libft && make libft.a && make clean
 	@ echo "Compiling libft..."
 	@ gcc $(FLAGS) $(SRCS) libft/libft.a -lreadline -o $(NAME)
-	@ echo "Compiling Minishell..."
+	@ echo "Compiling WAR MACHINE..."
+
 
 all : $(NAME) 
 
