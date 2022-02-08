@@ -29,7 +29,6 @@ int			ft_isdigit(int c);
 int			ft_isalnum(int c);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
-int         ft_isquote(char	c);
 void		*ft_memset(void *b, int c, size_t len);
 void		ft_bzero(void *s, size_t n);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
