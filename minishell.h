@@ -32,8 +32,9 @@ char	*rl_gets(char *line_read, char *prompt_text);
 // Quotes
 int		ft_are_quotes_even(char *line);
 int		ft_isquote(char	c);
-void	ft_expand_quotes(char *line, int start);
-int 	ft_first_unescaped_quote(char *line);
+void	ft_expand_quotes(char *line);
+int		ft_expand_simple_quotes(char *line);
+void	ft_expand_escaped_quotes(char *line, char quote);
 
 // Tokenization
 char	**ft_tokenize(char *line, c_data *c_data);
@@ -42,5 +43,6 @@ void	ft_check_cmd(char *cmd);
 // Strings
 int		ft_count_char(char quote, char *line, int start);
 char	*ft_remove_char(char c, char *line, int start);
+char	*ft_remove_char_index(int index, char *line);
 
 #endif
