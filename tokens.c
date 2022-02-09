@@ -14,7 +14,7 @@ void    ft_check_cmd(c_data *c_data)
     if (ft_strncmp(c_data->cmd, "echo", 4) == 0)
         printf("%s\n", c_data->cmd);
     else if (ft_strncmp(c_data->cmd, "cd", 2) == 0)
-        printf("%s\n", c_data ->cmd);
+	    built_cd(c_data->tokens[1], c_data);
     else if (ft_strncmp(c_data->cmd, "pwd", 3) == 0)
 	    built_pwd();
     else if (ft_strncmp(c_data->cmd, "export", 6) == 0)

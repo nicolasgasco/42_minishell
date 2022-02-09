@@ -35,5 +35,6 @@ void	ft_check_cmd(c_data *c_data);
 //Builtins
 void	built_envp(c_data *c_data);
 void	built_pwd(void);
+void	built_cd(char *arg, c_data *c_data);
 
 #endif
