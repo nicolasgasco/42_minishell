@@ -28,13 +28,19 @@ char	*ft_create_prompt_text(char *username, char *hostname);
 
 // Prompt
 char	*rl_gets(char *line_read, char *prompt_text);
+int		ft_are_quotes_unclosed(char *line);
 
 // Quotes
-int		ft_are_quotes_even(char *line);
+char	*ft_expand_line(char *line);
+char    *ft_expand_line(char *line);
+char    *ft_expand_simple_quotes(char *line);
+char	*ft_expand_escaped_quotes(char *line, int length);
+int		ft_str_len_unescaped(char *line, char c);
+// Quotes utils
 int		ft_isquote(char	c);
-void	ft_expand_quotes(char *line);
-int		ft_expand_simple_quotes(char *line);
-void	ft_expand_escaped_quotes(char *line, char quote);
+int		ft_first_valid_quote(char *line);
+int		ft_toggle_word_started(int word_started);
+void    ft_expanded_escaped_quotes_init(int *i, int *y, int *w);
 
 // Tokenization
 char	**ft_tokenize(char *line, c_data *c_data);

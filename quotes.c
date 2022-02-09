@@ -1,114 +1,56 @@
 #include "minishell.h"
 
-int ft_isquote(char c)
+char    *ft_expand_simple_quotes(char *line)
 {
-    if (c == 34 || c == 39)
-        return (1);
-    return (0);
+    char    *result;
+    int     new_length;
+    
+    new_length = ft_str_len_unescaped(line, '\'');
+    result = malloc(sizeof(char) * (new_length + 1));
+    result = ft_expand_escaped_quotes(line, new_length);
+    return (result);
 }
 
-int ft_expand_simple_quotes(char *line)
+// Quotes are removed or kept depending if they're escaped inside or outside a set of quotes
+char *ft_expand_escaped_quotes(char *line, int length)
 {
-    int i;
-    int word_open;
+    int     i;
+    int     y;
+    int     word_started;
+    char    *result;
 
-    i = 0;
-    word_open = 0;
+    ft_expanded_escaped_quotes_init(&i, &y, &word_started);
+    result = malloc(sizeof(char) * (length + 1));
     while (line[i] != '\0')
     {
         if (line[i] == '\'')
         {
             if (i > 0 && line[i - 1] == '\\')
             {
-                if (word_open == 0)
-                    line = ft_remove_char_index(i - 1, line);
-                else if (word_open == 1)
-                {
-                    line = ft_remove_char_index(i, line);
-                    word_open = 0;
-                }
-                if (line[i] == '\'')
-                {
-                    line = ft_remove_char_index(i, line);
-                    if (word_open == 0)
-                        word_open = 1;
-                    else if (word_open == 1)
-                        word_open = 0;
-                }
+                if (word_started == 1)
+                    word_started = 0;
+                else
+                    i--;
             }
             else
-            {
-                line = ft_remove_char_index(i, line);
-                if (word_open == 0)
-                    word_open = 1;
-                else if (word_open == 1)
-                    word_open = 0;
-            }
-            i--;
+                word_started = ft_toggle_word_started(word_started);
+            i++;
         }
+        if (line[i] == '\\' && word_started == 0)
+            i++;
+        result[y] = line[i];
         i++;
+        y++;
     }
-    return (word_open);
+    result[y] = '\0';
+    printf("Result: %s\n", result);
+    return (result);
 }
 
-// Function that interprets quotes
-void ft_expand_quotes(char *line)
+void    ft_expanded_escaped_quotes_init(int *i, int *y, int *w)
 {
-    int i;
-    // int quote_count;
-
-    i = 0;
-    // quote_count = 0;
-    while (line[i] != '\0')
-    {
-        if (ft_isquote(line[i]) == 1)
-            break;
-        i++;
-    }
-    if (line[i] == '\'')
-    {
-        if (ft_expand_simple_quotes(line) == 1)
-        {
-            printf("%s\n", line);
-            printf("Open quotes oh no\n");
-        }
-        else
-        {
-            printf("Closed quotes\n");
-        }
-    }
-    else
-        printf("First quote is %c\n", line[i]);
-    // printf("%s\n", line);
+    *i = 0;
+    *y = 0;
+    *w = 0;
 }
 
-// Look for opening quote and check if it's closed or not
-int ft_are_quotes_even(char *line)
-{
-    int i;
-    char open_char;
-    int counter;
-
-    i = 0;
-    counter = 0;
-    while (line[i] != '\0')
-    {
-        if (ft_isquote(line[i]) == 1)
-        {
-            counter++;
-            break;
-        }
-        i++;
-    }
-    open_char = line[i];
-    i++;
-    while (line[i] != '\0')
-    {
-        if (line[i] == open_char)
-            counter++;
-        i++;
-    }
-    if (counter % 2 == 0)
-        return (1);
-    return (0);
-}
