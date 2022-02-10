@@ -12,6 +12,7 @@ void	ft_init_common_data(c_data	*c_data, char **envp)
 		c_data->hostname = "os";
 	c_data->prompt_text = ft_create_prompt_text(c_data->username, c_data->hostname);
 	c_data->prompt_newline_text = "> ";
+	ft_init_quotes_list(c_data);
 }
 
 // The text shown when prompting user for input, e.g. username@hostname
@@ -42,4 +43,12 @@ char	*ft_create_prompt_text(char	*username, char *hostname)
 	result[i + 1] = ' ';
 	result[i + 2] = '\0';
 	return (result);
+}
+
+void	ft_init_quotes_list(c_data *c_data)
+{
+	c_data->quotes_list->length = 0;
+	c_data->quotes_list->quoted = 0;
+	c_data->quotes_list->str = ft_strdup("");
+	c_data->quotes_list->next = NULL;
 }

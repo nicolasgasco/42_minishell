@@ -7,6 +7,13 @@ int ft_isquote(char c)
     return (0);
 }
 
+// int	ft_isspace(char	c)
+// {
+// 	if (c == 9 || c == 10 || c == 11 || c == 12 || c == 13 || c == 32)
+// 		return (1);
+// 	return (0);
+// }
+
 // Escaped quotes are not valid and must be ignored
 int ft_first_valid_quote(char *line)
 {

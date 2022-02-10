@@ -1,15 +1,15 @@
 #include "minishell.h"
 
-char    **ft_tokenize(char *line, c_data *c_data)
+char **ft_tokenize(char *line, c_data *c_data)
 {
-    char    **result;
+    char **result;
 
     result = ft_split(line);
     c_data->cmd = result[0];
     return result;
 }
 
-void    ft_check_cmd(char *cmd)
+void ft_check_cmd(char *cmd)
 {
     if (ft_strncmp(cmd, "echo", 4) == 0)
         printf("%s\n", cmd);

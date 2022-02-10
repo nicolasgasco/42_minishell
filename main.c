@@ -18,11 +18,12 @@ void	ft_start_loop(c_data *c_data)
 					break;
 			}
 		}
-		line_read = ft_expand_line(line_read);
-		c_data->tokens = ft_tokenize(line_read, c_data);
-		printf("%s\n", line_read);
+		c_data->raw_input = line_read;
+		ft_tokenize_quotes(c_data);
+		// c_data->tokens = ft_tokenize(line_read, c_data);
+		// printf("%s\n", line_read);
 		// c_data->paths = ft_splitc(getenv("PATH"), ':');
-		ft_check_cmd(c_data->cmd);
+		// ft_check_cmd(c_data->cmd);
 	}
 }
 
