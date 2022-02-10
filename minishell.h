@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <stdbool.h>
 
 typedef struct CommonData
 {
@@ -36,5 +37,6 @@ void	ft_check_cmd(c_data *c_data);
 void	built_envp(c_data *c_data);
 void	built_pwd(void);
 void	built_cd(char *arg, c_data *c_data);
+int	built_echo(char **arg);
 
 #endif
