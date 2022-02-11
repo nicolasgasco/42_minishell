@@ -7,6 +7,22 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+
+struct s_node {
+	int				quoted;
+	int				length;
+	char			q_type;
+	char			*str;
+	struct s_node	*next;
+};
+
+typedef struct QuotesData {
+	int				start;
+	int				end;
+	int				q_open;
+	char			*raw_input;
+	struct s_node	*quotes_list;
+} q_data;
 typedef struct CommonData
 {
 	char			**envp;
@@ -14,27 +30,20 @@ typedef struct CommonData
 	char			*hostname;
 	char			*prompt_text;
 	char			*prompt_newline_text;
-	char			*raw_input;
 	char			**tokens;
 	char			*cmd;
 	char			**paths;
-	struct s_node	*quotes_list;
+	q_data			*q_data;
 } c_data;
 
-struct s_node {
-	int				quoted;
-	int				length;
-	char			*str;
-	struct s_node	*next;
-};
 
 // TBD WILL BE DELETED
 void	ft_print_array(char **str_array);
 
 // Init
 void	ft_init_common_data(c_data *c_data, char *envp[]);
+void	ft_init_quotes_data(c_data *c_data);
 char	*ft_create_prompt_text(char *username, char *hostname);
-void	ft_init_quotes_list(c_data *c_data);
 
 // Prompt
 char	*rl_gets(char *line_read, char *prompt_text);
@@ -42,9 +51,9 @@ int		ft_are_quotes_unclosed(char *line);
 
 // Quotes
 void    ft_tokenize_quotes(c_data *c_data);
-void	ft_add_node_quotes(c_data *c_data, int start, int end, int quoted);
-void	ft_tokenize_quotes_util_0(c_data *c_data, int *i, int *start, int *quotes_open);
-void	ft_tokenize_quotes_util_1(c_data *c_data, int *i, int *start, int *quotes_open);
+void	ft_add_node_quotes(q_data *q_data, int end, int quoted, char quote);
+void	ft_tokenize_quotes_util_0(q_data *q_data, int *i, char quote);
+void	ft_tokenize_quotes_util_1(q_data *q_data, int *i, char quote);
 
 char	*ft_expand_line(char *line);
 char    *ft_expand_line(char *line);

@@ -9,6 +9,7 @@ void	ft_start_loop(c_data *c_data)
 	{
 		line_read = (char *)NULL;
 		line_read = rl_gets(line_read, c_data->prompt_text);
+		ft_init_quotes_data(c_data);
 		if (ft_are_quotes_unclosed(line_read))
 		{
 			while (1)
@@ -18,7 +19,8 @@ void	ft_start_loop(c_data *c_data)
 					break;
 			}
 		}
-		c_data->raw_input = line_read;
+		c_data->q_data->raw_input = ft_strdup(line_read);
+		free(line_read);
 		ft_tokenize_quotes(c_data);
 		// c_data->tokens = ft_tokenize(line_read, c_data);
 		// printf("%s\n", line_read);

@@ -3,6 +3,7 @@
 // All the global variables required by the program
 void	ft_init_common_data(c_data	*c_data, char **envp)
 {
+	memset(c_data, 0, sizeof(*c_data));
 	c_data->envp = envp;
 	c_data->username = getenv("USER");
 	if (!c_data->username)
@@ -12,7 +13,20 @@ void	ft_init_common_data(c_data	*c_data, char **envp)
 		c_data->hostname = "os";
 	c_data->prompt_text = ft_create_prompt_text(c_data->username, c_data->hostname);
 	c_data->prompt_newline_text = "> ";
-	ft_init_quotes_list(c_data);
+	ft_init_quotes_data(c_data);
+}
+
+void	ft_init_quotes_data(c_data *c_data)
+{
+	c_data->q_data = malloc(sizeof(q_data));
+	memset(c_data->q_data, 0, sizeof(q_data));
+	c_data->q_data->quotes_list = malloc(sizeof(q_data));
+	memset(c_data->q_data->quotes_list, 0, sizeof(struct s_node));
+	c_data->q_data->quotes_list->next = malloc(sizeof(struct s_node));
+	c_data->q_data->quotes_list->length = 0;
+	c_data->q_data->quotes_list->quoted = 0;
+	c_data->q_data->quotes_list->str = ft_strdup("");
+	c_data->q_data->quotes_list->next = NULL;
 }
 
 // The text shown when prompting user for input, e.g. username@hostname
@@ -45,10 +59,11 @@ char	*ft_create_prompt_text(char	*username, char *hostname)
 	return (result);
 }
 
-void	ft_init_quotes_list(c_data *c_data)
+// Initializing first node of list as empty
+void	ft_init_quotes_list(q_data *q_data)
 {
-	c_data->quotes_list->length = 0;
-	c_data->quotes_list->quoted = 0;
-	c_data->quotes_list->str = ft_strdup("");
-	c_data->quotes_list->next = NULL;
+	q_data->quotes_list->length = 0;
+	q_data->quotes_list->quoted = 0;
+	q_data->quotes_list->str = ft_strdup("");
+	q_data->quotes_list->next = NULL;
 }

@@ -3,65 +3,70 @@
 void ft_tokenize_quotes(c_data *c_data)
 {
 	int		i;
-	int		start;
-	int		quotes_open;
+	q_data	*q_data;
 	char	*line;
-	
-	line = c_data->raw_input;
-	start = 0;
-	quotes_open = 0;
+
+	line = c_data->q_data->raw_input;
+	q_data = c_data->q_data;
 	if (line[0] == '\'')
-		quotes_open = 1;
+		q_data->q_open = 1;
 	i = 1;
 	while (line[i] != '\0')
 	{
-		if (quotes_open == 0)
+		if (q_data->q_open == 0)
 		{
-			if (line[i] == '\'' && line[i - 1] != '\\')
-				ft_tokenize_quotes_util_0(c_data, &i, &start, &quotes_open);
+			if ((line[i] == '\'' || line[i] == '\"') && line[i - 1] != '\\')
+				ft_tokenize_quotes_util_0(q_data, &i, line[i]);
 		}
-		else if (quotes_open == 1)
+		else if (q_data->q_open == 1)
 		{
-			if (line[i] == '\'')
-				ft_tokenize_quotes_util_1(c_data, &i, &start, &quotes_open);
+			if (line[i] == '\'' || line[i] == '\"')
+				ft_tokenize_quotes_util_1(q_data, &i, line[i]);
 		}
 		i++;
 	}
-	if (c_data->quotes_list->next == NULL)
-		ft_add_node_quotes(c_data, start, i, 0);
+	if (c_data->q_data->quotes_list->next == NULL)
+		ft_add_node_quotes(q_data, i, 0, 0);
 }
 
-void	ft_tokenize_quotes_util_0(c_data *c_data, int *i, int *start, int *quotes_open)
+void	ft_tokenize_quotes_util_0(q_data *q_data, int *i, char quote)
 {
-	*quotes_open = 1;
-	if (*start < *i)
-		ft_add_node_quotes(c_data, *start, *i, 0);
-	*start = *i;
+	q_data->q_open = 1;
+	if (q_data->start < *i)
+		ft_add_node_quotes(q_data, *i, 0, quote);
+	q_data->start = *i;
 }
 
-void	ft_tokenize_quotes_util_1(c_data *c_data, int *i, int *start, int *quotes_open)
+void	ft_tokenize_quotes_util_1(q_data *q_data, int *i, char quote)
 {
-	*quotes_open = 0;
-	if (*start < *i)
-		ft_add_node_quotes(c_data, *start, *i + 1, 1);
-	*start = *i + 1;
+	q_data->q_open = 0;
+	if (q_data->start < *i)
+		ft_add_node_quotes(q_data, *i + 1, 1, quote);
+	q_data->start = *i + 1;
 }
 
-void	ft_add_node_quotes(c_data *c_data, int start, int end, int quoted)
+void	ft_add_node_quotes(q_data *q_data, int end, int quoted, char quote)
 {
 	struct s_node	*new_node;
 	struct s_node	*curr;
+	int				i;
 
-	curr = c_data->quotes_list;
+	curr = q_data->quotes_list;
 	new_node = malloc(sizeof(struct s_node));
 	if (new_node == NULL)
 		exit(1);
-	new_node->str = ft_substr(c_data->raw_input, start, end - start);
-	printf("Str in node: ->%s<-\n", new_node->str);
-	new_node->length = end - start;
+	new_node->str = ft_substr(q_data->raw_input, q_data->start, end - q_data->start);
+	new_node->length = end - q_data->start;
 	new_node->quoted = quoted;
+	new_node->q_type = quote;
+	new_node->next = NULL;
+	i = 0;
 	while (curr->next != NULL)
+	{
 		curr = curr->next;
+		i++;
+	}
+	printf("||%s||\t\t\t(quotes: %c) in node number %d\n", new_node->str, new_node->q_type, i);
 	curr->next = new_node;
 }
 
