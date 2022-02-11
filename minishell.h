@@ -37,18 +37,18 @@ typedef struct CommonData
 	q_data			*q_data;
 } c_data;
 
-
-// TBD WILL BE DELETED
-void	ft_print_array(char **str_array);
+// Main
+void	ft_start_loop(c_data *c_data);
 
 // Init
 void	ft_init_common_data(c_data *c_data, char *envp[]);
 void	ft_init_quotes_data(c_data *c_data);
-char	*ft_create_prompt_text(char *username, char *hostname);
+void	ft_init_quotes_list(c_data *c_data);
 
 // Prompt
 char	*rl_gets(char *line_read, char *prompt_text);
 int		ft_are_quotes_unclosed(char *line);
+char	*ft_create_prompt_text(char *username, char *hostname);
 
 // Quotes
 void    ft_tokenize_quotes(c_data *c_data);
@@ -59,13 +59,8 @@ void 	ft_tokenization_logic_open(q_data *q_data, int i, char quote);
 // Quotes linked list
 void	ft_add_node_quotes(q_data *q_data, int end, int quoted, char quote);
 
-// Tokenization
+// Commands
 char **ft_tokenize(c_data *c_data);
 void	ft_check_cmd(char *cmd);
-
-// Strings
-int		ft_count_char(char quote, char *line, int start);
-char	*ft_remove_char(char c, char *line, int start);
-char	*ft_remove_char_index(int index, char *line);
 
 #endif

@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+// Method to add a new node to the linked list containing the tokenized raw input
 void ft_add_node_quotes(q_data *q_data, int end, int quoted, char quote)
 {
 	struct s_node *new_node;

@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+// Command is extracted
 char **ft_tokenize(c_data *c_data)
 {
     char **result;
@@ -9,6 +10,7 @@ char **ft_tokenize(c_data *c_data)
     return result;
 }
 
+// Depending on command, input is further processed
 void ft_check_cmd(char *cmd)
 {
     if (ft_strncmp(cmd, "echo", 4) == 0)
