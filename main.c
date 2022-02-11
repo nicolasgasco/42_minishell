@@ -22,10 +22,10 @@ void	ft_start_loop(c_data *c_data)
 		c_data->q_data->raw_input = ft_strdup(line_read);
 		free(line_read);
 		ft_tokenize_quotes(c_data);
-		// c_data->tokens = ft_tokenize(line_read, c_data);
-		// printf("%s\n", line_read);
-		// c_data->paths = ft_splitc(getenv("PATH"), ':');
-		// ft_check_cmd(c_data->cmd);
+		c_data->tokens = ft_tokenize(c_data);
+		printf("%s\n", line_read);
+		c_data->paths = ft_splitc(getenv("PATH"), ':');
+		ft_check_cmd(c_data->cmd);
 	}
 }
 

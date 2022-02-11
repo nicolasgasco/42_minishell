@@ -29,6 +29,15 @@ void	ft_init_quotes_data(c_data *c_data)
 	c_data->q_data->quotes_list->next = NULL;
 }
 
+// Initializing first node of list as empty
+void	ft_init_quotes_list(q_data *q_data)
+{
+	q_data->quotes_list->length = 0;
+	q_data->quotes_list->quoted = 0;
+	q_data->quotes_list->str = ft_strdup("");
+	q_data->quotes_list->next = NULL;
+}
+
 // The text shown when prompting user for input, e.g. username@hostname
 char	*ft_create_prompt_text(char	*username, char *hostname)
 {
@@ -57,13 +66,4 @@ char	*ft_create_prompt_text(char	*username, char *hostname)
 	result[i + 1] = ' ';
 	result[i + 2] = '\0';
 	return (result);
-}
-
-// Initializing first node of list as empty
-void	ft_init_quotes_list(q_data *q_data)
-{
-	q_data->quotes_list->length = 0;
-	q_data->quotes_list->quoted = 0;
-	q_data->quotes_list->str = ft_strdup("");
-	q_data->quotes_list->next = NULL;
 }

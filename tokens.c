@@ -1,10 +1,10 @@
 #include "minishell.h"
 
-char **ft_tokenize(char *line, c_data *c_data)
+char **ft_tokenize(c_data *c_data)
 {
     char **result;
 
-    result = ft_split(line);
+    result = ft_split(c_data->q_data->raw_input);
     c_data->cmd = result[0];
     return result;
 }
