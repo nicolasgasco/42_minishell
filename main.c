@@ -28,6 +28,7 @@ void	ft_start_loop(c_data *c_data)
 		c_data->q_data->raw_input = ft_strdup(line_read);
 		free(line_read);
 		ft_tokenize_quotes(c_data);
+		ft_expand_quotes(c_data->q_data);
 		printf("\n------------------\n");
 		c_data->line_expanded = ft_convert_list_to_str(c_data->q_data);
 		printf("Line expanded is |%s|\n", c_data->line_expanded);
