@@ -1,29 +1,27 @@
 #include "minishell.h"
 
-void    ft_expand_quotes(q_data *q_data)
+// Linked list is iterated to expand escape characters and variables
+void    ft_expansions(q_data *q_data)
 {
     struct s_node	*curr;
-	int				i;
 	
-	i = 0;
 	curr = q_data->quotes_list;
 	while (1)
 	{
         if (curr->q_type == '\"')
 		{
-            curr->str = ft_strtrim(curr->str, "\"");
+			printf("Str is %s\n", curr->str);
 			curr->str = ft_expand_escaped(curr->str);
+			printf("Str is %s\n", curr->str);
 		}
-		else if (curr->q_type == '\'')
-            curr->str = ft_strtrim(curr->str, "\'");
 		if (curr->next == NULL)
 			break;
 		else
 			curr = curr->next;
-		i++;
 	}
 }
 
+// Inside double quotes, escape character works only with %, `, ", \, and \n; inside single quotes, it's ignored 
 char	*ft_expand_escaped(char *str)
 {
 	int	i;
@@ -31,7 +29,8 @@ char	*ft_expand_escaped(char *str)
 
 	i = 0;
 
-	while (1)
+	result = ft_strdup(str);
+	while (str[i] != '\0')
 	{
 		if (str[i] == '\\')
 		{
@@ -50,5 +49,3 @@ char	*ft_expand_escaped(char *str)
 	free(str);
 	return (result);
 }
-
-// dollar, backtick, double quote, backslash or newline, double quotes

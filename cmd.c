@@ -1,13 +1,13 @@
 #include "minishell.h"
 
-// Command is extracted
-char **ft_tokenize(c_data *c_data)
+// Command is extracted by raw input
+void    ft_extract_cmd(c_data *c_data)
 {
     char **result;
 
     result = ft_split(c_data->q_data->raw_input);
     c_data->cmd = result[0];
-    return result;
+    free(result);
 }
 
 // Depending on command, input is further processed

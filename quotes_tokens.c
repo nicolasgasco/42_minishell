@@ -1,33 +1,33 @@
 #include "minishell.h"
 
-// 1/2 Raw input is parsed and tokenized according to quotes
-void ft_tokenize_quotes(c_data *c_data)
+// 1/2 Raw input is parsed and tokenized in a linked list according to quotes. First empty linked node is pruned at the end of function
+void ft_tokenize_quotes(q_data *q_data)
 {
 	int i;
-	q_data *q_data;
-	char *line;
 
-	line = c_data->q_data->raw_input;
-	q_data = c_data->q_data;
-	if (line[0] == '\'')
+	if (q_data->raw_input[0] == '\'')
 		q_data->s_open = 1;
-	else if (line[0] == '\"')
+	else if (q_data->raw_input[0] == '\"')
 		q_data->d_open = 1;
 	i = 1;
-	while (line[i] != '\0')
+	while (q_data->raw_input[i] != '\0')
 	{
-		if (line[i] == '\'' && q_data->d_open == 0)
-			ft_tokenization_logic(q_data, line, i, '\'');
-		else if (line[i] == '\"' && q_data->s_open == 0)
-			ft_tokenization_logic(q_data, line, i, '\"');
+		if (q_data->raw_input[i] == '\'' && q_data->d_open == 0)
+			ft_tokenization_logic(q_data, q_data->raw_input, i, '\'');
+		else if (q_data->raw_input[i] == '\"' && q_data->s_open == 0)
+			ft_tokenization_logic(q_data, q_data->raw_input, i, '\"');
 		i++;
 	}
-	if (q_data->start != i)
-		ft_add_node_quotes(q_data, i, 0, '\0');
+	if (q_data->d_open)
+		ft_add_node_quotes(q_data, i, '\"');
+	else if (q_data->s_open)
+		ft_add_node_quotes(q_data, i, '\'');
+	else if (q_data->start == 0 || q_data->start != i)
+		ft_add_node_quotes(q_data, i, '\0');
 	ft_prune_starting_node(&q_data->quotes_list);
 }
 
-// 2/2 Substrings are assigned a 'parent quote' depending on what other quotes preceded them
+// 2/2 For both types of quotes, different tokenization logics are applied
 void ft_tokenization_logic(q_data *q_data, char *line, int i, char quote)
 {
 	if (quote == '\'')
@@ -58,21 +58,21 @@ void ft_tokenization_logic(q_data *q_data, char *line, int i, char quote)
 	}
 }
 
-// 2b Logic for substrings that are indeed preceded by an opening quote
+// 2b Logic for substrings that are preceded by an opening quote
 void ft_tokenization_logic_open(q_data *q_data, int i, char quote)
 {
 	if (quote == '\'')
 	{
 		q_data->s_open = 0;
 		if (q_data->start < i)
-			ft_add_node_quotes(q_data, i + 1, 1, quote);
+			ft_add_node_quotes(q_data, i, quote);
 		q_data->start = i + 1;
 	}
 	else if (quote == '\"')
 	{
 		q_data->d_open = 0;
 		if (q_data->start < i)
-		ft_add_node_quotes(q_data, i + 1, 1, quote);
+		ft_add_node_quotes(q_data, i, quote);
 		q_data->start = i + 1;
 	}
 }
@@ -83,11 +83,11 @@ void ft_tokenization_logic_closed(q_data *q_data, int i, char quote)
 	if (quote == '\'')
 	{
 		if (q_data->start < i && q_data->d_open == 1)
-			ft_add_node_quotes(q_data, i, 0, '\0');
+			ft_add_node_quotes(q_data, i, '\0');
 		else if (q_data->start < i && q_data->d_open == 0)
 		{
 			q_data->s_open = 1;
-			ft_add_node_quotes(q_data, i, 0, '\0');
+			ft_add_node_quotes(q_data, i, '\0');
 		}
 		q_data->start = i;
 	}
@@ -96,9 +96,9 @@ void ft_tokenization_logic_closed(q_data *q_data, int i, char quote)
 		if (q_data->s_open == 0)
 			q_data->d_open = 1;
 		if (q_data->start < i && q_data->s_open == 0)
-			ft_add_node_quotes(q_data, i, 0, '\0');
+			ft_add_node_quotes(q_data, i, '\0');
 		else if (q_data->s_open < i && q_data->s_open == 1)
-			ft_add_node_quotes(q_data, i, 0, '\'');
+			ft_add_node_quotes(q_data, i, '\'');
 		q_data->start = i;
 	}
 }

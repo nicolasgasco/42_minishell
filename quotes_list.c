@@ -1,7 +1,7 @@
 #include "minishell.h"
 
 // Method to add a new node to the linked list containing the tokenized raw input
-void ft_add_node_quotes(q_data *q_data, int end, int quoted, char quote)
+void ft_add_node_quotes(q_data *q_data, int end, char quote)
 {
 	struct s_node *new_node;
 	struct s_node *curr;
@@ -11,9 +11,8 @@ void ft_add_node_quotes(q_data *q_data, int end, int quoted, char quote)
 	new_node = malloc(sizeof(struct s_node));
 	if (new_node == NULL)
 		exit(1);
-	new_node->str = ft_substr(q_data->raw_input, q_data->start, end - q_data->start);
+	new_node->str = ft_create_quote_token(q_data->raw_input, q_data->start, end - q_data->start);
 	new_node->length = end - q_data->start;
-	new_node->quoted = quoted;
 	new_node->q_type = quote;
 	new_node->next = NULL;
 	i = 0;
@@ -53,6 +52,23 @@ char	*ft_convert_list_to_str(q_data *q_data)
 		i++;
 	}
 	return (result);
+}
+
+// Linked list's nodes are deallocated one by one
+void	ft_deallocate_list(struct s_node *quotes_list)
+{
+	struct s_node	*curr;
+	struct s_node	*aux;
+
+	curr = quotes_list;
+	if (curr == NULL)
+		 quotes_list = NULL;
+	else
+	{
+		aux = curr;
+		ft_deallocate_list(curr->next);
+		free(aux);
+	}
 }
 
 // First block of list is always empty and must pruned
