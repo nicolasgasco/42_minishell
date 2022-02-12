@@ -16,14 +16,18 @@ void ft_tokenize_quotes(c_data *c_data)
 	i = 1;
 	while (line[i] != '\0')
 	{
-		if (line[i] == '\'')
+		if (line[i] == '\'' && q_data->d_open == 0)
 			ft_tokenization_logic(q_data, line, i, '\'');
-		else if (line[i] == '\"')
+		else if (line[i] == '\"' && q_data->s_open == 0)
 			ft_tokenization_logic(q_data, line, i, '\"');
 		i++;
 	}
-	if (line[i - 1] != '\'' && line[i - 1] != '\"')
+	if (q_data->start != i)
+	{
+		printf("mierda\n");
 		ft_add_node_quotes(q_data, i, 0, '\0');
+	}
+	ft_prune_starting_node(&q_data->quotes_list);
 }
 
 // 2/2 Substrings are assigned a 'parent quote' depending on what other quotes preceded them
@@ -47,7 +51,29 @@ void ft_tokenization_logic(q_data *q_data, char *line, int i, char quote)
 				ft_tokenization_logic_closed(q_data, i, quote);
 		}
 		else if (q_data->d_open == 1)
-			ft_tokenization_logic_open(q_data, i, quote);	
+		{
+			if (line[i - 1] != '\\')
+				ft_tokenization_logic_open(q_data, i, quote);
+		}
+	}
+}
+
+// 2b Logic for substrings that are indeed preceded by an opening quote
+void ft_tokenization_logic_open(q_data *q_data, int i, char quote)
+{
+	if (quote == '\'')
+	{
+		q_data->s_open = 0;
+		if (q_data->start < i)
+			ft_add_node_quotes(q_data, i + 1, 1, quote);
+		q_data->start = i + 1;
+	}
+	else if (quote == '\"')
+	{
+		q_data->d_open = 0;
+		if (q_data->start < i)
+			ft_add_node_quotes(q_data, i + 1, 1, quote);
+		q_data->start = i + 1;
 	}
 }
 
@@ -76,23 +102,3 @@ void ft_tokenization_logic_closed(q_data *q_data, int i, char quote)
 		q_data->start = i;
 	}
 }
-
-// 2b Logic for substrings that are indeed preceded by an opening quote
-void ft_tokenization_logic_open(q_data *q_data, int i, char quote)
-{
-	if (quote == '\'')
-	{
-		q_data->s_open = 0;
-		if (q_data->start < i)
-			ft_add_node_quotes(q_data, i + 1, 1, quote);
-		q_data->start = i + 1;
-	}
-	else if (quote == '\"')
-	{
-		q_data->d_open = 0;
-		if (q_data->start < i)
-		ft_add_node_quotes(q_data, i + 1, 1, quote);
-		q_data->start = i + 1;
-	}
-}
-

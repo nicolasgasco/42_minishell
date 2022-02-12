@@ -26,6 +26,7 @@ typedef struct QuotesData {
 } q_data;
 typedef struct CommonData
 {
+	char			*line_expanded;
 	char			**envp;
 	char			*username;
 	char			*hostname;
@@ -58,6 +59,11 @@ void 	ft_tokenization_logic_open(q_data *q_data, int i, char quote);
 
 // Quotes linked list
 void	ft_add_node_quotes(q_data *q_data, int end, int quoted, char quote);
+char	*ft_convert_list_to_str(q_data *q_data);
+void	ft_prune_starting_node(struct s_node **quotes_list);
+
+// String manipulation
+char    *ft_strcat(char *src, char *dest);
 
 // Commands
 char **ft_tokenize(c_data *c_data);
