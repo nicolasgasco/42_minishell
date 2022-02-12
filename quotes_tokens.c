@@ -23,10 +23,7 @@ void ft_tokenize_quotes(c_data *c_data)
 		i++;
 	}
 	if (q_data->start != i)
-	{
-		printf("mierda\n");
 		ft_add_node_quotes(q_data, i, 0, '\0');
-	}
 	ft_prune_starting_node(&q_data->quotes_list);
 }
 
@@ -38,7 +35,10 @@ void ft_tokenization_logic(q_data *q_data, char *line, int i, char quote)
 		if (q_data->s_open == 0)
 		{
 			if (line[i - 1] != '\\')
+			{
 				ft_tokenization_logic_closed(q_data, i, quote);
+				q_data->s_open = 1;
+			}
 		}
 		else if (q_data->s_open == 1)
 			ft_tokenization_logic_open(q_data, i, quote);
@@ -53,7 +53,7 @@ void ft_tokenization_logic(q_data *q_data, char *line, int i, char quote)
 		else if (q_data->d_open == 1)
 		{
 			if (line[i - 1] != '\\')
-				ft_tokenization_logic_open(q_data, i, quote);
+				ft_tokenization_logic_open(q_data, i, quote);	
 		}
 	}
 }
@@ -72,7 +72,7 @@ void ft_tokenization_logic_open(q_data *q_data, int i, char quote)
 	{
 		q_data->d_open = 0;
 		if (q_data->start < i)
-			ft_add_node_quotes(q_data, i + 1, 1, quote);
+		ft_add_node_quotes(q_data, i + 1, 1, quote);
 		q_data->start = i + 1;
 	}
 }
@@ -83,11 +83,11 @@ void ft_tokenization_logic_closed(q_data *q_data, int i, char quote)
 	if (quote == '\'')
 	{
 		if (q_data->start < i && q_data->d_open == 1)
-			ft_add_node_quotes(q_data, i, 0, '\"');
+			ft_add_node_quotes(q_data, i, 0, '\0');
 		else if (q_data->start < i && q_data->d_open == 0)
 		{
 			q_data->s_open = 1;
-			ft_add_node_quotes(q_data, i, 0, '\'');
+			ft_add_node_quotes(q_data, i, 0, '\0');
 		}
 		q_data->start = i;
 	}
@@ -102,3 +102,5 @@ void ft_tokenization_logic_closed(q_data *q_data, int i, char quote)
 		q_data->start = i;
 	}
 }
+
+

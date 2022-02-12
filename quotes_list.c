@@ -29,6 +29,7 @@ void ft_add_node_quotes(q_data *q_data, int end, int quoted, char quote)
 	curr->next = new_node;
 }
 
+// Iterate all nodes of linked lists and concatenate them in a string
 char	*ft_convert_list_to_str(q_data *q_data)
 {
 	struct s_node	*curr;
@@ -36,20 +37,21 @@ char	*ft_convert_list_to_str(q_data *q_data)
 	int				i;
 	
 	i = 0;
+	result = NULL;
 	curr = q_data->quotes_list;
-	result = ft_strdup(curr->str);
-	if (curr->next)
-		curr = curr->next;
-	while (curr->next != NULL)
+	while (1)
 	{
-		printf("%d: |%s|\n", i, curr->str);
-		curr = curr->next;
-		if (curr == NULL)
-			printf("%d: |%s|\n", i, curr->str);
+		if (!result)
+			result = ft_strdup(curr->str);
+		else
+			result = ft_strcat(result, curr->str);
+		printf("result (%d) is %s\n", i, result);
+		if (curr->next == NULL)
+			break;
+		else
+			curr = curr->next;
 		i++;
 	}
-	if (q_data)
-		printf("Ciao\n");
 	return (result);
 }
 

@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+// Concatenate two strings and free first one
 char    *ft_strcat(char *src, char *dest)
 {
     int     i;
@@ -20,10 +21,11 @@ char    *ft_strcat(char *src, char *dest)
     i = 0;
     while (dest[i] != '\0')
     {
-        result[y] = src[i];
+        result[y] = dest[i];
         y++;
         i++; 
     }
     result[y] = '\0';
+    free(src);
     return (result);
 }
