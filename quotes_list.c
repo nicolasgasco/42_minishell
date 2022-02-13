@@ -11,7 +11,7 @@ void ft_add_node_quotes(q_data *q_data, int end, char quote)
 	new_node = malloc(sizeof(struct s_node));
 	if (new_node == NULL)
 		exit(1);
-	new_node->str = ft_create_quote_token(q_data->raw_input, q_data->start, end - q_data->start);
+	new_node->str = ft_create_quoted_token(q_data->raw_input, q_data->start, end - q_data->start);
 	new_node->length = end - q_data->start;
 	new_node->q_type = quote;
 	new_node->next = NULL;
@@ -21,10 +21,10 @@ void ft_add_node_quotes(q_data *q_data, int end, char quote)
 		curr = curr->next;
 		i++;
 	}
-	// if (!new_node->q_type)
-	// 	printf("Quotes | | in node n. %d: |%s|\n", i, new_node->str);
-	// else
-	// 	printf("Quotes |%c| in node n. %d: |%s|\n", new_node->q_type, i, new_node->str);
+	if (!new_node->q_type)
+		printf("Quotes | | in node n. %d: |%s|\n", i, new_node->str);
+	else
+		printf("Quotes |%c| in node n. %d: |%s|\n", new_node->q_type, i, new_node->str);
 	curr->next = new_node;
 }
 
@@ -44,7 +44,6 @@ char	*ft_convert_list_to_str(q_data *q_data)
 			result = ft_strdup(curr->str);
 		else
 			result = ft_strcat(result, curr->str);
-		// printf("result (%d) is %s\n", i, result);
 		if (curr->next == NULL)
 			break;
 		else

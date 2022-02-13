@@ -19,9 +19,9 @@ void ft_tokenize_quotes(q_data *q_data)
 		i++;
 	}
 	if (q_data->d_open)
-		ft_add_node_quotes(q_data, i, '\"');
+		ft_add_node_quotes(q_data, i, '\0');
 	else if (q_data->s_open)
-		ft_add_node_quotes(q_data, i, '\'');
+		ft_add_node_quotes(q_data, i, '\0');
 	else if (q_data->start == 0 || q_data->start != i)
 		ft_add_node_quotes(q_data, i, '\0');
 	ft_prune_starting_node(&q_data->quotes_list);
