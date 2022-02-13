@@ -66,11 +66,12 @@ void    ft_tokenize_quotes(q_data *q_data);
 void 	ft_tokenization_logic(q_data *q_data, char *line, int i, char quote);
 void 	ft_tokenization_logic_closed(q_data *q_data, int i, char quote);
 void 	ft_tokenization_logic_open(q_data *q_data, int i, char quote);
-
-// Quotes linked list
+// Quotes  - Linked list
 void	ft_add_node_quotes(q_data *q_data, int end, char quote);
 char	*ft_convert_list_to_str(q_data *q_data);
 void	ft_prune_starting_node(struct s_node **quotes_list);
+char    *ft_create_quoted_token(char *s, int start, int len);
+char    *ft_create_quoted_token_empty(char *input, int start);
 void	ft_deallocate_quotes_list(struct s_node *quotes_list);
 
 // Expansions
@@ -89,7 +90,6 @@ char    *ft_remove_var_name(char *str, int start, int end);
 // String manipulation
 char    *ft_strcat(char *src, char *dest);
 char    *ft_remove_char_index(char *line, int index);
-char    *ft_create_quoted_token(char *s, int start, int len);
 
 // Commands
 void    ft_extract_cmd(c_data *c_data);
