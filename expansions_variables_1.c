@@ -36,7 +36,7 @@ char    *ft_splice_var_value(char *str, char *var, int start, int end)
         result[x] = str[i];
         if (i == start)
         {
-            y = start;
+            y = 0;
             while (var[y] != '\0')
             {
                 result[x] = var[y];
