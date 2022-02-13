@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-// 1/2 Raw input is parsed and tokenized in a linked list according to quotes. First empty linked node is pruned at the end of function
+// 1/2 Raw input is parsed and tokenized in a linked list according to quotes
 void ft_tokenize_quotes(q_data *q_data)
 {
 	int i;
@@ -20,12 +20,12 @@ void ft_tokenize_quotes(q_data *q_data)
 	}
 	if (q_data->d_open || q_data->s_open)
 	{
-		if (q_data->raw_input[i + 1] != '\0')
+		if (i < ((int)ft_strlen(q_data->raw_input) - 2)
+		&& q_data->raw_input[i + 1] != '\0')
 			ft_add_node_quotes(q_data, i, '\0');
 	}
 	else if (q_data->start == 0 || q_data->start != i)
 		ft_add_node_quotes(q_data, i, '\0');
-	ft_prune_starting_node(&q_data->quotes_list);
 }
 
 // 2/2 For both types of quotes, different tokenization logics are applied

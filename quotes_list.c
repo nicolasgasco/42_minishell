@@ -19,7 +19,7 @@ void ft_add_node_quotes(q_data *q_data, int end, char quote)
 	new_node->q_type = quote;
 	new_node->next = NULL;
 	i = 0;
-	while (curr->next != NULL)
+	while (curr && curr->next != NULL)
 	{
 		curr = curr->next;
 		i++;
@@ -28,7 +28,10 @@ void ft_add_node_quotes(q_data *q_data, int end, char quote)
 		printf("Quotes | | in node n. %d: |%s|\n", i, new_node->str);
 	else
 		printf("Quotes |%c| in node n. %d: |%s|\n", new_node->q_type, i, new_node->str);
-	curr->next = new_node;
+	if (curr)
+		curr->next = new_node;
+	else
+		q_data->quotes_list = new_node;
 }
 
 // a) Actual token text is written into node ignoring quotes
@@ -92,7 +95,7 @@ char	*ft_convert_list_to_str(q_data *q_data)
 	curr = q_data->quotes_list;
 	while (1)
 	{
-		if (!result)
+		if (result == NULL)
 			result = ft_strdup(curr->str);
 		else
 			result = ft_strcat(result, curr->str);
@@ -103,17 +106,4 @@ char	*ft_convert_list_to_str(q_data *q_data)
 		i++;
 	}
 	return (result);
-}
-
-// First block of list is always empty and must pruned
-void	ft_prune_starting_node(struct s_node **root)
-{
-	struct s_node	*to_remove;
-
-	if (root == NULL)
-		return ;
-	to_remove = *root;
-	*root = (*root)->next;
-	free(to_remove);
-	return ;
 }

@@ -18,27 +18,28 @@ int	main(int argc, char *argv[], char *envp[])
 // Main loop, input is collected, tokenized, expanded, and sent for processing
 void	ft_start_loop(c_data *c_data)
 {
-	char	*line_read;
+	char	*line_read = "one $PATHthree";
 
 	while (1)
 	{
-		line_read = (char *)NULL;
-		line_read = rl_gets(line_read, c_data->p_data->prompt_text);
+		// line_read = (char *)NULL;
+		// line_read = rl_gets(line_read, c_data->p_data->prompt_text);
 		ft_tokenize_expand_input(c_data, line_read);
 		if (c_data->q_data->d_open || c_data->q_data->s_open)
-		{
-			printf("Invalid output: unclosed quotes\n");
-		}
+			printf("Syntax error: Unclosed quotes\n");
 		else
 		{
 			ft_expansions(c_data);
 			// Nested loop here 
 			c_data->line_expanded = ft_convert_list_to_str(c_data->q_data);
 			printf("Line expanded is |%s|\n", c_data->line_expanded);
-			c_data->paths = ft_splitc(getenv("PATH"), ':');
-			ft_extract_cmd(c_data);
-			ft_check_cmd(c_data->cmd);
+			// c_data->paths = ft_splitc(getenv("PATH"), ':');
+			// ft_extract_cmd(c_data);
+			// ft_check_cmd(c_data->cmd);
 		}
+		ft_free_all(c_data);
+		exit(1);
+
 	}
 }
 
@@ -47,7 +48,7 @@ void	ft_tokenize_expand_input(c_data *c_data, char *line_read)
 {
 		ft_init_quotes_data(c_data);
 		c_data->q_data->raw_input = ft_strdup(line_read);
-		free(line_read);
 		ft_tokenize_quotes(c_data->q_data);
+		ft_print_linked_list(c_data->q_data);
 		printf("\n------------------\n");
 }

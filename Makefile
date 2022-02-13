@@ -2,7 +2,7 @@ NAME = minishell
 
 SRCS = $(wildcard *.c)
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 $(NAME): 
 	@ cd libft && make libft.a && make clean

@@ -103,3 +103,17 @@ void ft_tokenize_quotes_TDB(q_data *q_data)
 		ft_add_node_quotes(q_data, i, '\0');
 	ft_prune_starting_node(&q_data->quotes_list);
 }
+
+// First block of list is always empty and must pruned
+void	ft_prune_starting_node(struct s_node **root)
+{
+	struct s_node	*to_remove;
+
+	if (root == NULL)
+		return ;
+	to_remove = *root;
+	*root = (*root)->next;
+	free(to_remove->str);
+	free(to_remove);
+	return ;
+}

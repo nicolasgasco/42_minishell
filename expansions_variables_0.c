@@ -9,12 +9,30 @@ void	ft_expand_variables(c_data *c_data)
 	while (1)
 	{
         if (curr->q_type != '\"' && curr->q_type != '\'')
-			curr->str = ft_add_variable_values(curr->str, c_data);
+		{
+			if (ft_find_dollar(curr->str))
+				curr->str = ft_add_variable_values(curr->str, c_data);
+		}
 		if (curr->next == NULL)
 			break;
 		else
 			curr = curr->next;
 	}	
+}
+
+// 1a Check if there's at least one $
+int	ft_find_dollar(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '$')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 // 2/3 Outside quotes, variables are expanded to their value
@@ -59,10 +77,11 @@ char	*ft_expand_variable_value(c_data *c_data, char *str, int start, int end)
 		var_name = ft_get_var_name(str, start + 1, end);
 		var_value = getenv(var_name);
 	}
-	if (!var_value)
+	if (var_value == NULL)
 		result = ft_remove_var_name(str, start, end);
 	else
 		result = ft_splice_var_value(str, var_value, start, end);
 	free(str);
+	free(var_name);
 	return (result);
 }

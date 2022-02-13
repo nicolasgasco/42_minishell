@@ -55,6 +55,7 @@ void	ft_init_prompt_data(c_data *c_data);
 
 // Free
 void    ft_free_quotes_data(c_data *c_data);
+void	ft_free_all(c_data *c_data);
 
 // Prompt
 char	*rl_gets(char *line_read, char *prompt_text);
@@ -69,10 +70,9 @@ void 	ft_tokenization_logic_open(q_data *q_data, int i, char quote);
 // Quotes  - Linked list
 void	ft_add_node_quotes(q_data *q_data, int end, char quote);
 char	*ft_convert_list_to_str(q_data *q_data);
-void	ft_prune_starting_node(struct s_node **quotes_list);
 char    *ft_create_quoted_token(char *s, int start, int len);
 char    *ft_create_quoted_token_empty(char *input, int start);
-void	ft_deallocate_quotes_list(struct s_node *quotes_list);
+void	ft_deallocate_quotes_list(struct s_node **quotes_list);
 
 // Expansions
 void    ft_expansions(c_data *c_data);
@@ -81,6 +81,7 @@ void	ft_expand_escaped(q_data *q_data);
 char	*ft_remove_escaped_from_str(char *str);
 // Expansions - Variables
 void	ft_expand_variables(c_data *c_data);
+int		ft_find_dollar(char *str);
 char	*ft_add_variable_values(char *str, c_data *c_data);
 char	*ft_expand_variable_value(c_data *c_data, char *str, int start, int end);
 char	*ft_get_var_name(char *str, int start, int end);
@@ -97,5 +98,6 @@ void	ft_check_cmd(char *cmd);
 
 // TBD
 void    ft_print_linked_list(q_data *q_data);
+void	ft_prune_starting_node(struct s_node **quotes_list);
 
 #endif

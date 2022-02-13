@@ -30,7 +30,7 @@ char    *ft_splice_var_value(char *str, char *var, int start, int end)
 
     i = 0;
     x = 0;
-    result = malloc(sizeof(char) * (ft_strlen(str) - (end - start) + ft_strlen(var) + 1));
+    result = (char *)malloc(sizeof(char) * (ft_strlen(str) - (end - start) + ft_strlen(var) + 1));
     while (str[i] != '\0')
     {
         result[x] = str[i];
