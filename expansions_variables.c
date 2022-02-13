@@ -27,7 +27,8 @@ char	*ft_add_variable_values(char *str)
 	start = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '$')
+		if ((i == 0 && str[i] == '$') ||
+		(str[i] == '$' && str[i - 1] != '\\'))
 		{
 			start = i;
 			i++;
@@ -48,10 +49,10 @@ char	*ft_expand_variable_value(char *str, int start, int end)
     char    *result;
 
 	var_name = ft_get_var_name(str, start + 1, end);
-	printf("Var_name is .%s.\n", var_name);
+	// printf("Var_name is .%s.\n", var_name);
     var_value = getenv(var_name);
-    printf("Var_value is .%s.\n", var_value);
-    printf("Start is %d, end %d\n", start, end);
+    // printf("Var_value is .%s.\n", var_value);
+    // printf("Start is %d, end %d\n", start, end);
     if (!var_value)
         result = ft_remove_var_name(str, start, end);
     else

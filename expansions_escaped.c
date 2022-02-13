@@ -30,7 +30,6 @@ char	*ft_remove_escaped_from_str(char *str)
 	{
 		if (str[i] == '\\')
 		{
-			printf("Found a backslash\n");
 			if (str[i + 1] == '$' || str[i + 1] == '`' || str[i + 1] == '\"'
 			|| str[i + 1] == '\\' || str[i + 1] == '\n')
 			{
