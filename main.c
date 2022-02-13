@@ -28,13 +28,17 @@ void	ft_start_loop(c_data *c_data)
 		if (c_data->q_data->d_open || c_data->q_data->s_open)
 		{
 			printf("Invalid output: unclosed quotes\n");
-			exit(1);
 		}
-		c_data->line_expanded = ft_convert_list_to_str(c_data->q_data);
-		printf("Line expanded is |%s|\n", c_data->line_expanded);
-		c_data->paths = ft_splitc(getenv("PATH"), ':');
-		ft_extract_cmd(c_data);
-		ft_check_cmd(c_data->cmd);
+		else
+		{
+			ft_expansions(c_data);
+			// Nested loop here 
+			c_data->line_expanded = ft_convert_list_to_str(c_data->q_data);
+			printf("Line expanded is |%s|\n", c_data->line_expanded);
+			c_data->paths = ft_splitc(getenv("PATH"), ':');
+			ft_extract_cmd(c_data);
+			ft_check_cmd(c_data->cmd);
+		}
 	}
 }
 
@@ -45,7 +49,5 @@ void	ft_tokenize_expand_input(c_data *c_data, char *line_read)
 		c_data->q_data->raw_input = ft_strdup(line_read);
 		free(line_read);
 		ft_tokenize_quotes(c_data->q_data);
-		ft_print_linked_list(c_data->q_data);
-		ft_expansions(c_data);
 		printf("\n------------------\n");
 }
