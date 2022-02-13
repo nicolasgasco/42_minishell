@@ -57,3 +57,22 @@ char    *ft_remove_char(char c, char *line, int start)
     free(line);
     return (result);
 }
+
+void    ft_print_linked_list(q_data *q_data)
+{
+	struct s_node	*curr;
+	int				i;
+	
+	i = 0;
+	curr = q_data->quotes_list;
+	while (1)
+	{
+        printf("|%s| ", curr->str);
+		if (curr->next == NULL)
+			break;
+		else
+			curr = curr->next;
+		i++;
+	}
+    printf("\n");
+}
