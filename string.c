@@ -54,7 +54,7 @@ char    *ft_remove_char_index(char *line, int index)
 }
 
 // Actual token text is written into node ignoring quotes
-char    *ft_create_quote_token(char *input, int start, int len)
+char    *ft_create_quoted_token(char *input, int start, int len)
 {
     char    *result;
     int     result_len;
