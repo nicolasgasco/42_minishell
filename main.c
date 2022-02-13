@@ -41,7 +41,6 @@ void	ft_start_loop(c_data *c_data)
 		ft_extract_cmd(c_data);
 		ft_check_cmd(c_data->cmd);
 		ft_deallocate_list(c_data->q_data->quotes_list);
-		exit(1);
 	}
 }
 
