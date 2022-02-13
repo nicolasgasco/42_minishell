@@ -15,7 +15,28 @@ void	init_envp(char **envp, c_data	*c_data)
 	c_data->envp[i] = NULL;
 }
 
+void	init_export(c_data *c_data)
+{
+	int	i;
+	char	*string;
 
+	i = 0;
+	while (c_data->envp[i])
+		i++;
+	c_data->envp_export = malloc(sizeof(char *) * (i));
+	i = 0;
+	if(c_data->envp[i])
+	{
+		while (c_data->envp[i + 1])
+		{
+			string = ms_make_string(c_data->envp[i]);
+			c_data->envp_export[i] = ft_strdup(string);
+			free(string);
+			i++;
+		}
+	}
+	c_data->env_export[i] = NULL;
+}
 // All the global variables required by the program
 void	ft_init_common_data(c_data	*c_data, char **envp)
 {

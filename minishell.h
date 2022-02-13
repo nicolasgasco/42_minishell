@@ -11,6 +11,7 @@
 typedef struct CommonData
 {
 	char	**envp;
+	char	**envp_export;
 	char	*username;
 	char	*hostname;
 	char	*prompt_text;
