@@ -52,6 +52,9 @@ void	ft_init_quotes_data(c_data *c_data);
 void	ft_init_quotes_list(c_data *c_data);
 void	ft_init_prompt_data(c_data *c_data);
 
+// Free
+void    ft_free_quotes_data(c_data *c_data);
+
 // Prompt
 char	*rl_gets(char *line_read, char *prompt_text);
 int		ft_are_quotes_unclosed(char *line);
@@ -67,7 +70,7 @@ void 	ft_tokenization_logic_open(q_data *q_data, int i, char quote);
 void	ft_add_node_quotes(q_data *q_data, int end, char quote);
 char	*ft_convert_list_to_str(q_data *q_data);
 void	ft_prune_starting_node(struct s_node **quotes_list);
-void	ft_deallocate_list(struct s_node *quotes_list);
+void	ft_deallocate_quotes_list(struct s_node *quotes_list);
 
 // Expansions
 void    ft_expansions(q_data *q_data);

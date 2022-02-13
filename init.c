@@ -37,8 +37,7 @@ void	ft_init_quotes_list(c_data *c_data)
 {
 	c_data->q_data->quotes_list = malloc(sizeof(q_data));
 	memset(c_data->q_data->quotes_list, 0, sizeof(struct s_node));
-	c_data->q_data->quotes_list->next = malloc(sizeof(struct s_node));
+	c_data->q_data->quotes_list->next = NULL;
 	c_data->q_data->quotes_list->length = 0;
 	c_data->q_data->quotes_list->str = ft_strdup("");
-	c_data->q_data->quotes_list->next = NULL;
 }

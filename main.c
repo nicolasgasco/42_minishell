@@ -25,6 +25,7 @@ void	ft_start_loop(c_data *c_data)
 		line_read = (char *)NULL;
 		line_read = rl_gets(line_read, c_data->p_data->prompt_text);
 		ft_tokenize_expand_input(c_data, line_read);
+		// ft_free_quotes_data(c_data);
 		if (c_data->q_data->d_open || c_data->q_data->s_open)
 		{
 			while (1)
@@ -40,7 +41,6 @@ void	ft_start_loop(c_data *c_data)
 		c_data->paths = ft_splitc(getenv("PATH"), ':');
 		ft_extract_cmd(c_data);
 		ft_check_cmd(c_data->cmd);
-		ft_deallocate_list(c_data->q_data->quotes_list);
 	}
 }
 
@@ -48,6 +48,10 @@ void	ft_start_loop(c_data *c_data)
 void	ft_tokenize_expand_input(c_data *c_data, char *line_read)
 {
 		ft_init_quotes_data(c_data);
+		if (line_read)
+		{
+			//
+		}
 		c_data->q_data->raw_input = ft_strdup(line_read);
 		free(line_read);
 		ft_tokenize_quotes(c_data->q_data);
