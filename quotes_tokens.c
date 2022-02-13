@@ -18,9 +18,7 @@ void ft_tokenize_quotes(q_data *q_data)
 			ft_tokenization_logic(q_data, q_data->raw_input, i, '\"');
 		i++;
 	}
-	if (q_data->d_open)
-		ft_add_node_quotes(q_data, i, '\0');
-	else if (q_data->s_open)
+	if (q_data->d_open || q_data->s_open)
 		ft_add_node_quotes(q_data, i, '\0');
 	else if (q_data->start == 0 || q_data->start != i)
 		ft_add_node_quotes(q_data, i, '\0');

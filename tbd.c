@@ -76,3 +76,30 @@ void    ft_print_linked_list(q_data *q_data)
 	}
     printf("\n");
 }
+
+// This is here only for series of ifs at the end, in case needed in the future
+void ft_tokenize_quotes_TDB(q_data *q_data)
+{
+	int i;
+
+	if (q_data->raw_input[0] == '\'')
+		q_data->s_open = 1;
+	else if (q_data->raw_input[0] == '\"')
+		q_data->d_open = 1;
+	i = 1;
+	while (q_data->raw_input[i] != '\0')
+	{
+		if (q_data->raw_input[i] == '\'' && q_data->d_open == 0)
+			ft_tokenization_logic(q_data, q_data->raw_input, i, '\'');
+		else if (q_data->raw_input[i] == '\"' && q_data->s_open == 0)
+			ft_tokenization_logic(q_data, q_data->raw_input, i, '\"');
+		i++;
+	}
+	if (q_data->d_open)
+		ft_add_node_quotes(q_data, i, '\0');
+	else if (q_data->s_open)
+		ft_add_node_quotes(q_data, i, '\0');
+	else if (q_data->start == 0 || q_data->start != i)
+		ft_add_node_quotes(q_data, i, '\0');
+	ft_prune_starting_node(&q_data->quotes_list);
+}
