@@ -5,6 +5,7 @@ void	ft_init_common_data(c_data	*c_data, char **envp)
 {
 	memset(c_data, 0, sizeof(*c_data));
 	c_data->envp = envp;
+	c_data->exit_status = 0;
 	ft_init_quotes_data(c_data);
 	ft_init_prompt_data(c_data);
 }
