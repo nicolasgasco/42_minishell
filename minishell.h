@@ -38,6 +38,7 @@ typedef struct CommonData
 	char			**tokens;
 	char			*cmd;
 	char			**paths;
+	int				exit_status;
 	p_data			*p_data;
 	q_data			*q_data;
 } c_data;
@@ -73,14 +74,14 @@ void	ft_prune_starting_node(struct s_node **quotes_list);
 void	ft_deallocate_quotes_list(struct s_node *quotes_list);
 
 // Expansions
-void    ft_expansions(q_data *q_data);
-// Expansions - escape character
+void    ft_expansions(c_data *c_data);
+// Expansions - escape character TBD
 void	ft_expand_escaped(q_data *q_data);
 char	*ft_remove_escaped_from_str(char *str);
 // Expansions - Variables
-void	ft_expand_variables(q_data *q_data);
-char	*ft_add_variable_values(char *str);
-char	*ft_expand_variable_value(char *str, int start, int end);
+void	ft_expand_variables(c_data *c_data);
+char	*ft_add_variable_values(char *str, c_data *c_data);
+char	*ft_expand_variable_value(c_data *c_data, char *str, int start, int end);
 char	*ft_get_var_name(char *str, int start, int end);
 char    *ft_splice_var_value(char *str, char *var, int start, int end);
 char    *ft_remove_var_name(char *str, int start, int end);
@@ -88,10 +89,13 @@ char    *ft_remove_var_name(char *str, int start, int end);
 // String manipulation
 char    *ft_strcat(char *src, char *dest);
 char    *ft_remove_char_index(char *line, int index);
-char    *ft_create_quote_token(char *s, int start, int len);
+char    *ft_create_quoted_token(char *s, int start, int len);
 
 // Commands
 void    ft_extract_cmd(c_data *c_data);
 void	ft_check_cmd(char *cmd);
+
+// TBD
+void    ft_print_linked_list(q_data *q_data);
 
 #endif
