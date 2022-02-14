@@ -91,6 +91,8 @@ char	*ft_expand_variable_value(c_data *c_data, char *str, int start, int end);
 char	*ft_get_var_name(char *str, int start, int end);
 char    *ft_splice_var_value(char *str, char *var, int start, int end);
 char    *ft_remove_var_name(char *str, int start, int end);
+// Expansion - Here document
+int		ft_find_here_marker(char *str);
 
 // String manipulation
 char    *ft_strcat(char *src, char *dest);

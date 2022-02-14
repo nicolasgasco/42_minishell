@@ -19,6 +19,8 @@ int	main(int argc, char *argv[], char *envp[])
 void	ft_start_loop(c_data *c_data)
 {
 	char	*line_read;
+	// char	*line_read = "ciao$?";
+
 
 	while (1)
 	{
@@ -34,6 +36,7 @@ void	ft_start_loop(c_data *c_data)
 			// Nested loop here 
 			c_data->l_data->line_expanded = ft_convert_list_to_str(c_data->q_data);
 			printf("Line expanded is |%s|\n", c_data->l_data->line_expanded);
+			// printf("%d\n", ft_find_here_marker(c_data->l_data->line_expanded));
 			// c_data->paths = ft_splitc(getenv("PATH"), ':');
 			// ft_extract_cmd(c_data);
 			// ft_check_cmd(c_data->cmd);
@@ -41,7 +44,11 @@ void	ft_start_loop(c_data *c_data)
 		ft_free_quotes_data(c_data);
 		ft_free_prompt_data(c_data);
 		ft_free_line_data(c_data);
+		// Final frees
+		// free(c_data->l_data);
+		// exit(1);
 	}
+	free(c_data->l_data);
 }
 
 // Input collected from user is expanded and tokenized
