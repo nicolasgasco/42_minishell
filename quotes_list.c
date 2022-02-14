@@ -72,6 +72,7 @@ char    *ft_create_quoted_token_empty(char *input, int start)
     int     y;
 
     i = start;
+	y = 0;
     result = malloc(sizeof(char) * (ft_strlen(input) - 2 + 1));
     while (i < start)
     {
