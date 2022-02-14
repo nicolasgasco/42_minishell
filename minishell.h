@@ -83,9 +83,6 @@ void	ft_deallocate_quotes_list(struct s_node **quotes_list);
 
 // Expansions
 void    ft_expansions(c_data *c_data);
-// Expansions - escape character TBD
-void	ft_expand_escaped(q_data *q_data);
-char	*ft_remove_escaped_from_str(char *str);
 // Expansions - Variables
 void	ft_expand_variables(c_data *c_data);
 int		ft_find_dollar(char *str);
@@ -106,5 +103,7 @@ void	ft_check_cmd(char *cmd);
 // TBD
 void    ft_print_linked_list(q_data *q_data);
 void	ft_prune_starting_node(struct s_node **quotes_list);
+void	ft_expand_escaped(q_data *q_data);
+char	*ft_remove_escaped_from_str(char *str);
 
 #endif
