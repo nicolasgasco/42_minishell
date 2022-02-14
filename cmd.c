@@ -6,7 +6,7 @@ void    ft_extract_cmd(c_data *c_data)
     char **result;
 
     result = ft_split(c_data->q_data->raw_input);
-    c_data->cmd = result[0];
+    c_data->l_data->cmd = result[0];
     free(result);
 }
 

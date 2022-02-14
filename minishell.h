@@ -31,16 +31,20 @@ typedef struct PromptData {
 	char			*prompt_text;
 	char			*prompt_nl_text;
 } p_data;
-typedef struct CommonData
-{
+
+typedef struct LineData {
 	char			*line_expanded;
-	char			**envp;
 	char			**tokens;
 	char			*cmd;
-	char			**paths;
+} l_data;
+
+typedef struct CommonData
+{
+	char			**envp;
 	int				exit_status;
 	p_data			*p_data;
 	q_data			*q_data;
+	l_data			*l_data;
 } c_data;
 
 // Main
@@ -50,12 +54,15 @@ void	ft_tokenize_expand_input(c_data *c_data, char *line_read);
 // Init
 void	ft_init_common_data(c_data *c_data, char *envp[]);
 void	ft_init_quotes_data(c_data *c_data);
-void	ft_init_quotes_list(c_data *c_data);
 void	ft_init_prompt_data(c_data *c_data);
+void	ft_init_line_data(c_data *c_data);
+void	ft_init_structures(c_data *c_data);
 
 // Free
 void    ft_free_quotes_data(c_data *c_data);
-void	ft_free_all(c_data *c_data);
+void	ft_free_prompt_data(c_data *c_data);
+void	ft_free_line_data(c_data *c_data);
+void	ft_deallocate_quotes_list(struct s_node **quotes_list);
 
 // Prompt
 char	*rl_gets(char *line_read, char *prompt_text);

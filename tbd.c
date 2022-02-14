@@ -117,3 +117,17 @@ void	ft_prune_starting_node(struct s_node **root)
 	free(to_remove);
 	return ;
 }
+
+// 2/2 Linked list containing single token information
+void	ft_init_quotes_list(c_data *c_data)
+{
+	if (c_data)
+	{
+		//
+	}
+	// c_data->q_data->quotes_list = malloc(sizeof(struct s_node));
+	// memset(c_data->q_data->quotes_list, 0, sizeof(struct s_node));
+	// c_data->q_data->quotes_list->next = NULL;
+	// c_data->q_data->quotes_list->length = 0;
+	// c_data->q_data->quotes_list->str = "";
+}
