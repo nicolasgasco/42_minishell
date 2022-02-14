@@ -71,17 +71,21 @@ char	*ft_expand_variable_value(c_data *c_data, char *str, int start, int end)
     char    *result;
 
 	if (str[start + 1] == '?')
+	{
 		var_value = ft_itoa(c_data->exit_status);
+		result = ft_splice_var_value(str, var_value, start, end);
+		free(var_value);
+	}
 	else
 	{
 		var_name = ft_get_var_name(str, start + 1, end);
 		var_value = getenv(var_name);
+		if (var_value == NULL)
+			result = ft_remove_var_name(str, start, end);
+		else
+			result = ft_splice_var_value(str, var_value, start, end);
+		free(str);
+		free(var_name);
 	}
-	if (var_value == NULL)
-		result = ft_remove_var_name(str, start, end);
-	else
-		result = ft_splice_var_value(str, var_value, start, end);
-	free(str);
-	free(var_name);
 	return (result);
 }

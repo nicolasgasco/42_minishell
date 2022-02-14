@@ -33,7 +33,6 @@ char    *ft_splice_var_value(char *str, char *var, int start, int end)
     result = (char *)malloc(sizeof(char) * (ft_strlen(str) - (end - start) + ft_strlen(var) + 1));
     while (str[i] != '\0')
     {
-        result[x] = str[i];
         if (i == start)
         {
             y = 0;
@@ -43,11 +42,14 @@ char    *ft_splice_var_value(char *str, char *var, int start, int end)
                 y++;
                 x++;
             }
+            i += (end - start);
         }
+        result[x] = str[i];
         i++;
         x++;
     }
     result[x] = '\0';
+    printf("result is %s\n", result);
     return (result);
 }
 
@@ -58,17 +60,18 @@ char    *ft_remove_var_name(char *str, int start, int end)
     int     y;
     char    *result;
 
+    printf("%ld\n", (ft_strlen(str) - (end - start) + 1));
     result = (char *)malloc(sizeof(char) * (ft_strlen(str) - (end - start) + 1));
     i = 0;
     y = 0;
     while (str[i] != '\0')
-    { 
-        result[y] = str[i];
-        if (i == (start - 1))
+    {
+        if (i == (start - 1) || (i == 0 && start == 0))
         {
             while (i < end)
                 i++;
         }
+        result[y] = str[i];
         i++;
         y++;
     }
