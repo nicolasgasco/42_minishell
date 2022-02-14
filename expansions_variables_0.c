@@ -8,7 +8,7 @@ void	ft_expand_variables(c_data *c_data)
 	curr = c_data->q_data->quotes_list;
 	while (1)
 	{
-        if (curr->q_type != '\"' && curr->q_type != '\'')
+        if (curr->q_type != '\'')
 		{
 			if (ft_find_dollar(curr->str))
 				curr->str = ft_add_variable_values(curr->str, c_data);
