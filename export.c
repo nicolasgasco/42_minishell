@@ -15,7 +15,7 @@ int	ms_check_export_arg(char *arg)
 	{
 		if(ft_isalnum(arg[i]) == 0 && arg[i] != '_')
 		{
-			printf("export: '%s': not a valid identifier\n". arg);
+			printf("export: '%s': not a valid identifier\n", arg);
 			return(1);
 		}
 		i++;
@@ -44,46 +44,52 @@ char	*ms_make_string(char *arg)
 	return(string);
 }
 
-void	ms_export_sort(void)
+void	ms_export_sort(c_data *c_data)
 {
 	int	i;
 
 	i = 0;
-	ft_sort_tab(env_export);
-	while (env_export[i])
-		printf("%s\n", env_export[i++]);
+	ft_sort_tab(c_data->envp_export);
+	while (c_data->envp_export[i])
+		printf("%s\n", c_data->envp_export[i++]);
 }
 
-void	ms_export_valid_arg(char *arg, char *strings)
+void	ms_export_valid_arg(char *arg, char *strings, c_data *c_data)
 {
 	char	*string;
 
 	if (ft_strchr(arg, '=') == NULL)
 	{
-		if (ms_get_env(env_export, strings) != NULL)
+		if (ms_get_env(c_data->envp_export, strings) == NULL)
+			c_data->envp_export = ms_matrix_add_line(c_data->envp_export, arg);
+	}
+	else
+	{
+		string = ms_make_string(arg);
+		if (ms_get_env(c_data->envp_export, strings) != NULL)
 		{
 			arg = ft_strdup(arg);
-			ms_set_env(env, arg);
-			ms_set_env(env_export, string);
+			ms_set_env(c_data->envp, arg, c_data);
+			ms_set_env(c_data->envp_export, string, c_data);
 			free(arg);
 		}
 		else
 		{
-			env = ms_matrix_add_line(env, arg);
-			env_export = ms_matrix_add_line(env_export, string);
+			c_data->envp = ms_matrix_add_line(c_data->envp, arg);
+			c_data->envp_export = ms_matrix_add_line(c_data->envp_export, string);
 		}
 		free(string);
 	}
 }
 
-int built_export(char **arg)
+int built_export(char **arg, c_data *c_data)
 {
 	char	**strings;
 	int	i;
 	int	ret;
 
 	ret = 0;
-	i = 0;
+	i = 1;
 	while(arg[i])
 	{
 		if (ms_check_export_arg(arg[i]) != 0)
@@ -93,11 +99,11 @@ int built_export(char **arg)
 			ret = 1;
 		}
 		strings = ft_splitcc(arg[i], '=');
-		ms_export_valid_arg(arg[i], strings[0]);
+		ms_export_valid_arg(arg[i], strings[0], c_data);
 		ft_free_tab(strings);
 		i++;
 	}
-	if (arg[0] == NULL)
-		ms_export_sort();
+if (arg[1] == NULL)
+		ms_export_sort(c_data);
 	return(ret);
 }

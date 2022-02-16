@@ -39,5 +39,10 @@ void	built_envp(c_data *c_data);
 void	built_pwd(void);
 void	built_cd(char *arg, c_data *c_data);
 int	built_echo(char **arg);
+int	built_export(char **arg, c_data *c_data);
+char	*ms_make_string(char *arg);
+char	*ms_get_env(char **env, char *str);
+void	ms_set_env(char **env, char *value, c_data *c_data);
+char	**ms_matrix_add_line(char **matrix, char *new_line);
 
 #endif

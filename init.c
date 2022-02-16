@@ -35,7 +35,7 @@ void	init_export(c_data *c_data)
 			i++;
 		}
 	}
-	c_data->env_export[i] = NULL;
+	c_data->envp_export[i] = NULL;
 }
 // All the global variables required by the program
 void	ft_init_common_data(c_data	*c_data, char **envp)

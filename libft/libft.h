@@ -56,5 +56,8 @@ void		ft_putnbr_fd(int n, int fd);
 void		ft_put_err(int code);
 int		ft_strcmp(const char *s1, const char *s2);
 char		**ft_splitcc(char const *s, char c);
+char		*ft_strjoin_free_s1(char *s1, char const *s2);
+void		ft_free_tab(char **tab);
+void		ft_sort_tab(char **arr);
 
 #endif

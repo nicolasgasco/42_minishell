@@ -18,7 +18,11 @@ void    ft_check_cmd(c_data *c_data)
     else if (ft_strncmp(c_data->cmd, "pwd", 3) == 0)
 	    built_pwd();
     else if (ft_strncmp(c_data->cmd, "export", 6) == 0)
-	    built_export(c_data->tokens + 1);
+    {
+//	    printf("%s\n", c_data->tokens[0]);
+	if(c_data->tokens[1] == NULL)
+	    printf("holi");
+    }
     else if (ft_strncmp(c_data->cmd, "unset", 5) == 0)
         printf("%s\n", c_data->cmd);
     else if (ft_strncmp(c_data->cmd, "env", 3) == 0)
