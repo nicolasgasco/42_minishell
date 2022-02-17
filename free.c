@@ -1,5 +1,13 @@
 #include "minishell.h"
 
+void	ft_free_common_data(c_data *c_data)
+{
+	if (c_data)
+	{
+		// It is not used at the moment
+	}
+}
+
 void    ft_free_quotes_data(c_data *c_data)
 {
 	ft_deallocate_quotes_list(&c_data->q_data->quotes_list);
@@ -16,8 +24,8 @@ void	ft_free_prompt_data(c_data *c_data)
 void	ft_free_line_data(c_data *c_data)
 {
 	free(c_data->l_data->line_expanded);
-	free(c_data->l_data->tokens);
-	free(c_data->l_data->cmd);
+	free(c_data->tokens);
+	free(c_data->cmd);
 }
 
 // Linked list's nodes are deallocated one by one

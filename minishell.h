@@ -34,14 +34,14 @@ typedef struct PromptData {
 
 typedef struct LineData {
 	char			*line_expanded;
-	char			**tokens;
-	char			*cmd;
 } l_data;
 
 typedef struct CommonData
 {
 	char			**envp;
 	int				exit_status;
+	char			*cmd;
+	char			**tokens;
 	p_data			*p_data;
 	q_data			*q_data;
 	l_data			*l_data;
@@ -50,6 +50,7 @@ typedef struct CommonData
 // Main
 void	ft_start_loop(c_data *c_data);
 void	ft_tokenize_expand_input(c_data *c_data, char *line_read);
+void    ft_expansions(c_data *c_data);
 
 // Init
 void	ft_init_common_data(c_data *c_data, char *envp[]);
@@ -59,6 +60,7 @@ void	ft_init_line_data(c_data *c_data);
 void	ft_init_structures(c_data *c_data);
 
 // Free
+void	ft_free_common_data(c_data *c_data);
 void    ft_free_quotes_data(c_data *c_data);
 void	ft_free_prompt_data(c_data *c_data);
 void	ft_free_line_data(c_data *c_data);
@@ -82,7 +84,6 @@ char    *ft_create_quoted_token_empty(char *input, int start);
 void	ft_deallocate_quotes_list(struct s_node **quotes_list);
 
 // Expansions
-void    ft_expansions(c_data *c_data);
 // Expansions - Variables
 void	ft_expand_variables(c_data *c_data);
 int		ft_find_dollar(char *str);
@@ -99,8 +100,13 @@ char    *ft_strcat(char *src, char *dest);
 char    *ft_remove_char_index(char *line, int index);
 
 // Commands
-void    ft_extract_cmd(c_data *c_data);
+char    *ft_extract_cmd(char *line);
 void	ft_check_cmd(char *cmd);
+int		ft_isspace(char	c);
+int		ft_get_cmd_len(char *line);
+
+// Libft
+char	**ft_splitc(char const *s, char c);
 
 // TBD
 void    ft_print_linked_list(q_data *q_data);
