@@ -39,12 +39,14 @@ void	ft_start_loop(c_data *c_data)
 			printf("Line expanded is |%s|\n", c_data->l_data->line_expanded);
 			c_data->cmd = ft_extract_cmd(c_data->l_data->line_expanded);
 			printf("Cmd is .%s.\n", c_data->cmd);
+			// 1 Simple case, no pipes, no redirections
 			if (!*(c_data->cmd))
-				printf("Empty line\n");
+				printf("No cmd provided\n");
 			else
 			{
 				ft_check_cmd(c_data->cmd);
 			}
+			// 2 Difficult case, with pipes or redirections
 		}
 		ft_free_quotes_data(c_data);
 		ft_free_prompt_data(c_data);
