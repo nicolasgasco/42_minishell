@@ -66,8 +66,11 @@ void    ft_expansions(c_data *c_data)
 	// Othere expansions here
 	c_data->l_data->line_expanded = ft_convert_list_to_str(c_data->q_data);
 	printf("Line expanded is |%s|\n", c_data->l_data->line_expanded);
+	// 1 found Here document -> nested loop
 	// printf("%d\n", ft_find_here_marker(c_data->l_data->line_expanded));
 	// NESTED LOOP FOR HERE DOCUMENT GOES HERE 
+	// 2 found pipe
+	ft_expand_pipes(c_data->q_data->quotes_list);
 	c_data->cmd = ft_extract_cmd(c_data->l_data->line_expanded);
 	printf("Cmd is .%s.\n", c_data->cmd);
 }

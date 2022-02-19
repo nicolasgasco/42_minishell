@@ -95,6 +95,10 @@ char    *ft_remove_var_name(char *str, int start, int end);
 // Expansion - Here document
 int		ft_find_here_marker(char *str);
 
+// Pipes
+void	ft_expand_pipes(struct s_node *quotes_list);
+int		ft_found_pipe(char *str);
+
 // String manipulation
 char    *ft_strcat(char *src, char *dest);
 char    *ft_remove_char_index(char *line, int index);
