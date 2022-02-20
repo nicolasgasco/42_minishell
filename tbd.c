@@ -67,7 +67,7 @@ void    ft_print_linked_list(q_data *q_data)
 	curr = q_data->quotes_list;
 	while (1)
 	{
-        printf("|%s| ", curr->str);
+        printf("|%s| (%c),  ", curr->str, curr->q_type);
 		if (curr->next == NULL)
 			break;
 		else
