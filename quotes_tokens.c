@@ -73,7 +73,7 @@ void ft_tokenization_logic_open(q_data *q_data, int i, char quote)
 	{
 		q_data->d_open = 0;
 		if (q_data->start < i)
-		ft_add_node_quotes(q_data, i, quote);
+			ft_add_node_quotes(q_data, i, quote);
 		q_data->start = i + 1;
 	}
 }
@@ -84,11 +84,10 @@ void ft_tokenization_logic_closed(q_data *q_data, int i, char quote)
 	if (quote == '\'')
 	{
 		if (q_data->start < i && q_data->d_open == 1)
-			ft_add_node_quotes(q_data, i, '\0');
-		else if (q_data->start < i && q_data->d_open == 0)
 		{
-			q_data->s_open = 1;
 			ft_add_node_quotes(q_data, i, '\0');
+			if (q_data->d_open == 0)
+				q_data->s_open = 1;
 		}
 		q_data->start = i;
 	}
@@ -98,7 +97,7 @@ void ft_tokenization_logic_closed(q_data *q_data, int i, char quote)
 			q_data->d_open = 1;
 		if (q_data->start < i && q_data->s_open == 0)
 			ft_add_node_quotes(q_data, i, '\0');
-		else if (q_data->s_open < i && q_data->s_open == 1)
+		else if (q_data->start < i && q_data->s_open == 1)
 			ft_add_node_quotes(q_data, i, '\'');
 		q_data->start = i;
 	}

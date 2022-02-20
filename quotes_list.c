@@ -11,10 +11,7 @@ void ft_add_node_quotes(q_data *q_data, int end, char quote)
 	new_node = malloc(sizeof(struct s_node));
 	if (new_node == NULL)
 		exit(1);
-	if (end - q_data->start > 1)
-		new_node->str = ft_create_quoted_token(q_data->raw_input, q_data->start, end - q_data->start);
-	else
-		new_node->str = ft_create_quoted_token_empty(q_data->raw_input, q_data->start);
+	new_node->str = ft_write_str_to_node(q_data, end);
 	new_node->length = end - q_data->start;
 	new_node->q_type = quote;
 	new_node->next = NULL;
@@ -24,14 +21,24 @@ void ft_add_node_quotes(q_data *q_data, int end, char quote)
 		curr = curr->next;
 		i++;
 	}
-	if (!new_node->q_type)
-		printf("Quotes | | in node n. %d: |%s|\n", i, new_node->str);
-	else
-		printf("Quotes |%c| in node n. %d: |%s|\n", new_node->q_type, i, new_node->str);
 	if (curr)
 		curr->next = new_node;
 	else
 		q_data->quotes_list = new_node;
+}
+
+// Three cases: quoted string, quoted string, but empty, string without quotes
+char	*ft_write_str_to_node(q_data *q_data, int end)
+{
+	if (end - q_data->start > 1)
+		return (ft_create_quoted_token(q_data->raw_input, q_data->start, end - q_data->start));
+	else
+	{
+		if (q_data->raw_input[q_data->start] == '\'' || q_data->raw_input[q_data->start] == '\"')
+			return (ft_create_quoted_token_empty(q_data->raw_input, q_data->start));
+		else
+			return (ft_create_unquoted_token(q_data->raw_input, q_data->start, end - q_data->start));
+	}
 }
 
 // a) Actual token text is written into node ignoring quotes
@@ -73,12 +80,35 @@ char    *ft_create_quoted_token_empty(char *input, int start)
 
     i = start;
 	y = 0;
-    result = malloc(sizeof(char) * (ft_strlen(input) - 2 + 1));
+    result = malloc(sizeof(char) * (ft_strlen(input) - start - 2 + 1));
     while (i < start)
     {
         result[y] = input[i];
         i++;
         y++;
+    }
+    result[y] = '\0';
+    return (result);
+}
+
+// c) Actual token text is written into node, case where no quote is present
+char    *ft_create_unquoted_token(char *input, int start, int len)
+{
+    char    *result;
+    int     result_len;
+    int     i;
+    int     y;
+
+    i = start;
+    result_len = len;
+    y = 0;
+    result = malloc(sizeof(char) * (result_len + 1));
+    while (result_len != 0)
+    {
+        result[y] = input[i];
+        i++;
+        y++;
+        result_len--;
     }
     result[y] = '\0';
     return (result);
