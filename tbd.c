@@ -58,16 +58,16 @@ char    *ft_remove_char(char c, char *line, int start)
     return (result);
 }
 
-void    ft_print_linked_list(q_data *q_data)
+void    ft_print_linked_list(struct s_node *list)
 {
 	struct s_node	*curr;
 	int				i;
 	
 	i = 0;
-	curr = q_data->quotes_list;
+	curr = list;
 	while (1)
 	{
-        printf("|%s| (%c),  ", curr->str, curr->q_type);
+        printf("\"%s\" (%c),  ", curr->str, curr->q_type);
 		if (curr->next == NULL)
 			break;
 		else

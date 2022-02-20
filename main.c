@@ -55,7 +55,7 @@ void	ft_tokenize_expand_input(c_data *c_data, char *line_read)
 		c_data->q_data->raw_input = ft_strdup(line_read);
 		free(line_read);
 		ft_tokenize_quotes(c_data->q_data);
-		ft_print_linked_list(c_data->q_data);
+		ft_print_linked_list(c_data->q_data->quotes_list);
 		printf("\n------------------\n");
 }
 
@@ -72,5 +72,7 @@ void    ft_expansions(c_data *c_data)
 	// 2 found pipe
 	ft_expand_pipes(c_data->q_data->quotes_list);
 	c_data->cmd = ft_extract_cmd(c_data->l_data->line_expanded);
+	ft_create_mock_list(c_data, "cmd", "input", "|", "cmd", "input", "");
+	ft_print_linked_list(c_data->tokens_list);
 	printf("Cmd is .%s.\n", c_data->cmd);
 }

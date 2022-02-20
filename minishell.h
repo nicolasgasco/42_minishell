@@ -42,6 +42,7 @@ typedef struct CommonData
 	int				exit_status;
 	char			*cmd;
 	char			**tokens;
+	struct s_node	*tokens_list;
 	p_data			*p_data;
 	q_data			*q_data;
 	l_data			*l_data;
@@ -115,9 +116,11 @@ int		ft_get_cmd_len(char *line);
 char	**ft_splitc(char const *s, char c);
 
 // TBD
-void    ft_print_linked_list(q_data *q_data);
+void    ft_print_linked_list(struct s_node *list);
 void	ft_prune_starting_node(struct s_node **quotes_list);
 void	ft_expand_escaped(q_data *q_data);
 char	*ft_remove_escaped_from_str(char *str);
+void	ft_create_mock_list(c_data *c_data, char *str, ...);
+void    ft_add_node_mock_list(c_data *c_data, char *str);
 
 #endif
