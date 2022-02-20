@@ -38,7 +38,7 @@ char	*ft_write_str_to_node(q_data *q_data, int end)
 			return (ft_create_quoted_token_empty(q_data->raw_input, q_data->start));
 		else
 			return (ft_create_unquoted_token(q_data->raw_input, q_data->start, end - q_data->start));
-	}
+    }
 }
 
 // a) Actual token text is written into node ignoring quotes
