@@ -41,6 +41,8 @@ void	init_export(c_data *c_data)
 void	ft_init_common_data(c_data	*c_data, char **envp)
 {
 	init_envp(envp, c_data);
+	init_export(c_data);
+
 	c_data->username = getenv("USER");
 	if (!c_data->username)
 		c_data->username = "username";

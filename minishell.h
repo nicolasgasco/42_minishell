@@ -44,5 +44,6 @@ char	*ms_make_string(char *arg);
 char	*ms_get_env(char **env, char *str);
 void	ms_set_env(char **env, char *value, c_data *c_data);
 char	**ms_matrix_add_line(char **matrix, char *new_line);
+int	built_unset(char **arg, c_data *c_data);
 
 #endif

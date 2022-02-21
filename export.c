@@ -89,7 +89,7 @@ int built_export(char **arg, c_data *c_data)
 	int	ret;
 
 	ret = 0;
-	i = 1;
+	i = 0;
 	while(arg[i])
 	{
 		if (ms_check_export_arg(arg[i]) != 0)
@@ -103,7 +103,7 @@ int built_export(char **arg, c_data *c_data)
 		ft_free_tab(strings);
 		i++;
 	}
-if (arg[1] == NULL)
+if (arg[0] == NULL)
 		ms_export_sort(c_data);
 	return(ret);
 }
