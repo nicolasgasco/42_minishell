@@ -107,7 +107,7 @@ void	 set_pwd(char *arg, char *c, c_data *c_data)
 	free(str);
 }
 
-void	built_cd(char *arg, c_data *c_data)
+int	built_cd(char *arg, c_data *c_data)
 {
 	char str[PATH_MAX];
 	printf("arg es %s\n", arg);
@@ -119,7 +119,7 @@ void	built_cd(char *arg, c_data *c_data)
 		if ((arg -5) == NULL)
 		{
 			printf("cd: HOME not set\n");
-			return ;
+			return(1);
 		}
 	}
 	getcwd(str, sizeof(str));
@@ -129,11 +129,11 @@ void	built_cd(char *arg, c_data *c_data)
 		if (arg[0] == '\0')
 			return ;
 		printf("cd %s : No such file or directory\n", arg);
-		return ;
+		return(1);
 	}
 	set_pwd("OLDPWD=", str, c_data);
 	getcwd(str, sizeof(str));
 	set_pwd("PWD=", str, c_data);
-	return ;
+	return(0);
 }
 

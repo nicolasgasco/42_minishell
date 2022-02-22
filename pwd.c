@@ -1,11 +1,11 @@
 #include "minishell.h"
 
-void	built_pwd(void)
+int	built_pwd(void)
 {
 	char	str[PATH_MAX];
 
 	if(getcwd(str, sizeof(str)) == NULL)
-		return ;
+		return(1);
 	printf("%s\n", str);
-	return ;
+	return(0);
 }
