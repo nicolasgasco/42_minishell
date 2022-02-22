@@ -38,7 +38,8 @@ void	ft_start_loop(c_data *c_data)
 			printf("A Here document structure was detected\n");
 			// TODO nested loop for Here document
 		}
-		if (ft_detect_special_characters(c_data)
+		// Todo logic for << and >>
+		if (ft_detect_special_characters(c_data))
 			printf("A special character was detected.\n");
 		else
 		{
