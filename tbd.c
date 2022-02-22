@@ -67,7 +67,7 @@ void    ft_print_quotes_list(struct q_node *list)
 	curr = list;
 	while (1)
 	{
-        printf("[%d] \"%s\" (%c),  ", i, curr->str, curr->q_type);
+        printf("[%d] .%s. (%c),  ", i, curr->str, curr->q_type);
 		if (curr->next == NULL)
 			break;
 		else
@@ -175,4 +175,17 @@ char	*ft_remove_escaped_from_str(char *str)
 	}
 	free(str);
 	return (result);
+}
+
+// void	ft_init_line_data(c_data *c_data)
+// {
+// 	c_data = malloc(sizeof(l_data));
+// 	memset(c_data, 0, sizeof(l_data));
+// }
+
+void	ft_free_line_data(c_data *c_data)
+{
+	free(c_data->line_expanded);
+	free(c_data->tokens);
+	free(c_data->cmd);
 }

@@ -15,7 +15,7 @@ char	ft_detect_special_characters(c_data *c_data)
     char    *str;
 
 	i = 1;
-    str = c_data->l_data->line_expanded;
+    str = c_data->line_expanded;
     if (ft_found_special_character(str[0]))
     {
         if (!ft_found_invalid_character(str[1]))

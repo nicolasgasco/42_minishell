@@ -15,7 +15,6 @@ void	ft_init_structures(c_data *c_data)
 	c_data->syntax_error = 0;
 	ft_init_quotes_data(c_data);
 	ft_init_prompt_data(c_data);
-	ft_init_line_data(c_data);
 }
 
 // Structure containing information on quotes
@@ -38,11 +37,4 @@ void	ft_init_prompt_data(c_data *c_data)
 		c_data->p_data->hostname = "os";
 	c_data->p_data->prompt_text = ft_create_prompt_text(c_data->p_data->username, c_data->p_data->hostname);
 	c_data->p_data->prompt_nl_text = "> ";
-}
-
-// Structure containing information on user input
-void	ft_init_line_data(c_data *c_data)
-{
-	c_data->l_data = malloc(sizeof(l_data));
-	memset(c_data->l_data, 0, sizeof(l_data));
 }

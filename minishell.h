@@ -32,9 +32,8 @@ typedef struct PromptData {
 	char			*prompt_nl_text;
 } p_data;
 
-typedef struct LineData {
-	char			*line_expanded;
-} l_data;
+// typedef struct LineData {
+// } l_data;
 
 struct t_node {
 	char			*str;
@@ -49,32 +48,32 @@ typedef struct CommonData
 	char			**tokens;
 	int				syntax_error;
 	struct t_node	*tokens_list;
+	char			*line_expanded;	
 	p_data			*p_data;
 	q_data			*q_data;
-	l_data			*l_data;
 } c_data;
 
 // Main
 void	ft_start_loop(c_data *c_data);
-void	ft_expand_quotes(c_data *c_data, char *line_read);
+void	ft_expand_quotes(c_data *c_data);
 char	ft_detect_special_characters(c_data *c_data);
 
 // Init
 void	ft_init_common_data(c_data *c_data, char *envp[]);
 void	ft_init_quotes_data(c_data *c_data);
 void	ft_init_prompt_data(c_data *c_data);
-void	ft_init_line_data(c_data *c_data);
 void	ft_init_structures(c_data *c_data);
 
 // Free
 void	ft_free_common_data(c_data *c_data);
 void    ft_free_quotes_data(c_data *c_data);
 void	ft_free_prompt_data(c_data *c_data);
-void	ft_free_line_data(c_data *c_data);
 void	ft_deallocate_quotes_list(struct q_node **quotes_list);
 void	ft_deallocate_tokens_list(struct t_node **token_list);
+void	ft_free_loop_data(c_data *c_data);
 
 // Prompt
+int		ft_get_input(c_data *c_data);
 char	*rl_gets(char *line_read, char *prompt_text);
 int		ft_are_quotes_unclosed(char *line);
 char	*ft_create_prompt_text(char *username, char *hostname);
@@ -132,5 +131,7 @@ char	*ft_remove_escaped_from_str(char *str);
 void	ft_create_mock_list(c_data *c_data, char *str, ...);
 void    ft_add_node_mock_list(c_data *c_data, char *str);
 void    ft_print_tokens_list(struct t_node *list);
+void	ft_init_line_data(c_data *c_data);
+void	ft_free_line_data(c_data *c_data);
 
 #endif

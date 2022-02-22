@@ -1,5 +1,23 @@
 #include "minishell.h"
 
+int		ft_get_input(c_data *c_data)
+{
+	char	*line_read;
+
+	line_read = (char *)NULL;
+	line_read = rl_gets(line_read, c_data->p_data->prompt_text);
+	if (!*line_read)
+		return (0);
+	printf("\n\n--------------------------------------------------------------------------\n");
+	printf("                          New input");
+	printf("\n--------------------------------------------------------------------------\n\n");
+	printf("Raw input: .%s.\n", line_read);
+	// Known issue with single quotes
+	c_data->q_data->raw_input = ft_strdup(line_read);
+	free(line_read);
+	return (1);
+}
+
 // The text shown when prompting user for input, e.g. username@hostname
 char	*ft_create_prompt_text(char	*username, char *hostname)
 {
