@@ -3,7 +3,7 @@
 // 1/3 Linked list is iterated to expand variables
 void	ft_expand_variables(c_data *c_data)
 {
-    struct s_node	*curr;
+    struct q_node	*curr;
 	
 	curr = c_data->q_data->quotes_list;
 	while (1)

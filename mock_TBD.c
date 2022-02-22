@@ -9,7 +9,6 @@ void ft_create_mock_list(c_data *c_data, char *str, ...)
 
 	va_start(args, str);
     ft_add_node_mock_list(c_data, str);
-    printf("....%s....\n", str);
     while (1)
     {
         arg = va_arg(args, char *);
@@ -22,14 +21,12 @@ void ft_create_mock_list(c_data *c_data, char *str, ...)
 
 void    ft_add_node_mock_list(c_data *c_data, char *str)
 {
-    struct s_node *new_node;
-	struct s_node *curr;
+    struct t_node *new_node;
+	struct t_node *curr;
 
 	curr = c_data->tokens_list;
-	new_node = malloc(sizeof(struct s_node));
+	new_node = malloc(sizeof(struct t_node));
 	new_node->str = ft_strdup(str);
-	new_node->length = ft_strlen(str);
-	new_node->q_type = 'm';
 	new_node->next = NULL;
     while (curr && curr->next != NULL)
 	{
@@ -39,4 +36,24 @@ void    ft_add_node_mock_list(c_data *c_data, char *str)
 		curr->next = new_node;
 	else
 		c_data->tokens_list = new_node;
+}
+
+
+void    ft_print_tokens_list(struct t_node *list)
+{
+	struct t_node	*curr;
+	int				i;
+	
+	i = 0;
+	curr = list;
+	while (1)
+	{
+        printf("[%d] \"%s\",  ", i, curr->str);
+		if (curr->next == NULL)
+			break;
+		else
+			curr = curr->next;
+		i++;
+	}
+    printf("\n");
 }

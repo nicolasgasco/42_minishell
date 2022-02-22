@@ -58,16 +58,16 @@ char    *ft_remove_char(char c, char *line, int start)
     return (result);
 }
 
-void    ft_print_linked_list(struct s_node *list)
+void    ft_print_quotes_list(struct q_node *list)
 {
-	struct s_node	*curr;
+	struct q_node	*curr;
 	int				i;
 	
 	i = 0;
 	curr = list;
 	while (1)
 	{
-        printf("\"%s\" (%c),  ", curr->str, curr->q_type);
+        printf("[%d] \"%s\" (%c),  ", i, curr->str, curr->q_type);
 		if (curr->next == NULL)
 			break;
 		else
@@ -105,9 +105,9 @@ void ft_tokenize_quotes_TDB(q_data *q_data)
 }
 
 // First block of list is always empty and must pruned
-void	ft_prune_starting_node(struct s_node **root)
+void	ft_prune_starting_node(struct q_node **root)
 {
-	struct s_node	*to_remove;
+	struct q_node	*to_remove;
 
 	if (root == NULL)
 		return ;
@@ -125,8 +125,8 @@ void	ft_init_quotes_list(c_data *c_data)
 	{
 		//
 	}
-	// c_data->q_data->quotes_list = malloc(sizeof(struct s_node));
-	// memset(c_data->q_data->quotes_list, 0, sizeof(struct s_node));
+	// c_data->q_data->quotes_list = malloc(sizeof(struct q_node));
+	// memset(c_data->q_data->quotes_list, 0, sizeof(struct q_node));
 	// c_data->q_data->quotes_list->next = NULL;
 	// c_data->q_data->quotes_list->length = 0;
 	// c_data->q_data->quotes_list->str = "";
@@ -135,7 +135,7 @@ void	ft_init_quotes_list(c_data *c_data)
 // 1/2 Linked list is iterated to expand escaped characters
 void	ft_expand_escaped(q_data *q_data)
 {
-    struct s_node	*curr;
+    struct q_node	*curr;
 	
 	curr = q_data->quotes_list;
 	while (1)

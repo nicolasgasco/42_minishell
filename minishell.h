@@ -8,11 +8,11 @@
 #include <readline/history.h>
 
 
-struct s_node {
+struct q_node {
 	int				length;
 	char			q_type;
 	char			*str;
-	struct s_node	*next;
+	struct q_node	*next;
 };
 
 typedef struct QuotesData {
@@ -21,7 +21,7 @@ typedef struct QuotesData {
 	int				d_open;
 	int				s_open;
 	char			*raw_input;
-	struct s_node	*quotes_list;
+	struct q_node	*quotes_list;
 } q_data;
 
 
@@ -36,13 +36,19 @@ typedef struct LineData {
 	char			*line_expanded;
 } l_data;
 
+struct t_node {
+	char			*str;
+	struct t_node	*next;
+};
+
 typedef struct CommonData
 {
 	char			**envp;
 	int				exit_status;
 	char			*cmd;
 	char			**tokens;
-	struct s_node	*tokens_list;
+	int				syntax_error;
+	struct t_node	*tokens_list;
 	p_data			*p_data;
 	q_data			*q_data;
 	l_data			*l_data;
@@ -50,8 +56,8 @@ typedef struct CommonData
 
 // Main
 void	ft_start_loop(c_data *c_data);
-void	ft_tokenize_expand_input(c_data *c_data, char *line_read);
-void    ft_expansions(c_data *c_data);
+void	ft_expand_quotes(c_data *c_data, char *line_read);
+char	ft_detect_special_characters(c_data *c_data);
 
 // Init
 void	ft_init_common_data(c_data *c_data, char *envp[]);
@@ -65,7 +71,8 @@ void	ft_free_common_data(c_data *c_data);
 void    ft_free_quotes_data(c_data *c_data);
 void	ft_free_prompt_data(c_data *c_data);
 void	ft_free_line_data(c_data *c_data);
-void	ft_deallocate_quotes_list(struct s_node **quotes_list);
+void	ft_deallocate_quotes_list(struct q_node **quotes_list);
+void	ft_deallocate_tokens_list(struct t_node **token_list);
 
 // Prompt
 char	*rl_gets(char *line_read, char *prompt_text);
@@ -83,7 +90,7 @@ char	*ft_write_str_to_node(q_data *q_data, int end);
 char    *ft_create_quoted_token(char *s, int start, int len);
 char    *ft_create_quoted_token_empty(char *input, int start);
 char    *ft_create_unquoted_token(char *input, int start, int len);
-void	ft_deallocate_quotes_list(struct s_node **quotes_list);
+void	ft_deallocate_quotes_list(struct q_node **quotes_list);
 char	*ft_convert_list_to_str(q_data *q_data);
 
 // Expansions
@@ -98,9 +105,11 @@ char    *ft_remove_var_name(char *str, int start, int end);
 // Expansion - Here document
 int		ft_find_here_marker(char *str);
 
-// Pipes
-void	ft_expand_pipes(struct s_node *quotes_list);
+// Expansions - Special characters
 int		ft_found_pipe(char *str);
+int		ft_found_redirection(char *str);
+int		ft_found_special_character(char c);
+int		ft_found_invalid_character(char c);
 
 // String manipulation
 char    *ft_strcat(char *src, char *dest);
@@ -116,11 +125,12 @@ int		ft_get_cmd_len(char *line);
 char	**ft_splitc(char const *s, char c);
 
 // TBD
-void    ft_print_linked_list(struct s_node *list);
-void	ft_prune_starting_node(struct s_node **quotes_list);
+void    ft_print_quotes_list(struct q_node *list);
+void	ft_prune_starting_node(struct q_node **quotes_list);
 void	ft_expand_escaped(q_data *q_data);
 char	*ft_remove_escaped_from_str(char *str);
 void	ft_create_mock_list(c_data *c_data, char *str, ...);
 void    ft_add_node_mock_list(c_data *c_data, char *str);
+void    ft_print_tokens_list(struct t_node *list);
 
 #endif

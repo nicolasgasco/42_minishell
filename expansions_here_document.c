@@ -21,11 +21,3 @@ int ft_find_here_marker(char *str)
         return (1);
     return (0);
 }
-
-// Check if a character is invalid for Here document structure
-int ft_invalid_characters(char c)
-{
-    if (c == '<' || c == '>' || c == '|' || c == '\'' || c == '\"')
-        return (1);
-    return (0);
-}

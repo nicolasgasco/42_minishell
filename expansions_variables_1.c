@@ -49,7 +49,6 @@ char    *ft_splice_var_value(char *str, char *var, int start, int end)
         x++;
     }
     result[x] = '\0';
-    printf("result is %s\n", result);
     return (result);
 }
 
@@ -60,7 +59,6 @@ char    *ft_remove_var_name(char *str, int start, int end)
     int     y;
     char    *result;
 
-    printf("%ld\n", (ft_strlen(str) - (end - start) + 1));
     result = (char *)malloc(sizeof(char) * (ft_strlen(str) - (end - start) + 1));
     i = 0;
     y = 0;

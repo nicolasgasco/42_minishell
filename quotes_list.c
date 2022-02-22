@@ -3,12 +3,12 @@
 // Method to add a new node to the linked list containing the tokenized raw input
 void ft_add_node_quotes(q_data *q_data, int end, char quote)
 {
-	struct s_node *new_node;
-	struct s_node *curr;
+	struct q_node *new_node;
+	struct q_node *curr;
 	int i;
 
 	curr = q_data->quotes_list;
-	new_node = malloc(sizeof(struct s_node));
+	new_node = malloc(sizeof(struct q_node));
 	if (new_node == NULL)
 		exit(1);
 	new_node->str = ft_write_str_to_node(q_data, end);
@@ -117,7 +117,7 @@ char    *ft_create_unquoted_token(char *input, int start, int len)
 // Iterate all nodes of linked lists and concatenate them in a string
 char	*ft_convert_list_to_str(q_data *q_data)
 {
-	struct s_node	*curr;
+	struct q_node	*curr;
 	char			*result;
 	int				i;
 	
