@@ -23,7 +23,7 @@ void	ft_start_loop(c_data *c_data)
 		ft_init_structures(c_data);
 		if (!ft_get_input(c_data))
 			continue ;
-		ft_expand_quotes(c_data); // TODO Known issue with simple quotes
+		ft_expand_quotes(c_data); // TODO Known issue with simple quotes (issue with start)
 		if (c_data->syntax_error)
 		{
 			printf("Syntax error: Unclosed quotes\n");
@@ -38,28 +38,24 @@ void	ft_start_loop(c_data *c_data)
 			printf("A Here document structure was detected\n");
 			// TODO nested loop for Here document
 		}
-		if (ft_detect_special_characters(c_data))
-		{
+		if (ft_detect_special_characters(c_data)
 			printf("A special character was detected.\n");
-			c_data->cmd = c_data->tokens_list->str;
-			// TODO add logic for pipes and redirections
-		}
 		else
 		{
+			if (c_data->syntax_error)
+			{
+				printf("Syntax error.\n");
+				printf("\n__________________________________________________________________________\n\n");
+				continue;
+			}
 			printf("No special character was detected.\n");
-		}
-		if (c_data->syntax_error)
-		{
-			printf("Syntax error.\n");
-			printf("\n__________________________________________________________________________\n\n");
-			continue;
 		}
 		ft_create_mock_list(c_data, "cmd", "input", "|", "cmd", "input", ""); // Last parameter must be empty line
 		ft_print_tokens_list(c_data->tokens_list);
-		c_data->cmd = ft_strdup(c_data->tokens_list->str);
+		c_data->cmd = c_data->tokens_list->str;
+		printf("Command: .%s.\n", c_data->cmd);
 		ft_check_cmd(c_data->cmd);
 		ft_free_loop_data(c_data);
 		printf("\n__________________________________________________________________________\n\n");
 	}
-	// Global frees here
 }

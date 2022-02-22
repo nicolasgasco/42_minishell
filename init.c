@@ -13,6 +13,7 @@ void	ft_init_common_data(c_data	*c_data, char **envp)
 void	ft_init_structures(c_data *c_data)
 {
 	c_data->syntax_error = 0;
+	c_data->tokens_list = NULL;
 	ft_init_quotes_data(c_data);
 	ft_init_prompt_data(c_data);
 }

@@ -2,10 +2,8 @@
 
 void	ft_free_loop_data(c_data *c_data)
 {
-	// FREE TOKENS
 	ft_free_quotes_data(c_data);
 	ft_free_prompt_data(c_data);
-	ft_free_line_data(c_data);
 	ft_deallocate_tokens_list(&c_data->tokens_list);
 }
 
@@ -61,7 +59,7 @@ void	ft_deallocate_tokens_list(struct t_node **token_list)
 	{
 		aux = curr;
 		ft_deallocate_tokens_list(&curr->next);
-		free(aux->str);
+		// free(aux->str);
 		free(aux);
 	}
 }
