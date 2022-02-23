@@ -120,7 +120,7 @@ char    *ft_remove_char_index(char *line, int index);
 
 // Commands
 char    *ft_extract_cmd(char *line);
-void	ft_check_cmd(char *cmd);
+void    ft_check_cmd(c_data *c_data);
 int		ft_isspace(char	c);
 int		ft_get_cmd_len(char *line);
 
