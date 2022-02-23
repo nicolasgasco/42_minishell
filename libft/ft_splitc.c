@@ -59,7 +59,7 @@ static void	ft_get_next_word(char **next_word, size_t *next_word_len, char c)
 	}
 }
 
-char	**ft_splitcc(char const *s, char c)
+char	**ft_splitc(char const *s, char c)
 {
 	char	**tab;
 	char	*next_word;

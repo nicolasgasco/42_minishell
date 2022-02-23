@@ -17,7 +17,7 @@ int	env_compare(char **env, char **arg, int i)
 
 	while(env[i])
 	{
-		split = ft_splitcc(env[i], '=');
+		split = ft_splitc(env[i], '=');
 		if (ft_strcmp(split[0], arg[0]) == 0)
 		{
 			ft_free_tab(split);
@@ -59,7 +59,7 @@ char	*ms_get_env(char **env, char *str)
 	i = 0;
 	while(env[i])
 	{
-		split = ft_splitcc(env[i], '=');
+		split = ft_splitc(env[i], '=');
 		if (ft_strcmp(split[0], str) == 0)
 		{
 			ft_free_tab(split);
@@ -80,7 +80,7 @@ void	ms_set_env(char **env, char *value, c_data *c_data)
 	char	**arg;
 
 	i = 0;
-	arg = ft_splitcc(value, '=');
+	arg = ft_splitc(value, '=');
 	i = env_compare(env, arg, i);
 	if(env[i] == NULL)
 	{

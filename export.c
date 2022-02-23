@@ -30,7 +30,7 @@ char	*ms_make_string(char *arg)
 	int	i;
 
 	i = 1;
-	strings = ft_splitcc(arg, '=');
+	strings = ft_splitc(arg, '=');
 	string = ft_strjoin(strings[0], "=\"");
 	while (strings[i] && strings[i + 1])
 	{
@@ -98,7 +98,7 @@ int built_export(char **arg, c_data *c_data)
 			continue ;
 			ret = 1;
 		}
-		strings = ft_splitcc(arg[i], '=');
+		strings = ft_splitc(arg[i], '=');
 		ms_export_valid_arg(arg[i], strings[0], c_data);
 		ft_free_tab(strings);
 		i++;

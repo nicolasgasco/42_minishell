@@ -76,7 +76,7 @@ int	built_unset(char **arg, c_data *c_data)
 			ret = 1;
 			continue ;
 		}
-		strings = ft_splitcc(arg[i], '=');
+		strings = ft_splitc(arg[i], '=');
 		c_data->envp = unset_remove(c_data->envp, strings[0]);
 		c_data->envp_export = unset_remove(c_data->envp_export, strings[0]);
 		ft_free_tab(strings);
