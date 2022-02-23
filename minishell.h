@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <stdbool.h>
 
 
 struct q_node {
@@ -43,15 +44,18 @@ struct t_node {
 typedef struct CommonData
 {
 	char			**envp;
+	char			**envp_export;
 	int				exit_status;
 	char			*cmd;
 	char			**tokens;
 	int				syntax_error;
+	char			**paths;
 	struct t_node	*tokens_list;
 	char			*line_expanded;	
 	p_data			*p_data;
 	q_data			*q_data;
 } c_data;
+
 
 // Main
 void	ft_start_loop(c_data *c_data);
@@ -122,6 +126,30 @@ int		ft_get_cmd_len(char *line);
 
 // Libft
 char	**ft_splitc(char const *s, char c);
+
+typedef struct CommonData
+{
+	char	**envp;
+	char	**envp_export;
+	char	*username;
+	char	*hostname;
+	char	*prompt_text;
+	char	**tokens;
+	char	*cmd;
+	char	**paths;
+} c_data;
+
+//Builtins
+void	built_envp(c_data *c_data);
+void	built_pwd(void);
+void	built_cd(char *arg, c_data *c_data);
+int		built_echo(char **arg);
+int		built_export(char **arg, c_data *c_data);
+char	*ms_make_string(char *arg);
+char	*ms_get_env(char **env, char *str);
+void	ms_set_env(char **env, char *value, c_data *c_data);
+char	**ms_matrix_add_line(char **matrix, char *new_line);
+int		built_unset(char **arg, c_data *c_data);
 
 // TBD
 void    ft_print_quotes_list(struct q_node *list);
