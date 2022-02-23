@@ -33,9 +33,7 @@ typedef struct PromptData {
 	char			*prompt_nl_text;
 } p_data;
 
-// typedef struct LineData {
-// } l_data;
-
+// Struct for every node of tokens linked list
 struct t_node {
 	char			*str;
 	struct t_node	*next;
@@ -67,6 +65,8 @@ void	ft_init_common_data(c_data *c_data, char *envp[]);
 void	ft_init_quotes_data(c_data *c_data);
 void	ft_init_prompt_data(c_data *c_data);
 void	ft_init_structures(c_data *c_data);
+void	init_envp(char **envp, c_data *c_data);
+void	init_export(c_data *c_data);
 
 // Free
 void	ft_free_common_data(c_data *c_data);
@@ -127,22 +127,10 @@ int		ft_get_cmd_len(char *line);
 // Libft
 char	**ft_splitc(char const *s, char c);
 
-typedef struct CommonData
-{
-	char	**envp;
-	char	**envp_export;
-	char	*username;
-	char	*hostname;
-	char	*prompt_text;
-	char	**tokens;
-	char	*cmd;
-	char	**paths;
-} c_data;
-
 //Builtins
-void	built_envp(c_data *c_data);
-void	built_pwd(void);
-void	built_cd(char *arg, c_data *c_data);
+int		built_envp(c_data *c_data);
+int		built_pwd(void);
+int		built_cd(char *arg, c_data *c_data);
 int		built_echo(char **arg);
 int		built_export(char **arg, c_data *c_data);
 char	*ms_make_string(char *arg);

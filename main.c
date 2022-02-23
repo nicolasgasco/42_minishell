@@ -55,7 +55,7 @@ void	ft_start_loop(c_data *c_data)
 		ft_print_tokens_list(c_data->tokens_list);
 		c_data->cmd = c_data->tokens_list->str;
 		printf("Command: .%s.\n", c_data->cmd);
-		ft_check_cmd(c_data->cmd);
+		// ft_check_cmd(c_data->cmd);
 		ft_free_loop_data(c_data);
 		printf("\n__________________________________________________________________________\n\n");
 	}

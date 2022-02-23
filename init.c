@@ -69,10 +69,6 @@ void	ft_init_prompt_data(c_data *c_data)
 {
 	c_data->p_data = malloc(sizeof(p_data));
 	memset(c_data->p_data, 0, sizeof(p_data));
-	printf("\n||WAR MACHINE IS READY||\n\n");
-	printf("Project Minishell.\n\n");
-	printf("Made with love by NICO GASCO & TONI DEL CORRAL.\n\n");
-	printf("Welcome %s, you are now in charge. Good Luck.\n\n", c_data->username);
 	c_data->p_data->username = getenv("USER");
 	if (!c_data->p_data->username)
 		c_data->p_data->username = "username";
@@ -81,4 +77,8 @@ void	ft_init_prompt_data(c_data *c_data)
 		c_data->p_data->hostname = "os";
 	c_data->p_data->prompt_text = ft_create_prompt_text(c_data->p_data->username, c_data->p_data->hostname);
 	c_data->p_data->prompt_nl_text = "> ";
+	// printf("\n||WAR MACHINE IS READY||\n\n");
+	// printf("Project Minishell.\n\n");
+	// printf("Made with love by NICO GASCO & TONI DEL CORRAL.\n\n");
+	// printf("Welcome %s, you are now in charge. Good Luck.\n\n", c_data->p_data->username);
 }

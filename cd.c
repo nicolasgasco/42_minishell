@@ -127,7 +127,7 @@ int	built_cd(char *arg, c_data *c_data)
 	if (chdir(arg) == -1)
 	{
 		if (arg[0] == '\0')
-			return ;
+			return (1);
 		printf("cd %s : No such file or directory\n", arg);
 		return(1);
 	}
