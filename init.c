@@ -4,10 +4,49 @@
 void	ft_init_common_data(c_data	*c_data, char **envp)
 {
 	memset(c_data, 0, sizeof(*c_data));
-	c_data->envp = envp;
+	// c_data->envp = envp;
+	init_envp(envp, c_data);
+	init_export(c_data);
 	// ft_init_quotes_data(c_data);
 	// ft_init_prompt_data(c_data);
 	// ft_init_line_data(c_data);
+}
+
+// Function to init envp
+void	init_envp(char **envp, c_data	*c_data)
+{
+	int	i;
+	i = 0;
+	while(envp[i])
+		i++;
+	c_data->envp = malloc(sizeof(char *) * (i + 1));
+	i = -1;
+	while(envp[++i])
+		c_data->envp[i] = ft_strdup(envp[i]);
+	c_data->envp[i] = NULL;
+}
+
+void	init_export(c_data *c_data)
+{
+	int	i;
+	char	*string;
+
+	i = 0;
+	while (c_data->envp[i])
+		i++;
+	c_data->envp_export = malloc(sizeof(char *) * (i));
+	i = 0;
+	if(c_data->envp[i])
+	{
+		while (c_data->envp[i + 1])
+		{
+			string = ms_make_string(c_data->envp[i]);
+			c_data->envp_export[i] = ft_strdup(string);
+			free(string);
+			i++;
+		}
+	}
+	c_data->envp_export[i] = NULL;
 }
 
 void	ft_init_structures(c_data *c_data)
@@ -30,6 +69,10 @@ void	ft_init_prompt_data(c_data *c_data)
 {
 	c_data->p_data = malloc(sizeof(p_data));
 	memset(c_data->p_data, 0, sizeof(p_data));
+	printf("\n||WAR MACHINE IS READY||\n\n");
+	printf("Project Minishell.\n\n");
+	printf("Made with love by NICO GASCO & TONI DEL CORRAL.\n\n");
+	printf("Welcome %s, you are now in charge. Good Luck.\n\n", c_data->username);
 	c_data->p_data->username = getenv("USER");
 	if (!c_data->p_data->username)
 		c_data->p_data->username = "username";
