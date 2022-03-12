@@ -4,7 +4,10 @@
 void	ft_expand_quotes(c_data *c_data)
 {
 	ft_tokenize_quotes(c_data->q_data);
-	printf("Quotes linked list: ");
+	printf("\033[0;34m");
+	printf("Quotes linked list");
+	printf("\033[0m");
+	printf(":\n");
 	ft_print_quotes_list(c_data->q_data->quotes_list);
 	if (c_data->q_data->d_open || c_data->q_data->s_open)
 		c_data->syntax_error = 1;

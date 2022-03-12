@@ -21,48 +21,53 @@ void	ft_start_loop(c_data *c_data)
 	while (1)
 	{
 		ft_init_structures(c_data);
-		if (!ft_get_input(c_data))
+		if (ft_input_has_error(c_data) == 1)
 			continue ;
-		ft_expand_quotes(c_data); // TODO Known issue with simple quotes (issue with start)
-		if (c_data->syntax_error)
-		{
-			printf("Syntax error: Unclosed quotes\n");
-			printf("\n__________________________________________________________________________\n\n");
-			continue ;
-		}
 		ft_expand_variables(c_data);
 		c_data->line_expanded = ft_convert_list_to_str(c_data->q_data);
-		printf("Expanded input: .%s.\n", c_data->line_expanded);
+		ft_print_expanded_output(c_data); // TBD
 		if (ft_find_here_marker(c_data->line_expanded))
 		{
 			printf("A Here document structure was detected\n");
 			// TODO nested loop for Here document
 		}
-		// Todo logic for << and >>
+		// TODO logic for << and >>
 		if (ft_detect_special_characters(c_data))
-			printf("A special character was detected.\n");
+			ft_print_special_char_detected(); // TBD
 		else
 		{
 			if (c_data->syntax_error)
 			{
-				printf("Syntax error.\n");
-				printf("\n__________________________________________________________________________\n\n");
+				ft_print_syntax_error(); // TBD
 				continue;
 			}
-			printf("No special character was detected.\n");
+			ft_print_no_special_char_detected(); // TBD
 		}
-		ft_create_mock_list(c_data, "cmd", "input", "|", "cmd", "input", ""); // Last parameter must be empty line
-		ft_print_tokens_list(c_data->tokens_list);
+		ft_create_mock_list(c_data, "cmd", "input", "|", "cmd", "input", ""); // TBD Last parameter must be empty line
+		ft_print_tokens_list(c_data->tokens_list); // TBD
 		c_data->cmd = c_data->tokens_list->str;
-		printf("Command: .%s.\n", c_data->cmd);
 		ft_check_cmd(c_data);
 		ft_free_loop_data(c_data);
 		printf("\n__________________________________________________________________________\n\n");
 	}
 }
 
+int		ft_input_has_error(c_data *c_data)
+{
+	if (!ft_get_input(c_data))
+		return (1);
+	ft_expand_quotes(c_data); // TODO Known issue with simple quotes (issue with start)
+	if (c_data->syntax_error)
+	{
+		ft_print_unclosed_quotes();
+		return (1);
+	}
+	return (0);
+}
+
 void    ft_check_cmd(c_data *c_data)
 {
+	ft_print_cmd(c_data); // TBD
     if (ft_strncmp(c_data->cmd, "echo", 4) == 0)
 	    built_echo(c_data->tokens);
     else if (ft_strncmp(c_data->cmd, "cd", 2) == 0)
@@ -78,5 +83,9 @@ void    ft_check_cmd(c_data *c_data)
     else if (ft_strncmp(c_data->cmd, "exit", 4) == 0)
         exit(1);
     else
-        printf("Unknown command\n");
+	{
+		printf("\033[0;31m");
+        printf("Unknown command.\n");
+		printf("\033[0m");
+	}
 }

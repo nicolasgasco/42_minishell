@@ -12,7 +12,10 @@ int		ft_get_input(c_data *c_data)
 	printf("\n\n--------------------------------------------------------------------------\n");
 	printf("                          New input");
 	printf("\n--------------------------------------------------------------------------\n\n");
-	printf("Raw input: .%s.\n", line_read);
+	printf("\033[0;34m");
+	printf("Raw input");
+	printf("\033[0m");
+	printf(":\n\t|%s|\n\n", line_read);
 	// Known issue with single quotes
 	c_data->q_data->raw_input = ft_strdup(line_read);
 	free(line_read);

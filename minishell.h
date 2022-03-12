@@ -60,7 +60,8 @@ typedef struct CommonData
 
 /* Main */
 void	ft_start_loop(c_data *c_data);
-void	ft_expand_quotes(c_data *c_data);
+int		ft_input_has_error(c_data *c_data);
+void    ft_check_cmd(c_data *c_data);
 
 /* Init */
 void	ft_init_common_data(c_data *c_data, char *envp[]);
@@ -84,6 +85,7 @@ char	*ft_create_prompt_text(char *username, char *hostname);
 char	*ft_rl_gets(char *line_read, char *prompt_text);
 
 /* Quotes token */
+void	ft_expand_quotes(c_data *c_data);
 void    ft_tokenize_quotes(q_data *q_data);
 void 	ft_tokenization_logic(q_data *q_data, char *line, int i, char quote);
 void 	ft_tokenization_logic_closed(q_data *q_data, int i, char quote);
@@ -124,7 +126,6 @@ char    *ft_remove_char_index(char *line, int index);
 
 /* Commands */
 char    *ft_extract_cmd(char *line);
-void    ft_check_cmd(c_data *c_data);
 int		ft_isspace(char	c);
 int		ft_get_cmd_len(char *line);
 
@@ -154,5 +155,11 @@ void    ft_print_tokens_list(struct t_node *list);
 void	ft_init_line_data(c_data *c_data);
 void	ft_free_line_data(c_data *c_data);
 void    ft_output_epic_welcome(c_data *c_data);
+void    ft_print_cmd(c_data *c_data);
+void    ft_print_expanded_output(c_data *c_data);
+void    ft_print_special_char_detected(void);
+void    ft_print_syntax_error(void);
+void    ft_print_no_special_char_detected(void);
+void    ft_print_unclosed_quotes(void);
 
 #endif

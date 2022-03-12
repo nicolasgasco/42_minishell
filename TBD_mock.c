@@ -46,9 +46,13 @@ void    ft_print_tokens_list(struct t_node *list)
 	
 	i = 0;
 	curr = list;
+	printf("\033[0;34m");
+	printf("Tokens list");
+	printf("\033[0m");
+	printf(":\n");
 	while (1)
 	{
-        printf("[%d] \"%s\",  ", i, curr->str);
+        printf("\t%d) \"%s\"\n", i, curr->str);
 		if (curr->next == NULL)
 			break;
 		else
