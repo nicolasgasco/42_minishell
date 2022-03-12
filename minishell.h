@@ -9,6 +9,7 @@
 #include <stdbool.h>
 
 
+/* Single node of linked list contaning input tokenized as per quotes */
 struct q_node {
 	int				length;
 	char			q_type;
@@ -16,6 +17,7 @@ struct q_node {
 	struct q_node	*next;
 };
 
+/* Struct containig data related to input tokenized as per quotes */
 typedef struct QuotesData {
 	int				start;
 	int				end;
@@ -25,7 +27,7 @@ typedef struct QuotesData {
 	struct q_node	*quotes_list;
 } q_data;
 
-
+/* Struct containig prompt related data */
 typedef struct PromptData {
 	char			*username;
 	char			*hostname;
@@ -33,12 +35,13 @@ typedef struct PromptData {
 	char			*prompt_nl_text;
 } p_data;
 
-/* Struct for every node of tokens linked list */
+/* Struct for every node representing a word token in the linked list */
 struct t_node {
 	char			*str;
 	struct t_node	*next;
 };
 
+/* Highest level struct with data shared by whole program */
 typedef struct CommonData
 {
 	char			**envp;
@@ -77,9 +80,8 @@ void	ft_free_loop_data(c_data *c_data);
 
 /* Prompt */
 int		ft_get_input(c_data *c_data);
-char	*rl_gets(char *line_read, char *prompt_text);
-int		ft_are_quotes_unclosed(char *line);
 char	*ft_create_prompt_text(char *username, char *hostname);
+char	*ft_rl_gets(char *line_read, char *prompt_text);
 
 /* Quotes token */
 void    ft_tokenize_quotes(q_data *q_data);
