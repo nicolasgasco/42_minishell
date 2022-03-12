@@ -4,9 +4,10 @@
 void	ft_init_common_data(c_data	*c_data, char **envp)
 {
 	memset(c_data, 0, sizeof(*c_data));
-	// c_data->envp = envp;
 	init_envp(envp, c_data);
+	ft_init_prompt_data(c_data);
 	init_export(c_data);
+	ft_output_epic_welcome(c_data);
 	// ft_init_quotes_data(c_data);
 	// ft_init_prompt_data(c_data);
 	// ft_init_line_data(c_data);
@@ -54,7 +55,6 @@ void	ft_init_structures(c_data *c_data)
 	c_data->syntax_error = 0;
 	c_data->tokens_list = NULL;
 	ft_init_quotes_data(c_data);
-	ft_init_prompt_data(c_data);
 }
 
 // Structure containing information on quotes
@@ -77,8 +77,4 @@ void	ft_init_prompt_data(c_data *c_data)
 		c_data->p_data->hostname = "os";
 	c_data->p_data->prompt_text = ft_create_prompt_text(c_data->p_data->username, c_data->p_data->hostname);
 	c_data->p_data->prompt_nl_text = "> ";
-	// printf("\n||WAR MACHINE IS READY||\n\n");
-	// printf("Project Minishell.\n\n");
-	// printf("Made with love by NICO GASCO & TONI DEL CORRAL.\n\n");
-	// printf("Welcome %s, you are now in charge. Good Luck.\n\n", c_data->p_data->username);
 }

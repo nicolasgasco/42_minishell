@@ -33,7 +33,7 @@ typedef struct PromptData {
 	char			*prompt_nl_text;
 } p_data;
 
-// Struct for every node of tokens linked list
+/* Struct for every node of tokens linked list */
 struct t_node {
 	char			*str;
 	struct t_node	*next;
@@ -55,12 +55,11 @@ typedef struct CommonData
 } c_data;
 
 
-// Main
+/* Main */
 void	ft_start_loop(c_data *c_data);
 void	ft_expand_quotes(c_data *c_data);
-char	ft_detect_special_characters(c_data *c_data);
 
-// Init
+/* Init */
 void	ft_init_common_data(c_data *c_data, char *envp[]);
 void	ft_init_quotes_data(c_data *c_data);
 void	ft_init_prompt_data(c_data *c_data);
@@ -68,7 +67,7 @@ void	ft_init_structures(c_data *c_data);
 void	init_envp(char **envp, c_data *c_data);
 void	init_export(c_data *c_data);
 
-// Free
+/* Free */
 void	ft_free_common_data(c_data *c_data);
 void    ft_free_quotes_data(c_data *c_data);
 void	ft_free_prompt_data(c_data *c_data);
@@ -76,18 +75,18 @@ void	ft_deallocate_quotes_list(struct q_node **quotes_list);
 void	ft_deallocate_tokens_list(struct t_node **token_list);
 void	ft_free_loop_data(c_data *c_data);
 
-// Prompt
+/* Prompt */
 int		ft_get_input(c_data *c_data);
 char	*rl_gets(char *line_read, char *prompt_text);
 int		ft_are_quotes_unclosed(char *line);
 char	*ft_create_prompt_text(char *username, char *hostname);
 
-// Quotes token
+/* Quotes token */
 void    ft_tokenize_quotes(q_data *q_data);
 void 	ft_tokenization_logic(q_data *q_data, char *line, int i, char quote);
 void 	ft_tokenization_logic_closed(q_data *q_data, int i, char quote);
 void 	ft_tokenization_logic_open(q_data *q_data, int i, char quote);
-// Quotes  - Linked list
+/* Quotes  - Linked list */
 void	ft_add_node_quotes(q_data *q_data, int end, char quote);
 char	*ft_write_str_to_node(q_data *q_data, int end);
 char    *ft_create_quoted_token(char *s, int start, int len);
@@ -96,8 +95,10 @@ char    *ft_create_unquoted_token(char *input, int start, int len);
 void	ft_deallocate_quotes_list(struct q_node **quotes_list);
 char	*ft_convert_list_to_str(q_data *q_data);
 
-// Expansions
-// Expansions - Variables
+/* Expansions */
+char	ft_detect_special_characters(c_data *c_data);
+
+/* Expansions - Variables */
 void	ft_expand_variables(c_data *c_data);
 int		ft_find_dollar(char *str);
 char	*ft_add_variable_values(char *str, c_data *c_data);
@@ -105,29 +106,30 @@ char	*ft_expand_variable_value(c_data *c_data, char *str, int start, int end);
 char	*ft_get_var_name(char *str, int start, int end);
 char    *ft_splice_var_value(char *str, char *var, int start, int end);
 char    *ft_remove_var_name(char *str, int start, int end);
-// Expansion - Here document
+
+/* Expansion - Here document */
 int		ft_find_here_marker(char *str);
 
-// Expansions - Special characters
+/* Expansions - Special characters */
 int		ft_found_pipe(char *str);
 int		ft_found_redirection(char *str);
 int		ft_found_special_character(char c);
 int		ft_found_invalid_character(char c);
 
-// String manipulation
+/* String manipulation */
 char    *ft_strcat(char *src, char *dest);
 char    *ft_remove_char_index(char *line, int index);
 
-// Commands
+/* Commands */
 char    *ft_extract_cmd(char *line);
 void    ft_check_cmd(c_data *c_data);
 int		ft_isspace(char	c);
 int		ft_get_cmd_len(char *line);
 
-// Libft
+/* Libft */
 char	**ft_splitc(char const *s, char c);
 
-//Builtins
+/*Builtins */
 int		built_envp(c_data *c_data);
 int		built_pwd(void);
 int		built_cd(char *arg, c_data *c_data);
@@ -139,7 +141,7 @@ void	ms_set_env(char **env, char *value, c_data *c_data);
 char	**ms_matrix_add_line(char **matrix, char *new_line);
 int		built_unset(char **arg, c_data *c_data);
 
-// TBD
+/* TBD */
 void    ft_print_quotes_list(struct q_node *list);
 void	ft_prune_starting_node(struct q_node **quotes_list);
 void	ft_expand_escaped(q_data *q_data);
@@ -149,5 +151,6 @@ void    ft_add_node_mock_list(c_data *c_data, char *str);
 void    ft_print_tokens_list(struct t_node *list);
 void	ft_init_line_data(c_data *c_data);
 void	ft_free_line_data(c_data *c_data);
+void    ft_output_epic_welcome(c_data *c_data);
 
 #endif

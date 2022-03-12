@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-// No arguments accepted, global data initialization, loop initialization
+/* No arguments accepted, global data initialization, loop initialization */
 int	main(int argc, char *argv[], char *envp[])
 {
 	c_data c_data;
@@ -15,7 +15,7 @@ int	main(int argc, char *argv[], char *envp[])
 	return (0);
 }
 
-// Main loop, input is collected, tokenized, expanded, and sent for processing
+/* Main loop, input is collected, tokenized, expanded, and sent for processing */
 void	ft_start_loop(c_data *c_data)
 {
 	while (1)
