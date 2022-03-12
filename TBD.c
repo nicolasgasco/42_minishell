@@ -189,3 +189,33 @@ void	ft_free_line_data(c_data *c_data)
 	free(c_data->tokens);
 	free(c_data->cmd);
 }
+
+// Checks if all quotes are properly closed. If not, another prompt is shown
+int ft_are_quotes_unclosed(char *line)
+{
+    int     i;
+    int     word_open;
+
+    i = 0;
+    word_open = 0;
+    while (line[i] != '\0')
+    {
+        if (line[i] == '\'')
+        {
+            if (i > 0 && line[i - 1] == '\\')
+            {
+                if (word_open == 1)
+                    word_open = 0;
+            }
+            else
+            {
+                if (word_open == 0)
+                    word_open = 1;
+                else if (word_open == 1)
+                    word_open = 0;
+            }
+        }
+        i++;
+    }
+    return (word_open);
+}
