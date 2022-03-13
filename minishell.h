@@ -90,6 +90,8 @@ void    ft_tokenize_quotes(q_data *q_data);
 void 	ft_tokenization_logic(q_data *q_data, char *line, int i, char quote);
 void 	ft_tokenization_logic_unopened(q_data *q_data, int i, char quote);
 void 	ft_tokenization_logic_open(q_data *q_data, int i, char quote);
+char    *ft_strcat(char *src, char *dest);
+
 /* Quotes  - Linked list */
 void	ft_add_node_quotes(q_data *q_data, int end, char quote);
 char	*ft_write_str_to_node(q_data *q_data, int end);
@@ -124,8 +126,6 @@ int		ft_found_special_character(char c);
 int		ft_found_invalid_character(char c);
 
 /* String manipulation */
-char    *ft_strcat(char *src, char *dest);
-char    *ft_remove_char_index(char *line, int index);
 
 /* Commands */
 char    *ft_extract_cmd(char *line);
@@ -166,5 +166,6 @@ void    ft_print_no_special_char_detected(void);
 void    ft_print_unclosed_quotes(void);
 void    ft_print_here_doc_detected(void);
 void    ft_print_unknown_command(void);
+char    *ft_remove_char_index(char *line, int index);
 
 #endif

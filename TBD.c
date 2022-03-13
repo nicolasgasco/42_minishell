@@ -219,3 +219,26 @@ int ft_are_quotes_unclosed(char *line)
     }
     return (word_open);
 }
+
+// Remove character specified by index, NO FREE
+char    *ft_remove_char_index(char *line, int index)
+{
+    int i;
+    int y;
+    char *result;
+
+    result = (char *)malloc(sizeof(char) * (ft_strlen(line) - 1 + 1));
+    i = 0;
+    y = 0;
+    while (line[i] != '\0')
+    {
+        if (i != index)
+        {
+            result[y] = line[i];
+            y++;
+        }
+        i++;
+    }
+    result[y] = '\0';
+    return (result);
+}
