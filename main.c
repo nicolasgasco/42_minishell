@@ -10,7 +10,7 @@ int	main(int argc, char *argv[], char *envp[])
 		printf("Error: arguments\n");
 		return (1);
 	}
-	ft_init_common_data(&c_data, envp);
+	ft_init_general_data(&c_data, envp);
 	ft_start_loop(&c_data);
 	return (0);
 }

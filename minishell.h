@@ -64,7 +64,7 @@ int		ft_input_has_error(c_data *c_data);
 void    ft_check_cmd(c_data *c_data);
 
 /* Init */
-void	ft_init_common_data(c_data *c_data, char *envp[]);
+void	ft_init_general_data(c_data *c_data, char *envp[]);
 void	ft_init_quotes_data(c_data *c_data);
 void	ft_init_prompt_data(c_data *c_data);
 void	ft_init_structures(c_data *c_data);

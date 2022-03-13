@@ -1,7 +1,7 @@
 #include "minishell.h"
 
 // Structure with global data
-void	ft_init_common_data(c_data	*c_data, char **envp)
+void	ft_init_general_data(c_data	*c_data, char **envp)
 {
 	memset(c_data, 0, sizeof(*c_data));
 	init_envp(envp, c_data);
