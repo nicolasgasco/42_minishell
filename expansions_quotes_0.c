@@ -3,7 +3,6 @@
 /* Check if there are unclosed quotes */
 int		ft_expanded_quotes_are_valid(c_data *c_data)
 {
-	ft_expand_quotes(c_data); // TODO Known issue with simple quotes (issue with start)
 	if (c_data->syntax_error)
 	{
 		ft_print_unclosed_quotes(); // TBD
@@ -12,7 +11,7 @@ int		ft_expanded_quotes_are_valid(c_data *c_data)
 	return (1);
 }
 
-// User input is tokenized according to quotes to see if they're unclosed or not
+/* User input is tokenized according to quotes to see if they're unclosed or not */
 void	ft_expand_quotes(c_data *c_data)
 {
 	ft_tokenize_quotes(c_data->q_data);
@@ -26,7 +25,7 @@ void	ft_expand_quotes(c_data *c_data)
 }
 
 
-// 1/2 Raw input is parsed and tokenized in a linked list according to quotes
+/* 1/2 Raw input is parsed and tokenized in a linked list according to quotes */
 void ft_tokenize_quotes(q_data *q_data)
 {
 	int i;
@@ -50,7 +49,7 @@ void ft_tokenize_quotes(q_data *q_data)
 		ft_add_node_quotes(q_data, i, '\0');
 }
 
-// 2/2 For both types of quotes, different tokenization logics are applied
+/* 2/2 For both types of quotes, different tokenization logics are applied */
 void ft_tokenization_logic(q_data *q_data, char *line, int i, char quote)
 {
 	if (quote == '\'')
@@ -59,7 +58,7 @@ void ft_tokenization_logic(q_data *q_data, char *line, int i, char quote)
 		{
 			if (line[i - 1] != '\\')
 			{
-				ft_tokenization_logic_closed(q_data, i, quote);
+				ft_tokenization_logic_unopened(q_data, i, quote);
 				q_data->s_open = 1;
 			}
 		}
@@ -71,7 +70,7 @@ void ft_tokenization_logic(q_data *q_data, char *line, int i, char quote)
 		if (q_data->d_open == 0)
 		{
 			if (line[i - 1] != '\\')
-				ft_tokenization_logic_closed(q_data, i, quote);
+				ft_tokenization_logic_unopened(q_data, i, quote);
 		}
 		else if (q_data->d_open == 1)
 		{

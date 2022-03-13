@@ -67,7 +67,7 @@ void    ft_print_quotes_list(struct q_node *list)
 	curr = list;
 	while (1)
 	{
-        printf("\t%d) |%s| [%c]\n", i, curr->str, curr->q_type);
+        printf("\t%d) .%s. [%c]\n", i, curr->str, curr->q_type);
 		if (curr->next == NULL)
 			break;
 		else

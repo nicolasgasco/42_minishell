@@ -88,7 +88,7 @@ int		ft_expanded_quotes_are_valid(c_data *c_data);
 void	ft_expand_quotes(c_data *c_data);
 void    ft_tokenize_quotes(q_data *q_data);
 void 	ft_tokenization_logic(q_data *q_data, char *line, int i, char quote);
-void 	ft_tokenization_logic_closed(q_data *q_data, int i, char quote);
+void 	ft_tokenization_logic_unopened(q_data *q_data, int i, char quote);
 void 	ft_tokenization_logic_open(q_data *q_data, int i, char quote);
 /* Quotes  - Linked list */
 void	ft_add_node_quotes(q_data *q_data, int end, char quote);

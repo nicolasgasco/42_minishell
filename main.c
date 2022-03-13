@@ -21,7 +21,10 @@ void	ft_start_loop(c_data *c_data)
 	while (1)
 	{
 		ft_init_loop_data(c_data);
-		if (!ft_get_valid_input(c_data) || !ft_expanded_quotes_are_valid(c_data))
+		if (!ft_get_valid_input(c_data))
+			continue ;
+		ft_expand_quotes(c_data);
+		if (!ft_expanded_quotes_are_valid(c_data))
 			continue ;
 		ft_expand_variables(c_data);
 		// If variables have errors, put here

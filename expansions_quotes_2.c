@@ -1,46 +1,5 @@
 #include "minishell.h"
 
-// Method to add a new node to the linked list containing the tokenized raw input
-void ft_add_node_quotes(q_data *q_data, int end, char quote)
-{
-	struct q_node *new_node;
-	struct q_node *curr;
-	int i;
-
-	curr = q_data->quotes_list;
-	new_node = (struct q_node *)malloc(sizeof(struct q_node));
-	if (new_node == NULL)
-		exit(1);
-	new_node->str = ft_write_str_to_node(q_data, end);
-	new_node->length = end - q_data->start;
-	new_node->q_type = quote;
-	new_node->next = NULL;
-	i = 0;
-	while (curr && curr->next != NULL)
-	{
-		curr = curr->next;
-		i++;
-	}
-	if (curr)
-		curr->next = new_node;
-	else
-		q_data->quotes_list = new_node;
-}
-
-// Three cases: quoted string, quoted string, but empty, string without quotes
-char	*ft_write_str_to_node(q_data *q_data, int end)
-{
-	if (end - q_data->start > 1)
-		return (ft_create_quoted_token(q_data->raw_input, q_data->start, end - q_data->start));
-	else
-	{
-		if (q_data->raw_input[q_data->start] == '\'' || q_data->raw_input[q_data->start] == '\"')
-			return (ft_create_quoted_token_empty(q_data->raw_input, q_data->start));
-		else
-			return (ft_create_unquoted_token(q_data->raw_input, q_data->start, end - q_data->start));
-    }
-}
-
 // a) Actual token text is written into node ignoring quotes
 char    *ft_create_quoted_token(char *input, int start, int len)
 {
