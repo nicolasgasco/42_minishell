@@ -39,7 +39,7 @@ char	*ft_itoa(int n)
 	int		num_digits;
 
 	num_digits = ft_cal_number_digits(n);
-	res = malloc((num_digits + 1) * sizeof(char));
+	res = (char *)malloc((num_digits + 1) * sizeof(char));
 	if (n == 0)
 		res[0] = 48;
 	if (res == NULL)

@@ -9,7 +9,7 @@ char    *ft_strcat(char *src, char *dest)
 
     i = 0;
     y = 0;
-    result = malloc(sizeof(char) * (ft_strlen(src) + ft_strlen(dest) + 1));
+    result = (char *)malloc(sizeof(char) * (ft_strlen(src) + ft_strlen(dest) + 1));
     if (!result)
         exit (1);
     while (src[i] != '\0')
@@ -37,7 +37,7 @@ char    *ft_remove_char_index(char *line, int index)
     int y;
     char *result;
 
-    result = malloc(sizeof(char) * (ft_strlen(line) - 1 + 1));
+    result = (char *)malloc(sizeof(char) * (ft_strlen(line) - 1 + 1));
     i = 0;
     y = 0;
     while (line[i] != '\0')

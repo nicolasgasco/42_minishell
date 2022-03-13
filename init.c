@@ -14,13 +14,13 @@ void	ft_init_common_data(c_data	*c_data, char **envp)
 }
 
 // Function to init envp
-void	init_envp(char **envp, c_data	*c_data)
+void	init_envp(char **envp, c_data *c_data)
 {
 	int	i;
 	i = 0;
 	while(envp[i])
 		i++;
-	c_data->envp = malloc(sizeof(char *) * (i + 1));
+	c_data->envp = (char **)malloc(sizeof(char *) * (i + 1));
 	i = -1;
 	while(envp[++i])
 		c_data->envp[i] = ft_strdup(envp[i]);
@@ -60,14 +60,14 @@ void	ft_init_structures(c_data *c_data)
 // Structure containing information on quotes
 void	ft_init_quotes_data(c_data *c_data)
 {
-	c_data->q_data = malloc(sizeof(q_data));
+	c_data->q_data = (q_data *)malloc(sizeof(q_data));
 	memset(c_data->q_data, 0, sizeof(q_data));
 }
 
 /* Initializing structure containing information on prompt */
 void	ft_init_prompt_data(c_data *c_data)
 {
-	c_data->p_data = malloc(sizeof(p_data));
+	c_data->p_data = (p_data *)malloc(sizeof(p_data));
 	memset(c_data->p_data, 0, sizeof(p_data));
 	c_data->p_data->username = getenv("USER");
 	if (!c_data->p_data->username)

@@ -8,7 +8,7 @@ void ft_add_node_quotes(q_data *q_data, int end, char quote)
 	int i;
 
 	curr = q_data->quotes_list;
-	new_node = malloc(sizeof(struct q_node));
+	new_node = (struct q_node *)malloc(sizeof(struct q_node));
 	if (new_node == NULL)
 		exit(1);
 	new_node->str = ft_write_str_to_node(q_data, end);
@@ -59,7 +59,7 @@ char    *ft_create_quoted_token(char *input, int start, int len)
         i++;
     }
     y = 0;
-    result = malloc(sizeof(char) * (result_len + 1));
+    result = (char *)malloc(sizeof(char) * (result_len + 1));
     while (result_len != 0)
     {
         result[y] = input[i];
@@ -80,7 +80,7 @@ char    *ft_create_quoted_token_empty(char *input, int start)
 
     i = start;
 	y = 0;
-    result = malloc(sizeof(char) * (ft_strlen(input) - start - 2 + 1));
+    result = (char *)malloc(sizeof(char) * (ft_strlen(input) - start - 2 + 1));
     while (i < start)
     {
         result[y] = input[i];
@@ -102,7 +102,7 @@ char    *ft_create_unquoted_token(char *input, int start, int len)
     i = start;
     result_len = len;
     y = 0;
-    result = malloc(sizeof(char) * (result_len + 1));
+    result = (char *)malloc(sizeof(char) * (result_len + 1));
     while (result_len != 0)
     {
         result[y] = input[i];
