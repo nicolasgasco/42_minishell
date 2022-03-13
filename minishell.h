@@ -60,7 +60,7 @@ typedef struct CommonData
 
 /* Main */
 void	ft_start_loop(c_data *c_data);
-int		ft_input_has_error(c_data *c_data);
+int		ft_expanded_input_has_error(c_data *c_data);
 void    ft_check_cmd(c_data *c_data);
 
 /* Init */
