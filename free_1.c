@@ -31,7 +31,7 @@ void	ft_deallocate_tokens_list(struct t_node **token_list)
 	{
 		aux = curr;
 		ft_deallocate_tokens_list(&curr->next);
-		// free(aux->str);
+		free(aux->str);
 		free(aux);
 	}
 }

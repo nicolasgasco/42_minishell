@@ -66,21 +66,22 @@ void    ft_check_cmd(c_data *c_data);
 void	ft_init_general_data(c_data *c_data, char *envp[]);
 void	ft_init_quotes_data(c_data *c_data);
 void	ft_init_prompt_data(c_data *c_data);
+char	*ft_create_prompt_text(char *username, char *hostname);
 void	ft_init_loop_data(c_data *c_data);
 void	init_envp(char **envp, c_data *c_data);
 void	init_export(c_data *c_data);
 
 /* Free */
-void	ft_free_common_data(c_data *c_data);
+void	ft_free_general_data(c_data *c_data);
 void    ft_free_quotes_data(c_data *c_data);
 void	ft_free_prompt_data(c_data *c_data);
 void	ft_deallocate_quotes_list(struct q_node **quotes_list);
 void	ft_deallocate_tokens_list(struct t_node **token_list);
 void	ft_free_loop_data(c_data *c_data);
+void	ft_free_loop_data_quotes_error(c_data *c_data);
 
 /* Prompt */
 int		ft_get_valid_input(c_data *c_data);
-char	*ft_create_prompt_text(char *username, char *hostname);
 char	*ft_rl_gets(char *line_read, char *prompt_text);
 
 /* Quotes token */

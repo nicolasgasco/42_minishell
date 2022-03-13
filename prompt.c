@@ -35,23 +35,3 @@ char	*ft_rl_gets(char *line_read, char *prompt_text)
 	return (result);
 }
 
-/* The text shown when prompting user for input, e.g. username@hostname */
-char	*ft_create_prompt_text(char *username, char *hostname)
-{
-	int		i;
-	int		len1;
-	int		len2;
-	char	*result;
-	
-	i = -1;
-	len1 = ft_strlen(username);
-	len2 = ft_strlen(hostname);
-	result = (char *)malloc(sizeof(char) * (len1 + len2 + 4));
-	while (++i < len1)
-		result[i] = username[i];
-	result[i] = '@';
-	while (++i < (len1 + len2 + 1))
-		result[i] = hostname[i - len1 - 1];
-	ft_strlcat(result, ": ", i + 3);
-	return (result);
-}
