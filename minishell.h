@@ -101,8 +101,10 @@ char    *ft_create_unquoted_token(char *input, int start, int len);
 void	ft_deallocate_quotes_list(struct q_node **quotes_list);
 char	*ft_convert_list_to_str(q_data *q_data);
 
-/* Expansions */
-int		ft_detect_special_characters(c_data *c_data);
+/* Expansions - Special chars */
+int		ft_detect_special_chars(c_data *c_data);
+int 	ft_first_char_special(char *str, c_data *c_data);
+int 	ft_last_char_special(char *str, int i, c_data *c_data);
 
 /* Expansions - Variables */
 void	ft_expand_variables(c_data *c_data);
@@ -119,7 +121,7 @@ int		ft_find_here_marker(char *str);
 
 /* Expansions - Special characters */
 int		ft_special_chars_are_valid(c_data *c_data);
-int 	ft_detect_special_characters(c_data *c_data);
+int 	ft_detect_special_chars(c_data *c_data);
 int		ft_found_pipe(char *str);
 int		ft_found_redirection(char *str);
 int		ft_found_special_character(char c);
