@@ -50,7 +50,7 @@ void	init_export(c_data *c_data)
 	c_data->envp_export[i] = NULL;
 }
 
-void	ft_init_structures(c_data *c_data)
+void	ft_init_loop_data(c_data *c_data)
 {
 	c_data->syntax_error = 0;
 	c_data->tokens_list = NULL;

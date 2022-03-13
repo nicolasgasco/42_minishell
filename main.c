@@ -20,7 +20,7 @@ void	ft_start_loop(c_data *c_data)
 {
 	while (1)
 	{
-		ft_init_structures(c_data);
+		ft_init_loop_data(c_data);
 		if (ft_input_has_error(c_data) == 1)
 			continue ;
 		ft_expand_variables(c_data);

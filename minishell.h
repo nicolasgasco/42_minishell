@@ -67,7 +67,7 @@ void    ft_check_cmd(c_data *c_data);
 void	ft_init_general_data(c_data *c_data, char *envp[]);
 void	ft_init_quotes_data(c_data *c_data);
 void	ft_init_prompt_data(c_data *c_data);
-void	ft_init_structures(c_data *c_data);
+void	ft_init_loop_data(c_data *c_data);
 void	init_envp(char **envp, c_data *c_data);
 void	init_export(c_data *c_data);
 
