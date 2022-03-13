@@ -5,7 +5,7 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	c_data c_data;
 
-	if (argc != 1 || argv[1])
+	if (argc != 1)
 	{
 		printf("Error: arguments\n");
 		return (1);
