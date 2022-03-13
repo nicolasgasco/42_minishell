@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-// 1/3 Linked list is iterated to expand variables
+/* 1/3 Linked list is iterated to expand variables */
 void	ft_expand_variables(c_data *c_data)
 {
     struct q_node	*curr;
@@ -20,7 +20,7 @@ void	ft_expand_variables(c_data *c_data)
 	}	
 }
 
-// 1a Check if there's at least one $
+/* 1a Check if there's at least one $ */
 int	ft_find_dollar(char *str)
 {
 	int	i;
@@ -35,7 +35,7 @@ int	ft_find_dollar(char *str)
 	return (0);
 }
 
-// 2/3 Outside quotes, variables are expanded to their value
+/* 2/3 Outside quotes, variables are expanded to their value */
 char	*ft_add_variable_values(char *str, c_data *c_data)
 {
 	int	i;
@@ -63,7 +63,7 @@ char	*ft_add_variable_values(char *str, c_data *c_data)
 	return (ft_expand_variable_value(c_data, str, start, i));
 }
 
-// 3/3 Splice variable value in the correct spot inside of string
+/* 3/3 Splice variable value in the correct spot inside of string */
 char	*ft_expand_variable_value(c_data *c_data, char *str, int start, int end)
 {
 	char	*var_name;

@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-// 3a Isolate and create variable for variable name, e.g. PATH or USER
+/* 3a Isolate and create variable for variable name, e.g. PATH or USER */
 char *ft_get_var_name(char *str, int start, int end)
 {
 	char	*result;
@@ -20,12 +20,11 @@ char *ft_get_var_name(char *str, int start, int end)
 	return (result);
 }
 
-// 3b Take variable value and splice it into original str
+/* 3b Take variable value and splice it into original str */
 char    *ft_splice_var_value(char *str, char *var, int start, int end)
 {
     char    *result;
     int     i;
-    int     y;
     int     x;
 
     i = 0;
@@ -35,13 +34,7 @@ char    *ft_splice_var_value(char *str, char *var, int start, int end)
     {
         if (i == start)
         {
-            y = 0;
-            while (var[y] != '\0')
-            {
-                result[x] = var[y];
-                y++;
-                x++;
-            }
+            ft_splice_var_value_utility(result, var, &x);
             i += (end - start);
         }
         result[x] = str[i];
@@ -52,7 +45,21 @@ char    *ft_splice_var_value(char *str, char *var, int start, int end)
     return (result);
 }
 
-// 3c If variable value doesn't exist, just remove $VAR from string
+/* Utility function for 3b in order to respect Norminette length restrictions */
+void    ft_splice_var_value_utility(char *result, char *var, int *x)
+{
+    int     y;
+
+    y = 0;
+    while (var[y] != '\0')
+    {
+        result[*x] = var[y];
+        y++;
+        *x = *x + 1;
+    }
+}
+
+/* 3c If variable value doesn't exist, just remove $VAR from string */
 char    *ft_remove_var_name(char *str, int start, int end)
 {
     int     i;

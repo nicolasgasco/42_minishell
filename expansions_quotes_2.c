@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-// a) Actual token text is written into node ignoring quotes
+/* a) Actual token text is written into node ignoring quotes */
 char    *ft_create_quoted_token(char *input, int start, int len)
 {
     char    *result;
@@ -30,7 +30,7 @@ char    *ft_create_quoted_token(char *input, int start, int len)
     return (result);
 }
 
-// b) Actual token text is written into node ignoring quotes, case where empty set of quotes is given ""
+/* b) Case where empty set of quotes is given "" */
 char    *ft_create_quoted_token_empty(char *input, int start)
 {
     char    *result;
@@ -50,7 +50,7 @@ char    *ft_create_quoted_token_empty(char *input, int start)
     return (result);
 }
 
-// c) Actual token text is written into node, case where no quote is present
+/* c) Case where no quote is present */
 char    *ft_create_unquoted_token(char *input, int start, int len)
 {
     char    *result;
@@ -73,7 +73,7 @@ char    *ft_create_unquoted_token(char *input, int start, int len)
     return (result);
 }
 
-// Iterate all nodes of linked lists and concatenate them in a string
+/* Iterate all nodes of linked lists and concatenate them in a string */
 char	*ft_convert_list_to_str(q_data *q_data)
 {
 	struct q_node	*curr;
