@@ -41,7 +41,7 @@ void    ft_print_unclosed_quotes(void)
 void    ft_print_here_doc_detected(void)
 {
     printf("\033[0;33m");
-    printf("Special character detected.\n\n");
+    printf("Here document detected.\n\n");
     printf("\033[0m");
 }
 

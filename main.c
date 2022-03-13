@@ -21,7 +21,7 @@ void	ft_start_loop(c_data *c_data)
 	while (1)
 	{
 		ft_init_loop_data(c_data);
-		if (!ft_get_valid_input(c_data))
+		if (!ft_get_valid_input(c_data, c_data->p_data->prompt_text))
 		{
 			ft_free_quotes_data(c_data);
 			continue ;
@@ -33,7 +33,8 @@ void	ft_start_loop(c_data *c_data)
 			continue ;
 		}
 		ft_expand_variables(c_data);
-		// If variables have errors, put here
+		if (ft_find_here_marker_list(c_data))
+			ft_here_doc_loop(c_data);
 		c_data->line_expanded = ft_convert_list_to_str(c_data->q_data);
 		ft_print_expanded_output(c_data); // TBD
 		if (!ft_special_chars_are_valid(c_data))

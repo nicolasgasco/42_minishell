@@ -81,7 +81,7 @@ void	ft_free_loop_data(c_data *c_data);
 void	ft_free_loop_data_quotes_error(c_data *c_data);
 
 /* Prompt */
-int		ft_get_valid_input(c_data *c_data);
+int		ft_get_valid_input(c_data *c_data, char *prompt_text);
 char	*ft_rl_gets(char *line_read, char *prompt_text);
 
 /* Quotes token */
@@ -118,7 +118,9 @@ void    ft_splice_var_value_utility(char *result, char *var, int *x);
 char    *ft_remove_var_name(char *str, int start, int end);
 
 /* Expansion - Here document */
-int		ft_find_here_marker(char *str);
+int		ft_find_here_marker_list(c_data *c_data);
+int 	ft_find_here_marker_str(char *str);
+void    ft_here_doc_loop(c_data *c_data);
 
 /* Expansions - Special characters */
 int		ft_special_chars_are_valid(c_data *c_data);

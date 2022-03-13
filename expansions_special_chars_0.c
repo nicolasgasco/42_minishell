@@ -2,15 +2,9 @@
 
 int ft_special_chars_are_valid(c_data *c_data)
 {
-    if (ft_find_here_marker(c_data->line_expanded))
-    {
-        ft_print_here_doc_detected();
-        // TODO nested loop for Here document
-    }
-    // TODO logic for << and >>
     if (ft_detect_special_chars(c_data))
         ft_print_special_char_detected(); // TBD
-    else if (!ft_find_here_marker(c_data->line_expanded))
+    else
         ft_print_no_special_char_detected(); // TBD
     if (c_data->syntax_error)
     {
