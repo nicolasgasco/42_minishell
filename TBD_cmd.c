@@ -53,5 +53,5 @@ void    ft_print_cmd(c_data *c_data)
     printf("\033[0;34m");
     printf("Command");
     printf("\033[0m");
-    printf(":\n\t|%s|\n\n", c_data->cmd);
+    printf(":\n\t.%s.\n\n", c_data->cmd);
 }

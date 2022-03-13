@@ -52,7 +52,7 @@ void    ft_print_tokens_list(struct t_node *list)
 	printf(":\n");
 	while (1)
 	{
-        printf("\t%d) \"%s\"\n", i, curr->str);
+        printf("\t%d) .%s.\n", i, curr->str);
 		if (curr->next == NULL)
 			break;
 		else

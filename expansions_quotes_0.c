@@ -1,5 +1,17 @@
 #include "minishell.h"
 
+/* Check if there are unclosed quotes */
+int		ft_expanded_quotes_are_valid(c_data *c_data)
+{
+	ft_expand_quotes(c_data); // TODO Known issue with simple quotes (issue with start)
+	if (c_data->syntax_error)
+	{
+		ft_print_unclosed_quotes(); // TBD
+		return (0);
+	}
+	return (1);
+}
+
 // User input is tokenized according to quotes to see if they're unclosed or not
 void	ft_expand_quotes(c_data *c_data)
 {

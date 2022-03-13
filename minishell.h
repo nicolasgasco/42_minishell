@@ -60,7 +60,6 @@ typedef struct CommonData
 
 /* Main */
 void	ft_start_loop(c_data *c_data);
-int		ft_expanded_input_has_error(c_data *c_data);
 void    ft_check_cmd(c_data *c_data);
 
 /* Init */
@@ -80,11 +79,12 @@ void	ft_deallocate_tokens_list(struct t_node **token_list);
 void	ft_free_loop_data(c_data *c_data);
 
 /* Prompt */
-int		ft_get_input(c_data *c_data);
+int		ft_get_valid_input(c_data *c_data);
 char	*ft_create_prompt_text(char *username, char *hostname);
 char	*ft_rl_gets(char *line_read, char *prompt_text);
 
 /* Quotes token */
+int		ft_expanded_quotes_are_valid(c_data *c_data);
 void	ft_expand_quotes(c_data *c_data);
 void    ft_tokenize_quotes(q_data *q_data);
 void 	ft_tokenization_logic(q_data *q_data, char *line, int i, char quote);
@@ -100,7 +100,7 @@ void	ft_deallocate_quotes_list(struct q_node **quotes_list);
 char	*ft_convert_list_to_str(q_data *q_data);
 
 /* Expansions */
-char	ft_detect_special_characters(c_data *c_data);
+int		ft_detect_special_characters(c_data *c_data);
 
 /* Expansions - Variables */
 void	ft_expand_variables(c_data *c_data);
@@ -115,6 +115,8 @@ char    *ft_remove_var_name(char *str, int start, int end);
 int		ft_find_here_marker(char *str);
 
 /* Expansions - Special characters */
+int		ft_special_chars_are_valid(c_data *c_data);
+int 	ft_detect_special_characters(c_data *c_data);
 int		ft_found_pipe(char *str);
 int		ft_found_redirection(char *str);
 int		ft_found_special_character(char c);
@@ -161,5 +163,7 @@ void    ft_print_special_char_detected(void);
 void    ft_print_syntax_error(void);
 void    ft_print_no_special_char_detected(void);
 void    ft_print_unclosed_quotes(void);
+void    ft_print_here_doc_detected(void);
+void    ft_print_unknown_command(void);
 
 #endif
