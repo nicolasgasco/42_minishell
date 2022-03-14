@@ -4,6 +4,7 @@
 #include "./libft/libft.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdbool.h>
@@ -130,7 +131,8 @@ int		ft_found_redirection(char *str);
 int		ft_found_special_character(char c);
 int		ft_found_invalid_character(char c);
 
-/* String manipulation */
+/* Tokens list */
+int		ft_create_tokens_list(c_data *c_data);
 
 /* Commands */
 char    *ft_extract_cmd(char *line);
