@@ -129,7 +129,7 @@ int 	ft_detect_special_chars(c_data *c_data);
 int		ft_found_pipe(char *str);
 int		ft_found_redirection(char *str);
 int		ft_found_special_character(char c);
-int		ft_found_invalid_character(char c);
+int		ft_found_inv_char(char c);
 
 /* Tokens list */
 int		ft_create_tokens_list(c_data *c_data);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_1.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ngasco <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/14 11:22:29 by ngasco            #+#    #+#             */
+/*   Updated: 2022/03/14 11:22:30 by ngasco           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 /* Initializing structure containing information on prompt */
@@ -22,7 +34,7 @@ char	*ft_create_prompt_text(char *username, char *hostname)
 	int		len1;
 	int		len2;
 	char	*result;
-	
+
 	i = -1;
 	len1 = ft_strlen(username);
 	len2 = ft_strlen(hostname);
@@ -32,8 +44,8 @@ char	*ft_create_prompt_text(char *username, char *hostname)
 	result[i] = '@';
 	while (++i < (len1 + len2 + 1))
 		result[i] = hostname[i - len1 - 1];
-    result[i] = ':';
-    result[i + 1] = ' ';
-    result[i + 2] = '\0';
+	result[i] = ':';
+	result[i + 1] = ' ';
+	result[i + 2] = '\0';
 	return (result);
 }

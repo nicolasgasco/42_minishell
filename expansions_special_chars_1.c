@@ -1,7 +1,7 @@
 #include "minishell.h"
 
 /* Check if a character is invalid for Here document structure */
-int ft_found_invalid_character(char c)
+int ft_found_inv_char(char c)
 {
     if (c == '<' || c == '>' || c == '|' || c == '\'' || c == '\"' || c == '!')
         return (1);

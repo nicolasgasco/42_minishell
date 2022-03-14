@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expansions_quotes_1.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ngasco <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/14 11:57:01 by ngasco            #+#    #+#             */
+/*   Updated: 2022/03/14 11:57:12 by ngasco           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 /* 2a Logic for substrings that are not preceded by an opening quote */
-void ft_tokenization_logic_unopened(q_data *q_data, int i, char quote)
+void	ft_tokenization_logic_unopened(q_data *q_data, int i, char quote)
 {
 	if (quote == '\'')
 	{
@@ -31,9 +43,8 @@ void ft_tokenization_logic_unopened(q_data *q_data, int i, char quote)
 	q_data->start = i;
 }
 
-
 /* 2b Logic for substrings that are preceded by an opening quote */
-void ft_tokenization_logic_open(q_data *q_data, int i, char quote)
+void	ft_tokenization_logic_open(q_data *q_data, int i, char quote)
 {
 	if (quote == '\'')
 	{
@@ -51,11 +62,11 @@ void ft_tokenization_logic_open(q_data *q_data, int i, char quote)
 }
 
 /* Add a new node to the linked list containing the tokenized raw input */
-void ft_add_node_quotes(q_data *q_data, int end, char quote)
+void	ft_add_node_quotes(q_data *q_data, int end, char quote)
 {
-	struct q_node *new_node;
-	struct q_node *curr;
-	int i;
+	struct q_node	*new_node;
+	struct q_node	*curr;
+	int				i;
 
 	curr = q_data->quotes_list;
 	new_node = (struct q_node *)malloc(sizeof(struct q_node));
@@ -88,5 +99,5 @@ char	*ft_write_str_to_node(q_data *q_data, int end)
 			return ((ft_create_quoted_token_empty(q_data->raw_input, q_data->start)));
 		else
 			return (ft_create_unquoted_token(q_data->raw_input, q_data->start, end - q_data->start));
-    }
+	}
 }

@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prompt.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ngasco <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/14 12:03:16 by ngasco            #+#    #+#             */
+/*   Updated: 2022/03/14 12:03:17 by ngasco           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 /* Collecting input from user */
-int		ft_get_valid_input(c_data *c_data, char *prompt_text)
+int	ft_get_valid_input(c_data *c_data, char *prompt_text)
 {
 	char	*line_read;
 
-	line_read = (char *)NULL;
+	line_read = (char *) NULL;
 	line_read = ft_rl_gets(line_read, prompt_text);
 	if (!*line_read)
 		return (0);
@@ -36,4 +48,3 @@ char	*ft_rl_gets(char *line_read, char *prompt_text)
 		add_history(result); // TODO This might be moved elsewhere, check for here doc
 	return (result);
 }
-

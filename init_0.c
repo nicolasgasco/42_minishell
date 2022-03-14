@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_0.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ngasco <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/14 11:21:09 by ngasco            #+#    #+#             */
+/*   Updated: 2022/03/14 11:21:11 by ngasco           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 // Structure with global data
@@ -8,28 +20,26 @@ void	ft_init_general_data(c_data	*c_data, char **envp)
 	ft_init_prompt_data(c_data);
 	init_export(c_data);
 	ft_output_epic_welcome(c_data);
-	// ft_init_quotes_data(c_data);
-	// ft_init_prompt_data(c_data);
-	// ft_init_line_data(c_data);
 }
 
 // Function to init envp
 void	init_envp(char **envp, c_data *c_data)
 {
 	int	i;
+
 	i = 0;
-	while(envp[i])
+	while (envp[i])
 		i++;
 	c_data->envp = (char **)malloc(sizeof(char *) * (i + 1));
 	i = -1;
-	while(envp[++i])
+	while (envp[++i])
 		c_data->envp[i] = ft_strdup(envp[i]);
 	c_data->envp[i] = NULL;
 }
 
 void	init_export(c_data *c_data)
 {
-	int	i;
+	int		i;
 	char	*string;
 
 	i = 0;
@@ -37,7 +47,7 @@ void	init_export(c_data *c_data)
 		i++;
 	c_data->envp_export = malloc(sizeof(char *) * (i));
 	i = 0;
-	if(c_data->envp[i])
+	if (c_data->envp[i])
 	{
 		while (c_data->envp[i + 1])
 		{

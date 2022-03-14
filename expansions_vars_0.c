@@ -1,20 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expansions_vars_0.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ngasco <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/14 11:30:17 by ngasco            #+#    #+#             */
+/*   Updated: 2022/03/14 11:30:18 by ngasco           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 /* 1/3 Linked list is iterated to expand variables */
 void	ft_expand_variables(c_data *c_data)
 {
-    struct q_node	*curr;
-	
+	struct q_node	*curr;
+
 	curr = c_data->q_data->quotes_list;
 	while (1)
 	{
-        if (curr->q_type != '\'')
+		if (curr->q_type != '\'')
 		{
 			if (ft_find_dollar(curr->str))
 				curr->str = ft_add_variable_values(curr->str, c_data);
 		}
 		if (curr->next == NULL)
-			break;
+			break ;
 		else
 			curr = curr->next;
 	}	
@@ -56,7 +68,7 @@ char	*ft_add_variable_values(char *str, c_data *c_data)
 				while (str[i] >= 'A' && str[i] <= 'Z')
 					i++;
 			}
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -67,8 +79,8 @@ char	*ft_add_variable_values(char *str, c_data *c_data)
 char	*ft_expand_variable_value(c_data *c_data, char *str, int start, int end)
 {
 	char	*var_name;
-    char    *var_value;
-    char    *result;
+	char	*var_value;
+	char	*result;
 
 	if (str[start + 1] == '?')
 	{
