@@ -39,7 +39,7 @@ void	ft_start_loop(c_data *c_data)
 		ft_print_expanded_output(c_data); // TBD
 		if (!ft_special_chars_are_valid(c_data))
 			continue;
-		ft_create_tokens_list(c_data);
+		// ft_create_tokens_list(c_data);
 		ft_create_mock_list(c_data, "cmd", "input", "|", "cmd", "input", ""); // TBD Last parameter must be empty line
 		ft_print_tokens_list(c_data->tokens_list); // TBD
 		ft_check_cmd(c_data);
