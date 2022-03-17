@@ -60,7 +60,7 @@ char	**unset_remove(char **env, char *arg)
 		env = ms_matrix_remove_line(env, line);
 	return(env);
 }
-int	built_unset(char **arg, c_data *c_data)
+int	built_unset(char **arg, t_cdata *t_cdata)
 {
 	int	i;
 	char **strings;
@@ -77,8 +77,8 @@ int	built_unset(char **arg, c_data *c_data)
 			continue ;
 		}
 		strings = ft_splitc(arg[i], '=');
-		c_data->envp = unset_remove(c_data->envp, strings[0]);
-		c_data->envp_export = unset_remove(c_data->envp_export, strings[0]);
+		t_cdata->envp = unset_remove(t_cdata->envp, strings[0]);
+		t_cdata->envp_export = unset_remove(t_cdata->envp_export, strings[0]);
 		ft_free_tab(strings);
 		i++;
 	}

@@ -74,7 +74,7 @@ char	*ms_get_env(char **env, char *str)
 	return(env[i]);
 }
 
-void	ms_set_env(char **env, char *value, c_data *c_data)
+void	ms_set_env(char **env, char *value, t_cdata *t_cdata)
 {
 	int	i;
 	char	**arg;
@@ -84,7 +84,7 @@ void	ms_set_env(char **env, char *value, c_data *c_data)
 	i = env_compare(env, arg, i);
 	if(env[i] == NULL)
 	{
-		c_data->envp = ms_matrix_add_line(env, value);
+		t_cdata->envp = ms_matrix_add_line(env, value);
 		ft_free_tab(arg);
 		return ;
 	}
@@ -97,24 +97,24 @@ void	ms_set_env(char **env, char *value, c_data *c_data)
 
 
 
-void	 set_pwd(char *arg, char *c, c_data *c_data)
+void	 set_pwd(char *arg, char *c, t_cdata *t_cdata)
 {
 	char *str;
 	printf("hi\n");
 	str = ft_strjoin(arg, c);
 	printf("HOLA\n");
-	ms_set_env(c_data->envp, str, c_data);
+	ms_set_env(t_cdata->envp, str, t_cdata);
 	free(str);
 }
 
-int	built_cd(char *arg, c_data *c_data)
+int	built_cd(char *arg, t_cdata *t_cdata)
 {
 	char str[PATH_MAX];
 	printf("arg es %s\n", arg);
 
 	if (arg == NULL)
 	{
-		arg = ms_get_env(c_data->envp, "HOME") + 5;
+		arg = ms_get_env(t_cdata->envp, "HOME") + 5;
 		printf("arg es %s\n", arg);
 		if ((arg -5) == NULL)
 		{
@@ -131,9 +131,9 @@ int	built_cd(char *arg, c_data *c_data)
 		printf("cd %s : No such file or directory\n", arg);
 		return(1);
 	}
-	set_pwd("OLDPWD=", str, c_data);
+	set_pwd("OLDPWD=", str, t_cdata);
 	getcwd(str, sizeof(str));
-	set_pwd("PWD=", str, c_data);
+	set_pwd("PWD=", str, t_cdata);
 	return(0);
 }
 

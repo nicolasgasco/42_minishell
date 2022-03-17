@@ -3,71 +3,71 @@
 /* No arguments accepted, global data initialization, loop initialization */
 int	main(int argc, char *argv[], char *envp[])
 {
-	c_data c_data;
+	t_cdata t_cdata;
 
 	if (argc != 1 || argv[1])
 	{
 		printf("Error: arguments\n");
 		return (1);
 	}
-	ft_init_general_data(&c_data, envp);
-	ft_start_loop(&c_data);
+	ft_init_general_data(&t_cdata, envp);
+	ft_start_loop(&t_cdata);
 	return (0);
 }
 
 /* Main loop, input is collected, tokenized, expanded, and sent for processing */
-void	ft_start_loop(c_data *c_data)
+void	ft_start_loop(t_cdata *t_cdata)
 {
 	while (1)
 	{
-		ft_init_loop_data(c_data);
-		if (!ft_get_valid_input(c_data, c_data->p_data->prompt_text))
+		ft_init_loot_pdata(t_cdata);
+		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text))
 		{
-			ft_free_quotes_data(c_data);
+			ft_free_quotes_data(t_cdata);
 			continue ;
 		}
-		ft_expand_quotes(c_data);
-		if (!ft_expanded_quotes_are_valid(c_data))
+		ft_expand_quotes(t_cdata);
+		if (!ft_expanded_quotes_are_valid(t_cdata))
 		{
-			ft_free_loop_data_quotes_error(c_data);
+			ft_free_loot_pdata_quotes_error(t_cdata);
 			continue ;
 		}
-		ft_expand_variables(c_data);
-		if (ft_find_here_marker_list(c_data))
-			ft_here_doc_loop(c_data);
-		c_data->line_expanded = ft_convert_list_to_str(c_data->q_data);
-		ft_print_expanded_output(c_data); // TBD
-		if (!ft_special_chars_are_valid(c_data))
+		ft_expand_variables(t_cdata);
+		if (ft_find_here_marker_list(t_cdata))
+			ft_here_doc_loop(t_cdata);
+		t_cdata->line_expanded = ft_convert_list_to_str(t_cdata->t_qdata);
+		ft_print_expanded_output(t_cdata); // TBD
+		if (!ft_special_chars_are_valid(t_cdata))
 			continue;
-		// ft_create_tokens_list(c_data);
-		ft_create_mock_list(c_data, "cmd", "input", "|", "cmd", "input", ""); // TBD Last parameter must be empty line
-		ft_print_tokens_list(c_data->tokens_list); // TBD
-		ft_check_cmd(c_data);
-		ft_free_loop_data(c_data);
+		// ft_create_tokens_list(t_cdata);
+		ft_create_mock_list(t_cdata, "cmd", "holla", "que", "tal", "|", "cmd", "input", ""); // TBD Last parameter must be empty line
+		ft_print_tokens_list(t_cdata->tokens_list); // TBD
+		ft_check_cmd(t_cdata);
+		ft_free_loot_pdata(t_cdata);
 		printf("\n__________________________________________________________________________\n\n");
 	}
 }
 
-void    ft_check_cmd(c_data *c_data)
+void    ft_check_cmd(t_cdata *t_cdata)
 {
-	c_data->cmd = c_data->tokens_list->str;
-	ft_print_cmd(c_data); // TBD
-    // if (ft_strncmp(c_data->cmd, "echo", 4) == 0)
-	//     built_echo(c_data->tokens);
-    // else if (ft_strncmp(c_data->cmd, "cd", 2) == 0)
-	//     built_cd(c_data->tokens[1], c_data);
-    // else if (ft_strncmp(c_data->cmd, "pwd", 3) == 0)
-	//     built_pwd();
-    // else if (ft_strncmp(c_data->cmd, "export", 6) == 0)
-	//     built_export(c_data->tokens + 1, c_data);
-    // else if (ft_strncmp(c_data->cmd, "unset", 5) == 0)
-	//     built_unset(c_data->tokens + 1, c_data);
-    // else if (ft_strncmp(c_data->cmd, "env", 3) == 0)
-	//     built_envp(c_data);
-    if (ft_strncmp(c_data->cmd, "exit", 4) == 0)
+	t_cdata->cmd = t_cdata->tokens_list->str;
+	ft_print_cmd(t_cdata); // TBD
+    if (ft_strncmp(t_cdata->cmd, "echo", 4) == 0)
+	    built_echo(t_cdata->tokens);
+    else if (ft_strncmp(t_cdata->cmd, "cd", 2) == 0)
+	    built_cd(t_cdata->tokens[1], t_cdata);
+    else if (ft_strncmp(t_cdata->cmd, "pwd", 3) == 0)
+	    built_pwd();
+    else if (ft_strncmp(t_cdata->cmd, "export", 6) == 0)
+	    built_export(t_cdata->tokens + 1, t_cdata);
+    else if (ft_strncmp(t_cdata->cmd, "unset", 5) == 0)
+	    built_unset(t_cdata->tokens + 1, t_cdata);
+    else if (ft_strncmp(t_cdata->cmd, "env", 3) == 0)
+	    built_envp(t_cdata);
+    if (ft_strncmp(t_cdata->cmd, "exit", 4) == 0)
 	{
-		ft_free_loop_data(c_data);
-		// ft_free_general_data(c_data);
+		ft_free_loot_pdata(t_cdata);
+		// ft_free_general_data(t_cdata);
         exit(1);
 	}
 	else

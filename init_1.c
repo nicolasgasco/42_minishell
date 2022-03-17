@@ -13,18 +13,18 @@
 #include "minishell.h"
 
 /* Initializing structure containing information on prompt */
-void	ft_init_prompt_data(c_data *c_data)
+void	ft_init_prompt_data(t_cdata *t_cdata)
 {
-	c_data->p_data = (p_data *)malloc(sizeof(p_data));
-	memset(c_data->p_data, 0, sizeof(p_data));
-	c_data->p_data->username = getenv("USER");
-	if (!c_data->p_data->username)
-		c_data->p_data->username = ft_strdup("username");
-	c_data->p_data->hostname = getenv("HOSTNAME");
-	if (!c_data->p_data->hostname)
-		c_data->p_data->hostname = ft_strdup("os");
-	c_data->p_data->prompt_text = ft_create_prompt_text(c_data->p_data->username, c_data->p_data->hostname);
-	c_data->p_data->prompt_nl_text = ft_strdup("> ");
+	t_cdata->t_pdata = (t_pdata *)malloc(sizeof(t_pdata));
+	memset(t_cdata->t_pdata, 0, sizeof(t_pdata));
+	t_cdata->t_pdata->username = getenv("USER");
+	if (!t_cdata->t_pdata->username)
+		t_cdata->t_pdata->username = ft_strdup("username");
+	t_cdata->t_pdata->hostname = getenv("HOSTNAME");
+	if (!t_cdata->t_pdata->hostname)
+		t_cdata->t_pdata->hostname = ft_strdup("os");
+	t_cdata->t_pdata->prompt_text = ft_create_prompt_text(t_cdata->t_pdata->username, t_cdata->t_pdata->hostname);
+	t_cdata->t_pdata->prompt_nl_text = ft_strdup("> ");
 }
 
 /* The text shown when prompting user for input, e.g. username@hostname */

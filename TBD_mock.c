@@ -2,30 +2,30 @@
 #include <stdarg.h>
 
 // Pass a variable number of arguments, last one must always be empty string
-void ft_create_mock_list(c_data *c_data, char *str, ...)
+void ft_create_mock_list(t_cdata *t_cdata, char *str, ...)
 {
     va_list args;
     char    *arg;
 
 	va_start(args, str);
-    ft_add_node_mock_list(c_data, ft_extract_cmd(c_data->line_expanded));
+    ft_add_node_mock_list(t_cdata, ft_extract_cmd(t_cdata->line_expanded));
     while (1)
     {
         arg = va_arg(args, char *);
         if (arg[0] == '\0')
             break;
-        ft_add_node_mock_list(c_data, arg);
+        ft_add_node_mock_list(t_cdata, arg);
     }
     va_end(args);
 }
 
-void    ft_add_node_mock_list(c_data *c_data, char *str)
+void    ft_add_node_mock_list(t_cdata *t_cdata, char *str)
 {
-    struct t_node *new_node;
-	struct t_node *curr;
+    struct s_tnode *new_node;
+	struct s_tnode *curr;
 
-	curr = c_data->tokens_list;
-	new_node = (struct t_node *)malloc(sizeof(struct t_node));
+	curr = t_cdata->tokens_list;
+	new_node = (struct s_tnode *)malloc(sizeof(struct s_tnode));
 	new_node->str = ft_strdup(str);
 	new_node->next = NULL;
     while (curr && curr->next != NULL)
@@ -35,13 +35,13 @@ void    ft_add_node_mock_list(c_data *c_data, char *str)
 	if (curr)
 		curr->next = new_node;
 	else
-		c_data->tokens_list = new_node;
+		t_cdata->tokens_list = new_node;
 }
 
 
-void    ft_print_tokens_list(struct t_node *list)
+void    ft_print_tokens_list(struct s_tnode *list)
 {
-	struct t_node	*curr;
+	struct s_tnode	*curr;
 	int				i;
 	
 	i = 0;

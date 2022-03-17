@@ -44,45 +44,45 @@ char	*ms_make_string(char *arg)
 	return(string);
 }
 
-void	ms_export_sort(c_data *c_data)
+void	ms_export_sort(t_cdata *t_cdata)
 {
 	int	i;
 
 	i = 0;
-	ft_sort_tab(c_data->envp_export);
-	while (c_data->envp_export[i])
-		printf("%s\n", c_data->envp_export[i++]);
+	ft_sort_tab(t_cdata->envp_export);
+	while (t_cdata->envp_export[i])
+		printf("%s\n", t_cdata->envp_export[i++]);
 }
 
-void	ms_export_valid_arg(char *arg, char *strings, c_data *c_data)
+void	ms_export_valid_arg(char *arg, char *strings, t_cdata *t_cdata)
 {
 	char	*string;
 
 	if (ft_strchr(arg, '=') == NULL)
 	{
-		if (ms_get_env(c_data->envp_export, strings) == NULL)
-			c_data->envp_export = ms_matrix_add_line(c_data->envp_export, arg);
+		if (ms_get_env(t_cdata->envp_export, strings) == NULL)
+			t_cdata->envp_export = ms_matrix_add_line(t_cdata->envp_export, arg);
 	}
 	else
 	{
 		string = ms_make_string(arg);
-		if (ms_get_env(c_data->envp_export, strings) != NULL)
+		if (ms_get_env(t_cdata->envp_export, strings) != NULL)
 		{
 			arg = ft_strdup(arg);
-			ms_set_env(c_data->envp, arg, c_data);
-			ms_set_env(c_data->envp_export, string, c_data);
+			ms_set_env(t_cdata->envp, arg, t_cdata);
+			ms_set_env(t_cdata->envp_export, string, t_cdata);
 			free(arg);
 		}
 		else
 		{
-			c_data->envp = ms_matrix_add_line(c_data->envp, arg);
-			c_data->envp_export = ms_matrix_add_line(c_data->envp_export, string);
+			t_cdata->envp = ms_matrix_add_line(t_cdata->envp, arg);
+			t_cdata->envp_export = ms_matrix_add_line(t_cdata->envp_export, string);
 		}
 		free(string);
 	}
 }
 
-int built_export(char **arg, c_data *c_data)
+int built_export(char **arg, t_cdata *t_cdata)
 {
 	char	**strings;
 	int	i;
@@ -99,11 +99,11 @@ int built_export(char **arg, c_data *c_data)
 			ret = 1;
 		}
 		strings = ft_splitc(arg[i], '=');
-		ms_export_valid_arg(arg[i], strings[0], c_data);
+		ms_export_valid_arg(arg[i], strings[0], t_cdata);
 		ft_free_tab(strings);
 		i++;
 	}
 if (arg[0] == NULL)
-		ms_export_sort(c_data);
+		ms_export_sort(t_cdata);
 	return(ret);
 }

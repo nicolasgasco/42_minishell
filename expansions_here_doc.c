@@ -1,11 +1,11 @@
 #include "minishell.h"
 
 /* Loof for a Here document structure in each string of the quotes linked list */
-int ft_find_here_marker_list(c_data *c_data)
+int ft_find_here_marker_list(t_cdata *t_cdata)
 {
-    struct q_node	*curr;
+    struct t_qnode	*curr;
 
-    curr = c_data->q_data->quotes_list;
+    curr = t_cdata->t_qdata->quotes_list;
     while (1)
     {
         if (curr->q_type != '\'')
@@ -43,7 +43,7 @@ int ft_find_here_marker_str(char *str)
     return (0);
 }
 
-void    ft_here_doc_loop(c_data *c_data)
+void    ft_here_doc_loop(t_cdata *t_cdata)
 {
     int i;
 
@@ -51,12 +51,12 @@ void    ft_here_doc_loop(c_data *c_data)
     ft_print_here_doc_detected();
     while (1)
     {
-        printf("Raw input is %s\n", c_data->q_data->raw_input);
-        ft_get_valid_input(c_data, c_data->p_data->prompt_nl_text);
+        printf("Raw input is %s\n", t_cdata->t_qdata->raw_input);
+        ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_nl_text);
         // Breaking when found marker
         if (i == 4)
             break;
-        // line_read = rl_gets(line_read, c_data->prompt_newline_text);
+        // line_read = rl_gets(line_read, t_cdata->prompt_newline_text);
         // if (!ft_are_quotes_unclosed(line_read))
         //     break;
         i++;

@@ -1,8 +1,8 @@
 #include "minishell.h"
 
-int		ft_create_tokens_list(c_data *c_data)
+int		ft_create_tokens_list(t_cdata *t_cdata)
 {
-    if (c_data)
+    if (t_cdata)
     {
         //
     }

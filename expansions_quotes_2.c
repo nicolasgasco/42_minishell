@@ -86,15 +86,15 @@ char	*ft_create_unquoted_token(char *input, int start, int len)
 }
 
 /* Iterate all nodes of linked lists and concatenate them in a string */
-char	*ft_convert_list_to_str(q_data *q_data)
+char	*ft_convert_list_to_str(t_qdata *t_qdata)
 {
-	struct q_node	*curr;
+	struct t_qnode	*curr;
 	char			*result;
 	int				i;
 
 	i = 0;
 	result = NULL;
-	curr = q_data->quotes_list;
+	curr = t_qdata->quotes_list;
 	while (1)
 	{
 		if (result == NULL)

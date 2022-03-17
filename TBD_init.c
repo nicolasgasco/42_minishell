@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void    ft_output_epic_welcome(c_data *c_data)
+void    ft_output_epic_welcome(t_cdata *t_cdata)
 {
     printf("\033[0;36m");
     printf("\n||WAR MACHINE IS READY||\n\n");
@@ -17,7 +17,7 @@ void    ft_output_epic_welcome(c_data *c_data)
     printf(".\n\n");
     printf("Welcome ");
     printf("\033[0;33m");
-    printf("%s", c_data->p_data->username);
+    printf("%s", t_cdata->t_pdata->username);
     printf("\033[0m");
     printf(", you are now in charge. Good Luck.\n");
     printf("\n__________________________________________________________________________\n\n");

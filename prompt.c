@@ -13,7 +13,7 @@
 #include "minishell.h"
 
 /* Collecting input from user */
-int	ft_get_valid_input(c_data *c_data, char *prompt_text)
+int	ft_get_valid_input(t_cdata *t_cdata, char *prompt_text)
 {
 	char	*line_read;
 
@@ -28,10 +28,10 @@ int	ft_get_valid_input(c_data *c_data, char *prompt_text)
 	printf("Raw input");
 	printf("\033[0m");
 	printf(":\n\t.%s.\n\n", line_read);
-	if (c_data->q_data->raw_input)
-		c_data->q_data->raw_input = ft_strjoin(c_data->q_data->raw_input, line_read);
+	if (t_cdata->t_qdata->raw_input)
+		t_cdata->t_qdata->raw_input = ft_strjoin(t_cdata->t_qdata->raw_input, line_read);
 	else
-		c_data->q_data->raw_input = ft_strdup(line_read);
+		t_cdata->t_qdata->raw_input = ft_strdup(line_read);
 	free(line_read);
 	return (1);
 }

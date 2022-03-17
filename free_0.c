@@ -12,33 +12,33 @@
 
 #include "minishell.h"
 
-void	ft_free_loop_data(c_data *c_data)
+void	ft_free_loot_pdata(t_cdata *t_cdata)
 {
-	ft_free_quotes_data(c_data);
-	free(c_data->line_expanded);
-	ft_deallocate_tokens_list(&c_data->tokens_list);
+	ft_free_quotes_data(t_cdata);
+	free(t_cdata->line_expanded);
+	ft_deallocate_tokens_list(&t_cdata->tokens_list);
 }
 
-void	ft_free_loop_data_quotes_error(c_data *c_data)
+void	ft_free_loot_pdata_quotes_error(t_cdata *t_cdata)
 {
-	ft_free_quotes_data(c_data);
-	free(c_data->line_expanded);
+	ft_free_quotes_data(t_cdata);
+	free(t_cdata->line_expanded);
 }
 
-void	ft_free_general_data(c_data *c_data)
+void	ft_free_general_data(t_cdata *t_cdata)
 {
-	ft_free_prompt_data(c_data);
+	ft_free_prompt_data(t_cdata);
 }
 
-void	ft_free_quotes_data(c_data *c_data)
+void	ft_free_quotes_data(t_cdata *t_cdata)
 {
-	ft_deallocate_quotes_list(&c_data->q_data->quotes_list);
-	free(c_data->q_data->raw_input);
-	free(c_data->q_data);
+	ft_deallocate_quotes_list(&t_cdata->t_qdata->quotes_list);
+	free(t_cdata->t_qdata->raw_input);
+	free(t_cdata->t_qdata);
 }
 
-void	ft_free_prompt_data(c_data *c_data)
+void	ft_free_prompt_data(t_cdata *t_cdata)
 {
-	free(c_data->p_data->prompt_text);
-	free(c_data->p_data);
+	free(t_cdata->t_pdata->prompt_text);
+	free(t_cdata->t_pdata);
 }

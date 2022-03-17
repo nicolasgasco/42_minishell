@@ -13,63 +13,63 @@
 #include "minishell.h"
 
 // Structure with global data
-void	ft_init_general_data(c_data	*c_data, char **envp)
+void	ft_init_general_data(t_cdata	*t_cdata, char **envp)
 {
-	memset(c_data, 0, sizeof(*c_data));
-	init_envp(envp, c_data);
-	ft_init_prompt_data(c_data);
-	init_export(c_data);
-	ft_output_epic_welcome(c_data);
+	memset(t_cdata, 0, sizeof(*t_cdata));
+	init_envp(envp, t_cdata);
+	ft_init_prompt_data(t_cdata);
+	init_export(t_cdata);
+	ft_output_epic_welcome(t_cdata);
 }
 
 // Function to init envp
-void	init_envp(char **envp, c_data *c_data)
+void	init_envp(char **envp, t_cdata *t_cdata)
 {
 	int	i;
 
 	i = 0;
 	while (envp[i])
 		i++;
-	c_data->envp = (char **)malloc(sizeof(char *) * (i + 1));
+	t_cdata->envp = (char **)malloc(sizeof(char *) * (i + 1));
 	i = -1;
 	while (envp[++i])
-		c_data->envp[i] = ft_strdup(envp[i]);
-	c_data->envp[i] = NULL;
+		t_cdata->envp[i] = ft_strdup(envp[i]);
+	t_cdata->envp[i] = NULL;
 }
 
-void	init_export(c_data *c_data)
+void	init_export(t_cdata *t_cdata)
 {
 	int		i;
 	char	*string;
 
 	i = 0;
-	while (c_data->envp[i])
+	while (t_cdata->envp[i])
 		i++;
-	c_data->envp_export = malloc(sizeof(char *) * (i));
+	t_cdata->envp_export = malloc(sizeof(char *) * (i));
 	i = 0;
-	if (c_data->envp[i])
+	if (t_cdata->envp[i])
 	{
-		while (c_data->envp[i + 1])
+		while (t_cdata->envp[i + 1])
 		{
-			string = ms_make_string(c_data->envp[i]);
-			c_data->envp_export[i] = ft_strdup(string);
+			string = ms_make_string(t_cdata->envp[i]);
+			t_cdata->envp_export[i] = ft_strdup(string);
 			free(string);
 			i++;
 		}
 	}
-	c_data->envp_export[i] = NULL;
+	t_cdata->envp_export[i] = NULL;
 }
 
-void	ft_init_loop_data(c_data *c_data)
+void	ft_init_loot_pdata(t_cdata *t_cdata)
 {
-	c_data->syntax_error = 0;
-	c_data->tokens_list = NULL;
-	ft_init_quotes_data(c_data);
+	t_cdata->syntax_error = 0;
+	t_cdata->tokens_list = NULL;
+	ft_init_quotes_data(t_cdata);
 }
 
 // Structure containing information on quotes
-void	ft_init_quotes_data(c_data *c_data)
+void	ft_init_quotes_data(t_cdata *t_cdata)
 {
-	c_data->q_data = (q_data *)malloc(sizeof(q_data));
-	memset(c_data->q_data, 0, sizeof(q_data));
+	t_cdata->t_qdata = (t_qdata *)malloc(sizeof(t_qdata));
+	memset(t_cdata->t_qdata, 0, sizeof(t_qdata));
 }

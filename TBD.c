@@ -58,9 +58,9 @@ char    *ft_remove_char(char c, char *line, int start)
     return (result);
 }
 
-void    ft_print_quotes_list(struct q_node *list)
+void    ft_print_quotes_list(struct t_qnode *list)
 {
-	struct q_node	*curr;
+	struct t_qnode	*curr;
 	int				i;
 	
 	i = 0;
@@ -78,36 +78,36 @@ void    ft_print_quotes_list(struct q_node *list)
 }
 
 // This is here only for series of ifs at the end, in case needed in the future
-void ft_tokenize_quotes_TDB(q_data *q_data)
+void ft_tokenize_quotes_TDB(t_qdata *t_qdata)
 {
 	int i;
 
-	if (q_data->raw_input[0] == '\'')
-		q_data->s_open = 1;
-	else if (q_data->raw_input[0] == '\"')
-		q_data->d_open = 1;
+	if (t_qdata->raw_input[0] == '\'')
+		t_qdata->s_open = 1;
+	else if (t_qdata->raw_input[0] == '\"')
+		t_qdata->d_open = 1;
 	i = 1;
-	while (q_data->raw_input[i] != '\0')
+	while (t_qdata->raw_input[i] != '\0')
 	{
-		if (q_data->raw_input[i] == '\'' && q_data->d_open == 0)
-			ft_tokenization_logic(q_data, q_data->raw_input, i, '\'');
-		else if (q_data->raw_input[i] == '\"' && q_data->s_open == 0)
-			ft_tokenization_logic(q_data, q_data->raw_input, i, '\"');
+		if (t_qdata->raw_input[i] == '\'' && t_qdata->d_open == 0)
+			ft_tokenization_logic(t_qdata, t_qdata->raw_input, i, '\'');
+		else if (t_qdata->raw_input[i] == '\"' && t_qdata->s_open == 0)
+			ft_tokenization_logic(t_qdata, t_qdata->raw_input, i, '\"');
 		i++;
 	}
-	if (q_data->d_open)
-		ft_add_node_quotes(q_data, i, '\0');
-	else if (q_data->s_open)
-		ft_add_node_quotes(q_data, i, '\0');
-	else if (q_data->start == 0 || q_data->start != i)
-		ft_add_node_quotes(q_data, i, '\0');
-	ft_prune_starting_node(&q_data->quotes_list);
+	if (t_qdata->d_open)
+		ft_add_node_quotes(t_qdata, i, '\0');
+	else if (t_qdata->s_open)
+		ft_add_node_quotes(t_qdata, i, '\0');
+	else if (t_qdata->start == 0 || t_qdata->start != i)
+		ft_add_node_quotes(t_qdata, i, '\0');
+	ft_prune_starting_node(&t_qdata->quotes_list);
 }
 
 // First block of list is always empty and must pruned
-void	ft_prune_starting_node(struct q_node **root)
+void	ft_prune_starting_node(struct t_qnode **root)
 {
-	struct q_node	*to_remove;
+	struct t_qnode	*to_remove;
 
 	if (root == NULL)
 		return ;
@@ -119,25 +119,25 @@ void	ft_prune_starting_node(struct q_node **root)
 }
 
 // 2/2 Linked list containing single token information
-void	ft_init_quotes_list(c_data *c_data)
+void	ft_init_quotes_list(t_cdata *t_cdata)
 {
-	if (c_data)
+	if (t_cdata)
 	{
 		//
 	}
-	// c_data->q_data->quotes_list = malloc(sizeof(struct q_node));
-	// memset(c_data->q_data->quotes_list, 0, sizeof(struct q_node));
-	// c_data->q_data->quotes_list->next = NULL;
-	// c_data->q_data->quotes_list->length = 0;
-	// c_data->q_data->quotes_list->str = "";
+	// t_cdata->t_qdata->quotes_list = malloc(sizeof(struct t_qnode));
+	// memset(t_cdata->t_qdata->quotes_list, 0, sizeof(struct t_qnode));
+	// t_cdata->t_qdata->quotes_list->next = NULL;
+	// t_cdata->t_qdata->quotes_list->length = 0;
+	// t_cdata->t_qdata->quotes_list->str = "";
 }
 
 // 1/2 Linked list is iterated to expand escaped characters
-void	ft_expand_escaped(q_data *q_data)
+void	ft_expand_escaped(t_qdata *t_qdata)
 {
-    struct q_node	*curr;
+    struct t_qnode	*curr;
 	
-	curr = q_data->quotes_list;
+	curr = t_qdata->quotes_list;
 	while (1)
 	{
         if (curr->q_type == '\"')
@@ -177,17 +177,17 @@ char	*ft_remove_escaped_from_str(char *str)
 	return (result);
 }
 
-// void	ft_init_line_data(c_data *c_data)
+// void	ft_init_line_data(t_cdata *t_cdata)
 // {
-// 	c_data = malloc(sizeof(l_data));
-// 	memset(c_data, 0, sizeof(l_data));
+// 	t_cdata = malloc(sizeof(l_data));
+// 	memset(t_cdata, 0, sizeof(l_data));
 // }
 
-void	ft_free_line_data(c_data *c_data)
+void	ft_free_line_data(t_cdata *t_cdata)
 {
-	free(c_data->line_expanded);
-	free(c_data->tokens);
-	free(c_data->cmd);
+	free(t_cdata->line_expanded);
+	free(t_cdata->tokens);
+	free(t_cdata->cmd);
 }
 
 // Checks if all quotes are properly closed. If not, another prompt is shown

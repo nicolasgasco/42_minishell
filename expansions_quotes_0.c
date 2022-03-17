@@ -13,9 +13,9 @@
 #include "minishell.h"
 
 /* Check if there are unclosed quotes */
-int	ft_expanded_quotes_are_valid(c_data *c_data)
+int	ft_expanded_quotes_are_valid(t_cdata *t_cdata)
 {
-	if (c_data->syntax_error)
+	if (t_cdata->syntax_error)
 	{
 		ft_print_unclosed_quotes(); // TBD
 		return (0);
@@ -24,60 +24,60 @@ int	ft_expanded_quotes_are_valid(c_data *c_data)
 }
 
 /* Input is tokenized according to quotes to see if they're unclosed or not */
-void	ft_expand_quotes(c_data *c_data)
+void	ft_expand_quotes(t_cdata *t_cdata)
 {
-	ft_tokenize_quotes(c_data->q_data);
+	ft_tokenize_quotes(t_cdata->t_qdata);
 	printf("\033[0;34m");
 	printf("Quotes linked list");
 	printf("\033[0m");
 	printf(":\n");
-	ft_print_quotes_list(c_data->q_data->quotes_list);
-	if (c_data->q_data->d_open || c_data->q_data->s_open)
-		c_data->syntax_error = 1;
+	ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
+	if (t_cdata->t_qdata->d_open || t_cdata->t_qdata->s_open)
+		t_cdata->syntax_error = 1;
 }
 
 /* 1/2 Raw input is parsed and tokenized in a linked list according to quotes */
-void	ft_tokenize_quotes(q_data *q_data)
+void	ft_tokenize_quotes(t_qdata *t_qdata)
 {
 	int	i;
 
 	i = 1;
-	if (q_data->raw_input[0] == '\'')
-		q_data->s_open = 1;
-	else if (q_data->raw_input[0] == '\"')
-		q_data->d_open = 1;
-	while (q_data->raw_input[i] != '\0')
+	if (t_qdata->raw_input[0] == '\'')
+		t_qdata->s_open = 1;
+	else if (t_qdata->raw_input[0] == '\"')
+		t_qdata->d_open = 1;
+	while (t_qdata->raw_input[i] != '\0')
 	{
-		if (q_data->raw_input[i] == '\'' && q_data->d_open == 0)
-			ft_tokenization_logic(q_data, q_data->raw_input, i, '\'');
-		else if (q_data->raw_input[i] == '\"' && q_data->s_open == 0)
-			ft_tokenization_logic(q_data, q_data->raw_input, i, '\"');
+		if (t_qdata->raw_input[i] == '\'' && t_qdata->d_open == 0)
+			ft_tokenization_logic(t_qdata, t_qdata->raw_input, i, '\'');
+		else if (t_qdata->raw_input[i] == '\"' && t_qdata->s_open == 0)
+			ft_tokenization_logic(t_qdata, t_qdata->raw_input, i, '\"');
 		i++;
 	}
-	if (q_data->d_open || q_data->s_open)
-		ft_add_node_quotes(q_data, i, '\0');
-	else if (q_data->start == 0 || q_data->start != i)
-		ft_add_node_quotes(q_data, i, '\0');
+	if (t_qdata->d_open || t_qdata->s_open)
+		ft_add_node_quotes(t_qdata, i, '\0');
+	else if (t_qdata->start == 0 || t_qdata->start != i)
+		ft_add_node_quotes(t_qdata, i, '\0');
 }
 
 /* 2/2 For both types of quotes, different tokenization logics are applied */
-void	ft_tokenization_logic(q_data *q_data, char *line, int i, char quote)
+void	ft_tokenization_logic(t_qdata *t_qdata, char *line, int i, char quote)
 {
 	if (quote == '\'')
 	{
-		if (q_data->s_open == 0 && line[i - 1] != '\\')
+		if (t_qdata->s_open == 0 && line[i - 1] != '\\')
 		{
-			ft_tokenization_logic_unopened(q_data, i, quote);
-			q_data->s_open = 1;
+			ft_tokenization_logic_unopened(t_qdata, i, quote);
+			t_qdata->s_open = 1;
 		}
-		else if (q_data->s_open == 1)
-			ft_tokenization_logic_open(q_data, i, quote);
+		else if (t_qdata->s_open == 1)
+			ft_tokenization_logic_open(t_qdata, i, quote);
 	}
 	else if (quote == '\"')
 	{
-		if (q_data->d_open == 0 && line[i - 1] != '\\')
-			ft_tokenization_logic_unopened(q_data, i, quote);
-		else if (q_data->d_open == 1 && line[i - 1] != '\\')
-			ft_tokenization_logic_open(q_data, i, quote);
+		if (t_qdata->d_open == 0 && line[i - 1] != '\\')
+			ft_tokenization_logic_unopened(t_qdata, i, quote);
+		else if (t_qdata->d_open == 1 && line[i - 1] != '\\')
+			ft_tokenization_logic_open(t_qdata, i, quote);
 	}
 }

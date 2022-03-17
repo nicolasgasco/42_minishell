@@ -13,10 +13,10 @@
 #include "minishell.h"
 
 /* Linked list's nodes are deallocated one by one */
-void	ft_deallocate_quotes_list(struct q_node **quotes_list)
+void	ft_deallocate_quotes_list(struct t_qnode **quotes_list)
 {
-	struct q_node	*curr;
-	struct q_node	*aux;
+	struct t_qnode	*curr;
+	struct t_qnode	*aux;
 
 	curr = *quotes_list;
 	if (curr == NULL)
@@ -31,10 +31,10 @@ void	ft_deallocate_quotes_list(struct q_node **quotes_list)
 }
 
 /* Linked list's nodes are deallocated one by one */
-void	ft_deallocate_tokens_list(struct t_node **token_list)
+void	ft_deallocate_tokens_list(struct s_tnode **token_list)
 {
-	struct t_node	*curr;
-	struct t_node	*aux;
+	struct s_tnode	*curr;
+	struct s_tnode	*aux;
 
 	curr = *token_list;
 	if (curr == NULL)
