@@ -88,7 +88,7 @@ char	*ft_create_unquoted_token(char *input, int start, int len)
 /* Iterate all nodes of linked lists and concatenate them in a string */
 char	*ft_convert_list_to_str(t_qdata *t_qdata)
 {
-	struct t_qnode	*curr;
+	struct s_qnode	*curr;
 	char			*result;
 	int				i;
 

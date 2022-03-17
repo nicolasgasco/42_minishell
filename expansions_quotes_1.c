@@ -64,12 +64,12 @@ void	ft_tokenization_logic_open(t_qdata *t_qdata, int i, char quote)
 /* Add a new node to the linked list containing the tokenized raw input */
 void	ft_add_node_quotes(t_qdata *t_qdata, int end, char quote)
 {
-	struct t_qnode	*new_node;
-	struct t_qnode	*curr;
+	struct s_qnode	*new_node;
+	struct s_qnode	*curr;
 	int				i;
 
 	curr = t_qdata->quotes_list;
-	new_node = (struct t_qnode *)malloc(sizeof(struct t_qnode));
+	new_node = (struct s_qnode *)malloc(sizeof(struct s_qnode));
 	if (new_node == NULL)
 		exit(1);
 	new_node->str = ft_write_str_to_node(t_qdata, end);

@@ -58,9 +58,9 @@ char    *ft_remove_char(char c, char *line, int start)
     return (result);
 }
 
-void    ft_print_quotes_list(struct t_qnode *list)
+void    ft_print_quotes_list(struct s_qnode *list)
 {
-	struct t_qnode	*curr;
+	struct s_qnode	*curr;
 	int				i;
 	
 	i = 0;
@@ -105,9 +105,9 @@ void ft_tokenize_quotes_TDB(t_qdata *t_qdata)
 }
 
 // First block of list is always empty and must pruned
-void	ft_prune_starting_node(struct t_qnode **root)
+void	ft_prune_starting_node(struct s_qnode **root)
 {
-	struct t_qnode	*to_remove;
+	struct s_qnode	*to_remove;
 
 	if (root == NULL)
 		return ;
@@ -125,8 +125,8 @@ void	ft_init_quotes_list(t_cdata *t_cdata)
 	{
 		//
 	}
-	// t_cdata->t_qdata->quotes_list = malloc(sizeof(struct t_qnode));
-	// memset(t_cdata->t_qdata->quotes_list, 0, sizeof(struct t_qnode));
+	// t_cdata->t_qdata->quotes_list = malloc(sizeof(struct s_qnode));
+	// memset(t_cdata->t_qdata->quotes_list, 0, sizeof(struct s_qnode));
 	// t_cdata->t_qdata->quotes_list->next = NULL;
 	// t_cdata->t_qdata->quotes_list->length = 0;
 	// t_cdata->t_qdata->quotes_list->str = "";
@@ -135,7 +135,7 @@ void	ft_init_quotes_list(t_cdata *t_cdata)
 // 1/2 Linked list is iterated to expand escaped characters
 void	ft_expand_escaped(t_qdata *t_qdata)
 {
-    struct t_qnode	*curr;
+    struct s_qnode	*curr;
 	
 	curr = t_qdata->quotes_list;
 	while (1)

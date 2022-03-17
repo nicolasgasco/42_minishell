@@ -11,11 +11,11 @@
 
 
 /* Single node of linked list contaning input tokenized as per quotes */
-struct t_qnode {
+struct s_qnode {
 	int				length;
 	char			q_type;
 	char			*str;
-	struct t_qnode	*next;
+	struct s_qnode	*next;
 };
 
 /* Struct containig data related to input tokenized as per quotes */
@@ -25,7 +25,7 @@ typedef struct QuotesData {
 	int				d_open;
 	int				s_open;
 	char			*raw_input;
-	struct t_qnode	*quotes_list;
+	struct s_qnode	*quotes_list;
 } t_qdata;
 
 /* Struct containig prompt related data */
@@ -77,7 +77,7 @@ void	init_export(t_cdata *t_cdata);
 void	ft_free_general_data(t_cdata *t_cdata);
 void    ft_free_quotes_data(t_cdata *t_cdata);
 void	ft_free_prompt_data(t_cdata *t_cdata);
-void	ft_deallocate_quotes_list(struct t_qnode **quotes_list);
+void	ft_deallocate_quotes_list(struct s_qnode **quotes_list);
 void	ft_deallocate_tokens_list(struct s_tnode **token_list);
 void	ft_free_loot_pdata(t_cdata *t_cdata);
 void	ft_free_loot_pdata_quotes_error(t_cdata *t_cdata);
@@ -101,7 +101,7 @@ char	*ft_write_str_to_node(t_qdata *t_qdata, int end);
 char    *ft_create_quoted_token(char *s, int start, int len);
 char    *ft_create_quoted_token_empty(char *input, int start);
 char    *ft_create_unquoted_token(char *input, int start, int len);
-void	ft_deallocate_quotes_list(struct t_qnode **quotes_list);
+void	ft_deallocate_quotes_list(struct s_qnode **quotes_list);
 char	*ft_convert_list_to_str(t_qdata *t_qdata);
 
 /* Expansions - Special chars */
@@ -156,8 +156,8 @@ char	**ms_matrix_add_line(char **matrix, char *new_line);
 int		built_unset(char **arg, t_cdata *t_cdata);
 
 /* TBD */
-void    ft_print_quotes_list(struct t_qnode *list);
-void	ft_prune_starting_node(struct t_qnode **quotes_list);
+void    ft_print_quotes_list(struct s_qnode *list);
+void	ft_prune_starting_node(struct s_qnode **quotes_list);
 void	ft_expand_escaped(t_qdata *t_qdata);
 char	*ft_remove_escaped_from_str(char *str);
 void	ft_create_mock_list(t_cdata *t_cdata, char *str, ...);
