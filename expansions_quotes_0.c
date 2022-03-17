@@ -28,7 +28,7 @@ void	ft_expand_quotes(t_cdata *t_cdata)
 {
 	ft_tokenize_quotes(t_cdata->t_qdata);
 	printf("\033[0;34m");
-	printf("Quotes linked list");
+	printf("List after quotes expansion");
 	printf("\033[0m");
 	printf(":\n");
 	ft_print_quotes_list(t_cdata->t_qdata->quotes_list);

@@ -3,58 +3,62 @@
 /* Space between tweaks are removed */
 void ft_expand_spaces(t_cdata *t_cdata)
 {
-	struct t_qnode	*curr;
-    int             i;
+    while (1)
+    {
+        if (!ft_found_space_to_split(t_cdata))
+            break;
+    }
+    printf("\033[0;34m");
+	printf("List after space expansion");
+	printf("\033[0m");
+	printf(":\n");
+    ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
+}
 
-    i = 0;
+int     ft_found_space_to_split(t_cdata *t_cdata)
+{
+	struct s_qnode	*curr;
+    int             found_space;
+
+    found_space = 0;
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
 	{
-		// if (curr->q_type != '\'')
-		// {
-		// 	if (ft_find_dollar(curr->str))
-		// 		curr->str = ft_add_variable_values(curr->str, t_cdata);
-		// }
-        printf(".%s.\n", curr->str);
         curr->str = ft_strtrim(curr->str, " \t\r\n\v\f");
-        if (!curr->q_type)
+        if (!curr->q_type && ft_has_spaces(curr->str))
         {
-            printf("Spaces must be removed\n");
+            found_space = 1;
             ft_split_and_generate_node(curr);
+            break;
         }
-        printf(".%s.\n\n", curr->str);
 		if (curr->next == NULL)
 			break ;
 		else
 			curr = curr->next;
-        i++;
 	}
+    return (found_space);
 }
 
-void    ft_split_and_generate_node(struct t_qnode *curr)
+void    ft_split_and_generate_node(struct s_qnode *curr)
 {
     char            *token;
     char            *rest;
     int             t_len;
-    // struct s_qnode  *new_node;
-    printf("Splitting .%s.\n", curr->str);
+    struct s_qnode  *new_node;
 
-    new_node = (struct s_qnode *)malloc(sizeof(struct s_qnode *));
+    new_node = (struct s_qnode *)malloc(sizeof(struct s_qnode));
+    memset(new_node, 0, sizeof(struct s_qnode));
     t_len = ft_calc_token_len(curr->str);
-    printf("Token len is %d\n", t_len);
-    token = (char *)malloc(sizeof(char) * t_len + 1);
+    token = (char *)malloc(sizeof(char) * t_len + 1);   
+    ft_strlcpy(token, curr->str, t_len + 1);
     rest = ft_substr(curr->str, t_len, ft_strlen(curr->str) - t_len);
     rest = ft_strtrim(rest, " \t\r\n\v\f");
-    ft_strlcpy(token, curr->str, t_len + 1);
     free(curr->str);
     curr->str = token;
-    printf("Token: .%s., Rest: .%s.\n", token, rest);
+    new_node->str = rest;
+    new_node->next = curr->next;
+    curr->next = new_node;
 }
-
-// void    ft_splice_node_with_index(struct t_qnode *curr)
-// {
-
-// }
 
 int ft_calc_token_len(char *str)
 {
