@@ -12,28 +12,31 @@
 
 #include "minishell.h"
 
-int	ft_special_chars_are_valid(t_cdata *t_cdata)
+void	ft_expand_special_chars(t_cdata *t_cdata)
 {
-	if (ft_detect_special_chars(t_cdata))
-		ft_print_special_char_detected(); // TBD
-	else
-		ft_print_no_special_char_detected(); // TBD
-	if (t_cdata->syntax_error)
+	struct s_qnode	*curr;
+
+	curr = t_cdata->t_qdata->quotes_list;
+	while (1)
 	{
-		ft_print_syntax_error(); // TBD
-		return (0);
+        if (!curr->q_type && ft_detect_special_chars(t_cdata, curr->str))
+        {
+			ft_print_special_char_detected();
+            break;
+        }
+		if (curr->next == NULL)
+			break ;
+		else
+			curr = curr->next;
 	}
-	return (1);
 }
 
 /* Detect if pipes or redirections are present in the user input */
-int	ft_detect_special_chars(t_cdata *t_cdata)
+int	ft_detect_special_chars(t_cdata *t_cdata, char *s)
 {
 	int		i;
-	char	*s;
 
 	i = 1;
-	s = t_cdata->line_expanded;
 	if (ft_found_special_character(s[0]))
 		return (ft_first_char_special(s, t_cdata));
 	while (s[i + 1] != '\0')
@@ -41,7 +44,7 @@ int	ft_detect_special_chars(t_cdata *t_cdata)
 		if (ft_found_special_character(s[i]))
 		{
 			if (!ft_found_inv_char(s[i + 1]) && !ft_found_inv_char(s[i - 1]))
-				return (1);
+				return (i);
 			t_cdata->syntax_error = 1;
 			return (0);
 		}

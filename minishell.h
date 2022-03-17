@@ -112,11 +112,6 @@ int		ft_calc_token_len(char *str);
 void    ft_split_and_generate_node(struct s_qnode *curr);
 int     ft_found_space_to_split(t_cdata *t_cdata);
 
-/* Expansions - Special chars */
-int		ft_detect_special_chars(t_cdata *t_cdata);
-int 	ft_first_char_special(char *str, t_cdata *t_cdata);
-int 	ft_last_char_special(char *str, int i, t_cdata *t_cdata);
-
 /* Expansions - Variables */
 void	ft_expand_variables(t_cdata *t_cdata);
 int		ft_found_variable_to_expand(t_cdata *t_cdata);
@@ -134,12 +129,14 @@ int 	ft_find_here_marker_str(char *str);
 void    ft_here_doc_loop(t_cdata *t_cdata);
 
 /* Expansions - Special characters */
-int		ft_special_chars_are_valid(t_cdata *t_cdata);
-int 	ft_detect_special_chars(t_cdata *t_cdata);
+void	ft_expand_special_chars(t_cdata *t_cdata);
+int		ft_detect_special_chars(t_cdata *t_cdata, char *s);
 int		ft_found_pipe(char *str);
 int		ft_found_redirection(char *str);
 int		ft_found_special_character(char c);
 int		ft_found_inv_char(char c);
+int 	ft_first_char_special(char *str, t_cdata *t_cdata);
+int 	ft_last_char_special(char *str, int i, t_cdata *t_cdata);
 
 /* Tokens list */
 int		ft_create_tokens_list(t_cdata *t_cdata);
@@ -187,5 +184,6 @@ char    *ft_remove_char_index(char *line, int index);
 void    ft_print_after_spaces_expansion(t_cdata *t_cdata);
 void    ft_print_after_quotes_expansion(t_cdata *t_cdata);
 void    ft_print_after_variables_expansion(t_cdata *t_cdata);
+// int		ft_special_chars_are_valid(t_cdata *t_cdata);
 
 #endif

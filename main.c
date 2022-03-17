@@ -33,13 +33,14 @@ void	ft_start_loop(t_cdata *t_cdata)
 			ft_free_loop_data_quotes_error(t_cdata);
 			continue ;
 		}
+		ft_expand_special_chars(t_cdata);
 		ft_expand_variables(t_cdata);
 		// if (ft_find_here_marker_list(t_cdata))
 		// 	ft_here_doc_loop(t_cdata);
 		t_cdata->line_expanded = ft_convert_list_to_str(t_cdata->t_qdata);
 		ft_print_expanded_output(t_cdata); // TBD
-		if (!ft_special_chars_are_valid(t_cdata))
-			continue;
+		// if (!ft_special_chars_are_valid(t_cdata))
+		// 	continue;
 		// ft_create_tokens_list(t_cdata);
 		ft_create_mock_list(t_cdata, "cmd", "holla", "que", "tal", "|", "cmd", "input", ""); // TBD Last parameter must be empty line
 		ft_print_tokens_list(t_cdata->tokens_list); // TBD
