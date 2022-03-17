@@ -79,14 +79,14 @@ void    ft_free_quotes_data(t_cdata *t_cdata);
 void	ft_free_prompt_data(t_cdata *t_cdata);
 void	ft_deallocate_quotes_list(struct t_qnode **quotes_list);
 void	ft_deallocate_tokens_list(struct s_tnode **token_list);
-void	ft_free_loot_pdata(t_cdata *t_cdata);
-void	ft_free_loot_pdata_quotes_error(t_cdata *t_cdata);
+void	ft_free_loop_data(t_cdata *t_cdata);
+void	ft_free_loop_data_quotes_error(t_cdata *t_cdata);
 
 /* Prompt */
 int		ft_get_valid_input(t_cdata *t_cdata, char *prompt_text);
 char	*ft_rl_gets(char *line_read, char *prompt_text);
 
-/* Quotes token */
+/* Expansions - quotes (tokens) */
 int		ft_expanded_quotes_are_valid(t_cdata *t_cdata);
 void	ft_expand_quotes(t_cdata *t_cdata);
 void    ft_tokenize_quotes(t_qdata *t_qdata);
@@ -95,7 +95,7 @@ void 	ft_tokenization_logic_unopened(t_qdata *t_qdata, int i, char quote);
 void 	ft_tokenization_logic_open(t_qdata *t_qdata, int i, char quote);
 char    *ft_strcat(char *src, char *dest);
 
-/* Quotes  - Linked list */
+/* Expansions - quotes (list) */
 void	ft_add_node_quotes(t_qdata *t_qdata, int end, char quote);
 char	*ft_write_str_to_node(t_qdata *t_qdata, int end);
 char    *ft_create_quoted_token(char *s, int start, int len);
@@ -103,6 +103,14 @@ char    *ft_create_quoted_token_empty(char *input, int start);
 char    *ft_create_unquoted_token(char *input, int start, int len);
 void	ft_deallocate_quotes_list(struct t_qnode **quotes_list);
 char	*ft_convert_list_to_str(t_qdata *t_qdata);
+
+/* Expansions - Spaces */
+void	ft_expand_spaces(t_cdata *t_cdata);
+int		ft_has_spaces(char *str);
+int		ft_isspace(char c);
+int		ft_calc_token_len(char *str);
+void    ft_split_and_generate_node(struct t_qnode *curr);
+// void    ft_splice_node_with_index(t_cdata *t_cdata, int i);
 
 /* Expansions - Special chars */
 int		ft_detect_special_chars(t_cdata *t_cdata);

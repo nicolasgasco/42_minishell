@@ -27,9 +27,10 @@ void	ft_start_loop(t_cdata *t_cdata)
 			continue ;
 		}
 		ft_expand_quotes(t_cdata);
+		ft_expand_spaces(t_cdata);
 		if (!ft_expanded_quotes_are_valid(t_cdata))
 		{
-			ft_free_loot_pdata_quotes_error(t_cdata);
+			ft_free_loop_data_quotes_error(t_cdata);
 			continue ;
 		}
 		ft_expand_variables(t_cdata);
@@ -42,8 +43,8 @@ void	ft_start_loop(t_cdata *t_cdata)
 		// ft_create_tokens_list(t_cdata);
 		ft_create_mock_list(t_cdata, "cmd", "holla", "que", "tal", "|", "cmd", "input", ""); // TBD Last parameter must be empty line
 		ft_print_tokens_list(t_cdata->tokens_list); // TBD
-		ft_check_cmd(t_cdata);
-		ft_free_loot_pdata(t_cdata);
+		// ft_check_cmd(t_cdata);
+		ft_free_loop_data(t_cdata);
 		printf("\n__________________________________________________________________________\n\n");
 	}
 }
@@ -66,7 +67,7 @@ void    ft_check_cmd(t_cdata *t_cdata)
 	    built_envp(t_cdata);
     if (ft_strncmp(t_cdata->cmd, "exit", 4) == 0)
 	{
-		ft_free_loot_pdata(t_cdata);
+		ft_free_loop_data(t_cdata);
 		// ft_free_general_data(t_cdata);
         exit(1);
 	}

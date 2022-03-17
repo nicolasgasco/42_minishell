@@ -12,14 +12,14 @@
 
 #include "minishell.h"
 
-void	ft_free_loot_pdata(t_cdata *t_cdata)
+void	ft_free_loop_data(t_cdata *t_cdata)
 {
 	ft_free_quotes_data(t_cdata);
 	free(t_cdata->line_expanded);
 	ft_deallocate_tokens_list(&t_cdata->tokens_list);
 }
 
-void	ft_free_loot_pdata_quotes_error(t_cdata *t_cdata)
+void	ft_free_loop_data_quotes_error(t_cdata *t_cdata)
 {
 	ft_free_quotes_data(t_cdata);
 	free(t_cdata->line_expanded);
