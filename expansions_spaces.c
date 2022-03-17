@@ -24,10 +24,10 @@ int     ft_found_space_to_split(t_cdata *t_cdata)
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
 	{
-        curr->str = ft_strtrim(curr->str, " \t\r\n\v\f");
         if (!curr->q_type && ft_has_spaces(curr->str))
         {
             found_space = 1;
+            curr->str = ft_strtrim(curr->str, " \t\r\n\v\f");
             ft_split_and_generate_node(curr);
             break;
         }
