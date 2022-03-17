@@ -1,26 +1,5 @@
 #include "minishell.h"
 
-/* Loof for a Here document structure in each string of the quotes linked list */
-int ft_find_here_marker_list(t_cdata *t_cdata)
-{
-    struct s_qnode	*curr;
-
-    curr = t_cdata->t_qdata->quotes_list;
-    while (1)
-    {
-        if (curr->q_type != '\'')
-        {
-            if (ft_find_here_marker_str(curr->str))
-                return (1);
-        }
-        if (curr->next == NULL)
-            break;
-        else
-            curr = curr->next;
-    }	
-    return (0);
-}
-
 /* Look for Here document in a string not enclosed by single quotes */
 int ft_find_here_marker_str(char *str)
 {
@@ -45,20 +24,41 @@ int ft_find_here_marker_str(char *str)
 
 void    ft_here_doc_loop(t_cdata *t_cdata)
 {
-    int i;
+    int     i;
 
     i = 0;
+    t_cdata->t_qdata->delim = ft_extract_and_remove_delim(t_cdata);
     ft_print_here_doc_detected();
     while (1)
     {
-        printf("Raw input is %s\n", t_cdata->t_qdata->raw_input);
-        ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_nl_text);
-        // Breaking when found marker
-        if (i == 4)
-            break;
-        // line_read = rl_gets(line_read, t_cdata->prompt_newline_text);
-        // if (!ft_are_quotes_unclosed(line_read))
-        //     break;
+        if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_nl_text))
+            break ;
         i++;
     }
+}
+
+char    *ft_extract_and_remove_delim(t_cdata *t_cdata)
+{
+    int     i;
+    char    *result;
+    char    *raw_input_temp;
+
+    i = 0;
+    while (t_cdata->t_qdata->raw_input[i + 1] != '\0')
+    {
+        if (t_cdata->t_qdata->raw_input[i] == '<' && t_cdata->t_qdata->raw_input[i] == '<')
+        {
+            i += 2;
+            break;
+        }
+        i++;
+    }
+    result = ft_substr(t_cdata->t_qdata->raw_input, i, ft_strlen(t_cdata->t_qdata->raw_input) - i);
+    if (ft_has_spaces(result))
+        result = ft_strtrim(result, " ");
+        // result = ft_strtrim(result, " \t\r\n\v\f");
+    raw_input_temp = ft_substr(t_cdata->t_qdata->raw_input, 0, i);
+    free(t_cdata->t_qdata->raw_input);
+    t_cdata->t_qdata->raw_input = raw_input_temp;
+    return (result);
 }

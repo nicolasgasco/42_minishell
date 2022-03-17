@@ -25,6 +25,7 @@ typedef struct QuotesData {
 	int				d_open;
 	int				s_open;
 	char			*raw_input;
+	char			*delim;
 	struct s_qnode	*quotes_list;
 } t_qdata;
 
@@ -85,6 +86,7 @@ void	ft_free_loop_data_quotes_error(t_cdata *t_cdata);
 /* Prompt */
 int		ft_get_valid_input(t_cdata *t_cdata, char *prompt_text);
 char	*ft_rl_gets(char *line_read, char *prompt_text);
+char	*ft_append_newline(char *raw_input);
 
 /* Expansions - quotes (tokens) */
 int		ft_expanded_quotes_are_valid(t_cdata *t_cdata);
@@ -124,9 +126,9 @@ void    ft_splice_var_value_utility(char *result, char *var, int *x);
 char    *ft_remove_var_name(char *str, int start, int end);
 
 /* Expansion - Here document */
-int		ft_find_here_marker_list(t_cdata *t_cdata);
 int 	ft_find_here_marker_str(char *str);
 void    ft_here_doc_loop(t_cdata *t_cdata);
+char    *ft_extract_and_remove_delim(t_cdata *t_cdata);
 
 /* Expansions - Special characters */
 void	ft_expand_special_chars(t_cdata *t_cdata);
@@ -185,5 +187,7 @@ void    ft_print_after_spaces_expansion(t_cdata *t_cdata);
 void    ft_print_after_quotes_expansion(t_cdata *t_cdata);
 void    ft_print_after_variables_expansion(t_cdata *t_cdata);
 // int		ft_special_chars_are_valid(t_cdata *t_cdata);
+int		ft_find_here_marker_list(t_cdata *t_cdata);
+void    ft_print_new_input_header(char *line_read);
 
 #endif

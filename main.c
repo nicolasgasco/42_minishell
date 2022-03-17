@@ -26,6 +26,8 @@ void	ft_start_loop(t_cdata *t_cdata)
 			ft_free_quotes_data(t_cdata);
 			continue ;
 		}
+		if (ft_find_here_marker_str(t_cdata->t_qdata->raw_input))
+			ft_here_doc_loop(t_cdata);
 		ft_expand_quotes(t_cdata);
 		ft_expand_spaces(t_cdata);
 		if (!ft_expanded_quotes_are_valid(t_cdata))
@@ -35,8 +37,6 @@ void	ft_start_loop(t_cdata *t_cdata)
 		}
 		ft_expand_special_chars(t_cdata);
 		ft_expand_variables(t_cdata);
-		// if (ft_find_here_marker_list(t_cdata))
-		// 	ft_here_doc_loop(t_cdata);
 		t_cdata->line_expanded = ft_convert_list_to_str(t_cdata->t_qdata);
 		ft_print_expanded_output(t_cdata); // TBD
 		// if (!ft_special_chars_are_valid(t_cdata))

@@ -26,7 +26,8 @@ int ft_has_spaces(char *str)
 
 int ft_isspace(char c)
 {
-    if (c == '\t' || c == '\r' || c == '\n' || c == '\v' || c == '\f' || c == ' ')
+    // if (c == '\t' || c == '\r' || c == '\n' || c == '\v' || c == '\f' || c == ' ')
+    if (c == ' ')
         return (1);
     return (0);
 }

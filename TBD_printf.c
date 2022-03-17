@@ -78,3 +78,14 @@ void    ft_print_after_variables_expansion(t_cdata *t_cdata)
 	printf(":\n");
 	ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
 }
+
+void    ft_print_new_input_header(char *line_read)
+{
+    printf("\n\n--------------------------------------------------------------------------\n");
+	printf("                               New input");
+	printf("\n--------------------------------------------------------------------------\n\n");
+	printf("\033[0;34m");
+	printf("Raw input");
+	printf("\033[0m");
+	printf(":\n\t.%s.\n\n", line_read);
+}
