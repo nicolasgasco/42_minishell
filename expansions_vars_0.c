@@ -12,27 +12,45 @@
 
 #include "minishell.h"
 
-/* 1/3 Linked list is iterated to expand variables */
+/* 1/4 Iterate list and expand as long as there are variables to expand.
+	Comes in handy in cases like $USER$PATH									*/
 void	ft_expand_variables(t_cdata *t_cdata)
 {
-	struct s_qnode	*curr;
+	while (1)
+	{
+		if (!ft_found_variable_to_expand(t_cdata))
+			break;
+	}
+	ft_print_after_variables_expansion(t_cdata);
+}
 
+/* 2/4 Linked list is iterated to expand variables */
+int	ft_found_variable_to_expand(t_cdata *t_cdata)
+{
+	struct s_qnode	*curr;
+	int				found_var;
+
+	found_var = 0;
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
 	{
 		if (curr->q_type != '\'')
 		{
 			if (ft_find_dollar(curr->str))
+			{
 				curr->str = ft_add_variable_values(curr->str, t_cdata);
+				found_var = 1;
+			}
 		}
 		if (curr->next == NULL)
 			break ;
 		else
 			curr = curr->next;
-	}	
+	}
+	return (found_var);
 }
 
-/* 1a Check if there's at least one $ */
+/* 2a Check if there's at least one $ */
 int	ft_find_dollar(char *str)
 {
 	int	i;
@@ -47,7 +65,7 @@ int	ft_find_dollar(char *str)
 	return (0);
 }
 
-/* 2/3 Outside quotes, variables are expanded to their value */
+/* 3/4 Outside quotes, variables are expanded to their value */
 char	*ft_add_variable_values(char *str, t_cdata *t_cdata)
 {
 	int	i;
@@ -75,7 +93,7 @@ char	*ft_add_variable_values(char *str, t_cdata *t_cdata)
 	return (ft_expand_variable_value(t_cdata, str, start, i));
 }
 
-/* 3/3 Splice variable value in the correct spot inside of string */
+/* 4/4 Splice variable value in the correct spot inside of string */
 char	*ft_expand_variable_value(t_cdata *t_cdata, char *str, int start, int end)
 {
 	char	*var_name;
