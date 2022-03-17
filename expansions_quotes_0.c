@@ -27,11 +27,8 @@ int	ft_expanded_quotes_are_valid(t_cdata *t_cdata)
 void	ft_expand_quotes(t_cdata *t_cdata)
 {
 	ft_tokenize_quotes(t_cdata->t_qdata);
-	printf("\033[0;34m");
-	printf("List after quotes expansion");
-	printf("\033[0m");
-	printf(":\n");
-	ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
+
+	ft_print_after_quotes_expansion(t_cdata);
 	if (t_cdata->t_qdata->d_open || t_cdata->t_qdata->s_open)
 		t_cdata->syntax_error = 1;
 }

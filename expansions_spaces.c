@@ -8,11 +8,7 @@ void ft_expand_spaces(t_cdata *t_cdata)
         if (!ft_found_space_to_split(t_cdata))
             break;
     }
-    printf("\033[0;34m");
-	printf("List after space expansion");
-	printf("\033[0m");
-	printf(":\n");
-    ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
+    ft_print_after_spaces_expansion(t_cdata);
 }
 
 int     ft_found_space_to_split(t_cdata *t_cdata)

@@ -51,3 +51,30 @@ void    ft_print_unknown_command(void)
     printf("Unknown command.\n");
     printf("\033[0m");
 }
+
+void    ft_print_after_spaces_expansion(t_cdata *t_cdata)
+{
+    printf("\033[0;34m");
+	printf("List after space expansion");
+	printf("\033[0m");
+	printf(":\n");
+    ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
+}
+
+void    ft_print_after_quotes_expansion(t_cdata *t_cdata)
+{
+	printf("\033[0;34m");
+	printf("List after quotes expansion");
+	printf("\033[0m");
+	printf(":\n");
+	ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
+}
+
+void    ft_print_after_variables_expansion(t_cdata *t_cdata)
+{
+	printf("\033[0;34m");
+	printf("List after variables expansion");
+	printf("\033[0m");
+	printf(":\n");
+	ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
+}

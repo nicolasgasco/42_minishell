@@ -119,6 +119,7 @@ int 	ft_last_char_special(char *str, int i, t_cdata *t_cdata);
 
 /* Expansions - Variables */
 void	ft_expand_variables(t_cdata *t_cdata);
+int		ft_found_variable_to_expand(t_cdata *t_cdata);
 int		ft_find_dollar(char *str);
 char	*ft_add_variable_values(char *str, t_cdata *t_cdata);
 char	*ft_expand_variable_value(t_cdata *t_cdata, char *str, int start, int end);
@@ -183,5 +184,8 @@ void    ft_print_unclosed_quotes(void);
 void    ft_print_here_doc_detected(void);
 void    ft_print_unknown_command(void);
 char    *ft_remove_char_index(char *line, int index);
+void    ft_print_after_spaces_expansion(t_cdata *t_cdata);
+void    ft_print_after_quotes_expansion(t_cdata *t_cdata);
+void    ft_print_after_variables_expansion(t_cdata *t_cdata);
 
 #endif
