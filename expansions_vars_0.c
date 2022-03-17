@@ -15,7 +15,7 @@
 /* 1/3 Linked list is iterated to expand variables */
 void	ft_expand_variables(t_cdata *t_cdata)
 {
-	struct t_qnode	*curr;
+	struct s_qnode	*curr;
 
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
