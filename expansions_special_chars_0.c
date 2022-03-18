@@ -1,74 +1,79 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   expansions_special_chars_0.c                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ngasco <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 11:32:31 by ngasco            #+#    #+#             */
-/*   Updated: 2022/03/14 11:32:32 by ngasco           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
-void	ft_expand_special_chars(t_cdata *t_cdata)
+/* Checking for >>, <, and > */
+int ft_special_chars_are_valid(t_cdata *t_cdata)
 {
-	struct s_qnode	*curr;
+    ft_expand_r_red_append(t_cdata);
+    // ft_expand_reds(t_cdata);
+    return (1);
+}
 
+/* Expansion of >> */
+int ft_expand_r_red_append(t_cdata *t_cdata)
+{
+    while (1)
+    {
+        if (!ft_found_r_red_append(t_cdata))
+            break;
+    }
+    return (1);
+}
+
+/* Iterating list untill all >> are expanded */
+int ft_found_r_red_append(t_cdata *t_cdata)
+{
+    struct s_qnode	*curr;
+    int             found_red;
+
+    found_red = 0;
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
 	{
-        if (!curr->q_type && ft_detect_special_chars(t_cdata, curr->str))
+        if (!curr->q_type)
         {
-			ft_print_special_char_detected();
-            break;
+            if (ft_has_r_red_append(curr->str) && ft_strlen(curr->str) > 2)
+            {
+                found_red = 1;
+                ft_split_and_generate_special_char_node(curr, 2);
+                break;
+            }
+
         }
 		if (curr->next == NULL)
 			break ;
 		else
 			curr = curr->next;
 	}
+    return (found_red);
 }
 
-/* Detect if pipes or redirections are present in the user input */
-int	ft_detect_special_chars(t_cdata *t_cdata, char *s)
+/* Checking if >> is present */
+int ft_has_r_red_append(char *str)
 {
-	int		i;
+    int i;
 
-	i = 1;
-	if (ft_found_special_character(s[0]))
-		return (ft_first_char_special(s, t_cdata));
-	while (s[i + 1] != '\0')
-	{
-		if (ft_found_special_character(s[i]))
-		{
-			if (!ft_found_inv_char(s[i + 1]) && !ft_found_inv_char(s[i - 1]))
-				return (i);
-			t_cdata->syntax_error = 1;
-			return (0);
-		}
-		i++;
-	}
-	if (ft_found_special_character(s[i]))
-		return (ft_last_char_special(s, i, t_cdata));
-	return (0);
+    i = 0;
+    while (str[i + 1] != '\0')
+    {
+        if (str[i] == '>' && str[i + 1] == '>')
+            return (1);
+        i++;
+    }
+    return (0);
 }
 
-/* Utility for previous function, case where first char is special */
-int	ft_first_char_special(char *str, t_cdata *t_cdata)
+/* Utility function calculating number of chars before >> */
+int ft_calc_special_char_token_len(char *str)
 {
-	if (!ft_found_inv_char(str[1]))
-		return (1);
-	t_cdata->syntax_error = 1;
-	return (0);
+    int i;
+
+    i = 0;
+    while (str[i] != '\0')
+    {
+        if (str[i] == '>' || str[i] == '<')
+            return (i);
+        i++;
+    }
+    return (i);
 }
 
-/* Utility for previous function, case where last char is special */
-int	ft_last_char_special(char *str, int i, t_cdata *t_cdata)
-{
-	if (!ft_found_inv_char(str[i - 1]))
-		return (1);
-	t_cdata->syntax_error = 1;
-	return (0);
-}

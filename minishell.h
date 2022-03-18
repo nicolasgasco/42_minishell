@@ -109,10 +109,10 @@ char	*ft_convert_list_to_str(t_qdata *t_qdata);
 /* Expansions - Spaces */
 void	ft_expand_spaces(t_cdata *t_cdata);
 void    ft_remove_empty_nodes(t_cdata *t_cdata);
-void    ft_split_and_generate_node(struct s_qnode *curr);
+void    ft_split_and_generate_spaced_node(struct s_qnode *curr);
 int		ft_has_spaces(char *str);
 int		ft_isspace(char c);
-int		ft_calc_token_len(char *str);
+int		ft_calc_spaces_token_len(char *str);
 int     ft_found_space_to_split(t_cdata *t_cdata);
 
 /* Expansions - Variables */
@@ -134,14 +134,13 @@ void    ft_here_doc_loop(t_cdata *t_cdata);
 char    *ft_extract_and_remove_delim(t_cdata *t_cdata);
 
 /* Expansions - Special characters */
-void	ft_expand_special_chars(t_cdata *t_cdata);
-int		ft_detect_special_chars(t_cdata *t_cdata, char *s);
-int		ft_found_pipe(char *str);
-int		ft_found_redirection(char *str);
-int		ft_found_special_character(char c);
-int		ft_found_inv_char(char c);
-int 	ft_first_char_special(char *str, t_cdata *t_cdata);
-int 	ft_last_char_special(char *str, int i, t_cdata *t_cdata);
+int		ft_special_chars_are_valid(t_cdata *t_cdata);
+int		ft_expand_r_red_append(t_cdata *t_cdata);
+int 	ft_found_r_red_append(t_cdata *t_cdata);
+int 	ft_has_r_red_append(char *str);
+void    ft_split_and_generate_special_char_node(struct s_qnode  *curr, int len);
+void    ft_add_special_char_nodes(struct s_qnode  *curr, char *curr_str, char *next_str, char *rest);
+int 	ft_calc_special_char_token_len(char *str);
 
 /* Tokens list */
 void    ft_create_tokens_list(t_cdata *t_cdata);
@@ -194,5 +193,14 @@ void    ft_print_after_variables_expansion(t_cdata *t_cdata);
 int		ft_find_here_marker_list(t_cdata *t_cdata);
 void    ft_print_new_input_header(char *line_read);
 void    ft_print_after_empty_removal(t_cdata *t_cdata);
+void	ft_expand_special_chars(t_cdata *t_cdata);
+int		ft_detect_special_chars(t_cdata *t_cdata, char *s);
+int		ft_found_pipe(char *str);
+int		ft_found_redirection(char *str);
+int		ft_found_special_character(char c);
+int		ft_found_inv_char(char c);
+int 	ft_first_char_special(char *str, t_cdata *t_cdata);
+int 	ft_last_char_special(char *str, int i, t_cdata *t_cdata);
+
 
 #endif

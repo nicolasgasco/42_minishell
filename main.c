@@ -34,10 +34,9 @@ void	ft_start_loop(t_cdata *t_cdata)
 			continue ;
 		}
 		ft_expand_spaces(t_cdata);
-		ft_expand_special_chars(t_cdata);
 		ft_expand_variables(t_cdata);
-		// if (!ft_special_chars_are_valid(t_cdata))
-		// 	continue;
+		if (!ft_special_chars_are_valid(t_cdata))
+			continue;
 		// t_cdata->line_expanded = ft_convert_list_to_str(t_cdata->t_qdata); // TBD
 		// ft_print_expanded_output(t_cdata); // TBD
 
