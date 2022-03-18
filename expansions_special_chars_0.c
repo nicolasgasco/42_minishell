@@ -5,6 +5,7 @@ int ft_special_chars_are_valid(t_cdata *t_cdata)
 {
     ft_expand_r_red_append(t_cdata);
     // ft_expand_reds(t_cdata);
+    ft_print_after_special_chars_expansion(t_cdata); // TBD
     return (1);
 }
 

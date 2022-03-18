@@ -54,8 +54,14 @@ void    ft_print_unknown_command(void)
 
 void    ft_print_after_spaces_expansion(t_cdata *t_cdata)
 {
+	printf("\033[0;34m");
+	printf("List after ");
+	printf("\033[0m");
+    printf("\033[0;33m");
+    printf("spaces");
+    printf("\033[0m");
     printf("\033[0;34m");
-	printf("List after space expansion");
+	printf(" expansion");
 	printf("\033[0m");
 	printf(":\n");
     ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
@@ -64,16 +70,28 @@ void    ft_print_after_spaces_expansion(t_cdata *t_cdata)
 void    ft_print_after_empty_removal(t_cdata *t_cdata)
 {
     printf("\033[0;34m");
-	printf("List after removal of empty nodes");
+	printf("List after removal of ");
 	printf("\033[0m");
-	printf(":\n");
+    printf("\033[0;33m");
+    printf("empty");
+    printf("\033[0m");
+    printf("\033[0;34m");
+	printf(" nodes");
+	printf("\033[0m");
+    printf(":\n");
     ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
 }
 
 void    ft_print_after_quotes_expansion(t_cdata *t_cdata)
 {
 	printf("\033[0;34m");
-	printf("List after quotes expansion");
+	printf("List after ");
+	printf("\033[0m");
+    printf("\033[0;33m");
+    printf("quotes");
+    printf("\033[0m");
+    printf("\033[0;34m");
+	printf(" expansion");
 	printf("\033[0m");
 	printf(":\n");
 	ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
@@ -82,7 +100,28 @@ void    ft_print_after_quotes_expansion(t_cdata *t_cdata)
 void    ft_print_after_variables_expansion(t_cdata *t_cdata)
 {
 	printf("\033[0;34m");
-	printf("List after variables expansion");
+	printf("List after ");
+	printf("\033[0m");
+    printf("\033[0;33m");
+    printf("variables");
+    printf("\033[0m");
+    printf("\033[0;34m");
+	printf(" expansion");
+	printf("\033[0m");
+	printf(":\n");
+	ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
+}
+
+void    ft_print_after_special_chars_expansion(t_cdata *t_cdata)
+{
+	printf("\033[0;34m");
+	printf("List after ");
+	printf("\033[0m");
+    printf("\033[0;33m");
+    printf("special chars");
+    printf("\033[0m");
+    printf("\033[0;34m");
+	printf(" expansion");
 	printf("\033[0m");
 	printf(":\n");
 	ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
@@ -90,11 +129,20 @@ void    ft_print_after_variables_expansion(t_cdata *t_cdata)
 
 void    ft_print_new_input_header(char *line_read)
 {
-    printf("\n\n--------------------------------------------------------------------------\n");
-	printf("                               New input");
-	printf("\n--------------------------------------------------------------------------\n\n");
-	printf("\033[0;34m");
-	printf("Raw input");
-	printf("\033[0m");
-	printf(":\n\t.%s.\n\n", line_read);
+    if (*line_read)
+    {
+        printf("\n\n--------------------------------------------------------------------------\n");
+        printf("                               New input");
+        printf("\n--------------------------------------------------------------------------\n\n");
+        printf("\033[0;34m");
+        printf("Raw input");
+        printf("\033[0m");
+        printf(":\n\t.%s.\n\n", line_read);
+    }
+    else
+    {
+        printf("\033[0;34m");
+        printf("\nEmpty input.\n\n");
+        printf("\033[0m");   
+    }
 }

@@ -202,6 +202,6 @@ int		ft_found_special_character(char c);
 int		ft_found_inv_char(char c);
 int 	ft_first_char_special(char *str, t_cdata *t_cdata);
 int 	ft_last_char_special(char *str, int i, t_cdata *t_cdata);
-
+void    ft_print_after_special_chars_expansion(t_cdata *t_cdata);
 
 #endif
