@@ -26,6 +26,7 @@ int     ft_found_space_to_split(t_cdata *t_cdata)
         if (!curr->q_type)
         {
             curr->str = ft_strtrim(curr->str, " \t\r\n\v\f");
+            curr->length = ft_strlen(curr->str);
             if (ft_has_spaces(curr->str))
             {
                 found_space = 1;
@@ -59,7 +60,9 @@ void    ft_split_and_generate_spaced_node(struct s_qnode *curr)
     rest = ft_strtrim(rest, " \t\r\n\v\f");
     free(curr->str);
     curr->str = token;
+    curr->length = ft_strlen(token);
     new_node->str = rest;
+    new_node->length = ft_strlen(rest);
     new_node->next = curr->next;
     curr->next = new_node;
 }
