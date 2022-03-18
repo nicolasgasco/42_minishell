@@ -126,6 +126,7 @@ void    ft_splice_var_value_utility(char *result, char *var, int *x);
 char    *ft_remove_var_name(char *str, int start, int end);
 
 /* Expansion - Here document */
+void    ft_here_doc_expansion(t_cdata *t_cdata);
 void    ft_expand_here_doc(t_cdata *t_cdata);
 int 	ft_find_here_marker_str(char *str);
 void    ft_here_doc_loop(t_cdata *t_cdata);
@@ -142,7 +143,8 @@ int 	ft_first_char_special(char *str, t_cdata *t_cdata);
 int 	ft_last_char_special(char *str, int i, t_cdata *t_cdata);
 
 /* Tokens list */
-int		ft_create_tokens_list(t_cdata *t_cdata);
+void    ft_create_tokens_list(t_cdata *t_cdata);
+void    ft_add_token_to_list(t_cdata *t_cdata, char *s);
 
 /* Commands */
 char    *ft_extract_cmd(char *line);

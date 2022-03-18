@@ -26,8 +26,7 @@ void	ft_start_loop(t_cdata *t_cdata)
 			ft_free_quotes_data(t_cdata);
 			continue ;
 		}
-		if (ft_find_here_marker_str(t_cdata->t_qdata->raw_input))
-			ft_here_doc_loop(t_cdata);
+		ft_here_doc_expansion(t_cdata);
 		ft_expand_quotes(t_cdata);
 		if (!ft_expanded_quotes_are_valid(t_cdata))
 		{
@@ -41,10 +40,8 @@ void	ft_start_loop(t_cdata *t_cdata)
 		ft_print_expanded_output(t_cdata); // TBD
 		// if (!ft_special_chars_are_valid(t_cdata))
 		// 	continue;
-		// ft_create_tokens_list(t_cdata);
-		ft_create_mock_list(t_cdata, "cmd", "holla", "que", "tal", "|", "cmd", "input", ""); // TBD Last parameter must be empty line
-		ft_print_tokens_list(t_cdata->tokens_list); // TBD
-		// ft_check_cmd(t_cdata);
+		ft_create_tokens_list(t_cdata);
+		ft_check_cmd(t_cdata);
 		ft_free_loop_data(t_cdata);
 		printf("\n__________________________________________________________________________\n\n");
 	}
