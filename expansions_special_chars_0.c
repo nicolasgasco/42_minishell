@@ -5,9 +5,16 @@ int ft_special_chars_are_valid(t_cdata *t_cdata)
 {
     ft_expand_special_char(t_cdata, ">>");
     ft_expand_special_char(t_cdata, "|");
+    ft_expand_special_char(t_cdata, "<");
+    ft_expand_special_char(t_cdata, ">");
     // ft_expand_reds(t_cdata);
-    ft_print_after_special_chars_expansion(t_cdata); // TBD
-    return (1);
+    if (t_cdata->syntax_error == 1)
+        return (0);
+    else
+    {
+        ft_print_after_special_chars_expansion(t_cdata); // TBD
+        return  (1);
+    }
 }
 
 /* Expansion of >> */
@@ -18,6 +25,7 @@ int ft_expand_special_char(t_cdata *t_cdata, char *set)
         if (!ft_found_special_chars_set(t_cdata, set))
             break;
     }
+    //TODO error
     return (1);
 }
 
@@ -25,18 +33,23 @@ int ft_expand_special_char(t_cdata *t_cdata, char *set)
 int ft_found_special_chars_set(t_cdata *t_cdata, char *set)
 {
     struct s_qnode	*curr;
-    int             found_red;
+    int             found_sym;
 
-    found_red = 0;
+    found_sym = 0;
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
 	{
         if (!curr->q_type)
         {
-            if (ft_has_special_char_set(curr->str, set) && ft_strlen(curr->str) > 2)
+            if (ft_has_special_char_set(curr->str, set))
             {
-                found_red = 1;
-                ft_split_and_generate_special_char_node(curr, 2);
+                if (ft_strlen(curr->str) <= ft_strlen(set))
+                    t_cdata->syntax_error = 1;
+                else
+                {
+                    found_sym = 1;
+                    ft_split_and_generate_special_char_node(curr, ft_strlen(set), set);
+                }
                 break;
             }
 
@@ -46,7 +59,7 @@ int ft_found_special_chars_set(t_cdata *t_cdata, char *set)
 		else
 			curr = curr->next;
 	}
-    return (found_red);
+    return (found_sym);
 }
 
 /* Checking if the specific set is present in the string */
@@ -75,18 +88,4 @@ int ft_has_special_char_set(char *str, char *set)
     return (0);
 }
 
-/* Utility function calculating number of chars before >> */
-int ft_calc_special_char_token_len(char *str)
-{
-    int i;
-
-    i = 0;
-    while (str[i] != '\0')
-    {
-        if (str[i] == '>' || str[i] == '<')
-            return (i);
-        i++;
-    }
-    return (i);
-}
 

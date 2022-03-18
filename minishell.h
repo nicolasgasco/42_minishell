@@ -54,8 +54,7 @@ typedef struct CommonData
 	char			**tokens;
 	int				syntax_error;
 	char			**paths;
-	struct s_tnode	*tokens_list; // Linked linked que pasa Nico a Tono
-	char			*line_expanded;	
+	struct s_tnode	*tokens_list;
 	t_pdata			*t_pdata;
 	t_qdata			*t_qdata;
 } t_cdata;
@@ -139,13 +138,16 @@ int		ft_special_chars_are_valid(t_cdata *t_cdata);
 int		ft_expand_special_char(t_cdata *t_cdata, char *set);
 int 	ft_found_special_chars_set(t_cdata *t_cdata, char *set);
 int 	ft_has_special_char_set(char *str, char *set);
-void    ft_split_and_generate_special_char_node(struct s_qnode  *curr, int len);
+void    ft_split_and_generate_special_char_node(struct s_qnode  *curr, int len, char *set);
 void    ft_add_special_char_nodes(struct s_qnode  *curr, char *curr_str, char *next_str, char *rest);
 int 	ft_calc_special_char_token_len(char *str);
 
 /* Tokens list */
 void    ft_create_tokens_list(t_cdata *t_cdata);
 void    ft_add_token_to_list(t_cdata *t_cdata, char *s);
+
+/* Errors */
+void    ft_output_loop_error_message(t_cdata *t_cdata, char *message);
 
 /* Commands */
 char    *ft_extract_cmd(char *line);

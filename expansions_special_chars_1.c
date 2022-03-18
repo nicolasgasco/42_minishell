@@ -1,20 +1,36 @@
 #include "minishell.h"
 
+
+/* Utility function calculating number of chars before special symbol */
+int ft_calc_special_char_token_len(char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i] != '\0')
+    {
+        if (str[i] == '>' || str[i] == '<' || str[i] == '|')
+            return (i);
+        i++;
+    }
+    return (i);
+}
+
 /* Splitting string containing >> and add linked list nodes */
-void    ft_split_and_generate_special_char_node(struct s_qnode  *curr, int len)
+void    ft_split_and_generate_special_char_node(struct s_qnode  *curr, int len, char *set)
 {
     char            *token;
     char            *rest;
     int             t_len;
-    char            *redirect;
+    char            *symbol;
 
     t_len = ft_calc_special_char_token_len(curr->str);
     token = (char *)malloc(sizeof(char) * (t_len + 1));   
     ft_strlcpy(token, curr->str, t_len + 1);
     rest = ft_substr(curr->str, t_len + len, ft_strlen(curr->str) - t_len - len);
-    redirect = (char *)malloc(sizeof(char) * 3);
-    redirect = ft_strdup(">>");
-    ft_add_special_char_nodes(curr, token, redirect, rest);
+    symbol = (char *)malloc(sizeof(char) * ft_strlen(set) + 1);
+    symbol = ft_strdup(set);
+    ft_add_special_char_nodes(curr, token, symbol, rest);
 }
 
 /* Adding new nodes with the single parts of the split string containing >> */
