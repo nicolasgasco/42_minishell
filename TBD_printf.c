@@ -61,6 +61,15 @@ void    ft_print_after_spaces_expansion(t_cdata *t_cdata)
     ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
 }
 
+void    ft_print_after_empty_removal(t_cdata *t_cdata)
+{
+    printf("\033[0;34m");
+	printf("List after removal of empty nodes");
+	printf("\033[0m");
+	printf(":\n");
+    ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
+}
+
 void    ft_print_after_quotes_expansion(t_cdata *t_cdata)
 {
 	printf("\033[0;34m");
