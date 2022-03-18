@@ -3,25 +3,26 @@
 /* Checking for >>, <, and > */
 int ft_special_chars_are_valid(t_cdata *t_cdata)
 {
-    ft_expand_r_red_append(t_cdata);
+    ft_expand_special_char(t_cdata, ">>");
+    ft_expand_special_char(t_cdata, "|");
     // ft_expand_reds(t_cdata);
     ft_print_after_special_chars_expansion(t_cdata); // TBD
     return (1);
 }
 
 /* Expansion of >> */
-int ft_expand_r_red_append(t_cdata *t_cdata)
+int ft_expand_special_char(t_cdata *t_cdata, char *set)
 {
     while (1)
     {
-        if (!ft_found_r_red_append(t_cdata))
+        if (!ft_found_special_chars_set(t_cdata, set))
             break;
     }
     return (1);
 }
 
 /* Iterating list untill all >> are expanded */
-int ft_found_r_red_append(t_cdata *t_cdata)
+int ft_found_special_chars_set(t_cdata *t_cdata, char *set)
 {
     struct s_qnode	*curr;
     int             found_red;
@@ -32,7 +33,7 @@ int ft_found_r_red_append(t_cdata *t_cdata)
 	{
         if (!curr->q_type)
         {
-            if (ft_has_r_red_append(curr->str) && ft_strlen(curr->str) > 2)
+            if (ft_has_special_char_set(curr->str, set) && ft_strlen(curr->str) > 2)
             {
                 found_red = 1;
                 ft_split_and_generate_special_char_node(curr, 2);
@@ -48,15 +49,26 @@ int ft_found_r_red_append(t_cdata *t_cdata)
     return (found_red);
 }
 
-/* Checking if >> is present */
-int ft_has_r_red_append(char *str)
+/* Checking if the specific set is present in the string */
+int ft_has_special_char_set(char *str, char *set)
 {
     int i;
+    int j;
+    int k;
+    int len;
 
     i = 0;
-    while (str[i + 1] != '\0')
+    len = ft_strlen(set);
+    while (str[i + (len - 1)] != '\0')
     {
-        if (str[i] == '>' && str[i + 1] == '>')
+        k = i;
+        j = 0;
+        while (str[k] == set[j] && set[j] != '\0')
+        {
+            k++;
+            j++;
+        }
+        if (set[j] == '\0')
             return (1);
         i++;
     }

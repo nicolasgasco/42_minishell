@@ -29,10 +29,13 @@ void    ft_add_special_char_nodes(struct s_qnode  *curr, char *curr_str, char *n
     memset(new_node2, 0, sizeof(struct s_qnode));
     free(curr->str);
     curr->str = curr_str;
+    curr->length = ft_strlen(curr_str);
     new_node1->str = next_str;
+    new_node1->length = ft_strlen(new_node1->str);
     new_node1->next = curr->next;
     curr->next = new_node1;
     new_node2->str = rest;
+    new_node2->length = ft_strlen(new_node2->str);
     new_node1->next = new_node2;
 }
 
