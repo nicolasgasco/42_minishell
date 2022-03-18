@@ -1,24 +1,40 @@
 #include "minishell.h"
 
+/* Initialize Here doc loop, if any */
+void    ft_here_doc_expansion(t_cdata *t_cdata)
+{
+    if (ft_find_here_marker_str(t_cdata->t_qdata->raw_input))
+    {
+        ft_print_here_doc_detected();
+        ft_here_doc_loop(t_cdata);
+    }
+}
+
 /* Look for Here document in a string */
 int ft_find_here_marker_str(char *str)
 {
     int i;
+    int found_quote;
 
     i = 1;
-    /* CHECK FOR QUOTES */
+    found_quote = 0;
     if (ft_strlen(str) < 4)
         return (0);
     while (str[i + 2] != '\0')
     {
-        if (str[i] == '<' && str[i + 1] == '<' && str[i - 1] != '<'
-        && str[i + 2] != '|' && str[i + 2] != '<' && str[i + 2] != '>')
+        if (str[i] == '\'' || str[i] == '\"')
         {
-            return (1);
+            if (found_quote)
+                found_quote = 0;
+            else
+                found_quote = 1;
         }
+        if (str[i] == '<' && str[i + 1] == '<' && str[i - 1] != '<'
+        && str[i + 2] != '|' && str[i + 2] != '<' && str[i + 2] != '>' && !found_quote)
+            return (1);
         i++;
     }
-    if (str[i] == '<' && str[i + 1] == '<' && str[i - 1] != '<')
+    if (str[i] == '<' && str[i + 1] == '<' && str[i - 1] != '<' && !found_quote)
         return (1);
     return (0);
 }
@@ -30,7 +46,6 @@ void    ft_here_doc_loop(t_cdata *t_cdata)
 
     i = 0;
     t_cdata->t_qdata->delim = ft_extract_and_remove_delim(t_cdata);
-    ft_print_here_doc_detected();
     while (1)
     {
         if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_nl_text))
