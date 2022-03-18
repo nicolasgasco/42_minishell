@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-/* Space between tweaks are removed */
+/* Keep removing spaces untill all are expanded */
 void ft_expand_spaces(t_cdata *t_cdata)
 {
     while (1)
@@ -13,6 +13,7 @@ void ft_expand_spaces(t_cdata *t_cdata)
     ft_print_after_empty_removal(t_cdata);
 }
 
+/* Iterate list looking for a space */
 int     ft_found_space_to_split(t_cdata *t_cdata)
 {
 	struct s_qnode	*curr;
@@ -41,6 +42,7 @@ int     ft_found_space_to_split(t_cdata *t_cdata)
     return (found_space);
 }
 
+/* Split string and generate a new node with expanded spaces */
 void    ft_split_and_generate_spaced_node(struct s_qnode *curr)
 {
     char            *token;
@@ -62,14 +64,16 @@ void    ft_split_and_generate_spaced_node(struct s_qnode *curr)
     curr->next = new_node;
 }
 
+/* Removing a single node contaning an empty string */
 void    ft_remove_empty_nodes(t_cdata *t_cdata)
 {
     struct s_qnode	*curr;
-    struct s_qnode  *temp;
 
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
 	{
+        if (curr->next == NULL)
+            break ;
         if (curr->next->next == NULL)
         {
             if (!*(curr->next->str))
@@ -79,17 +83,23 @@ void    ft_remove_empty_nodes(t_cdata *t_cdata)
             }
         }
         else
-        {
-            if (!*(curr->next->str))
-            {
-                temp = curr->next;
-                curr->next = curr->next->next;
-                free(temp);
-            }
-        }
+            ft_remove_empty_nodes_util(curr);
 		if (curr->next == NULL || curr->next->next == NULL)
 			break ;
 		else
 			curr = curr->next;
 	}
+}
+
+/* Util for function above */
+void    ft_remove_empty_nodes_util(struct s_qnode *curr)
+{
+    struct s_qnode  *temp;
+
+    if (!*(curr->next->str))
+    {
+        temp = curr->next;
+        curr->next = curr->next->next;
+        free(temp);
+    }
 }
