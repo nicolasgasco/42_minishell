@@ -28,7 +28,7 @@ int     ft_found_space_to_split(t_cdata *t_cdata)
             if (ft_has_spaces(curr->str))
             {
                 found_space = 1;
-                ft_split_and_generate_node(curr);
+                ft_split_and_generate_spaced_node(curr);
                 break;
             }
 
@@ -41,7 +41,7 @@ int     ft_found_space_to_split(t_cdata *t_cdata)
     return (found_space);
 }
 
-void    ft_split_and_generate_node(struct s_qnode *curr)
+void    ft_split_and_generate_spaced_node(struct s_qnode *curr)
 {
     char            *token;
     char            *rest;
@@ -50,7 +50,7 @@ void    ft_split_and_generate_node(struct s_qnode *curr)
 
     new_node = (struct s_qnode *)malloc(sizeof(struct s_qnode));
     memset(new_node, 0, sizeof(struct s_qnode));
-    t_len = ft_calc_token_len(curr->str);
+    t_len = ft_calc_spaces_token_len(curr->str);
     token = (char *)malloc(sizeof(char) * t_len + 1);   
     ft_strlcpy(token, curr->str, t_len + 1);
     rest = ft_substr(curr->str, t_len, ft_strlen(curr->str) - t_len);

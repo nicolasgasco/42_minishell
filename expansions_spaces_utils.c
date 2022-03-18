@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int ft_calc_token_len(char *str)
+int ft_calc_spaces_token_len(char *str)
 {
     int i;
 
