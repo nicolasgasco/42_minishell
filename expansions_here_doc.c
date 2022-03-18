@@ -1,13 +1,14 @@
 #include "minishell.h"
 
-/* Look for Here document in a string not enclosed by single quotes */
+/* Look for Here document in a string */
 int ft_find_here_marker_str(char *str)
 {
     int i;
 
     i = 1;
+    /* CHECK FOR QUOTES */
     if (ft_strlen(str) < 4)
-        return (-1);
+        return (0);
     while (str[i + 2] != '\0')
     {
         if (str[i] == '<' && str[i + 1] == '<' && str[i - 1] != '<'
@@ -22,6 +23,7 @@ int ft_find_here_marker_str(char *str)
     return (0);
 }
 
+/* Initialize loop to collect input untill delimiter is found */
 void    ft_here_doc_loop(t_cdata *t_cdata)
 {
     int     i;
@@ -37,6 +39,7 @@ void    ft_here_doc_loop(t_cdata *t_cdata)
     }
 }
 
+/* Save delimiter in variable and remove it from raw input */
 char    *ft_extract_and_remove_delim(t_cdata *t_cdata)
 {
     int     i;

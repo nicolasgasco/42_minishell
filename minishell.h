@@ -126,6 +126,7 @@ void    ft_splice_var_value_utility(char *result, char *var, int *x);
 char    *ft_remove_var_name(char *str, int start, int end);
 
 /* Expansion - Here document */
+void    ft_expand_here_doc(t_cdata *t_cdata);
 int 	ft_find_here_marker_str(char *str);
 void    ft_here_doc_loop(t_cdata *t_cdata);
 char    *ft_extract_and_remove_delim(t_cdata *t_cdata);
