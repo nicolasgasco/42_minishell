@@ -146,3 +146,22 @@ void    ft_print_new_input_header(char *line_read)
         printf("\033[0m");   
     }
 }
+
+void    ft_print_quotes_list(struct s_qnode *list)
+{
+	struct s_qnode	*curr;
+	int				i;
+	
+	i = 0;
+	curr = list;
+	while (1)
+	{
+        printf("\t%d) .%s. [%c] \t\t(%d chars)\n", i, curr->str, curr->q_type, curr->length);
+		if (curr->next == NULL)
+			break;
+		else
+			curr = curr->next;
+		i++;
+	}
+    printf("\n");
+}

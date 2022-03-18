@@ -58,25 +58,6 @@ char    *ft_remove_char(char c, char *line, int start)
     return (result);
 }
 
-void    ft_print_quotes_list(struct s_qnode *list)
-{
-	struct s_qnode	*curr;
-	int				i;
-	
-	i = 0;
-	curr = list;
-	while (1)
-	{
-        printf("\t%d) .%s. [%c]\n", i, curr->str, curr->q_type);
-		if (curr->next == NULL)
-			break;
-		else
-			curr = curr->next;
-		i++;
-	}
-    printf("\n");
-}
-
 // This is here only for series of ifs at the end, in case needed in the future
 void ft_tokenize_quotes_TDB(t_qdata *t_qdata)
 {
