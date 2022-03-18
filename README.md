@@ -3,6 +3,8 @@
 
 Group project done together with [@adelcor](https://github.com/adelcor).
 
+My other 42 projects are [here](https://github.com/nicolasgasco/42_cursus).
+
 The shell will:
 - show a prompt when waiting for a new command.
 - have a working History.
