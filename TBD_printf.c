@@ -1,12 +1,12 @@
 #include "minishell.h"
 
-void    ft_print_expanded_output(t_cdata *t_cdata)
-{
-    printf("\033[0;34m");
-    printf("Expanded input");
-    printf("\033[0m");
-    printf(":\n\t.%s.\n\n", t_cdata->line_expanded);
-}
+// void    ft_print_expanded_output(t_cdata *t_cdata)
+// {
+//     printf("\033[0;34m");
+//     printf("Expanded input");
+//     printf("\033[0m");
+//     printf(":\n\t.%s.\n\n", t_cdata->line_expanded);
+// }
 
 void    ft_print_special_char_detected(void)
 {

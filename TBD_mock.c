@@ -8,7 +8,7 @@ void ft_create_mock_list(t_cdata *t_cdata, char *str, ...)
     char    *arg;
 
 	va_start(args, str);
-    ft_add_node_mock_list(t_cdata, ft_extract_cmd(t_cdata->line_expanded));
+    // ft_add_node_mock_list(t_cdata, ft_extract_cmd(t_cdata->line_expanded));
     while (1)
     {
         arg = va_arg(args, char *);

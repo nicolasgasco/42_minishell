@@ -23,27 +23,27 @@ void	ft_start_loop(t_cdata *t_cdata)
 		ft_init_loot_pdata(t_cdata);
 		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text))
 		{
-			ft_free_quotes_data(t_cdata);
+			ft_output_loop_error_message(t_cdata, "Input not valid");
 			continue ;
 		}
 		ft_here_doc_expansion(t_cdata);
 		ft_expand_quotes(t_cdata);
 		if (!ft_expanded_quotes_are_valid(t_cdata))
 		{
-			ft_free_loop_data_quotes_error(t_cdata);
+			ft_output_loop_error_message(t_cdata, "Syntax error");
 			continue ;
 		}
 		ft_expand_spaces(t_cdata);
 		ft_expand_variables(t_cdata);
 		if (!ft_special_chars_are_valid(t_cdata))
+		{
+			ft_output_loop_error_message(t_cdata, "Syntax error");
 			continue;
-		// t_cdata->line_expanded = ft_convert_list_to_str(t_cdata->t_qdata); // TBD
-		// ft_print_expanded_output(t_cdata); // TBD
-
+		}
 		ft_create_tokens_list(t_cdata); // Free?
 		ft_check_cmd(t_cdata);
 		ft_free_loop_data(t_cdata);
-		printf("\n__________________________________________________________________________\n\n");
+		printf("\n__________________________________________________________________________\n\n"); // TBD
 	}
 }
 
