@@ -9,8 +9,6 @@ void ft_expand_spaces(t_cdata *t_cdata)
             break;
     }
     ft_print_after_spaces_expansion(t_cdata);
-    ft_remove_empty_nodes(t_cdata);
-    ft_print_after_empty_removal(t_cdata);
 }
 
 /* Iterate list looking for a space */
@@ -65,58 +63,4 @@ void    ft_split_and_generate_spaced_node(struct s_qnode *curr)
     new_node->length = ft_strlen(rest);
     new_node->next = curr->next;
     curr->next = new_node;
-}
-
-/* Removing a single node contaning an empty string */
-void    ft_remove_empty_nodes(t_cdata *t_cdata)
-{
-    struct s_qnode	*curr;
-
-	curr = t_cdata->t_qdata->quotes_list;
-	while (1)
-	{
-        if (curr->next == NULL)
-            break ;
-        if (curr->next->next == NULL)
-        {
-            if (!*(curr->next->str))
-            {
-                free(curr->next->str);
-                free(curr->next);
-                curr->next = NULL;
-            }
-            else
-                ft_remove_current_node(curr);
-        }
-        else
-            ft_remove_following_node(curr);
-		if (curr->next == NULL || curr->next->next == NULL)
-			break ;
-		else
-			curr = curr->next;
-	}
-}
-
-/* Util for function above */
-void    ft_remove_following_node(struct s_qnode *curr)
-{
-    struct s_qnode  *temp;
-
-    if (!*(curr->next->str))
-    {
-        temp = curr->next;
-        curr->next = curr->next->next;
-        free(temp->str);
-        free(temp);
-    }
-}
-
-/* Util for function above */
-void    ft_remove_current_node(struct s_qnode *curr)
-{
-    struct s_qnode  *temp;
-
-    temp = curr;
-    curr = curr->next;
-    free(temp);
 }
