@@ -47,3 +47,29 @@ void	ft_deallocate_tokens_list(struct s_tnode **token_list)
 		free(aux);
 	}
 }
+
+void	ft_free_export(t_cdata *t_cdata)
+{
+	int	i;
+
+	i = 0;
+	while (t_cdata->envp_export[i] != NULL)
+	{
+		free(t_cdata->envp_export[i]);
+		i++;
+	}
+	free(t_cdata->envp_export);
+}
+
+void	ft_free_envp(t_cdata *t_cdata)
+{
+	int	i;
+
+	i = 0;
+	while (t_cdata->envp[i] != NULL)
+	{
+		free(t_cdata->envp[i]);
+		i++;
+	}
+	free(t_cdata->envp);
+}

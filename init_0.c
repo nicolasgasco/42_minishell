@@ -22,7 +22,7 @@ void	ft_init_general_data(t_cdata	*t_cdata, char **envp)
 	ft_output_epic_welcome(t_cdata);
 }
 
-// Function to init envp
+/* TODO has leaks */
 void	init_envp(char **envp, t_cdata *t_cdata)
 {
 	int	i;
@@ -37,6 +37,7 @@ void	init_envp(char **envp, t_cdata *t_cdata)
 	t_cdata->envp[i] = NULL;
 }
 
+/* TODO has leaks */
 void	init_export(t_cdata *t_cdata)
 {
 	int		i;
