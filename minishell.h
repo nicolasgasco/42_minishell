@@ -8,7 +8,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdbool.h>
-
+#include <signal.h>
 
 /* Single node of linked list contaning input tokenized as per quotes */
 struct s_qnode {
@@ -59,6 +59,11 @@ typedef struct CommonData
 	t_qdata			*t_qdata;
 } t_cdata;
 
+typedef struct SignalsData {
+	int				sig;
+	char			*prompt_text;
+} t_sdata;
+
 
 /* Main */
 void	ft_start_loop(t_cdata *t_cdata);
@@ -81,6 +86,8 @@ void	ft_deallocate_quotes_list(struct s_qnode **quotes_list);
 void	ft_deallocate_tokens_list(struct s_tnode **token_list);
 void	ft_free_loop_data(t_cdata *t_cdata);
 void	ft_free_loop_data_quotes_error(t_cdata *t_cdata);
+void	ft_free_export(t_cdata *t_cdata);
+void	ft_free_envp(t_cdata *t_cdata);
 
 /* Prompt */
 int		ft_get_valid_input(t_cdata *t_cdata, char *prompt_text);
@@ -148,6 +155,10 @@ void    ft_add_token_to_list(t_cdata *t_cdata, char *s);
 
 /* Errors */
 void    ft_output_loop_error_message(t_cdata *t_cdata, char *message);
+
+/* Keyword events */
+void    ft_shortcuts_events(void);
+void    ft_handle_signals(int sig);
 
 /* Commands */
 char    *ft_extract_cmd(char *line);
