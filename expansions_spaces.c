@@ -81,12 +81,15 @@ void    ft_remove_empty_nodes(t_cdata *t_cdata)
         {
             if (!*(curr->next->str))
             {
+                free(curr->next->str);
                 free(curr->next);
                 curr->next = NULL;
             }
+            else
+                ft_remove_current_node(curr);
         }
         else
-            ft_remove_empty_nodes_util(curr);
+            ft_remove_following_node(curr);
 		if (curr->next == NULL || curr->next->next == NULL)
 			break ;
 		else
@@ -95,7 +98,7 @@ void    ft_remove_empty_nodes(t_cdata *t_cdata)
 }
 
 /* Util for function above */
-void    ft_remove_empty_nodes_util(struct s_qnode *curr)
+void    ft_remove_following_node(struct s_qnode *curr)
 {
     struct s_qnode  *temp;
 
@@ -103,6 +106,17 @@ void    ft_remove_empty_nodes_util(struct s_qnode *curr)
     {
         temp = curr->next;
         curr->next = curr->next->next;
+        free(temp->str);
         free(temp);
     }
+}
+
+/* Util for function above */
+void    ft_remove_current_node(struct s_qnode *curr)
+{
+    struct s_qnode  *temp;
+
+    temp = curr;
+    curr = curr->next;
+    free(temp);
 }

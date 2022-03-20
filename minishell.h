@@ -115,7 +115,8 @@ char	*ft_convert_list_to_str(t_qdata *t_qdata);
 /* Expansions - Spaces */
 void	ft_expand_spaces(t_cdata *t_cdata);
 void    ft_remove_empty_nodes(t_cdata *t_cdata);
-void    ft_remove_empty_nodes_util(struct s_qnode *curr);
+void    ft_remove_following_node(struct s_qnode *curr);
+void    ft_remove_current_node(struct s_qnode *curr);
 void    ft_split_and_generate_spaced_node(struct s_qnode *curr);
 int		ft_has_spaces(char *str);
 int		ft_isspace(char c);
