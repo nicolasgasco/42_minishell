@@ -15,7 +15,6 @@
 void	ft_free_loop_data(t_cdata *t_cdata)
 {
 	ft_free_quotes_data(t_cdata);
-	ft_free_prompt_data(t_cdata);
 	ft_deallocate_tokens_list(&t_cdata->tokens_list);
 }
 
