@@ -1,13 +1,19 @@
 #include "minishell.h"
 
-void    ft_remove_empty_nodes(t_cdata *t_cdata)
+int ft_remove_empty_nodes(t_cdata *t_cdata)
 {
+    int result;
+
     while (1)
     {
-        if (!found_empty_node_to_remove(t_cdata))
+        result = found_empty_node_to_remove(t_cdata);
+        if (result == 0)
             break;
+        else if (result == -1)
+            return (0);
     }
     ft_print_after_empty_removal(t_cdata);
+    return (1);
 }
 
 /* Removing a single node contaning an empty string */
@@ -18,7 +24,12 @@ int    found_empty_node_to_remove(t_cdata *t_cdata)
 
     i = 0;
     curr = t_cdata->t_qdata->quotes_list;
-	while (1)
+    if (!*(curr->str) && curr->next == NULL)
+    {
+        t_cdata->syntax_error = 1 ;
+        return (-1);
+    }
+    while (1)
 	{
         if (!*(curr->str))
         {

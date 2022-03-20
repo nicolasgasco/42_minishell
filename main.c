@@ -38,7 +38,11 @@ void	ft_start_loop(t_cdata *t_cdata)
 			continue ;
 		}
 		ft_expand_spaces(t_cdata);		    
-    	ft_remove_empty_nodes(t_cdata);
+    	if (!ft_remove_empty_nodes(t_cdata))
+		{
+			ft_output_loop_error_message(t_cdata, "Syntax error");
+			continue ;
+		}
 		ft_expand_variables(t_cdata);
 		if (!ft_special_chars_are_valid(t_cdata))
 		{
@@ -46,7 +50,7 @@ void	ft_start_loop(t_cdata *t_cdata)
 			continue;
 		}
 		ft_create_tokens_list(t_cdata); // Free?
-		ft_check_cmd(t_cdata);
+		// ft_check_cmd(t_cdata);
 		ft_free_loop_data(t_cdata);
 		printf("\n__________________________________________________________________________\n\n"); // TBD
 	}
