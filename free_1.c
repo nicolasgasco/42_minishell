@@ -34,17 +34,15 @@ void	ft_deallocate_quotes_list(struct s_qnode **quotes_list)
 void	ft_deallocate_tokens_list(struct s_tnode **token_list)
 {
 	struct s_tnode	*curr;
-	struct s_tnode	*aux;
 
 	curr = *token_list;
 	if (curr == NULL)
 		*token_list = NULL;
 	else
 	{
-		aux = curr;
 		ft_deallocate_tokens_list(&curr->next);
-		free(aux->str);
-		free(aux);
+		free(curr->str);
+		free(curr);
 	}
 }
 
