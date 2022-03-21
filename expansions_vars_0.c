@@ -19,7 +19,7 @@ void	ft_expand_variables(t_cdata *t_cdata)
 	while (1)
 	{
 		if (!ft_found_variable_to_expand(t_cdata))
-			break;
+			break ;
 	}
 	ft_print_after_variables_expansion(t_cdata);
 }
@@ -91,11 +91,11 @@ char	*ft_add_variable_values(char *str, t_cdata *t_cdata)
 		}
 		i++;
 	}
-	return (ft_expand_variable_value(t_cdata, str, start, i));
+	return (ft_expand_var_value(t_cdata, str, start, i));
 }
 
 /* 4/4 Splice variable value in the correct spot inside of string */
-char	*ft_expand_variable_value(t_cdata *t_cdata, char *str, int start, int end)
+char	*ft_expand_var_value(t_cdata *t_cdata, char *str, int start, int end)
 {
 	char	*var_name;
 	char	*var_value;

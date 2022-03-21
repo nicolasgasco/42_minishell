@@ -128,7 +128,7 @@ void	ft_expand_variables(t_cdata *t_cdata);
 int		ft_found_variable_to_expand(t_cdata *t_cdata);
 int		ft_find_dollar(char *str);
 char	*ft_add_variable_values(char *str, t_cdata *t_cdata);
-char	*ft_expand_variable_value(t_cdata *t_cdata, char *str, int start, int end);
+char	*ft_expand_var_value(t_cdata *t_cdata, char *str, int start, int end);
 char	*ft_get_var_name(char *str, int start, int end);
 char    *ft_splice_var_value(char *str, char *var, int start, int end);
 void    ft_splice_var_value_utility(char *result, char *var, int *x);
