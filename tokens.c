@@ -1,23 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tokens.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ngasco <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/21 16:01:13 by ngasco            #+#    #+#             */
+/*   Updated: 2022/03/21 16:01:15 by ngasco           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void    ft_create_tokens_list(t_cdata *t_cdata)
+void	ft_create_tokens_list(t_cdata *t_cdata)
 {
 	struct s_qnode	*curr;
 
-    curr = t_cdata->t_qdata->quotes_list;
+	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
 	{
-        ft_add_token_to_list(t_cdata, curr->str);
+		ft_add_token_to_list(t_cdata, curr->str);
 		if (curr->next == NULL)
-            break;
-        curr = curr->next;
+			break ;
+		curr = curr->next;
 	}
-    ft_print_tokens_list(t_cdata->tokens_list); // TBD
+	ft_print_tokens_list(t_cdata->tokens_list); // TBD
 }
 
-void    ft_add_token_to_list(t_cdata *t_cdata, char *s)
+void	ft_add_token_to_list(t_cdata *t_cdata, char *s)
 {
-    struct s_tnode	*new_node;
+	struct s_tnode	*new_node;
 	struct s_tnode	*curr;
 
 	curr = t_cdata->tokens_list;
