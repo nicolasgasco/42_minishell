@@ -17,7 +17,7 @@ int ft_calc_special_char_token_len(char *str)
 }
 
 /* Splitting string containing >> and add linked list nodes */
-void    ft_split_and_generate_special_char_node(struct s_qnode  *curr, int len, char *set)
+void    ft_split_special_char_node(struct s_qnode  *curr, int len, char *set)
 {
     char            *token;
     char            *rest;
