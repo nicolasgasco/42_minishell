@@ -26,7 +26,10 @@ char	*ft_create_quoted_token(char *input, int start, int len)
 	if (input[start] == '\"' || input[start] == '\'')
 		i++;
 	if (input[start + len] == '\"' || input[start + len] == '\'')
-		result_len--;
+	{
+		if (input[start] == '\"' || input[start] == '\'')
+			result_len--;
+	}
 	result = (char *)malloc(sizeof(char) * (result_len + 1));
 	while (result_len != 0)
 	{

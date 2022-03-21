@@ -24,14 +24,14 @@ int    found_empty_node_to_remove(t_cdata *t_cdata)
 
     i = 0;
     curr = t_cdata->t_qdata->quotes_list;
-    if (!*(curr->str) && curr->next == NULL)
+    if (!*(curr->str) && !curr->q_type && curr->next == NULL)
     {
         t_cdata->syntax_error = 1 ;
         return (-1);
     }
     while (1)
 	{
-        if (!*(curr->str))
+        if (!*(curr->str) && !curr->q_type)
         {
             ft_remove_node_with_index(i, &t_cdata->t_qdata->quotes_list);
             return (1);
