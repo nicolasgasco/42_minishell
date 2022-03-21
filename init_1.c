@@ -15,15 +15,20 @@
 /* Initializing structure containing information on prompt */
 void	ft_init_prompt_data(t_cdata *t_cdata)
 {
+	char	*username;
+	char	*hostname;
+
 	t_cdata->t_pdata = (t_pdata *)malloc(sizeof(t_pdata));
 	memset(t_cdata->t_pdata, 0, sizeof(t_pdata));
 	t_cdata->t_pdata->username = getenv("USER");
-	if (!t_cdata->t_pdata->username)
-		t_cdata->t_pdata->username = ft_strdup("username");
+	username = t_cdata->t_pdata->username;
+	if (!username)
+		username = ft_strdup("username");
 	t_cdata->t_pdata->hostname = getenv("HOSTNAME");
-	if (!t_cdata->t_pdata->hostname)
-		t_cdata->t_pdata->hostname = ft_strdup("os");
-	t_cdata->t_pdata->prompt_text = ft_create_prompt_text(t_cdata->t_pdata->username, t_cdata->t_pdata->hostname);
+	hostname = t_cdata->t_pdata->hostname;
+	if (!hostname)
+		hostname = ft_strdup("os");
+	t_cdata->t_pdata->prompt_text = ft_create_prompt_text(username, hostname);
 	t_cdata->t_pdata->prompt_nl_text = ft_strdup("> ");
 }
 
