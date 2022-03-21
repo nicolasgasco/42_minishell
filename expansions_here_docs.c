@@ -1,82 +1,95 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expansions_here_docs.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ngasco <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/21 16:44:07 by ngasco            #+#    #+#             */
+/*   Updated: 2022/03/21 16:44:09 by ngasco           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 /* Initialize Here doc loop, if any */
-void    ft_here_doc_expansion(t_cdata *t_cdata)
+void	ft_here_doc_expansion(t_cdata *t_cdata)
 {
-    if (ft_find_here_marker_str(t_cdata->t_qdata->raw_input))
-    {
-        ft_print_here_doc_detected();
-        ft_here_doc_loop(t_cdata);
-    }
+	if (ft_find_here_marker_str(t_cdata->t_qdata->raw_input))
+	{
+		ft_print_here_doc_detected();
+		ft_here_doc_loop(t_cdata);
+	}
 }
 
 /* Look for Here document in a string */
-int ft_find_here_marker_str(char *str)
+int	ft_find_here_marker_str(char *str)
 {
-    int i;
-    int found_quote;
+	int	i;
+	int	found_quote;
 
-    i = 1;
-    found_quote = 0;
-    if (ft_strlen(str) < 4)
-        return (0);
-    while (str[i + 2] != '\0')
-    {
-        if (str[i] == '\'' || str[i] == '\"')
-        {
-            if (found_quote)
-                found_quote = 0;
-            else
-                found_quote = 1;
-        }
-        if (str[i] == '<' && str[i + 1] == '<' && str[i - 1] != '<'
-        && str[i + 2] != '|' && str[i + 2] != '<' && str[i + 2] != '>' && !found_quote)
-            return (1);
-        i++;
-    }
-    if (str[i] == '<' && str[i + 1] == '<' && str[i - 1] != '<' && !found_quote)
-        return (1);
-    return (0);
+	i = 1;
+	found_quote = 0;
+	if (ft_strlen(str) < 4)
+		return (0);
+	while (str[i + 2] != '\0')
+	{
+		if (str[i] == '\'' || str[i] == '\"')
+		{
+			if (found_quote)
+				found_quote = 0;
+			else
+				found_quote = 1;
+		}
+		if (str[i] == '<' && str[i + 1] == '<' && str[i - 1] != '<'
+			&& str[i + 2] != '|' && str[i + 2] != '<' && str[i + 2] != '>'
+			&& !found_quote)
+			return (1);
+		i++;
+	}
+	if (str[i] == '<' && str[i + 1] == '<' && str[i - 1] != '<' && !found_quote)
+		return (1);
+	return (0);
 }
 
 /* Initialize loop to collect input untill delimiter is found */
-void    ft_here_doc_loop(t_cdata *t_cdata)
+void	ft_here_doc_loop(t_cdata *t_cdata)
 {
-    int     i;
+	int	i;
 
-    i = 0;
-    t_cdata->t_qdata->delim = ft_extract_and_remove_delim(t_cdata);
-    while (1)
-    {
-        if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_nl_text))
-            break ;
-        i++;
-    }
+	i = 0;
+	t_cdata->t_qdata->delim = ft_extract_and_remove_delim(t_cdata);
+	while (1)
+	{
+		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_nl_text))
+			break ;
+		i++;
+	}
 }
 
 /* Save delimiter in variable and remove it from raw input */
-char    *ft_extract_and_remove_delim(t_cdata *t_cdata)
+char	*ft_extract_and_remove_delim(t_cdata *t_cdata)
 {
-    int     i;
-    char    *result;
-    char    *raw_input_temp;
+	int		i;
+	char	*result;
+	char	*raw_input_temp;
 
-    i = 0;
-    while (t_cdata->t_qdata->raw_input[i + 1] != '\0')
-    {
-        if (t_cdata->t_qdata->raw_input[i] == '<' && t_cdata->t_qdata->raw_input[i] == '<')
-        {
-            i += 2;
-            break;
-        }
-        i++;
-    }
-    result = ft_substr(t_cdata->t_qdata->raw_input, i, ft_strlen(t_cdata->t_qdata->raw_input) - i);
-    if (ft_has_spaces(result))
-        result = ft_strtrim(result, " ");
-        // result = ft_strtrim(result, " \t\r\n\v\f");
-    raw_input_temp = ft_substr(t_cdata->t_qdata->raw_input, 0, i);
-    free(t_cdata->t_qdata->raw_input);
-    t_cdata->t_qdata->raw_input = raw_input_temp;
-    return (result);
+	i = 0;
+	while (t_cdata->t_qdata->raw_input[i + 1] != '\0')
+	{
+		if (t_cdata->t_qdata->raw_input[i] == '<'
+			&& t_cdata->t_qdata->raw_input[i] == '<')
+		{
+			i += 2;
+			break ;
+		}
+		i++;
+	}
+	result = ft_substr(t_cdata->t_qdata->raw_input, i, ft_strlen(t_cdata->t_qdata->raw_input) - i);
+	if (ft_has_spaces(result))
+		result = ft_strtrim(result, " \t"); // Check
+	raw_input_temp = ft_substr(t_cdata->t_qdata->raw_input, 0, i);
+	free(t_cdata->t_qdata->raw_input);
+	t_cdata->t_qdata->raw_input = raw_input_temp;
+	return (result);
 }
