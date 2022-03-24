@@ -1,13 +1,14 @@
 #include "minishell.h"
 
-static t_sdata sig_data;
-
+int	minishell_sig;
 
 void    ft_handle_signals(int sig)
 {
-    sig_data.sig = sig;
-    if (sig == SIGINT)
+    printf("%d\n", sig);
+    minishell_sig = sig;
+    if (minishell_sig == SIGINT)
     {
+        printf("\n%s", "> ");
     }
 }
 
