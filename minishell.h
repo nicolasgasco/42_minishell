@@ -41,6 +41,7 @@ typedef struct PromptData {
 struct s_tnode {
 	char			*str;
 	int				len;
+	char			q_type;
 	struct s_tnode	*next;
 	struct s_tnode	*prev;
 };
@@ -147,7 +148,7 @@ int 	ft_calc_special_char_token_len(char *str);
 
 /* Tokens list */
 void    ft_create_tokens_list(t_cdata *t_cdata);
-void    ft_add_token_to_list(t_cdata *t_cdata, char *s);
+void	ft_add_token_to_list(t_cdata *t_cdata, char *s, char q_type);
 
 /* Errors */
 void    ft_output_loop_error_message(t_cdata *t_cdata, char *message);

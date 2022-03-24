@@ -53,9 +53,9 @@ void    ft_print_tokens_list(struct s_tnode *list)
 	while (1)
 	{
 		if (curr->prev)
-        	printf("\t%d) .%s. (%d chars) [Prev->str is .%s.]\n", i, curr->str, curr->len, curr->prev->str);
+        	printf("\t%d) .%s. [%c] (%d chars) [Prev->str is .%s.]\n", i, curr->str, curr->q_type, curr->len, curr->prev->str);
 		else
-			printf("\t%d) .%s. (%d chars) [Prev is NULL]\n", i, curr->str, curr->len);
+			printf("\t%d) .%s. [%c] (%d chars) [Prev is NULL]\n", i, curr->str, curr->q_type, curr->len);
 		if (curr->next == NULL)
 			break;
 		else
