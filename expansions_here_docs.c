@@ -17,7 +17,7 @@ void	ft_here_doc_expansion(t_cdata *t_cdata)
 {
 	if (ft_find_here_marker_str(t_cdata->t_qdata->raw_input))
 	{
-		ft_print_here_doc_detected();
+		ft_print_here_doc_detected(); // TBD
 		ft_here_doc_loop(t_cdata);
 	}
 }
