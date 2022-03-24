@@ -24,7 +24,6 @@ void	ft_create_tokens_list(t_cdata *t_cdata)
 			break ;
 		curr = curr->next;
 	}
-	ft_print_tokens_list(t_cdata->tokens_list); // TBD
 }
 
 void	ft_add_token_to_list(t_cdata *t_cdata, char *s)
@@ -42,7 +41,13 @@ void	ft_add_token_to_list(t_cdata *t_cdata, char *s)
 	while (curr && curr->next != NULL)
 		curr = curr->next;
 	if (curr)
+	{
+		new_node->prev = curr;
 		curr->next = new_node;
+	}
 	else
+	{
+		new_node->prev = NULL;
 		t_cdata->tokens_list = new_node;
+	}
 }

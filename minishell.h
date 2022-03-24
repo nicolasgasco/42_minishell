@@ -42,6 +42,7 @@ struct s_tnode {
 	char			*str;
 	int				len;
 	struct s_tnode	*next;
+	struct s_tnode	*prev;
 };
 
 /* Highest level struct with data shared by whole program */
@@ -58,12 +59,6 @@ typedef struct CommonData
 	t_pdata			*t_pdata;
 	t_qdata			*t_qdata;
 } t_cdata;
-
-typedef struct SignalsData {
-	int				sig;
-	char			*prompt_text;
-} t_sdata;
-
 
 /* Main */
 void	ft_start_loop(t_cdata *t_cdata);
