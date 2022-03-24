@@ -53,7 +53,7 @@ typedef struct CommonData
 	char			**envp_export;
 	int				exit_status;
 	char			*cmd;
-	char			**tokens;
+	char			**tokens; // Is this really used?
 	int				syntax_error;
 	char			**paths;
 	struct s_tnode	*tokens_list;
