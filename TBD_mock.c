@@ -8,7 +8,7 @@ void ft_create_mock_list(t_cdata *t_cdata, char *str, ...)
     char    *arg;
 
 	va_start(args, str);
-    ft_add_node_mock_list(t_cdata, ft_extract_cmd(t_cdata->line_expanded));
+    // ft_add_node_mock_list(t_cdata, ft_extract_cmd(t_cdata->line_expanded));
     while (1)
     {
         arg = va_arg(args, char *);
@@ -52,7 +52,10 @@ void    ft_print_tokens_list(struct s_tnode *list)
 	printf(":\n");
 	while (1)
 	{
-        printf("\t%d) .%s.\n", i, curr->str);
+		if (curr->prev)
+        	printf("\t%d) .%s. (%d chars) [Prev->str is .%s.]\n", i, curr->str, curr->len, curr->prev->str);
+		else
+			printf("\t%d) .%s. (%d chars) [Prev is NULL]\n", i, curr->str, curr->len);
 		if (curr->next == NULL)
 			break;
 		else

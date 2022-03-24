@@ -1,56 +1,57 @@
 #include "minishell.h"
 
-/* Check if a character is invalid for Here document structure */
-int ft_found_inv_char(char c)
-{
-    if (c == '<' || c == '>' || c == '|' || c == '\'' || c == '\"' || c == '!')
-        return (1);
-    return (0);
-}
 
-int ft_found_special_character(char c)
-{
-    if (c == '|' || c == '>' || c == '<')
-        return (1);
-    return (0);
-}
-
-int ft_found_pipe(char *str)
+/* Utility function calculating number of chars before special symbol */
+int ft_calc_special_char_token_len(char *str)
 {
     int i;
 
     i = 0;
-    if (str[i] == '\0')
-        return (0);
-    if (str[i] == '|' && str[i + 1] != '|')
-        return (1);
-    while (str[i + 1] != '\0')
+    while (str[i] != '\0')
     {
-        if (str[i] == '|' && str[i + 1] != '|')
-            return (1);
+        if (str[i] == '>' || str[i] == '<' || str[i] == '|')
+            return (i);
         i++;
     }
-    if (str[i] == '|')
-        return (1);
-    return (0);
+    return (i);
 }
 
-int ft_found_redirection(char *str)
+/* Splitting string containing >> and add linked list nodes */
+void    ft_split_special_char_node(struct s_qnode  *curr, int len, char *set)
 {
-    int i;
+    char            *token;
+    char            *rest;
+    int             t_len;
+    char            *symbol;
 
-    i = 0;
-    if (str[i] == '\0')
-        return (0);
-    if (str[i] == '|' && str[i + 1] != '|')
-        return (1);
-    while (str[i + 1] != '\0')
-    {
-        if (str[i] == '|' && str[i + 1] != '|')
-            return (1);
-        i++;
-    }
-    if (str[i] == '|')
-        return (1);
-    return (0);
+    t_len = ft_calc_special_char_token_len(curr->str);
+    token = (char *)malloc(sizeof(char) * (t_len + 1));   
+    ft_strlcpy(token, curr->str, t_len + 1);
+    rest = ft_substr(curr->str, t_len + len, ft_strlen(curr->str) - t_len - len);
+    symbol = (char *)malloc(sizeof(char) * ft_strlen(set) + 1);
+    symbol = ft_strdup(set);
+    ft_add_special_char_nodes(curr, token, symbol, rest);
 }
+
+/* Adding new nodes with the single parts of the split string containing >> */
+void    ft_add_special_char_nodes(struct s_qnode  *curr, char *curr_str, char *next_str, char *rest)
+{
+    struct s_qnode  *new_node1;
+    struct s_qnode  *new_node2;
+
+    new_node1 = (struct s_qnode *)malloc(sizeof(struct s_qnode));
+    memset(new_node1, 0, sizeof(struct s_qnode));
+    new_node2 = (struct s_qnode *)malloc(sizeof(struct s_qnode));
+    memset(new_node2, 0, sizeof(struct s_qnode));
+    free(curr->str);
+    curr->str = curr_str;
+    curr->length = ft_strlen(curr_str);
+    new_node1->str = next_str;
+    new_node1->length = ft_strlen(new_node1->str);
+    new_node1->next = curr->next;
+    curr->next = new_node1;
+    new_node2->str = rest;
+    new_node2->length = ft_strlen(new_node2->str);
+    new_node1->next = new_node2;
+}
+

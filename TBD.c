@@ -58,25 +58,6 @@ char    *ft_remove_char(char c, char *line, int start)
     return (result);
 }
 
-void    ft_print_quotes_list(struct s_qnode *list)
-{
-	struct s_qnode	*curr;
-	int				i;
-	
-	i = 0;
-	curr = list;
-	while (1)
-	{
-        printf("\t%d) .%s. [%c]\n", i, curr->str, curr->q_type);
-		if (curr->next == NULL)
-			break;
-		else
-			curr = curr->next;
-		i++;
-	}
-    printf("\n");
-}
-
 // This is here only for series of ifs at the end, in case needed in the future
 void ft_tokenize_quotes_TDB(t_qdata *t_qdata)
 {
@@ -185,7 +166,7 @@ char	*ft_remove_escaped_from_str(char *str)
 
 void	ft_free_line_data(t_cdata *t_cdata)
 {
-	free(t_cdata->line_expanded);
+	// free(t_cdata->line_expanded);
 	free(t_cdata->tokens);
 	free(t_cdata->cmd);
 }
@@ -241,4 +222,10 @@ char    *ft_remove_char_index(char *line, int index)
     }
     result[y] = '\0';
     return (result);
+}
+
+void	ft_free_loop_data_quotes_error(t_cdata *t_cdata)
+{
+	ft_free_quotes_data(t_cdata);
+	// free(t_cdata->line_expanded);
 }

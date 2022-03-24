@@ -22,14 +22,14 @@ char	*ft_create_quoted_token(char *input, int start, int len)
 
 	i = start;
 	result_len = len;
-	if (input[start + len - 1] == '\"' || input[start + len - 1] == '\'')
-		result_len--;
-	if (input[i] == '\"' || input[i] == '\'')
-	{
-		result_len--;
-		i++;
-	}
 	y = 0;
+	if (input[start] == '\"' || input[start] == '\'')
+		i++;
+	if (input[start + len] == '\"' || input[start + len] == '\'')
+	{
+		if (input[start] == '\"' || input[start] == '\'')
+			result_len--;
+	}
 	result = (char *)malloc(sizeof(char) * (result_len + 1));
 	while (result_len != 0)
 	{

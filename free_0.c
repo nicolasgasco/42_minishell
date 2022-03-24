@@ -12,22 +12,17 @@
 
 #include "minishell.h"
 
-void	ft_free_loot_pdata(t_cdata *t_cdata)
+void	ft_free_loop_data(t_cdata *t_cdata)
 {
 	ft_free_quotes_data(t_cdata);
-	free(t_cdata->line_expanded);
 	ft_deallocate_tokens_list(&t_cdata->tokens_list);
-}
-
-void	ft_free_loot_pdata_quotes_error(t_cdata *t_cdata)
-{
-	ft_free_quotes_data(t_cdata);
-	free(t_cdata->line_expanded);
 }
 
 void	ft_free_general_data(t_cdata *t_cdata)
 {
 	ft_free_prompt_data(t_cdata);
+	ft_free_envp(t_cdata);
+	ft_free_export(t_cdata);
 }
 
 void	ft_free_quotes_data(t_cdata *t_cdata)
@@ -40,5 +35,7 @@ void	ft_free_quotes_data(t_cdata *t_cdata)
 void	ft_free_prompt_data(t_cdata *t_cdata)
 {
 	free(t_cdata->t_pdata->prompt_text);
+	free(t_cdata->t_pdata->prompt_nl_text);
+	free(t_cdata->t_pdata->hostname);
 	free(t_cdata->t_pdata);
 }

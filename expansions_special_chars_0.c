@@ -5,67 +5,93 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngasco <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 11:32:31 by ngasco            #+#    #+#             */
-/*   Updated: 2022/03/14 11:32:32 by ngasco           ###   ########.fr       */
+/*   Created: 2022/03/21 16:54:43 by ngasco            #+#    #+#             */
+/*   Updated: 2022/03/21 16:54:44 by ngasco           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* Checking for >>, <, and > */
 int	ft_special_chars_are_valid(t_cdata *t_cdata)
 {
-	if (ft_detect_special_chars(t_cdata))
-		ft_print_special_char_detected(); // TBD
-	else
-		ft_print_no_special_char_detected(); // TBD
-	if (t_cdata->syntax_error)
-	{
-		ft_print_syntax_error(); // TBD
+	ft_expand_special_char(t_cdata, ">>");
+	// ft_expand_special_char(t_cdata, "<<");
+	ft_expand_special_char(t_cdata, "|");
+	ft_expand_special_char(t_cdata, "<");
+	ft_expand_special_char(t_cdata, ">");
+	if (t_cdata->syntax_error == 1)
 		return (0);
+	else
+	{
+		ft_print_after_special_chars_expansion(t_cdata); // TBD
+		return (1);
 	}
+}
+
+/* Expansion of >> */
+int	ft_expand_special_char(t_cdata *t_cdata, char *set)
+{
+	while (1)
+	{
+		if (!ft_found_special_chars_set(t_cdata, set))
+			break ;
+	}
+	//TODO error
 	return (1);
 }
 
-/* Detect if pipes or redirections are present in the user input */
-int	ft_detect_special_chars(t_cdata *t_cdata)
+/* Iterating list untill all >> are expanded */
+int	ft_found_special_chars_set(t_cdata *t_cdata, char *set)
 {
-	int		i;
-	char	*s;
+	struct s_qnode	*curr;
+	int				found_sym;
 
-	i = 1;
-	s = t_cdata->line_expanded;
-	if (ft_found_special_character(s[0]))
-		return (ft_first_char_special(s, t_cdata));
-	while (s[i + 1] != '\0')
+	found_sym = 0;
+	curr = t_cdata->t_qdata->quotes_list;
+	while (1)
 	{
-		if (ft_found_special_character(s[i]))
+		if (!curr->q_type && ft_has_special_char_set(curr->str, set))
 		{
-			if (!ft_found_inv_char(s[i + 1]) && !ft_found_inv_char(s[i - 1]))
-				return (1);
-			t_cdata->syntax_error = 1;
-			return (0);
+			if (ft_strlen(curr->str) <= ft_strlen(set))
+				t_cdata->syntax_error = 1;
+			else
+			{
+				found_sym = 1;
+				ft_split_special_char_node(curr, ft_strlen(set), set);
+			}
+			break ;
 		}
+		if (curr->next == NULL)
+			break ;
+		else
+			curr = curr->next;
+	}
+	return (found_sym);
+}
+
+/* Checking if the specific set is present in the string */
+int	ft_has_special_char_set(char *str, char *set)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	len;
+
+	i = 0;
+	len = ft_strlen(set);
+	while (str[i + (len - 1)] != '\0')
+	{
+		k = i;
+		j = 0;
+		while (str[k] == set[j] && set[j] != '\0')
+		{
+			k++;
+			j++;
+		}
+		if (set[j] == '\0')
+			return (1);
 		i++;
 	}
-	if (ft_found_special_character(s[i]))
-		return (ft_last_char_special(s, i, t_cdata));
-	return (0);
-}
-
-/* Utility for previous function, case where first char is special */
-int	ft_first_char_special(char *str, t_cdata *t_cdata)
-{
-	if (!ft_found_inv_char(str[1]))
-		return (1);
-	t_cdata->syntax_error = 1;
-	return (0);
-}
-
-/* Utility for previous function, case where last char is special */
-int	ft_last_char_special(char *str, int i, t_cdata *t_cdata)
-{
-	if (!ft_found_inv_char(str[i - 1]))
-		return (1);
-	t_cdata->syntax_error = 1;
 	return (0);
 }

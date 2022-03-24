@@ -27,11 +27,7 @@ int	ft_expanded_quotes_are_valid(t_cdata *t_cdata)
 void	ft_expand_quotes(t_cdata *t_cdata)
 {
 	ft_tokenize_quotes(t_cdata->t_qdata);
-	printf("\033[0;34m");
-	printf("Quotes linked list");
-	printf("\033[0m");
-	printf(":\n");
-	ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
+	ft_print_after_quotes_expansion(t_cdata);
 	if (t_cdata->t_qdata->d_open || t_cdata->t_qdata->s_open)
 		t_cdata->syntax_error = 1;
 }
@@ -75,9 +71,9 @@ void	ft_tokenization_logic(t_qdata *t_qdata, char *line, int i, char quote)
 	}
 	else if (quote == '\"')
 	{
-		if (t_qdata->d_open == 0 && line[i - 1] != '\\')
+		if (t_qdata->d_open == 0)
 			ft_tokenization_logic_unopened(t_qdata, i, quote);
-		else if (t_qdata->d_open == 1 && line[i - 1] != '\\')
+		else if (t_qdata->d_open == 1)
 			ft_tokenization_logic_open(t_qdata, i, quote);
 	}
 }
