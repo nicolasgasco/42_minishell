@@ -16,6 +16,7 @@
 int	ft_special_chars_are_valid(t_cdata *t_cdata)
 {
 	ft_expand_special_char(t_cdata, ">>");
+	// ft_expand_special_char(t_cdata, "<<");
 	ft_expand_special_char(t_cdata, "|");
 	ft_expand_special_char(t_cdata, "<");
 	ft_expand_special_char(t_cdata, ">");
