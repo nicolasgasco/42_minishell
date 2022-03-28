@@ -13,13 +13,13 @@
 #include "minishell.h"
 
 /* Checking for >>, <, and > */
-int	ft_special_chars_are_valid(t_cdata *t_cdata)
+int ft_special_chars_are_valid(t_cdata *t_cdata)
 {
-	ft_expand_special_char(t_cdata, ">>");
-	// ft_expand_special_char(t_cdata, "<<");
-	ft_expand_special_char(t_cdata, "|");
 	ft_expand_special_char(t_cdata, "<");
 	ft_expand_special_char(t_cdata, ">");
+	ft_expand_special_char(t_cdata, ">>");
+	ft_expand_special_char(t_cdata, "<<");
+	ft_expand_special_char(t_cdata, "|");
 	if (t_cdata->syntax_error == 1)
 		return (0);
 	else
@@ -30,53 +30,60 @@ int	ft_special_chars_are_valid(t_cdata *t_cdata)
 }
 
 /* Expansion of >> */
-int	ft_expand_special_char(t_cdata *t_cdata, char *set)
+int ft_expand_special_char(t_cdata *t_cdata, char *set)
 {
 	while (1)
 	{
+		ft_print_after_special_chars_expansion(t_cdata); // TBD
 		if (!ft_found_special_chars_set(t_cdata, set))
 			break ;
 	}
-	//TODO error
+	// TODO error
 	return (1);
 }
 
 /* Iterating list untill all >> are expanded */
-int	ft_found_special_chars_set(t_cdata *t_cdata, char *set)
+int ft_found_special_chars_set(t_cdata *t_cdata, char *set)
 {
-	struct s_qnode	*curr;
-	int				found_sym;
+	struct s_qnode *curr;
+	int				s_char_i;
 
-	found_sym = 0;
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
 	{
-		if (!curr->q_type && ft_has_special_char_set(curr->str, set))
+		s_char_i = ft_has_special_char(curr->str, set);
+		if (!curr->q_type && s_char_i >= 0)
 		{
-			if (ft_strlen(curr->str) <= ft_strlen(set))
-				t_cdata->syntax_error = 1;
-			else
+			if (ft_strcmp(curr->str, set) != 0)
 			{
-				found_sym = 1;
-				ft_split_special_char_node(curr, ft_strlen(set), set);
+				ft_split_special_char_node(curr, ft_strlen(set), set, s_char_i);
+				return (1);
 			}
-			break ;
 		}
 		if (curr->next == NULL)
-			break ;
+			break;
 		else
 			curr = curr->next;
 	}
-	return (found_sym);
+	return (0);
 }
 
-/* Checking if the specific set is present in the string */
-int	ft_has_special_char_set(char *str, char *set)
+/* Checking if the specified set or character are in the string */
+int ft_has_special_char(char *str, char *set)
 {
-	int	i;
-	int	j;
-	int	k;
-	int	len;
+	if (ft_strlen(set) == 2)
+		return (ft_find_special_char_set(str, set));
+	else
+		return (ft_find_special_char_single(str, set[0]));
+}
+
+/* Checking if the specified set is in the string */
+int	ft_find_special_char_set(char *str, char *set)
+{
+	int i;
+	int j;
+	int k;
+	int len;
 
 	i = 0;
 	len = ft_strlen(set);
@@ -89,9 +96,9 @@ int	ft_has_special_char_set(char *str, char *set)
 			k++;
 			j++;
 		}
-		if (set[j] == '\0')
-			return (1);
+		if (str[k] != set[0] && set[j] == '\0')
+			return (i);
 		i++;
 	}
-	return (0);
+	return (-1);
 }

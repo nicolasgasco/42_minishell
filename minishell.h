@@ -141,10 +141,11 @@ char    *ft_extract_and_remove_delim(t_cdata *t_cdata);
 int		ft_special_chars_are_valid(t_cdata *t_cdata);
 int		ft_expand_special_char(t_cdata *t_cdata, char *set);
 int 	ft_found_special_chars_set(t_cdata *t_cdata, char *set);
-int 	ft_has_special_char_set(char *str, char *set);
-void    ft_split_special_char_node(struct s_qnode  *curr, int len, char *set);
+int 	ft_has_special_char(char *str, char *set);
+int		ft_find_special_char_set(char *str, char *set);
+int		ft_find_special_char_single(char *str, char c);
+void	ft_split_special_char_node(struct s_qnode *curr, int len, char *set, int i);
 void    ft_add_special_char_nodes(struct s_qnode  *curr, char *curr_str, char *next_str, char *rest);
-int 	ft_calc_special_char_token_len(char *str);
 
 /* Tokens list */
 void    ft_create_tokens_list(t_cdata *t_cdata);
