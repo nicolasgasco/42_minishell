@@ -27,7 +27,7 @@ int	ft_expanded_quotes_are_valid(t_cdata *t_cdata)
 void	ft_expand_quotes(t_cdata *t_cdata)
 {
 	ft_tokenize_quotes(t_cdata->t_qdata);
-	ft_print_after_quotes_expansion(t_cdata);
+	ft_print_after_quotes_expansion(t_cdata); // TBD
 	if (t_cdata->t_qdata->d_open || t_cdata->t_qdata->s_open)
 		t_cdata->syntax_error = 1;
 }
@@ -38,6 +38,7 @@ void	ft_tokenize_quotes(t_qdata *t_qdata)
 	int	i;
 
 	i = 1;
+
 	if (t_qdata->raw_input[0] == '\'')
 		t_qdata->s_open = 1;
 	else if (t_qdata->raw_input[0] == '\"')
@@ -45,9 +46,9 @@ void	ft_tokenize_quotes(t_qdata *t_qdata)
 	while (t_qdata->raw_input[i] != '\0')
 	{
 		if (t_qdata->raw_input[i] == '\'' && t_qdata->d_open == 0)
-			ft_tokenization_logic(t_qdata, t_qdata->raw_input, i, '\'');
+			ft_tokenization_logic(t_qdata, i, '\'');
 		else if (t_qdata->raw_input[i] == '\"' && t_qdata->s_open == 0)
-			ft_tokenization_logic(t_qdata, t_qdata->raw_input, i, '\"');
+			ft_tokenization_logic(t_qdata, i, '\"');
 		i++;
 	}
 	if (t_qdata->d_open || t_qdata->s_open)
@@ -57,23 +58,23 @@ void	ft_tokenize_quotes(t_qdata *t_qdata)
 }
 
 /* 2/2 For both types of quotes, different tokenization logics are applied */
-void	ft_tokenization_logic(t_qdata *t_qdata, char *line, int i, char quote)
+void	ft_tokenization_logic(t_qdata *t_qdata, int i, char quote)
 {
 	if (quote == '\'')
 	{
-		if (t_qdata->s_open == 0 && line[i - 1] != '\\')
+		if (t_qdata->s_open == 0)
 		{
 			ft_tokenization_logic_unopened(t_qdata, i, quote);
 			t_qdata->s_open = 1;
 		}
 		else if (t_qdata->s_open == 1)
-			ft_tokenization_logic_open(t_qdata, i, quote);
+			ft_tokenization_logic_opened(t_qdata, i, quote);
 	}
 	else if (quote == '\"')
 	{
 		if (t_qdata->d_open == 0)
 			ft_tokenization_logic_unopened(t_qdata, i, quote);
 		else if (t_qdata->d_open == 1)
-			ft_tokenization_logic_open(t_qdata, i, quote);
+			ft_tokenization_logic_opened(t_qdata, i, quote);
 	}
 }

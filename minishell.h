@@ -94,9 +94,9 @@ char	*ft_append_newline(char *raw_input);
 int		ft_expanded_quotes_are_valid(t_cdata *t_cdata);
 void	ft_expand_quotes(t_cdata *t_cdata);
 void    ft_tokenize_quotes(t_qdata *t_qdata);
-void 	ft_tokenization_logic(t_qdata *t_qdata, char *line, int i, char quote);
+void 	ft_tokenization_logic(t_qdata *t_qdata, int i, char quote);
 void 	ft_tokenization_logic_unopened(t_qdata *t_qdata, int i, char quote);
-void 	ft_tokenization_logic_open(t_qdata *t_qdata, int i, char quote);
+void 	ft_tokenization_logic_opened(t_qdata *t_qdata, int i, char quote);
 char    *ft_strcat(char *src, char *dest);
 
 /* Expansions - quotes (list) */

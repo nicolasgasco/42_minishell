@@ -44,7 +44,7 @@ void	ft_tokenization_logic_unopened(t_qdata *t_qdata, int i, char quote)
 }
 
 /* 2b Logic for substrings that are preceded by an opening quote */
-void	ft_tokenization_logic_open(t_qdata *t_qdata, int i, char quote)
+void	ft_tokenization_logic_opened(t_qdata *t_qdata, int i, char quote)
 {
 	if (quote == '\'')
 	{
