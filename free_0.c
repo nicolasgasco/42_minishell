@@ -37,5 +37,6 @@ void	ft_free_prompt_data(t_cdata *t_cdata)
 	free(t_cdata->t_pdata->prompt_text);
 	free(t_cdata->t_pdata->prompt_nl_text);
 	free(t_cdata->t_pdata->hostname);
+	free(t_cdata->t_pdata->username);
 	free(t_cdata->t_pdata);
 }

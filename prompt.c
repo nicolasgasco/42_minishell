@@ -25,7 +25,8 @@ int	ft_get_valid_input(t_cdata *t_cdata, char *prompt_text)
 	line_read = ft_rl_gets(line_read, prompt_text);
 	if (!*line_read)
 	{
-		ft_print_new_input_header(line_read);
+		ft_print_new_input_header(line_read); // TBD
+		free(line_read);
 		return (0);
 	}
 	if (t_cdata->t_qdata->raw_input)
@@ -54,7 +55,7 @@ char	*ft_rl_gets(char *line_read, char *prompt_text)
 	if (line_read != NULL)
 		result = ft_strjoin(line_read, result);
 	if (result && *result)
-		add_history(result); // TODO This might be moved elsewhere, check for here doc
+		add_history(result);
 	return (result);
 }
 

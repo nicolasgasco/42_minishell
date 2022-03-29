@@ -43,6 +43,8 @@ int	ft_found_adjecent_pipes(char *str)
 	int	i;
 
 	i = 0;
+	if (!ft_strlen(str))
+		return (0);
 	while (str[i + 1] != '\0')
 	{
 		if (str[i] == '|' && str[i + 1] == '|')

@@ -114,6 +114,7 @@ int		ft_remove_empty_nodes(t_cdata *t_cdata);
 int		found_empty_node_to_remove(t_cdata *t_cdata);
 void    ft_remove_node_with_index(int index, struct s_qnode **root);
 void    ft_split_and_generate_spaced_node(struct s_qnode *curr);
+char	*ft_create_rest_str(char *curr_str, int t_len);
 int		ft_has_spaces(char *str);
 int		ft_isspace(char c);
 int		ft_calc_spaces_token_len(char *str);

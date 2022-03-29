@@ -65,8 +65,7 @@ void	ft_split_and_generate_spaced_node(struct s_qnode *curr)
 	t_len = ft_calc_spaces_token_len(curr->str);
 	token = (char *)malloc(sizeof(char) * t_len + 1);
 	ft_strlcpy(token, curr->str, t_len + 1);
-	rest = ft_substr(curr->str, t_len, ft_strlen(curr->str) - t_len);
-	rest = ft_strtrim(rest, " \t\r\n\v\f");
+ 	rest = ft_create_rest_str(curr->str, t_len);
 	free(curr->str);
 	curr->str = token;
 	curr->length = ft_strlen(token);
@@ -74,4 +73,16 @@ void	ft_split_and_generate_spaced_node(struct s_qnode *curr)
 	new_node->length = ft_strlen(rest);
 	new_node->next = curr->next;
 	curr->next = new_node;
+}
+
+/* Utility function to create rest string without leaks */
+char	*ft_create_rest_str(char *curr_str, int t_len)
+{
+	char	*result;
+	char	*temp;
+
+	temp = ft_substr(curr_str, t_len, ft_strlen(curr_str) - t_len);
+	result = ft_strtrim(temp, " \t\r\n\v\f");
+	free(temp);
+	return (result);
 }

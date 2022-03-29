@@ -18,6 +18,8 @@ int	ft_find_special_char_single(char *str, char c)
 	int	i;
 
 	i = 1;
+	if (!ft_strlen(str))
+		return (-1);
 	if (str[0] == c && str[1] != c)
 		return (0);
 	while (str[i + 1] != '\0')
