@@ -2,11 +2,15 @@ NAME = minishell
 
 SRCS = $(wildcard *.c)
 
+LIBC    = ar -rcs
+CC      = gcc
 FLAGS = -Wall -Wextra -Werror -g
+OBJS    = $(SRCS:.c=.o)
 
-$(NAME): 
+$(NAME): $(OBJS)
 	@ cd libft && make libft.a && make clean
 	@ echo "Compiling libft..."
+	@ $(LIBC) $(NAME) $(OBJS)
 	@ gcc $(FLAGS) $(SRCS) libft/libft.a -lreadline -o $(NAME)
 	@ echo "Compiling WAR MACHINE..."
 
