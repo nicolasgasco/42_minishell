@@ -13,7 +13,7 @@
 #include "minishell.h"
 
 /* Checking for >>, <, and > */
-int ft_special_chars_are_valid(t_cdata *t_cdata)
+int	ft_special_chars_are_valid(t_cdata *t_cdata)
 {
 	ft_expand_special_char(t_cdata, "<");
 	ft_expand_special_char(t_cdata, ">");
@@ -30,7 +30,7 @@ int ft_special_chars_are_valid(t_cdata *t_cdata)
 }
 
 /* Expansion of >> */
-int ft_expand_special_char(t_cdata *t_cdata, char *set)
+int	ft_expand_special_char(t_cdata *t_cdata, char *set)
 {
 	while (1)
 	{
@@ -43,9 +43,9 @@ int ft_expand_special_char(t_cdata *t_cdata, char *set)
 }
 
 /* Iterating list untill all >> are expanded */
-int ft_found_special_chars_set(t_cdata *t_cdata, char *set)
+int	ft_found_special_chars_set(t_cdata *t_cdata, char *set)
 {
-	struct s_qnode *curr;
+	struct s_qnode	*curr;
 	int				s_char_i;
 
 	curr = t_cdata->t_qdata->quotes_list;
@@ -61,7 +61,7 @@ int ft_found_special_chars_set(t_cdata *t_cdata, char *set)
 			}
 		}
 		if (curr->next == NULL)
-			break;
+			break ;
 		else
 			curr = curr->next;
 	}
@@ -69,7 +69,7 @@ int ft_found_special_chars_set(t_cdata *t_cdata, char *set)
 }
 
 /* Checking if the specified set or character are in the string */
-int ft_has_special_char(char *str, char *set)
+int	ft_has_special_char(char *str, char *set)
 {
 	if (ft_strlen(set) == 2)
 		return (ft_find_special_char_set(str, set));
@@ -80,10 +80,10 @@ int ft_has_special_char(char *str, char *set)
 /* Checking if the specified set is in the string */
 int	ft_find_special_char_set(char *str, char *set)
 {
-	int i;
-	int j;
-	int k;
-	int len;
+	int	i;
+	int	j;
+	int	k;
+	int	len;
 
 	i = 0;
 	len = ft_strlen(set);
