@@ -71,9 +71,9 @@ void ft_tokenize_quotes_TDB(t_qdata *t_qdata)
 	while (t_qdata->raw_input[i] != '\0')
 	{
 		if (t_qdata->raw_input[i] == '\'' && t_qdata->d_open == 0)
-			ft_tokenization_logic(t_qdata, t_qdata->raw_input, i, '\'');
+			ft_tokenization_logic(t_qdata, i, '\'');
 		else if (t_qdata->raw_input[i] == '\"' && t_qdata->s_open == 0)
-			ft_tokenization_logic(t_qdata, t_qdata->raw_input, i, '\"');
+			ft_tokenization_logic(t_qdata, i, '\"');
 		i++;
 	}
 	if (t_qdata->d_open)
