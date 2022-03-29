@@ -12,6 +12,14 @@
 
 #include "minishell.h"
 
+/* Init and reset data required at beginning of every loop */
+void	ft_init_reset_loop_data(t_cdata *t_cdata)
+{
+	t_cdata->syntax_error = 0;
+	t_cdata->tokens_list = NULL;
+	ft_init_quotes_data(t_cdata);
+}
+
 // Structure with global data
 void	ft_init_general_data(t_cdata	*t_cdata, char **envp)
 {
@@ -68,9 +76,3 @@ void	init_export(t_cdata *t_cdata)
 	t_cdata->envp_export[i] = NULL;
 }
 
-void	ft_init_loop_data(t_cdata *t_cdata)
-{
-	t_cdata->syntax_error = 0;
-	t_cdata->tokens_list = NULL;
-	ft_init_quotes_data(t_cdata);
-}
