@@ -152,7 +152,7 @@ void    ft_create_tokens_list(t_cdata *t_cdata);
 void	ft_add_token_to_list(t_cdata *t_cdata, char *s, char q_type);
 
 /* Errors */
-void    ft_output_loop_error_message(t_cdata *t_cdata, char *message);
+int		ft_output_loop_error_message(t_cdata *t_cdata, char *message);
 
 /* Keyword events */
 void    ft_shortcuts_events(void);
