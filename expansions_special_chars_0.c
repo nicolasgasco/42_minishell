@@ -15,10 +15,10 @@
 /* Checking for >>, <, and > */
 int	ft_special_chars_are_valid(t_cdata *t_cdata)
 {
-	ft_expand_special_char(t_cdata, "<");
-	ft_expand_special_char(t_cdata, ">");
 	ft_expand_special_char(t_cdata, ">>");
 	ft_expand_special_char(t_cdata, "<<");
+	ft_expand_special_char(t_cdata, "<");
+	ft_expand_special_char(t_cdata, ">");
 	ft_expand_special_char(t_cdata, "|");
 	if (t_cdata->syntax_error == 1)
 		return (0);
@@ -54,7 +54,8 @@ int	ft_found_special_chars_set(t_cdata *t_cdata, char *set)
 		s_char_i = ft_has_special_char(curr->str, set);
 		if (!curr->q_type && s_char_i >= 0)
 		{
-			if (ft_strcmp(curr->str, set) != 0)
+			if (ft_strcmp(curr->str, set) != 0
+				&& ft_strlen(curr->str) > ft_strlen(set))
 			{
 				ft_split_s_char_node(curr, ft_strlen(set), set, s_char_i);
 				return (1);
