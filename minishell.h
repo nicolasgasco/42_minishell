@@ -70,7 +70,7 @@ void	ft_init_general_data(t_cdata *t_cdata, char *envp[]);
 void	ft_init_quotes_data(t_cdata *t_cdata);
 void	ft_init_prompt_data(t_cdata *t_cdata);
 char	*ft_create_prompt_text(char *username, char *hostname);
-void	ft_init_loot_pdata(t_cdata *t_cdata);
+void	ft_init_loop_data(t_cdata *t_cdata);
 void	init_envp(char **envp, t_cdata *t_cdata);
 void	init_export(t_cdata *t_cdata);
 

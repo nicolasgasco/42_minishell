@@ -22,6 +22,13 @@ void	ft_init_general_data(t_cdata	*t_cdata, char **envp)
 	ft_output_epic_welcome(t_cdata);
 }
 
+/* Structure containing information on quotes */
+void	ft_init_quotes_data(t_cdata *t_cdata)
+{
+	t_cdata->t_qdata = (t_qdata *)malloc(sizeof(t_qdata));
+	memset(t_cdata->t_qdata, 0, sizeof(t_qdata));
+}
+
 /* TODO has leaks */
 void	init_envp(char **envp, t_cdata *t_cdata)
 {
@@ -61,16 +68,9 @@ void	init_export(t_cdata *t_cdata)
 	t_cdata->envp_export[i] = NULL;
 }
 
-void	ft_init_loot_pdata(t_cdata *t_cdata)
+void	ft_init_loop_data(t_cdata *t_cdata)
 {
 	t_cdata->syntax_error = 0;
 	t_cdata->tokens_list = NULL;
 	ft_init_quotes_data(t_cdata);
-}
-
-// Structure containing information on quotes
-void	ft_init_quotes_data(t_cdata *t_cdata)
-{
-	t_cdata->t_qdata = (t_qdata *)malloc(sizeof(t_qdata));
-	memset(t_cdata->t_qdata, 0, sizeof(t_qdata));
 }

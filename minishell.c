@@ -33,7 +33,7 @@ void	ft_start_loop(t_cdata *t_cdata)
 {
 	while (1)
 	{
-		ft_init_loot_pdata(t_cdata);
+		ft_init_loop_data(t_cdata);
 		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text)
 			&& ft_output_loop_error_message(t_cdata, "Input not valid"))
 			continue ;
