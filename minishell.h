@@ -144,7 +144,7 @@ int 	ft_found_special_chars_set(t_cdata *t_cdata, char *set);
 int 	ft_has_special_char(char *str, char *set);
 int		ft_find_special_char_set(char *str, char *set);
 int		ft_find_special_char_single(char *str, char c);
-void	ft_split_special_char_node(struct s_qnode *curr, int len, char *set, int i);
+void	ft_split_s_char_node(struct s_qnode *curr, int len, char *set, int i);
 void    ft_add_special_char_nodes(struct s_qnode  *curr, char *curr_str, char *next_str, char *rest);
 
 /* Tokens list */

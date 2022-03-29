@@ -56,7 +56,7 @@ int	ft_found_special_chars_set(t_cdata *t_cdata, char *set)
 		{
 			if (ft_strcmp(curr->str, set) != 0)
 			{
-				ft_split_special_char_node(curr, ft_strlen(set), set, s_char_i);
+				ft_split_s_char_node(curr, ft_strlen(set), set, s_char_i);
 				return (1);
 			}
 		}
