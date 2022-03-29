@@ -34,35 +34,25 @@ void	ft_start_loop(t_cdata *t_cdata)
 	while (1)
 	{
 		ft_init_loot_pdata(t_cdata);
-		// ft_shortcuts_events();
-		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text))
-		{
-			ft_output_loop_error_message(t_cdata, "Input not valid");
+		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text)
+			&& ft_output_loop_error_message(t_cdata, "Input not valid"))
 			continue ;
-		}
 		ft_here_doc_expansion(t_cdata);
 		ft_expand_quotes(t_cdata);
-		if (!ft_expanded_quotes_are_valid(t_cdata))
-		{
-			ft_output_loop_error_message(t_cdata, "Syntax error");
+		if (!ft_expanded_quotes_are_valid(t_cdata)
+			&& ft_output_loop_error_message(t_cdata, "Syntax error"))
 			continue ;
-		}
 		ft_expand_spaces(t_cdata);
 		ft_expand_variables(t_cdata);
-		if (!ft_special_chars_are_valid(t_cdata))
-		{
-			ft_output_loop_error_message(t_cdata, "Syntax error");
+		if (!ft_special_chars_are_valid(t_cdata)
+			&& ft_output_loop_error_message(t_cdata, "Syntax error"))
 			continue ;
-		}
-		if (!ft_remove_empty_nodes(t_cdata))
-		{
-			ft_output_loop_error_message(t_cdata, "Syntax error");
+		if (!ft_remove_empty_nodes(t_cdata)
+			&& ft_output_loop_error_message(t_cdata, "Syntax error"))
 			continue ;
-		}
 		ft_create_tokens_list(t_cdata); // Free?
 		ft_check_cmd(t_cdata);
 		ft_free_loop_data(t_cdata);
-		printf("\n__________________________________________________________________________\n\n"); // TBD
 	}
 }
 
