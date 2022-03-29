@@ -20,8 +20,11 @@ int	ft_special_chars_are_valid(t_cdata *t_cdata)
 	ft_expand_special_char(t_cdata, "<");
 	ft_expand_special_char(t_cdata, ">");
 	ft_expand_special_char(t_cdata, "|");
-	if (t_cdata->syntax_error == 1)
+	if (ft_found_adjacent_special_chars(t_cdata))
+	{
+		t_cdata->syntax_error = 1;
 		return (0);
+	}	
 	else
 	{
 		ft_print_after_special_chars_expansion(t_cdata); // TBD
@@ -38,7 +41,6 @@ int	ft_expand_special_char(t_cdata *t_cdata, char *set)
 		if (!ft_found_special_chars_set(t_cdata, set))
 			break ;
 	}
-	// TODO error
 	return (1);
 }
 
