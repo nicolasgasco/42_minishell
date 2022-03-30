@@ -30,5 +30,6 @@ Test cases for parsing
     ."word      'word' 'word' word".
 - Spaces
 - Variables
+    .$NOT.
 - Special chars
 - Empty nodes
