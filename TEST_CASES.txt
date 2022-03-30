@@ -45,4 +45,3 @@ Test cases for parsing
     .word > word >.
     .word > word <.
     .word > word >>.
-- Empty nodes
