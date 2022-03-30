@@ -19,9 +19,12 @@ int	ft_found_adjacent_special_chars(t_cdata *t_cdata)
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
 	{
-		if (ft_is_special_str(curr->str) && ft_is_special_str(curr->next->str)
-			|| ft_found_adjecent_pipes(curr->str))
-			return (1);
+		if (curr->next)
+		{
+			if (ft_is_special_str(curr->str) && ft_is_special_str(curr->next->str)
+				|| ft_found_adjecent_pipes(curr->str))
+				return (1);
+		}
 		if (curr->next == NULL || curr->next->next == NULL)
 			break ;
 		else
