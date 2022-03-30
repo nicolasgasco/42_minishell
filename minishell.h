@@ -9,6 +9,32 @@
 #include <readline/history.h>
 #include <stdbool.h>
 #include <signal.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+typedef struct s_job
+{
+	struct s_job	*previous;
+	char			**cmd;
+	char			**file;
+	int				fd[2];
+	pid_t			pid;
+	struct s_job	*next;
+} t_job;
+
+typedef enum	e_type
+{
+	VOID,
+	PIPE,
+	STRING,
+	REDIR_L,
+	REDIR_R,
+	APPEND,
+	HEREDOC_L,
+}	t_type;
+
 
 /* Single node of linked list contaning input tokenized as per quotes */
 struct s_qnode {
@@ -42,6 +68,7 @@ struct s_tnode {
 	char			*str;
 	int				len;
 	char			q_type;
+	t_type			type;
 	struct s_tnode	*next;
 	struct s_tnode	*prev;
 };
@@ -218,5 +245,33 @@ int		ft_found_inv_char(char c);
 int 	ft_first_char_special(char *str, t_cdata *t_cdata);
 int 	ft_last_char_special(char *str, int i, t_cdata *t_cdata);
 void    ft_print_after_special_chars_expansion(t_cdata *t_cdata);
+void	test(struct s_tnode *test);
+void	tester(struct s_tnode *test);
+void	printest(struct s_tnode *tnode);
+t_job *ft_create_exec(t_job *job, struct s_tnode *token);
+t_job *ms_job_newlst(void);
+void    ms_job_addback(t_job **job, t_job *new_job);
+void    token_to_tab(struct s_tnode *token, t_job *job);
+int counter_string(struct s_tnode *tok);
+bool    is_redirection(struct s_tnode *token);
+t_job   *redirection_to_tab(struct s_tnode *token, t_job *job);
+int redir_counter(struct s_tnode *tok);
+void    ms_exec(t_job *job, t_cdata *c_data);
+void    child_process(t_job *job, t_job *first, t_cdata *c_data);
+void    init_pipe(t_job *job);
+int ms_exec_builtins(t_job *job, t_cdata *c_data);
+int ms_builtins(char **arg, int i, t_job *job, t_cdata *c_data);
+void    restore_fd(int saved_stdin, int saved_stdout);
+int check_builtins(char **arg);
+int check_redirection(t_job *job, int quit);
+t_job	*ms_job_last(t_job *job);
+struct s_tnode *ms_head_list(struct s_tnode *token);
+t_job	*ms_head_list_job(t_job *job);
+void	executor(t_job *job, t_cdata *c_data);
+void	execute(char **cmd, t_job *job, t_cdata *c_data);
+void	free_job_lst(t_job *job);
+char	*find_path(char *cmd, t_job *job, t_cdata *c_data);
+int	find_path_env(t_cdata *c_data);
+void	error(char *arg, int i, t_job *job);
 
 #endif
