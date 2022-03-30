@@ -12,6 +12,8 @@ Test cases for parsing
     .<< delim.
     .       << delim.
 - Quotes
+    .''.
+    ."".
 - Spaces
 - Variables
 - Special chars
