@@ -2,6 +2,8 @@ NAME = minishell
 
 SRCS = $(wildcard *.c)
 
+SRCS += $(wildcard libft_custom/*.c)
+
 LIBC    = ar -rcs
 FLAGS 	= -Wall -Wextra -Werror -g
 OBJS    = $(SRCS:.c=.o)

@@ -12,8 +12,6 @@
 
 #include "minishell.h"
 
-// static t_sdata sig_data;
-
 /* Collecting input from user: fresh input and repeated input of Here docs */
 int	ft_get_valid_input(t_cdata *t_cdata, char *prompt_text)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 /* Concatenate two strings and free first one */
 char	*ft_strcat(char *src, char *dest)
