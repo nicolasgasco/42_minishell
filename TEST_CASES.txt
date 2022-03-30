@@ -7,6 +7,7 @@ Test cases for parsing
     .cmd<<delim.
     .cmd   <<   delim.
     .   cmd   <<   delim    .
+    .cmd<<.
 - Quotes
 - Spaces
 - Variables
