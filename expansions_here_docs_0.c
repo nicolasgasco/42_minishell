@@ -24,6 +24,8 @@ int	ft_here_doc_expansion(t_cdata *t_cdata)
 	{
 		ft_print_here_doc_detected(); // TBD
 		ft_here_doc_loop(t_cdata);
+		if (t_cdata->syntax_error == 1)
+			return (0);
 	}
 	return (1);
 }
@@ -79,40 +81,16 @@ void	ft_here_doc_loop(t_cdata *t_cdata)
 	int	i;
 
 	i = 0;
-	t_cdata->t_qdata->delim = ft_extract_and_remove_delim(t_cdata);
-	while (1)
+	t_cdata->t_qdata->delim = ft_extract_delim(t_cdata);
+	if (!ft_strlen(t_cdata->t_qdata->delim))
+		t_cdata->syntax_error = 1;
+	else
 	{
-		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_nl_text))
-			break ;
-		i++;
-	}
-}
-
-/* Save delimiter in variable and remove it from raw input */
-char	*ft_extract_and_remove_delim(t_cdata *t_cdata)
-{
-	int		i;
-	char	*result;
-	char	*raw_input;
-	char	*raw_input_temp;
-
-	raw_input = t_cdata->t_qdata->raw_input;
-	i = 0;
-	while (t_cdata->t_qdata->raw_input[i + 1] != '\0')
-	{
-		if (t_cdata->t_qdata->raw_input[i] == '<'
-			&& t_cdata->t_qdata->raw_input[i] == '<')
+		while (1)
 		{
-			i += 2;
-			break ;
+			if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_nl_text))
+				break ;
+			i++;
 		}
-		i++;
 	}
-	result = ft_substr(raw_input, i, ft_strlen(raw_input) - i);
-	if (ft_has_spaces(result))
-		result = ft_strtrim(result, " \t"); // Check
-	raw_input_temp = ft_substr(raw_input, 0, i);
-	free(t_cdata->t_qdata->raw_input);
-	t_cdata->t_qdata->raw_input = raw_input_temp;
-	return (result);
 }

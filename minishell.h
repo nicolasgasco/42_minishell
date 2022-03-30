@@ -165,7 +165,8 @@ int		ft_found_empty_here_marker(char *str);
 void    ft_expand_here_doc(t_cdata *t_cdata);
 int 	ft_find_here_marker_str(char *str);
 void    ft_here_doc_loop(t_cdata *t_cdata);
-char    *ft_extract_and_remove_delim(t_cdata *t_cdata);
+char	*ft_extract_delim(t_cdata *t_cdata);
+char	*ft_remove_delim(t_cdata *t_cdata, int i);
 
 /* Expansions - Special characters */
 int		ft_special_chars_are_valid(t_cdata *t_cdata);
