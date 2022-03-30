@@ -39,6 +39,7 @@ int	ft_found_variable_to_expand(t_cdata *t_cdata)
 			if (ft_find_dollar(curr->str))
 			{
 				curr->str = ft_add_variable_values(curr->str, t_cdata);
+				curr->q_type = '\"';
 				curr->length = ft_strlen(curr->str);
 				found_var = 1;
 			}
