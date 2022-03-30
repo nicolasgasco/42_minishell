@@ -146,6 +146,7 @@ int		ft_has_spaces(char *str);
 int		ft_isspace(char c);
 int		ft_calc_spaces_token_len(char *str);
 int     ft_found_space_to_split(t_cdata *t_cdata);
+int		ft_isspace(char c);
 
 /* Expansions - Variables */
 void	ft_expand_variables(t_cdata *t_cdata);
@@ -191,10 +192,9 @@ int		ft_output_loop_error_message(t_cdata *t_cdata, char *message);
 void    ft_shortcuts_events(void);
 void    ft_handle_signals(int sig);
 
-/* Commands */
-char    *ft_extract_cmd(char *line);
+/* Execution */
+void	ft_start_execution(t_cdata *t_cdata);
 int		ft_isspace(char	c);
-int		ft_get_cmd_len(char *line);
 
 /* Libft */
 char		**ft_splitc(char const *s, char c);
