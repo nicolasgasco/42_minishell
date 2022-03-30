@@ -57,20 +57,21 @@ char	*ft_rl_gets(char *line_read, char *prompt_text)
 	return (result);
 }
 
-char	*ft_append_newline(char *raw_input)
+/* Append newline to string */
+char	*ft_append_newline(char *str)
 {
 	char	*result;
 	int		i;
 
-	result = (char *)malloc(sizeof(char) * ft_strlen(raw_input) + 2);
+	result = (char *)malloc(sizeof(char) * ft_strlen(str) + 2);
 	i = 0;
-	while (raw_input[i] != '\0')
+	while (str[i] != '\0')
 	{
-		result[i] = raw_input[i];
+		result[i] = str[i];
 		i++;
 	}
 	result[i] = '\n';
 	result[i + 1] = '\0';
-	free(raw_input);
+	free(str);
 	return (result);
 }
