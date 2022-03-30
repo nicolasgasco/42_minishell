@@ -1,5 +1,25 @@
 #include "minishell.h"
 
+/* Initialize loop to collect input untill delimiter is found */
+void	ft_here_doc_loop(t_cdata *t_cdata)
+{
+	int	i;
+
+	i = 0;
+	t_cdata->t_qdata->delim = ft_extract_delim(t_cdata);
+	if (!ft_strlen(t_cdata->t_qdata->delim))
+		t_cdata->syntax_error = 1;
+	else
+	{
+		while (1)
+		{
+			if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_nl_text))
+				break ;
+			i++;
+		}
+	}
+}
+
 /* Isolate delimiter from raw input */
 char	*ft_extract_delim(t_cdata *t_cdata)
 {

@@ -15,7 +15,8 @@
 /* Initialize Here doc loop, if any */
 int	ft_here_doc_expansion(t_cdata *t_cdata)
 {
-	if (ft_found_empty_here_marker(t_cdata->t_qdata->raw_input))
+	if (ft_found_lonely_here_marker(t_cdata->t_qdata->raw_input)
+		|| ft_found_here_marker_without_cmd(t_cdata->t_qdata->raw_input))
 	{
 		t_cdata->syntax_error = 1;
 		return (0);
@@ -31,12 +32,26 @@ int	ft_here_doc_expansion(t_cdata *t_cdata)
 }
 
 /* Checks for case when input is just << with no content */
-int	ft_found_empty_here_marker(char *str)
+int	ft_found_lonely_here_marker(char *str)
 {
 	char	*temp;
 
 	temp = ft_strtrim(str, "\n\t ");
 	if (ft_strcmp(temp, "<<") == 0)
+	{
+		free(temp);
+		return (1);
+	}
+	free(temp);
+	return (0);
+}
+
+int	ft_found_here_marker_without_cmd(char *str)
+{
+	char	*temp;
+
+	temp = ft_strtrim(str, "\n\t ");
+	if (temp[0] == '<' && temp[1] == '<')
 	{
 		free(temp);
 		return (1);
@@ -73,24 +88,4 @@ int	ft_find_here_marker_str(char *str)
 	if (str[i] == '<' && str[i + 1] == '<' && str[i - 1] != '<' && !found_quote)
 		return (1);
 	return (0);
-}
-
-/* Initialize loop to collect input untill delimiter is found */
-void	ft_here_doc_loop(t_cdata *t_cdata)
-{
-	int	i;
-
-	i = 0;
-	t_cdata->t_qdata->delim = ft_extract_delim(t_cdata);
-	if (!ft_strlen(t_cdata->t_qdata->delim))
-		t_cdata->syntax_error = 1;
-	else
-	{
-		while (1)
-		{
-			if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_nl_text))
-				break ;
-			i++;
-		}
-	}
 }
