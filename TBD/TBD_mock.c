@@ -39,28 +39,3 @@ void    ft_add_node_mock_list(t_cdata *t_cdata, char *str)
 }
 
 
-void    ft_print_tokens_list(struct s_tnode *list)
-{
-	struct s_tnode	*curr;
-	int				i;
-	
-	i = 0;
-	curr = list;
-	printf("\033[0;34m");
-	printf("Tokens list");
-	printf("\033[0m");
-	printf(":\n");
-	while (1)
-	{
-		if (curr->prev)
-        	printf("\t%d) .%s. [%c] (%d chars) [Prev->str is .%s.]\n", i, curr->str, curr->q_type, curr->len, curr->prev->str);
-		else
-			printf("\t%d) .%s. [%c] (%d chars) [Prev is NULL]\n", i, curr->str, curr->q_type, curr->len);
-		if (curr->next == NULL)
-			break;
-		else
-			curr = curr->next;
-		i++;
-	}
-    printf("\n");
-}

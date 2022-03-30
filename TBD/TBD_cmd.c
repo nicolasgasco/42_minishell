@@ -39,11 +39,3 @@ int ft_get_cmd_len(char *line)
     }
     return (result);
 }
-
-void    ft_print_cmd(t_cdata *t_cdata)
-{
-    printf("\033[0;34m");
-    printf("Command");
-    printf("\033[0m");
-    printf(":\n\t.%s.\n\n", t_cdata->cmd);
-}

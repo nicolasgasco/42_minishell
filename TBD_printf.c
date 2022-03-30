@@ -165,3 +165,60 @@ void    ft_print_quotes_list(struct s_qnode *list)
 	}
     printf("\n");
 }
+
+void    ft_print_cmd(t_cdata *t_cdata)
+{
+    printf("\033[0;34m");
+    printf("Command");
+    printf("\033[0m");
+    printf(":\n\t.%s.\n\n", t_cdata->cmd);
+}
+
+void    ft_output_epic_welcome(t_cdata *t_cdata)
+{
+    printf("\033[0;36m");
+    printf("\n||WAR MACHINE IS READY||\n\n");
+    printf("\033[0m");
+    printf("Project Minishell.\n\n");
+    printf("Made with love by ");
+    printf("\033[0;33m");
+    printf("NICO GASCO");
+    printf("\033[0m");
+    printf(" & ");
+    printf("\033[0;33m");
+    printf("TONI DEL CORRAL");
+    printf("\033[0m");
+    printf(".\n\n");
+    printf("Welcome ");
+    printf("\033[0;33m");
+    printf("%s", t_cdata->t_pdata->username);
+    printf("\033[0m");
+    printf(", you are now in charge. Good Luck.\n");
+    printf("\n__________________________________________________________________________\n\n");
+}
+
+void    ft_print_tokens_list(struct s_tnode *list)
+{
+	struct s_tnode	*curr;
+	int				i;
+	
+	i = 0;
+	curr = list;
+	printf("\033[0;34m");
+	printf("Tokens list");
+	printf("\033[0m");
+	printf(":\n");
+	while (1)
+	{
+		if (curr->prev)
+        	printf("\t%d) .%s. [%c] (%d chars) [Prev->str is .%s.]\n", i, curr->str, curr->q_type, curr->len, curr->prev->str);
+		else
+			printf("\t%d) .%s. [%c] (%d chars) [Prev is NULL]\n", i, curr->str, curr->q_type, curr->len);
+		if (curr->next == NULL)
+			break;
+		else
+			curr = curr->next;
+		i++;
+	}
+    printf("\n");
+}
