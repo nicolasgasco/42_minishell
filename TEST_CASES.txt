@@ -9,8 +9,27 @@ Test cases for parsing
     .   cmd   <<   delim    .
     .cmd<<.
     .cmd<<       .
+    .<< delim.
+    .       << delim.
 - Quotes
+    .''.
+    ."".
+    .    "".
+    .""    .
+    .""''.
+    .''"".
+    ."''".
+    .'""'.
+    .    ""    .
+    ."word".
+    .    "word"    .
+    ."""""".
+    .''''''.
+    ."word'word'word".
+    ."word"      'word'"word".
+    ."word      'word' 'word' word".
 - Spaces
 - Variables
+    .$NOT.
 - Special chars
 - Empty nodes
