@@ -5,7 +5,7 @@
 - Here doc
   - `<<`  
   - `cmd<<delim`
-  - `cmd\t\t  \n<<\t \ndelim`
+  - `cmd     <<     delim`
 - Quotes
 - Spaces
 - Variables
