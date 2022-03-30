@@ -11,6 +11,7 @@ Test cases for parsing
     .cmd<<       .
     .<< delim.
     .       << delim.
+    .word > word <<.
 - Quotes
     .''.
     ."".
@@ -32,6 +33,15 @@ Test cases for parsing
 - Variables
     .$NOT.
     .   $NOT   .
-    .$USER$NOT. FIX ERROR!
+    .$USER$NOT.
+    ."$USER".
+    ."$NOT".
+    ."$USER$NOT".
+    .'$USER$NOT'.
 - Special chars
-- Empty nodes
+    .<.
+    .>.
+    .>>.
+    .word > word >.
+    .word > word <.
+    .word > word >>.
