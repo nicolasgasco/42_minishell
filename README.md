@@ -5,11 +5,11 @@ Group project done together with [@adelcor](https://github.com/adelcor).
 
 The shell will:
 - show a prompt when waiting for a new command
-- have a working History
+- have a working history
 - search and launch the right executable
 - execute builtins (`echo`, `cd`, `pwd`, `export`, `unset`, `env`, `exit`)
 - interpret simple and double quotes
 - execute redirections (`<`, `>`, `<<`, `>>`)
 - execute pipes
-- expand environment variables
-- ctrl-C, ctrl-D, ctrl-\
+- expand environment variables and `$?`
+- `ctrl-C`, `ctrl-D`, `ctrl-\`
