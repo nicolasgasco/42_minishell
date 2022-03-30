@@ -178,6 +178,7 @@ void    ft_add_special_char_nodes(struct s_qnode  *curr, char *curr_str, char *n
 int		ft_found_adjacent_special_chars(t_cdata *t_cdata);
 int		ft_is_special_str(char *str);
 int		ft_found_adjecent_pipes(char *str);
+int		ft_found_only_special_chars(t_cdata *t_cdata);
 
 /* Tokens list */
 void    ft_create_tokens_list(t_cdata *t_cdata);

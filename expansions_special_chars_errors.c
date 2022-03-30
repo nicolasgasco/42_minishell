@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+/* Check if two adjacent nodes are both special chars */
 int	ft_found_adjacent_special_chars(t_cdata *t_cdata)
 {
 	struct s_qnode	*curr;
@@ -33,6 +34,7 @@ int	ft_found_adjacent_special_chars(t_cdata *t_cdata)
 	return (0);
 }
 
+/* Check if node contains special char */
 int	ft_is_special_str(char *str)
 {
 	if (!ft_strcmp(str, ">") || !ft_strcmp(str, "<") || !ft_strcmp(str, ">>")
@@ -41,6 +43,8 @@ int	ft_is_special_str(char *str)
 	return (0);
 }
 
+
+/* Check if string contains two pipes */
 int	ft_found_adjecent_pipes(char *str)
 {
 	int	i;
@@ -54,5 +58,16 @@ int	ft_found_adjecent_pipes(char *str)
 			return (1);
 		i++;
 	}
+	return (0);
+}
+
+/* Check if list has only one node and it's a special char */
+int	ft_found_only_special_chars(t_cdata *t_cdata)
+{
+	struct s_qnode	*curr;
+
+	curr = t_cdata->t_qdata->quotes_list;
+	if (curr->next == NULL && ft_is_special_str(curr->str))
+		return (1);
 	return (0);
 }

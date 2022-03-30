@@ -37,22 +37,22 @@ void	ft_start_loop(t_cdata *t_cdata)
 	{
 		ft_init_reset_loop_data(t_cdata);
 		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text)
-			&& ft_output_loop_error_message(t_cdata, "Input not valid"))
+			&& ft_output_loop_error_message(t_cdata, "Invalid input"))
 			continue ;
 		if (!ft_here_doc_expansion(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "Syntax error"))
+			&& ft_output_loop_error_message(t_cdata, "Syntax error (here doc)"))
 			continue ;
 		ft_expand_quotes(t_cdata);
 		if (!ft_expanded_quotes_are_valid(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "Syntax error"))
+			&& ft_output_loop_error_message(t_cdata, "Syntax error (quotes)"))
 			continue ;
 		ft_expand_spaces(t_cdata);
 		ft_expand_variables(t_cdata);
 		if (!ft_special_chars_are_valid(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "Syntax error"))
+			&& ft_output_loop_error_message(t_cdata, "Syntax error (special chars)"))
 			continue ;
 		if (!ft_remove_empty_nodes(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "Syntax error"))
+			&& ft_output_loop_error_message(t_cdata, "Syntax error (empty nodes)"))
 			continue ;
 		ft_create_tokens_list(t_cdata); // Free?
 		printest(t_cdata->tokens_list);
