@@ -13,13 +13,33 @@
 #include "minishell.h"
 
 /* Initialize Here doc loop, if any */
-void	ft_here_doc_expansion(t_cdata *t_cdata)
+int	ft_here_doc_expansion(t_cdata *t_cdata)
 {
-	if (ft_find_here_marker_str(t_cdata->t_qdata->raw_input))
+	if (ft_found_empty_here_marker(t_cdata->t_qdata->raw_input))
+	{
+		t_cdata->syntax_error = 1;
+		return (0);
+	}
+	if (!ft_find_here_marker_str(t_cdata->t_qdata->raw_input))
 	{
 		ft_print_here_doc_detected(); // TBD
 		ft_here_doc_loop(t_cdata);
 	}
+	return (1);
+}
+
+/* Checks for case when input is just << with no content */
+int	ft_found_empty_here_marker(char *str)
+{
+	char	*temp;
+
+	temp = ft_strtrim(str, "\n\t ");
+	if (ft_strcmp(temp, "<<") == 0)
+	{
+		free(temp);
+		return (1);
+	}
+	return (0);
 }
 
 /* Look for Here document in a string */

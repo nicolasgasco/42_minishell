@@ -39,7 +39,9 @@ void	ft_start_loop(t_cdata *t_cdata)
 		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text)
 			&& ft_output_loop_error_message(t_cdata, "Input not valid"))
 			continue ;
-		ft_here_doc_expansion(t_cdata);
+		if (!ft_here_doc_expansion(t_cdata)
+			&& ft_output_loop_error_message(t_cdata, "Syntax error"))
+			continue ;
 		ft_expand_quotes(t_cdata);
 		if (!ft_expanded_quotes_are_valid(t_cdata)
 			&& ft_output_loop_error_message(t_cdata, "Syntax error"))
