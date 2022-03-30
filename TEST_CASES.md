@@ -4,6 +4,7 @@
   - Empty input  
 - Here doc
   - `<<`  
+  - `cmd<<delim`
 - Quotes
 - Spaces
 - Variables
