@@ -11,6 +11,7 @@ Test cases for parsing
     .cmd<<       .
     .<< delim.
     .       << delim.
+    .word > word <<.
 - Quotes
     .''.
     ."".
@@ -41,4 +42,7 @@ Test cases for parsing
     .<.
     .>.
     .>>.
+    .word > word >.
+    .word > word <.
+    .word > word >>.
 - Empty nodes
