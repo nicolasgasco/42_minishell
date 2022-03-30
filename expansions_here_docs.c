@@ -20,7 +20,7 @@ int	ft_here_doc_expansion(t_cdata *t_cdata)
 		t_cdata->syntax_error = 1;
 		return (0);
 	}
-	if (!ft_find_here_marker_str(t_cdata->t_qdata->raw_input))
+	if (ft_find_here_marker_str(t_cdata->t_qdata->raw_input))
 	{
 		ft_print_here_doc_detected(); // TBD
 		ft_here_doc_loop(t_cdata);
@@ -39,6 +39,7 @@ int	ft_found_empty_here_marker(char *str)
 		free(temp);
 		return (1);
 	}
+	free(temp);
 	return (0);
 }
 
