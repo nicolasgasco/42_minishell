@@ -3,6 +3,7 @@
 - Invalid input
   - Empty input  
 - Here doc
+  - `<<`  
 - Quotes
 - Spaces
 - Variables
