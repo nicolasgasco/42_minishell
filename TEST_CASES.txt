@@ -32,5 +32,6 @@ Test cases for parsing
 - Variables
     .$NOT.
     .   $NOT   .
+    .$USER$NOT. FIX ERROR!
 - Special chars
 - Empty nodes
