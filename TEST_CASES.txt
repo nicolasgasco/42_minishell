@@ -33,5 +33,7 @@ Test cases for parsing
     .$NOT.
     .   $NOT   .
     .$USER$NOT.
+    ."$USER".
+    ."$NOT".
 - Special chars
 - Empty nodes
