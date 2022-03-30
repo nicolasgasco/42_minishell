@@ -11,5 +11,5 @@ The shell will:
 - interpret simple and double quotes
 - execute redirections (`<`, `>`, `<<`, `>>`)
 - execute pipes
-- expand environment variables
-- ctrl-C, ctrl-D, ctrl-\
+- expand environment variables and `$?`
+- `ctrl-C`, `ctrl-D`, `ctrl-\`
