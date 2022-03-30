@@ -20,7 +20,7 @@ int	ft_special_chars_are_valid(t_cdata *t_cdata)
 	ft_expand_special_char(t_cdata, "<");
 	ft_expand_special_char(t_cdata, ">");
 	ft_expand_special_char(t_cdata, "|");
-	if (ft_found_only_special_chars(t_cdata)
+	if (ft_last_node_is_special_char(t_cdata)
 		|| ft_found_adjacent_special_chars(t_cdata))
 	{
 		t_cdata->syntax_error = 1;
