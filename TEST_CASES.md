@@ -3,9 +3,10 @@
 - Invalid input
   - Empty input  
 - Here doc
-  - `<<`  
-  - `cmd<<delim`
-  - `cmd     <<     delim`
+  - .<<.  
+  - .cmd<<delim.
+  - .cmd     <<     delim.
+  - .   cmd     <<     delim    .
 - Quotes
 - Spaces
 - Variables
