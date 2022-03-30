@@ -1,16 +1,5 @@
 #include "minishell.h"
-void	ft_free_tab(char **tab)
-{
-	int i;
 
-	i = 0;
-	while(tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
 int	env_compare(char **env, char **arg, int i)
 {
 	char	**split;
