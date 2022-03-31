@@ -25,39 +25,45 @@ int	ft_here_doc_expansion(t_cdata *t_cdata)
 	{
 		ft_print_here_doc_detected(); // TBD
 		ft_here_doc_loop(t_cdata);
+		ft_join_after_delimiter(t_cdata);
 		if (t_cdata->syntax_error == 1)
 			return (0);
 	}
 	return (1);
 }
 
-/* Checks for case when input is just << with no content */
-int	ft_found_lonely_here_marker(char *str)
+/* Initialize loop to collect input untill delimiter is found */
+void	ft_here_doc_loop(t_cdata *t_cdata)
 {
-	char	*temp;
+	int	i;
 
-	temp = ft_strtrim(str, "\n\t ");
-	if (ft_strcmp(temp, "<<") == 0)
+	i = 0;
+	t_cdata->t_qdata->delim = ft_extract_delim(t_cdata);
+	if (!ft_strlen(t_cdata->t_qdata->delim))
+		t_cdata->syntax_error = 1;
+	else
 	{
-		free(temp);
-		return (1);
+		while (1)
+		{
+			if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_nl_text))
+				break ;
+			i++;
+		}
 	}
-	free(temp);
-	return (0);
 }
 
-int	ft_found_here_marker_without_cmd(char *str)
+/* Join raw input and text after delimiter */
+void	ft_join_after_delimiter(t_cdata *t_cdata)
 {
-	char	*temp;
+	char	*after_delim_temp;
+	char	*raw_input_temp;
 
-	temp = ft_strtrim(str, "\n\t ");
-	if (temp[0] == '<' && temp[1] == '<')
-	{
-		free(temp);
-		return (1);
-	}
-	free(temp);
-	return (0);
+	after_delim_temp = t_cdata->t_qdata->after_delim;
+	t_cdata->t_qdata->after_delim = ft_strjoin(" ", after_delim_temp);
+	free(after_delim_temp);
+	raw_input_temp = t_cdata->t_qdata->raw_input;
+	t_cdata->t_qdata->raw_input = ft_strjoin(raw_input_temp, t_cdata->t_qdata->after_delim);
+	free(raw_input_temp);
 }
 
 /* Look for Here document in a string */

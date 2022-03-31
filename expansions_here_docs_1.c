@@ -1,25 +1,5 @@
 #include "minishell.h"
 
-/* Initialize loop to collect input untill delimiter is found */
-void	ft_here_doc_loop(t_cdata *t_cdata)
-{
-	int	i;
-
-	i = 0;
-	t_cdata->t_qdata->delim = ft_extract_delim(t_cdata);
-	if (!ft_strlen(t_cdata->t_qdata->delim))
-		t_cdata->syntax_error = 1;
-	else
-	{
-		while (1)
-		{
-			if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_nl_text))
-				break ;
-			i++;
-		}
-	}
-}
-
 /* Isolate delimiter from raw input */
 char	*ft_extract_delim(t_cdata *t_cdata)
 {
@@ -44,18 +24,43 @@ char	*ft_extract_delim(t_cdata *t_cdata)
 }
 
 /* Remove delimiter from raw input */
-char	*ft_remove_delim(t_cdata *t_cdata, int i)
+char	*ft_remove_delim(t_cdata *t_cdata, int delimiter_start)
 {
 	char	*result;
 	char	*raw_input;
-	char	*raw_input_temp;
+	int		delimiter_end;
 
 	raw_input = t_cdata->t_qdata->raw_input;
-	result = ft_substr(raw_input, i, ft_strlen(raw_input) - i);
+	delimiter_end = ft_calc_delimiter_end(raw_input, delimiter_start);
+	result = ft_substr(raw_input, delimiter_start, delimiter_end - delimiter_start);
+	t_cdata->t_qdata->after_delim = ft_substr(raw_input, delimiter_end, ft_strlen(raw_input) - delimiter_end);
 	if (ft_has_spaces(result))
 		result = ft_strtrim(result, " \t"); // Check
-	raw_input_temp = ft_substr(raw_input, 0, i);
+	ft_remove_delim_from_raw_input(t_cdata, delimiter_start);
+	return (result);
+}
+
+void	ft_remove_delim_from_raw_input(t_cdata *t_cdata, int delimiter_start)
+{
+	char	*raw_input_temp;
+	char	*raw_input;
+
+	raw_input = t_cdata->t_qdata->raw_input;
+	raw_input_temp = ft_substr(raw_input, 0, delimiter_start);
 	free(t_cdata->t_qdata->raw_input);
 	t_cdata->t_qdata->raw_input = raw_input_temp;
-	return (result);
+}
+
+int	ft_calc_delimiter_end(char *raw_input, int start)
+{
+	int	i;
+
+	i = start;
+	while (raw_input[i] != '\0')
+	{
+		if (raw_input[i] == '>' || raw_input[i] == '<' || raw_input[i] == '|')
+			return (i);
+		i++;
+	}
+	return (i);
 }
