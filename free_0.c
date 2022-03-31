@@ -29,6 +29,7 @@ void	ft_free_quotes_data(t_cdata *t_cdata)
 {
 	ft_deallocate_quotes_list(&t_cdata->t_qdata->quotes_list);
 	free(t_cdata->t_qdata->raw_input);
+	free(t_cdata->t_qdata->delim);
 	free(t_cdata->t_qdata->after_delim);
 	free(t_cdata->t_qdata);
 }

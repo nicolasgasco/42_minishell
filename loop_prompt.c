@@ -32,8 +32,7 @@ int	ft_get_valid_input(t_cdata *t_cdata, char *prompt_text)
 		if (!ft_strncmp(line_read, delim, ft_strlen(delim))
 		&& ft_strlen(line_read) == ft_strlen(delim))
 			return (0);
-		t_cdata->t_qdata->raw_input = ft_strjoin(t_cdata->t_qdata->raw_input, line_read);
-		t_cdata->t_qdata->raw_input = ft_append_newline(t_cdata->t_qdata->raw_input);
+		t_cdata->t_qdata->raw_input = ft_join_append_newline(t_cdata, line_read);
 	}
 	else
 	{
@@ -42,6 +41,20 @@ int	ft_get_valid_input(t_cdata *t_cdata, char *prompt_text)
 	}
 	free(line_read);
 	return (1);
+}
+
+/* Join raw input and line read and append newline */
+char	*ft_join_append_newline(t_cdata *t_cdata, char *line_read)
+{
+	char	*raw_input_temp;
+
+	raw_input_temp = t_cdata->t_qdata->raw_input;
+	free(t_cdata->t_qdata->raw_input);
+	t_cdata->t_qdata->raw_input = ft_strjoin(raw_input_temp, line_read);
+	free(raw_input_temp);
+	raw_input_temp = t_cdata->t_qdata->raw_input;
+	free(t_cdata->t_qdata->raw_input);
+	t_cdata->t_qdata->raw_input = ft_append_newline(raw_input_temp);
 }
 
 /*  Collecting user input with readline and adding it to history */
@@ -72,6 +85,5 @@ char	*ft_append_newline(char *str)
 	}
 	result[i] = '\n';
 	result[i + 1] = '\0';
-	free(str);
 	return (result);
 }
