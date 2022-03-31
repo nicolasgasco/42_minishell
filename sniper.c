@@ -48,6 +48,8 @@ void	tester(struct s_tnode *tnode)
 			printf("REDIR_R OK\n");
 		if(tnode->type == STRING)
 			printf("STRING OK\n");
+		if(tnode->type == HEREDOC_L)
+			printf("HEREDOC_L OK\n");
 		tnode = tnode->next;
 	}
 }

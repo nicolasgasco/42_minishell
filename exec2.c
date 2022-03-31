@@ -146,8 +146,11 @@ int	check_redirection(t_job *job, int quit)
 			fd[1] = open_file(job->file[++i], 1, quit);
 		else if (ft_strcmp(job->file[i], ">>") == 0)
 			fd[1] = open_file(job->file[++i], 0, quit);
-		else if (ft_strcmp(job->file[i], "<<") == 0)
-			dup2(job->fd[0], STDIN_FILENO);
+//		else if (ft_strcmp(job->file[i], "<<") == 0)
+//		{
+//			fd[1] = open_file(job->file[++i], 1, quit);
+//			dup2(job->fd[0], STDIN_FILENO);
+//		}
 		i++;
 	}
 	if (fd[0] == -1 || fd[1] == -1)
@@ -265,6 +268,9 @@ void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 		close(job->previous->fd[0]);
 	close(job->fd[1]);
 }
+
+
+
 void	executor(t_job *job, t_cdata *c_data)
 {
 	t_job	*first;
