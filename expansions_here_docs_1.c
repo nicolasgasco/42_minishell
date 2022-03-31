@@ -24,19 +24,26 @@ char	*ft_extract_delim(t_cdata *t_cdata)
 }
 
 /* Remove delimiter from raw input */
-char	*ft_remove_delim(t_cdata *t_cdata, int delimiter_start)
+char	*ft_remove_delim(t_cdata *t_cdata, int del_start)
 {
 	char	*result;
 	char	*raw_input;
-	int		delimiter_end;
+	char	*after_delim;
+	char	*delim_temp;
+	int		del_end;
 
 	raw_input = t_cdata->t_qdata->raw_input;
-	delimiter_end = ft_calc_delimiter_end(raw_input, delimiter_start);
-	result = ft_substr(raw_input, delimiter_start, delimiter_end - delimiter_start);
-	t_cdata->t_qdata->after_delim = ft_substr(raw_input, delimiter_end, ft_strlen(raw_input) - delimiter_end);
+	del_end = ft_calc_delimiter_end(raw_input, del_start);
+	result = ft_substr(raw_input, del_start, del_end - del_start);
+	after_delim = ft_substr(raw_input, del_end, ft_strlen(raw_input) - del_end);
+	t_cdata->t_qdata->after_delim = after_delim;
+	delim_temp = result;
 	if (ft_has_spaces(result))
-		result = ft_strtrim(result, " \t"); // Check
-	ft_remove_delim_from_raw_input(t_cdata, delimiter_start);
+	{
+		result = ft_strtrim(result, " \t");
+		free(delim_temp);
+	}
+	ft_remove_delim_from_raw_input(t_cdata, del_start);
 	return (result);
 }
 
