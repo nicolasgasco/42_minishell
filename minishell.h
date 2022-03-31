@@ -52,6 +52,7 @@ typedef struct QuotesData {
 	int				s_open;
 	char			*raw_input;
 	char			*delim;
+	char			*after_delim;
 	struct s_qnode	*quotes_list;
 } t_qdata;
 
@@ -164,7 +165,8 @@ void    ft_splice_var_value_utility(char *result, char *var, int *x);
 char    *ft_remove_var_name(char *str, int start, int end);
 
 /* Expansion - Here document */
-int    ft_here_doc_expansion(t_cdata *t_cdata);
+int		ft_here_doc_expansion(t_cdata *t_cdata);
+void	ft_join_after_delimiter(t_cdata *t_cdata);
 int		ft_found_lonely_here_marker(char *str);
 int		ft_found_here_marker_without_cmd(char *str);
 void    ft_expand_here_doc(t_cdata *t_cdata);
@@ -172,6 +174,8 @@ int 	ft_find_here_marker_str(char *str);
 void    ft_here_doc_loop(t_cdata *t_cdata);
 char	*ft_extract_delim(t_cdata *t_cdata);
 char	*ft_remove_delim(t_cdata *t_cdata, int i);
+void	ft_remove_delim_from_raw_input(t_cdata *t_cdata, int delimiter_start);
+int		ft_calc_delimiter_end(char *raw_input, int start);
 
 /* Expansions - Special characters */
 void	ft_expand_special_chars(t_cdata *t_cdata);
