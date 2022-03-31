@@ -12,14 +12,19 @@
 
 #include "minishell.h"
 
-/* Checking for >>, <, and > */
-int	ft_special_chars_are_valid(t_cdata *t_cdata)
+/* Expand and isolate >>, <<, <, >, and | */
+void	ft_expand_special_chars(t_cdata *t_cdata)
 {
 	ft_expand_special_char(t_cdata, ">>");
 	ft_expand_special_char(t_cdata, "<<");
 	ft_expand_special_char(t_cdata, "<");
 	ft_expand_special_char(t_cdata, ">");
 	ft_expand_special_char(t_cdata, "|");
+}
+
+/* Checking for >>, <, and > */
+int	ft_special_chars_are_valid(t_cdata *t_cdata)
+{
 	if (ft_last_node_is_special_char(t_cdata)
 		|| ft_found_adjacent_special_chars(t_cdata))
 	{
@@ -70,39 +75,4 @@ int	ft_found_special_chars_set(t_cdata *t_cdata, char *set)
 			curr = curr->next;
 	}
 	return (0);
-}
-
-/* Checking if the specified set or character are in the string */
-int	ft_has_special_char(char *str, char *set)
-{
-	if (ft_strlen(set) == 2)
-		return (ft_find_special_char_set(str, set));
-	else
-		return (ft_find_special_char_single(str, set[0]));
-}
-
-/* Checking if the specified set is in the string */
-int	ft_find_special_char_set(char *str, char *set)
-{
-	int	i;
-	int	j;
-	int	k;
-	int	len;
-
-	i = 0;
-	len = ft_strlen(set);
-	while (str[i + (len - 1)] != '\0')
-	{
-		k = i;
-		j = 0;
-		while (str[k] == set[j] && set[j] != '\0')
-		{
-			k++;
-			j++;
-		}
-		if (str[k] != set[0] && set[j] == '\0')
-			return (i);
-		i++;
-	}
-	return (-1);
 }

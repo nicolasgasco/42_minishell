@@ -170,6 +170,7 @@ char	*ft_extract_delim(t_cdata *t_cdata);
 char	*ft_remove_delim(t_cdata *t_cdata, int i);
 
 /* Expansions - Special characters */
+void	ft_expand_special_chars(t_cdata *t_cdata);
 int		ft_special_chars_are_valid(t_cdata *t_cdata);
 int		ft_expand_special_char(t_cdata *t_cdata, char *set);
 int 	ft_found_special_chars_set(t_cdata *t_cdata, char *set);

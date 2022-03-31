@@ -12,6 +12,41 @@
 
 #include "minishell.h"
 
+/* Checking if the specified set or character are in the string */
+int	ft_has_special_char(char *str, char *set)
+{
+	if (ft_strlen(set) == 2)
+		return (ft_find_special_char_set(str, set));
+	else
+		return (ft_find_special_char_single(str, set[0]));
+}
+
+/* Checking if the specified set is in the string */
+int	ft_find_special_char_set(char *str, char *set)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	len;
+
+	i = 0;
+	len = ft_strlen(set);
+	while (str[i + (len - 1)] != '\0')
+	{
+		k = i;
+		j = 0;
+		while (str[k] == set[j] && set[j] != '\0')
+		{
+			k++;
+			j++;
+		}
+		if (str[k] != set[0] && set[j] == '\0')
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
 /* Checking if the specified character is in the string */
 int	ft_find_special_char_single(char *str, char c)
 {
