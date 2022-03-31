@@ -23,6 +23,7 @@ int	main(int argc, char *argv[], char *envp[])
 		return (1);
 	}
 	ft_init_general_data(&t_cdata, envp);
+	ft_shortcuts_events();
 	ft_start_loop(&t_cdata);
 	ft_free_general_data(&t_cdata);
 	return (0);

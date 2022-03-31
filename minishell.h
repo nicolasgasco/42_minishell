@@ -73,6 +73,10 @@ struct s_tnode {
 	struct s_tnode	*prev;
 };
 
+typedef struct SignalData {
+	int	sig;
+} t_sig;
+
 /* Highest level struct with data shared by whole program */
 typedef struct CommonData
 {
