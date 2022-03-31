@@ -12,6 +12,7 @@ Test cases for parsing
     .<< delim.
     .       << delim.
     .word > word <<.
+    .word << a > miao.
 - Quotes
     .''.
     ."".
