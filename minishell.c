@@ -28,7 +28,7 @@ int	main(int argc, char *argv[], char *envp[])
 	return (0);
 }
 
-/* Input is collected, tokenized, expanded, and sent for processing */
+/* Input is collected, tokenized, expanded, and sent for execution */
 void	ft_start_loop(t_cdata *t_cdata)
 {
 	while (1)
@@ -59,6 +59,7 @@ void	ft_start_loop(t_cdata *t_cdata)
 	}
 }
 
+/* Processed input is executed */
 void	ft_start_execution(t_cdata *t_cdata)
 {
 	t_job *job;
