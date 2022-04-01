@@ -75,7 +75,8 @@ struct s_tnode {
 };
 
 typedef struct SignalData {
-	int	sig;
+	int				sig;
+	char			*prompt_text;
 } t_sig;
 
 /* Highest level struct with data shared by whole program */

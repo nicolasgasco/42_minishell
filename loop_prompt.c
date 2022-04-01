@@ -21,11 +21,12 @@ int	ft_get_valid_input(t_cdata *t_cdata, char *prompt_text)
 	delim = t_cdata->t_qdata->delim;
 	line_read = (char *) NULL;
 	line_read = ft_rl_gets(line_read, prompt_text);
-	if (!*line_read)
+	if (!line_read)
 	{
-		ft_print_new_input_header(line_read); // TBD
-		free(line_read);
-		return (0);
+		ft_free_quotes_data(t_cdata);
+		ft_free_general_data(t_cdata);
+		printf("Goodbye...\n");
+		exit(1);
 	}
 	if (t_cdata->t_qdata->raw_input)
 	{

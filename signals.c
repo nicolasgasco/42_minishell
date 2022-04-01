@@ -1,17 +1,17 @@
 #include "minishell.h"
 
-t_sig    sig_data;
+extern t_sig    sig_data;
 
 void    ft_handle_signals(int sig)
 {
     if (sig == SIGQUIT)
     {
+        printf("%s", sig_data.prompt_text);
         return ;
     }
     else if (sig == SIGINT)
     {
         // g_sig.status = 1;
-        printf("mierda\n");
         printf("\n");
         rl_on_new_line();
         rl_replace_line("", 0);
