@@ -59,7 +59,6 @@ void	ft_join_after_delimiter(t_cdata *t_cdata)
 	char	*raw_input_temp;
 
 	after_delim_temp = t_cdata->t_qdata->after_delim;
-	free(t_cdata->t_qdata->after_delim);
 	t_cdata->t_qdata->after_delim = ft_strjoin(" ", after_delim_temp);
 	free(after_delim_temp);
 	raw_input_temp = t_cdata->t_qdata->raw_input;

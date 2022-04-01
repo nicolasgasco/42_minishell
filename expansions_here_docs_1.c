@@ -40,8 +40,7 @@ char	*ft_remove_delim(t_cdata *t_cdata, int del_start)
 	delim_temp = result;
 	if (ft_has_spaces(result))
 	{
-		free(result);
-		result = ft_strtrim(delim_temp, " \t");
+		result = ft_strtrim(result, " \t");
 		free(delim_temp);
 	}
 	ft_remove_delim_from_raw_input(t_cdata, del_start);
@@ -51,11 +50,12 @@ char	*ft_remove_delim(t_cdata *t_cdata, int del_start)
 void	ft_remove_delim_from_raw_input(t_cdata *t_cdata, int delimiter_start)
 {
 	char	*raw_input_temp;
+	char	*raw_input;
 
-	raw_input_temp = t_cdata->t_qdata->raw_input;
+	raw_input = t_cdata->t_qdata->raw_input;
+	raw_input_temp = ft_substr(raw_input, 0, delimiter_start);
 	free(t_cdata->t_qdata->raw_input);
-	t_cdata->t_qdata->raw_input = ft_substr(raw_input_temp, 0, delimiter_start);
-	free(raw_input_temp);
+	t_cdata->t_qdata->raw_input = raw_input_temp;
 }
 
 int	ft_calc_delimiter_end(char *raw_input, int start)
