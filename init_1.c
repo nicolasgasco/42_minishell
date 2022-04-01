@@ -12,8 +12,6 @@
 
 #include "minishell.h"
 
-t_sig    sig_data;
-
 /* Initializing structure containing information on prompt */
 void	ft_init_prompt_data(t_cdata *t_cdata)
 {
@@ -33,7 +31,6 @@ void	ft_init_prompt_data(t_cdata *t_cdata)
 	username = t_cdata->t_pdata->username;
 	hostname = t_cdata->t_pdata->hostname;
 	t_cdata->t_pdata->prompt_text = ft_create_prompt_text(username, hostname);
-	sig_data.prompt_text = t_cdata->t_pdata->prompt_text;
 	t_cdata->t_pdata->prompt_nl_text = ft_strdup("> ");
 }
 

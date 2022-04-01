@@ -1,13 +1,10 @@
 #include "minishell.h"
 
-extern t_sig    sig_data;
-
 void    ft_handle_signals(int sig)
 {
     if (sig == SIGQUIT)
     {
-        printf("%s", sig_data.prompt_text);
-        return ;
+        // Continue
     }
     else if (sig == SIGINT)
     {
@@ -24,7 +21,9 @@ void    ft_shortcuts_events(void)
 {
     struct sigaction    sa;
 
-    sa.sa_handler = &ft_handle_signals;
+    // Add logic for when inside a process
+    sa.sa_handler = SIG_IGN;
     sigaction(SIGQUIT, &sa, NULL);
+    sa.sa_handler = &ft_handle_signals;
     sigaction(SIGINT, &sa, NULL);
 }

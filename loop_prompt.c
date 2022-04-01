@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+t_sig    sig_data;
+
 /* Collecting input from user: fresh input and repeated input of Here docs */
 int	ft_get_valid_input(t_cdata *t_cdata, char *prompt_text)
 {
@@ -25,7 +27,7 @@ int	ft_get_valid_input(t_cdata *t_cdata, char *prompt_text)
 	{
 		ft_free_quotes_data(t_cdata);
 		ft_free_general_data(t_cdata);
-		printf("Goodbye...\n");
+		printf("Exit\n");
 		exit(1);
 	}
 	if (t_cdata->t_qdata->raw_input)
