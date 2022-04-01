@@ -23,6 +23,7 @@ int	main(int argc, char *argv[], char *envp[])
 		return (1);
 	}
 	ft_init_general_data(&t_cdata, envp);
+	ft_shortcuts_events();
 	ft_start_loop(&t_cdata);
 	ft_free_general_data(&t_cdata);
 	return (0);
@@ -37,9 +38,9 @@ void	ft_start_loop(t_cdata *t_cdata)
 		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text)
 			&& ft_output_loop_error_message(t_cdata, "Invalid input"))
 			continue ;
-		if (!ft_here_doc_expansion(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "Syntax error (here doc)"))
-			continue ;
+//		if (!ft_here_doc_expansion(t_cdata)
+//			&& ft_output_loop_error_message(t_cdata, "Syntax error (here doc)"))
+//			continue ;
 		ft_expand_quotes(t_cdata);
 		if (!ft_expanded_quotes_are_valid(t_cdata)
 			&& ft_output_loop_error_message(t_cdata, "Syntax error (quotes)"))

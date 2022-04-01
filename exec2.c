@@ -146,11 +146,8 @@ int	check_redirection(t_job *job, int quit)
 			fd[1] = open_file(job->file[++i], 1, quit);
 		else if (ft_strcmp(job->file[i], ">>") == 0)
 			fd[1] = open_file(job->file[++i], 0, quit);
-//		else if (ft_strcmp(job->file[i], "<<") == 0)
-//		{
-//			fd[1] = open_file(job->file[++i], 1, quit);
-//			dup2(job->fd[0], STDIN_FILENO);
-//		}
+		else if (ft_strcmp(job->file[i], "<<") == 0)
+			dup2(job->fd[0], STDIN_FILENO);
 		i++;
 	}
 	if (fd[0] == -1 || fd[1] == -1)
@@ -201,8 +198,8 @@ int	ms_builtins(char **arg, int i, t_job *job, t_cdata *c_data)
 			c_data->exit_status = built_unset(arg + 1, c_data);
 		else if (ft_strcmp(arg[0], "env") == 0)
 			c_data->exit_status = built_envp(c_data);
-//		else if (ft_strcmp(arg[0], "exit") == 0)
-//			ms_exit(arg + 1, job);
+		else if (ft_strcmp(arg[0], "exit") == 0)
+			built_exit(arg + 1, job, c_data);
 		else
 			return (1);
 	}
@@ -268,9 +265,6 @@ void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 		close(job->previous->fd[0]);
 	close(job->fd[1]);
 }
-
-
-
 void	executor(t_job *job, t_cdata *c_data)
 {
 	t_job	*first;
@@ -278,7 +272,7 @@ void	executor(t_job *job, t_cdata *c_data)
 
 	first = job;
 	init_pipe(first);
-	if (ms_exec_builtins(job, c_data) == 1)
+	if (make_heredocs(job, c_data) == 1 || ms_exec_builtins(job, c_data) == 1)
 		return ;
 	if (job && job->cmd)
 	{

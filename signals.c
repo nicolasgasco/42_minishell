@@ -1,14 +1,22 @@
 #include "minishell.h"
 
-int	minishell_sig;
+t_sig    sig_data;
 
 void    ft_handle_signals(int sig)
 {
-    printf("%d\n", sig);
-    minishell_sig = sig;
-    if (minishell_sig == SIGINT)
+    if (sig == SIGQUIT)
     {
-        printf("\n%s", "> ");
+        return ;
+    }
+    else if (sig == SIGINT)
+    {
+        // g_sig.status = 1;
+        printf("mierda\n");
+        printf("\n");
+        rl_on_new_line();
+        rl_replace_line("", 0);
+        rl_redisplay();
+        return ;
     }
 }
 
@@ -17,5 +25,6 @@ void    ft_shortcuts_events(void)
     struct sigaction    sa;
 
     sa.sa_handler = &ft_handle_signals;
+    sigaction(SIGQUIT, &sa, NULL);
     sigaction(SIGINT, &sa, NULL);
 }
