@@ -78,6 +78,8 @@ typedef struct SignalData {
 	int	sig;
 } t_sig;
 
+extern t_sig    sig_data;
+
 /* Highest level struct with data shared by whole program */
 typedef struct CommonData
 {
