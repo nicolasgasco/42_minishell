@@ -39,7 +39,7 @@ void	ft_start_loop(t_cdata *t_cdata)
 			&& ft_output_loop_error_message(t_cdata, "Invalid input"))
 			continue ;
 		if (!ft_here_doc_expansion(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "Syntax error (here doc)"))
+			&& ft_output_loop_error_message(t_cdata, "Syntax error (h. doc)"))
 			continue ;
 		ft_expand_quotes(t_cdata);
 		if (!ft_expanded_quotes_are_valid(t_cdata)
@@ -49,12 +49,11 @@ void	ft_start_loop(t_cdata *t_cdata)
 		ft_expand_variables(t_cdata);
 		ft_expand_special_chars(t_cdata);
 		if (!ft_special_chars_are_valid(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "Syntax error (special chars)"))
+			&& ft_output_loop_error_message(t_cdata, "Syntax error (s. chars)"))
 			continue ;
 		if (!ft_remove_empty_nodes(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "Syntax error (empty nodes)"))
+			&& ft_output_loop_error_message(t_cdata, "Syntax error (e. nodes)"))
 			continue ;
-		ft_create_tokens_list(t_cdata); // Free?
 		ft_start_execution(t_cdata);
 		ft_free_loop_data(t_cdata);
 	}
@@ -63,13 +62,14 @@ void	ft_start_loop(t_cdata *t_cdata)
 /* Processed input is executed */
 void	ft_start_execution(t_cdata *t_cdata)
 {
-	t_job *job;
+	t_job	*job;
 
+	ft_create_tokens_list(t_cdata); // Free?
 	printest(t_cdata->tokens_list);
 	test(t_cdata->tokens_list);
 	tester(t_cdata->tokens_list);
 	job = ft_create_exec(job, t_cdata->tokens_list);
-	if(job)
+	if (job)
 	{
 		printf("entra en executor\n");
 		executor(ms_head_list_job(job), t_cdata);
