@@ -235,6 +235,7 @@ char	*ms_get_env(char **env, char *str);
 void	ms_set_env(char **env, char *value, t_cdata *t_cdata);
 char	**ms_matrix_add_line(char **matrix, char *new_line);
 int		built_unset(char **arg, t_cdata *t_cdata);
+int		env_compare(char **env, char **arg, int i);
 
 /* TBD */
 void    ft_print_quotes_list(struct s_qnode *list);
@@ -306,6 +307,7 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data);
 void	heredoc(char *limiter, int *fd, t_job *job);
 int	check_arg(char *arg, t_cdata *c_data);
 void	built_exit(char **arg, t_job *job, t_cdata *c_data);
+void	free_fd(t_job *first);
 
 
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/05 13:13:20 by adel-cor          #+#    #+#             */
+/*   Updated: 2022/04/05 13:49:54 by adel-cor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	ms_check_export_arg(char *arg)
@@ -8,26 +20,26 @@ int	ms_check_export_arg(char *arg)
 	if (ft_isalpha(arg[i]) == 0 && arg[i] != '_')
 	{
 		printf("export: '%s': not a valid identifier\n", arg);
-		return(1);
+		return (1);
 	}
 	i++;
 	while (arg[i] && arg[i] != '=')
 	{
-		if(ft_isalnum(arg[i]) == 0 && arg[i] != '_')
+		if (ft_isalnum(arg[i]) == 0 && arg[i] != '_')
 		{
 			printf("export: '%s': not a valid identifier\n", arg);
-			return(1);
+			return (1);
 		}
 		i++;
 	}
-	return(0);
+	return (0);
 }
 
 char	*ms_make_string(char *arg)
 {
 	char	**strings;
 	char	*string;
-	int	i;
+	int		i;
 
 	i = 1;
 	strings = ft_splitc(arg, '=');
@@ -41,7 +53,7 @@ char	*ms_make_string(char *arg)
 		string = ft_strjoin_free_s1(string, strings[i]);
 	string = ft_strjoin_free_s1(string, "\"");
 	ft_free_tab(strings);
-	return(string);
+	return (string);
 }
 
 void	ms_export_sort(t_cdata *t_cdata)
@@ -51,46 +63,46 @@ void	ms_export_sort(t_cdata *t_cdata)
 	i = 0;
 	ft_sort_tab(t_cdata->envp_export);
 	while (t_cdata->envp_export[i])
-		printf("%s\n", t_cdata->envp_export[i++]);
+		printf("declare -x %s\n", t_cdata->envp_export[i++]);
 }
 
-void	ms_export_valid_arg(char *arg, char *strings, t_cdata *t_cdata)
+void	ms_export_valid_arg(char *arg, char *strings, t_cdata *cdata)
 {
 	char	*string;
 
 	if (ft_strchr(arg, '=') == NULL)
 	{
-		if (ms_get_env(t_cdata->envp_export, strings) == NULL)
-			t_cdata->envp_export = ms_matrix_add_line(t_cdata->envp_export, arg);
+		if (ms_get_env(cdata->envp_export, strings) == NULL)
+			cdata->envp_export = ms_matrix_add_line(cdata->envp_export, arg);
 	}
 	else
 	{
 		string = ms_make_string(arg);
-		if (ms_get_env(t_cdata->envp_export, strings) != NULL)
+		if (ms_get_env(cdata->envp_export, strings) != NULL)
 		{
 			arg = ft_strdup(arg);
-			ms_set_env(t_cdata->envp, arg, t_cdata);
-			ms_set_env(t_cdata->envp_export, string, t_cdata);
+			ms_set_env(cdata->envp, arg, cdata);
+			ms_set_env(cdata->envp_export, string, cdata);
 			free(arg);
 		}
 		else
 		{
-			t_cdata->envp = ms_matrix_add_line(t_cdata->envp, arg);
-			t_cdata->envp_export = ms_matrix_add_line(t_cdata->envp_export, string);
+			cdata->envp = ms_matrix_add_line(cdata->envp, arg);
+			cdata->envp_export = ms_matrix_add_line(cdata->envp_export, string);
 		}
 		free(string);
 	}
 }
 
-int built_export(char **arg, t_cdata *t_cdata)
+int	built_export(char **arg, t_cdata *t_cdata)
 {
 	char	**strings;
-	int	i;
-	int	ret;
+	int		i;
+	int		ret;
 
 	ret = 0;
 	i = 0;
-	while(arg[i])
+	while (arg[i])
 	{
 		if (ms_check_export_arg(arg[i]) != 0)
 		{
@@ -103,7 +115,7 @@ int built_export(char **arg, t_cdata *t_cdata)
 		ft_free_tab(strings);
 		i++;
 	}
-if (arg[0] == NULL)
+	if (arg[0] == NULL)
 		ms_export_sort(t_cdata);
-	return(ret);
+	return (ret);
 }

@@ -1,22 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unset.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/05 13:34:50 by adel-cor          #+#    #+#             */
+/*   Updated: 2022/04/05 13:38:01 by adel-cor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	**ms_matrix_remove_line(char **matrix, char *line)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**new_matrix;
 
 	i = 0;
 	j = 0;
-	while(matrix[i])
+	while (matrix[i])
 		i++;
 	new_matrix = malloc(sizeof(char *) * (i + 1));
 	i = 0;
 	while (matrix[i])
 	{
-		if(ft_strcmp(matrix[i], line) == 0)
+		if (ft_strcmp(matrix[i], line) == 0)
 			i++;
-		if(matrix[i])
+		if (matrix[i])
 		{
 			new_matrix[j++] = ft_strdup(matrix[i]);
 			i++;
@@ -24,18 +36,18 @@ char	**ms_matrix_remove_line(char **matrix, char *line)
 	}
 	new_matrix[j] = NULL;
 	ft_free_tab(matrix);
-	return(new_matrix);
+	return (new_matrix);
 }
 
-int check_unset_arg(char *arg)
+int	check_unset_arg(char *arg)
 {
 	int	i;
 
 	i = 0;
-	if(ft_isalpha(arg[i]) == 0 && arg[i] != '_')
+	if (ft_isalpha(arg[i]) == 0 && arg[i] != '_')
 	{
 		printf("unset: '%s': not a valid identifier\n", arg);
-		return(1);
+		return (1);
 	}
 	i++;
 	while (arg[i])
@@ -43,32 +55,33 @@ int check_unset_arg(char *arg)
 		if ((ft_isalnum(arg[i]) == 0 && arg[i] != '_') || arg[i] == '=')
 		{
 			printf("unset: '%s': not a valid identifier\n", arg);
-			return(1);
+			return (1);
 		}
 		i++;
 	}
-	return(0);
+	return (0);
 }
 
 char	**unset_remove(char **env, char *arg)
 {
-	char *line;
+	char	*line;
 
 	line = NULL;
 	line = ms_get_env(env, arg);
 	if (line != NULL)
 		env = ms_matrix_remove_line(env, line);
-	return(env);
+	return (env);
 }
+
 int	built_unset(char **arg, t_cdata *t_cdata)
 {
-	int	i;
-	char **strings;
-	int	ret;
+	int		i;
+	char	**strings;
+	int		ret;
 
 	ret = 0;
 	i = 0;
-	while(arg[i])
+	while (arg[i])
 	{
 		if (check_unset_arg(arg[i]) != 0)
 		{
@@ -82,5 +95,5 @@ int	built_unset(char **arg, t_cdata *t_cdata)
 		ft_free_tab(strings);
 		i++;
 	}
-	return(ret);
+	return (ret);
 }

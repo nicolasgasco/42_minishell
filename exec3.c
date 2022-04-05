@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec3.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/05 12:26:44 by adel-cor          #+#    #+#             */
+/*   Updated: 2022/04/05 12:30:54 by adel-cor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	make_heredocs(t_job *job, t_cdata *c_data)
@@ -34,13 +46,11 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 	pid_t	pid;
 	int		wstatus;
 
-
 	pipe(new_fd);
 	pid = fork();
 	if (pid == 0)
 		heredoc(limiter, new_fd, job);
 	waitpid(pid, &wstatus, 0);
-
 	if (WIFEXITED(wstatus))
 		c_data->exit_status = WEXITSTATUS(wstatus);
 	dup2(new_fd[0], fd);
@@ -54,7 +64,6 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 void	heredoc(char *limiter, int *fd, t_job *job)
 {
 	char	*line;
-
 
 	line = readline("> ");
 	while (line)
@@ -70,6 +79,5 @@ void	heredoc(char *limiter, int *fd, t_job *job)
 		line = readline("> ");
 	}
 	free(line);
-//	free_exit(job);
 	exit(EXIT_SUCCESS);
 }

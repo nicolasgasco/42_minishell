@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/05 13:11:11 by adel-cor          #+#    #+#             */
+/*   Updated: 2022/04/05 13:12:16 by adel-cor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	check_arg(char *arg, t_cdata *c_data)
@@ -39,6 +51,5 @@ void	built_exit(char **arg, t_job *job, t_cdata *c_data)
 			return ;
 		}
 	}
-//	free_exit(job);
 	exit(c_data->exit_status);
 }

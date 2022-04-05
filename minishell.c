@@ -6,7 +6,7 @@
 /*   By: ngasco <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 16:52:45 by ngasco            #+#    #+#             */
-/*   Updated: 2022/03/21 16:52:46 by ngasco           ###   ########.fr       */
+/*   Updated: 2022/04/05 13:45:41 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	ft_start_execution(t_cdata *t_cdata)
 	ft_create_tokens_list(t_cdata); // Free?
 	printest(t_cdata->tokens_list);
 	test(t_cdata->tokens_list);
-	tester(t_cdata->tokens_list);
 	job = ft_create_exec(job, t_cdata->tokens_list);
 	if (job)
 	{
