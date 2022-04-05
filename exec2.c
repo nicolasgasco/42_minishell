@@ -72,11 +72,14 @@ void	init_pipe(t_job *job)
 
 void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 {
+//	signal = 1;
+//	signal
 	job->pid = fork();
 	if (job->pid == -1)
 		printf("Dang! This fork didn't work!");
 	if (job->pid == 0)
 	{
+//		signal
 		if (job->previous != NULL)
 			dup2(job->previous->fd[0], STDIN_FILENO);
 		if (job->next != NULL)
@@ -117,5 +120,8 @@ void	executor(t_job *job, t_cdata *c_data)
 				c_data->exit_status = WEXITSTATUS(status);
 			first = first->next;
 		}
+
 	}
+//	signal
+//	switch 0
 }

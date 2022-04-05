@@ -45,12 +45,13 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 	int		new_fd[2];
 	pid_t	pid;
 	int		wstatus;
-
+//	signal
 	pipe(new_fd);
 	pid = fork();
 	if (pid == 0)
 		heredoc(limiter, new_fd, job);
 	waitpid(pid, &wstatus, 0);
+//	signal
 	if (WIFEXITED(wstatus))
 		c_data->exit_status = WEXITSTATUS(wstatus);
 	dup2(new_fd[0], fd);
@@ -64,7 +65,7 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 void	heredoc(char *limiter, int *fd, t_job *job)
 {
 	char	*line;
-
+//	signal
 	line = readline("> ");
 	while (line)
 	{
