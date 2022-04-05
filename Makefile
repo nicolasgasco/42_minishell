@@ -16,8 +16,8 @@ all:
 $(NAME) : $(OBJS)
 			@ echo "Compiling..."
 			@ ${MAKE} -s ${LIBFT}
-			@ $(CC) ${FLAGS} $(OBJS) -I. ./libft/libft.a -lreadline -o $(NAME)
-			
+			@ $(CC) ${FLAGS} $(OBJS) -I. ./libft/libft.a -lreadline -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include -o $(NAME)
+
 %.o: %.c
 	$(CC) ${CFLAGS} -c $< -o $@
 	
