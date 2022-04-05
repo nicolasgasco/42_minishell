@@ -2,50 +2,61 @@
 
 t_sig    sig_data;
 
+/* Handle for case when simulation is inside main process */
 void    ft_handle_signals(int sig)
 {
-    if (sig_data.is_child == 0)
+    printf("Handler. Parent process. Minishell is NOT interactive (%d)\n", getpid());
+    if (sig == SIGINT)
     {
-        if (sig == SIGINT)
-        {
-            printf("\n");
-            rl_on_new_line();
-            rl_replace_line("", 0);
-            rl_redisplay();
-            return ;
-        }
-    }
-    else
-    {
-        printf("Handler. Child process. Minishell IS interactive\n");
-        if (sig == SIGINT || sig == SIGQUIT)
-        {
-            printf("SIGINT OR SIGQUIT\n");
-            // Free ?
-            exit(3);
-        }
+        printf("\n");
+        rl_on_new_line();
+        rl_replace_line("", 0);
+        rl_redisplay();
+        return ;
     }
 }
 
-void    ft_shortcuts_events(void)
+/* Handle for case when simulation is inside child process */
+void    ft_handle_signals_interactive(int sig)
+{
+    printf("Handler. Child process. Minishell IS interactive (%d)\n", getpid());
+    if (sig == SIGQUIT)
+    {
+        printf("SIGINT OR SIGQUIT (%d)\n", getpid());
+        // Free ?
+        // exit(3);
+    }
+}
+
+/* Case when simulation is inside main process */
+void    ft_shortcut_events(void)
 {
     struct sigaction    sa;
 
-    if (sig_data.is_child == 0)
-    {
-        printf("Initializer. Main process. Minishell is NOT interactive\n");
-        ft_ignore_signal(sa, SIGQUIT);
-        sa.sa_handler = &ft_handle_signals;
-        sigaction(SIGINT, &sa, NULL);
-    }
-    else
-    {
-        sa.sa_handler = &ft_handle_signals;
-        sigaction(SIGQUIT, &sa, NULL);
-        sigaction(SIGINT, &sa, NULL);
-        printf("Initializer. Child process. Minishell IS interactive\n");
+    printf("Initializer. Main process. Minishell is NOT interactive (%d)\n", getpid());
+    ft_ignore_signal(sa, SIGQUIT);
+    sa.sa_handler = &ft_handle_signals;
+    sigaction(SIGINT, &sa, NULL);
+}
 
-    }
+/* Case when simulation is inside child process) */
+void    ft_shortcut_events_interactive(void)
+{
+    struct sigaction    sa_interactive;
+
+    printf("Initializer. Child process. Minishell IS interactive (%d)\n", getpid());
+    sa_interactive.sa_handler = &ft_handle_signals_interactive;
+    sigaction(SIGQUIT, &sa_interactive, NULL);
+}
+
+/* Make a process ignore all signals */
+void    ft_ignore_all_signals(void)
+{
+    struct sigaction    sa;
+
+    printf("Ignoring all signals (%d)\n", getpid());
+    ft_ignore_signal(sa, SIGQUIT);
+    ft_ignore_signal(sa, SIGINT);
 }
 
 /* When not interactive, ctr + \ is ignored */

@@ -205,9 +205,12 @@ void	ft_add_token_to_list(t_cdata *t_cdata, char *s, char q_type);
 int		ft_output_loop_error_message(t_cdata *t_cdata, char *message);
 
 /* Keyword events */
-void    ft_shortcuts_events(void);
+void    ft_shortcut_events(void);
+void    ft_shortcut_events_interactive(void);
 void    ft_handle_signals(int sig);
+void    ft_handle_signals_interactive(int sig);
 void    ft_ignore_signal(struct sigaction sa, int sig);
+void    ft_ignore_all_signals(void);
 
 /* Execution */
 void	ft_start_execution(t_cdata *t_cdata);
