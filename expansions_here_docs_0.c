@@ -15,8 +15,7 @@
 /* Initialize Here doc loop, if any */
 int	ft_here_doc_expansion(t_cdata *t_cdata)
 {
-	if (ft_found_lonely_here_marker(t_cdata->t_qdata->raw_input)
-		|| ft_found_here_marker_without_cmd(t_cdata->t_qdata->raw_input))
+	if (ft_found_lonely_here_marker(t_cdata->t_qdata->raw_input))
 	{
 		t_cdata->syntax_error = 1;
 		return (0);

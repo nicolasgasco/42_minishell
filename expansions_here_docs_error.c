@@ -26,17 +26,3 @@ int	ft_found_lonely_here_marker(char *str)
 	free(temp);
 	return (0);
 }
-
-int	ft_found_here_marker_without_cmd(char *str)
-{
-	char	*temp;
-
-	temp = ft_strtrim(str, "\n\t ");
-	if (temp[0] == '<' && temp[1] == '<')
-	{
-		free(temp);
-		return (1);
-	}
-	free(temp);
-	return (0);
-}
