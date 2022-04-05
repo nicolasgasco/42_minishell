@@ -8,6 +8,7 @@ void    ft_handle_signals(int sig)
     printf("Handler. Parent process. Minishell is NOT interactive (%d)\n", getpid());
     if (sig == SIGINT)
     {
+        printf("SIGINT in parent process (%d)\n", getpid());
         printf("\n");
         rl_on_new_line();
         rl_replace_line("", 0);
@@ -22,7 +23,7 @@ void    ft_handle_signals_interactive(int sig)
     printf("Handler. Child process. Minishell IS interactive (%d)\n", getpid());
     if (sig == SIGQUIT || sig == SIGINT)
     {
-        printf("SIGINT OR SIGQUIT (%d)\n", getpid());
+        printf("SIGINT or SIGQUIT in child process (%d)\n", getpid());
         // Free ?
         exit(3);
     }

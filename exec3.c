@@ -55,6 +55,8 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 		ft_shortcut_events_interactive();
 		heredoc(limiter, new_fd, job);
 	}
+	else
+		ft_ignore_all_signals();
 	waitpid(pid, &wstatus, 0);
 	sig_data.is_child = 0;
 //	signal
