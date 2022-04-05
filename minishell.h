@@ -221,6 +221,8 @@ void		ft_free_tab(char **tab);
 char		*ft_strjoin_free_s1(char *s1, char const *s2);
 void		ft_sort_tab(char **arr);
 char		**ft_splitc(char const *s, char c);
+long long	ft_atoll(const char *nptr);
+int			ft_isllong(char *str);
 
 
 /*Builtins */
