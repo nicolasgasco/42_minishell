@@ -25,7 +25,7 @@ int	ft_get_valid_input(t_cdata *t_cdata, char *prompt_text)
 	{
 		ft_free_quotes_data(t_cdata);
 		ft_free_general_data(t_cdata);
-		printf("Exit\n");
+		printf("exit\n");
 		exit(1);
 	}
 	ft_print_new_input_header(line_read);

@@ -18,6 +18,7 @@ void	ft_init_reset_loop_data(t_cdata *t_cdata)
 	t_cdata->syntax_error = 0;
 	t_cdata->tokens_list = NULL;
 	ft_init_quotes_data(t_cdata);
+	memset(&sig_data, 0, sizeof(t_sig));
 }
 
 // Structure with global data

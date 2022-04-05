@@ -76,6 +76,7 @@ struct s_tnode {
 
 typedef struct SignalData {
 	int	sig;
+	int	is_child;
 } t_sig;
 
 extern t_sig    sig_data;
@@ -206,6 +207,7 @@ int		ft_output_loop_error_message(t_cdata *t_cdata, char *message);
 /* Keyword events */
 void    ft_shortcuts_events(void);
 void    ft_handle_signals(int sig);
+void    ft_ignore_signal(struct sigaction sa, int sig);
 
 /* Execution */
 void	ft_start_execution(t_cdata *t_cdata);
