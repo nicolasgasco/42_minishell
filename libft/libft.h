@@ -55,6 +55,6 @@ void		ft_putnbr_fd(int n, int fd);
 void		ft_put_err(int code);
 int			ft_strcmp(const char *s1, const char *s2);
 size_t		ft_strcpy(char *dst, const char *src);
-char	    *ft_strnstr(const char	*big, const char *little, size_t len);
+char		*ft_strnstr(const char	*big, const char *little, size_t len);
 
 #endif
