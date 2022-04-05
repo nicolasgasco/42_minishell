@@ -20,11 +20,11 @@ void    ft_handle_signals(int sig)
 void    ft_handle_signals_interactive(int sig)
 {
     printf("Handler. Child process. Minishell IS interactive (%d)\n", getpid());
-    if (sig == SIGQUIT)
+    if (sig == SIGQUIT || sig == SIGINT)
     {
         printf("SIGINT OR SIGQUIT (%d)\n", getpid());
         // Free ?
-        // exit(3);
+        exit(3);
     }
 }
 
@@ -47,6 +47,7 @@ void    ft_shortcut_events_interactive(void)
     printf("Initializer. Child process. Minishell IS interactive (%d)\n", getpid());
     sa_interactive.sa_handler = &ft_handle_signals_interactive;
     sigaction(SIGQUIT, &sa_interactive, NULL);
+    sigaction(SIGINT, &sa_interactive, NULL);
 }
 
 /* Make a process ignore all signals */

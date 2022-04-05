@@ -47,10 +47,16 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 	int		wstatus;
 //	signal
 	pipe(new_fd);
+	sig_data.is_child = 1;
 	pid = fork();
 	if (pid == 0)
+	{
+		printf("Inside %d\n", getpid());
+		ft_shortcut_events_interactive();
 		heredoc(limiter, new_fd, job);
+	}
 	waitpid(pid, &wstatus, 0);
+	sig_data.is_child = 0;
 //	signal
 	if (WIFEXITED(wstatus))
 		c_data->exit_status = WEXITSTATUS(wstatus);
