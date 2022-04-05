@@ -198,8 +198,8 @@ int	ms_builtins(char **arg, int i, t_job *job, t_cdata *c_data)
 			c_data->exit_status = built_unset(arg + 1, c_data);
 		else if (ft_strcmp(arg[0], "env") == 0)
 			c_data->exit_status = built_envp(c_data);
-//		else if (ft_strcmp(arg[0], "exit") == 0)
-//			ms_exit(arg + 1, job);
+		else if (ft_strcmp(arg[0], "exit") == 0)
+			built_exit(arg + 1, job, c_data);
 		else
 			return (1);
 	}
@@ -272,7 +272,7 @@ void	executor(t_job *job, t_cdata *c_data)
 
 	first = job;
 	init_pipe(first);
-	if (ms_exec_builtins(job, c_data) == 1)
+	if (make_heredocs(job, c_data) == 1 || ms_exec_builtins(job, c_data) == 1)
 		return ;
 	if (job && job->cmd)
 	{

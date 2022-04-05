@@ -85,7 +85,7 @@ t_job	*redirection_to_tab(struct s_tnode *token, t_job *job)
 bool	is_redirection(struct s_tnode *token)
 {
 	if (token->type == REDIR_L || token->type == REDIR_R 
-		|| token->type == APPEND)
+		|| token->type == APPEND || token->type == HEREDOC_L)
 		return (true);
 	return (false);
 }
@@ -100,7 +100,7 @@ int	counter_string(struct s_tnode *tok)
 		if (tok->type == PIPE)
 			tok = tok->next;
 		else if (tok->type == REDIR_L || tok->type == REDIR_R
-			|| tok->type == APPEND)
+			|| tok->type == APPEND || tok->type == HEREDOC_L)
 			tok = tok->next;
 		else if (tok->type == STRING)
 			i++;

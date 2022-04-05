@@ -8,7 +8,6 @@ void    ft_handle_signals(int sig)
     }
     else if (sig == SIGINT)
     {
-        // g_sig.status = 1;
         printf("\n");
         rl_on_new_line();
         rl_replace_line("", 0);
@@ -25,5 +24,6 @@ void    ft_shortcuts_events(void)
     sa.sa_handler = SIG_IGN;
     sigaction(SIGQUIT, &sa, NULL);
     sa.sa_handler = &ft_handle_signals;
+    sigaction(SIGQUIT, &sa, NULL);
     sigaction(SIGINT, &sa, NULL);
 }

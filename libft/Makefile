@@ -19,6 +19,10 @@ SRCS    = ft_bzero.c\
           ft_itoa.c\
           ft_putchar_fd.c\
           ft_putstr_fd.c\
+	  ft_putendl_fd.c\
+	  ft_atoll.c\
+	  ft_isdigit.c\
+	  ft_isllong.c\
 
 LIBC    = ar -rcs
 CC      = gcc
