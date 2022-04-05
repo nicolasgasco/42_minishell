@@ -65,7 +65,7 @@ void	ft_split_and_generate_spaced_node(struct s_qnode *curr)
 	t_len = ft_calc_spaces_token_len(curr->str);
 	token = (char *)malloc(sizeof(char) * t_len + 1);
 	ft_strlcpy(token, curr->str, t_len + 1);
- 	rest = ft_create_rest_str(curr->str, t_len);
+	rest = ft_create_rest_str(curr->str, t_len);
 	free(curr->str);
 	curr->str = token;
 	curr->length = ft_strlen(token);

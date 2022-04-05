@@ -125,7 +125,6 @@ void	ft_free_envp(t_cdata *t_cdata);
 /* Prompt */
 int		ft_get_valid_input(t_cdata *t_cdata, char *prompt_text);
 char	*ft_rl_gets(char *line_read, char *prompt_text);
-char	*ft_append_newline(char *raw_input);
 
 /* Expansions - quotes (tokens) */
 int		ft_expanded_quotes_are_valid(t_cdata *t_cdata);

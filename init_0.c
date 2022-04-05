@@ -75,4 +75,3 @@ void	init_export(t_cdata *t_cdata)
 	}
 	t_cdata->envp_export[i] = NULL;
 }
-

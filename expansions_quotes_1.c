@@ -92,12 +92,16 @@ void	ft_add_node_quotes(t_qdata *t_qdata, int end, char quote)
 char	*ft_write_str_to_node(t_qdata *t_qdata, int end)
 {
 	if (end - t_qdata->start > 1)
-		return (ft_create_quoted_token(t_qdata->raw_input, t_qdata->start, end - t_qdata->start));
+		return (ft_create_quoted_token(t_qdata->raw_input,
+				t_qdata->start, end - t_qdata->start));
 	else
 	{
-		if (t_qdata->raw_input[t_qdata->start] == '\'' || t_qdata->raw_input[t_qdata->start] == '\"')
-			return ((ft_create_quoted_token_empty(t_qdata->raw_input, t_qdata->start)));
+		if (t_qdata->raw_input[t_qdata->start] == '\''
+			|| t_qdata->raw_input[t_qdata->start] == '\"')
+			return ((ft_create_quoted_token_empty(t_qdata->raw_input,
+						t_qdata->start)));
 		else
-			return (ft_create_unquoted_token(t_qdata->raw_input, t_qdata->start, end - t_qdata->start));
+			return (ft_create_unquoted_token(t_qdata->raw_input, t_qdata->start,
+					end - t_qdata->start));
 	}
 }

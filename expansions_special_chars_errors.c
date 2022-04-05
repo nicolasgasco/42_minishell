@@ -22,7 +22,8 @@ int	ft_found_adjacent_special_chars(t_cdata *t_cdata)
 	{
 		if (curr->next)
 		{
-			if (ft_is_special_str(curr->str) && ft_is_special_str(curr->next->str)
+			if (ft_is_special_str(curr->str)
+				&& ft_is_special_str(curr->next->str)
 				|| ft_found_adjecent_pipes(curr->str))
 				return (1);
 		}
@@ -42,7 +43,6 @@ int	ft_is_special_str(char *str)
 		return (1);
 	return (0);
 }
-
 
 /* Check if string contains two pipes */
 int	ft_found_adjecent_pipes(char *str)
@@ -67,7 +67,6 @@ int	ft_last_node_is_special_char(t_cdata *t_cdata)
 	struct s_qnode	*curr;
 
 	curr = t_cdata->t_qdata->quotes_list;
-
 	while (1)
 	{
 		if (curr->next == NULL && ft_is_special_str(curr->str))
