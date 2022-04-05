@@ -20,6 +20,7 @@ void	ft_expand_special_chars(t_cdata *t_cdata)
 	ft_expand_special_char(t_cdata, "<");
 	ft_expand_special_char(t_cdata, ">");
 	ft_expand_special_char(t_cdata, "|");
+	ft_remove_empty_nodes(t_cdata);
 }
 
 /* Checking for >>, <, and > */
@@ -33,7 +34,7 @@ int	ft_special_chars_are_valid(t_cdata *t_cdata)
 	}	
 	else
 	{
-		// ft_print_after_special_chars_expansion(t_cdata); // TBD
+		ft_print_after_special_chars_expansion(t_cdata); // TBD
 		return (1);
 	}
 }
