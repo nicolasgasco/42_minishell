@@ -39,7 +39,7 @@ int	ft_found_variable_to_expand(t_cdata *t_cdata)
 		{
 			if (ft_find_dollar(curr->str))
 			{
-				curr->str = ft_add_variable_values(curr->str, t_cdata);
+				curr->str = ft_add_variable_value(curr->str, t_cdata);
 				curr->q_type = '\"';
 				curr->length = ft_strlen(curr->str);
 				found_var = 1;
@@ -69,7 +69,7 @@ int	ft_find_dollar(char *str)
 }
 
 /* 3/4 Outside quotes, variables are expanded to their value */
-char	*ft_add_variable_values(char *str, t_cdata *t_cdata)
+char	*ft_add_variable_value(char *str, t_cdata *t_cdata)
 {
 	int	i;
 	int	start;
@@ -86,7 +86,8 @@ char	*ft_add_variable_values(char *str, t_cdata *t_cdata)
 				i++;
 			else
 			{
-				while (str[i] >= 'A' && str[i] <= 'Z')
+				while ((str[i] >= 'A' && str[i] <= 'Z')
+					|| (str[i] >= 'a' && str[i] <= 'z'))
 					i++;
 			}
 			break ;
