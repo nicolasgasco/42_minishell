@@ -20,7 +20,7 @@ void	ft_expand_spaces(t_cdata *t_cdata)
 		if (!ft_found_space_to_split(t_cdata))
 			break ;
 	}
-	ft_print_after_spaces_expansion(t_cdata);
+	ft_print_after_spaces_expansion(t_cdata); // TBD
 }
 
 /* Iterate list looking for a space */
