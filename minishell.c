@@ -26,9 +26,10 @@ int	main(int argc, char *argv[], char *envp[])
 		return (1);
 	}
 	ft_init_general_data(&t_cdata, envp);
-	output = fopen("output", "w+");
+	output = fopen("output.txt", "w+");
 	ft_start_loop(&t_cdata);
 	ft_free_general_data(&t_cdata);
+	fclose(output);
 	return (0);
 }
 

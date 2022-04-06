@@ -44,7 +44,7 @@ void    ft_print_unknown_command(void)
 void    ft_print_after_spaces_expansion(t_cdata *t_cdata)
 {
 
-    fprintf(output, "List after spaces expansion");
+    fprintf(output, "List after spaces expansion:\n");
     ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
 }
 
