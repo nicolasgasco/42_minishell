@@ -40,6 +40,7 @@ void ft_shortcut_events(void)
 
     fprintf(output, "Initializer. Main process. Minishell is NOT interactive (%d)\n", getpid());
     fflush(output);
+    memset(&sa, 0, sizeof(struct sigaction));
     ft_ignore_signal(sa, SIGQUIT);
     sa.sa_handler = &ft_handle_signals;
     sigaction(SIGINT, &sa, NULL);
@@ -52,6 +53,7 @@ void ft_shortcut_events_interactive(void)
 
     fprintf(output, "Initializer. Child process. Minishell IS interactive (%d)\n", getpid());
     fflush(output);
+    memset(&sa_interactive, 0, sizeof(struct sigaction));
     sa_interactive.sa_handler = &ft_handle_signals_interactive;
     sigaction(SIGQUIT, &sa_interactive, NULL);
     sigaction(SIGINT, &sa_interactive, NULL);
@@ -63,6 +65,7 @@ void ft_ignore_all_signals(void)
     struct sigaction sa;
 
     fprintf(output, "Initializer. Child process. Minishell IS interactive (%d)\n", getpid());
+    memset(&sa, 0, sizeof(struct sigaction));
     ft_ignore_signal(sa, SIGQUIT);
     ft_ignore_signal(sa, SIGINT);
 }
