@@ -33,7 +33,10 @@ int	ft_get_valid_input(t_cdata *t_cdata, char *prompt_text)
 	t_cdata->t_qdata->raw_input = ft_strdup(line_read);
 	free(line_read);
 	if (!*(t_cdata->t_qdata->raw_input))
+	{
+		ft_free_quotes_data(t_cdata);
 		return (0);
+	}
 	return (1);
 }
 
