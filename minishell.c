@@ -58,8 +58,7 @@ void	ft_start_loop(t_cdata *t_cdata)
 		if (!ft_special_chars_are_valid(t_cdata)
 			&& ft_output_loop_error_message(t_cdata, "Syntax error (s. chars)"))
 			continue ;
-		if (!ft_remove_empty_nodes(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "Syntax error (e. nodes)"))
+		if (!ft_remove_empty_nodes(t_cdata))
 			continue ;
 		fflush(output);
 		ft_start_execution(t_cdata);

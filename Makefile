@@ -1,6 +1,7 @@
 NAME = minishell
 
-SRCS =	TBD_printf.c \
+SRCS =	minishell.c \
+		TBD_printf.c \
 		cd.c \
 		cd1.c \
 		echo.c \
@@ -36,11 +37,15 @@ SRCS =	TBD_printf.c \
 		init_0.c \
 		init_1.c \
 		keyboard_events.c \
-		loop_prompt.c \	minishell.c \
+		loop_prompt.c \
 		pwd.c \
 		signals.c \
 		sniper.c \
 		unset.c \
+		./libft_custom/libft_custom_0.c \
+		./libft_custom/libft_custom_1.c \
+		./libft_custom/libft_custom_2.c \
+
 
 LIBC    = ar -rcs
 FLAGS 	= -Wall -Wextra -Werror -g
