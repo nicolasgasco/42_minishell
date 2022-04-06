@@ -27,6 +27,8 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	ft_init_general_data(&t_cdata, envp);
 	output = fopen("output.txt", "w+");
+	fprintf(output, "Opening file for writing output.\n\n");
+	fflush(output);
 	ft_start_loop(&t_cdata);
 	ft_free_general_data(&t_cdata);
 	fclose(output);
