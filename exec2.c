@@ -72,16 +72,12 @@ void	init_pipe(t_job *job)
 
 void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 {
-//	signal = 1;
-//	signal
-	sig_data.is_child = 1;
+	// sig_data.is_child = 1;
 	job->pid = fork();
 	if (job->pid == -1)
 		printf("Dang! This fork didn't work!");
 	if (job->pid == 0)
 	{
-//		signal
-		printf("Inside %d\n", getpid());
 		ft_shortcut_events_interactive();
 		if (job->previous != NULL)
 			dup2(job->previous->fd[0], STDIN_FILENO);
@@ -93,7 +89,7 @@ void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 		free_fd(first);
 		if (job->cmd && ms_builtins(job->cmd, 1, first, c_data) == 1)
 			execute(job->cmd, first, c_data);
-		sig_data.is_child = 0;
+		// sig_data.is_child = 0;
 	}
 	else
 		ft_ignore_all_signals();
