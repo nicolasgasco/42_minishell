@@ -87,7 +87,7 @@ t_job	*ft_create_exec(t_job *job, struct s_tnode *token)
 		}
 		token = token->next;
 	}
-	printf("sale del bucle\n");
+	// printf("sale del bucle\n");
 	free_token_lst(ms_head_list(token));
 	return (ms_head_list_job(job));
 }			

@@ -79,7 +79,7 @@ void	ft_start_execution(t_cdata *t_cdata)
 	job = ft_create_exec(job, t_cdata->tokens_list);
 	if (job)
 	{
-		printf("entra en executor\n");
+		// printf("entra en executor\n");
 		executor(ms_head_list_job(job), t_cdata);
 	}
 }

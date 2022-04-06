@@ -73,7 +73,7 @@ int	built_cd(char *arg, t_cdata *t_cdata)
 		arg = ms_get_env(t_cdata->envp, "HOME") + 5;
 		if ((arg -5) == NULL)
 		{
-			printf("cd: HOME not set\n");
+			// printf("cd: HOME not set\n");
 			return (1);
 		}
 	}
