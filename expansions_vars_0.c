@@ -18,7 +18,7 @@ void	ft_expand_variables(t_cdata *t_cdata)
 {
 	while (1)
 	{
-		ft_print_after_variables_expansion(t_cdata);
+		// ft_print_after_variables_expansion(t_cdata);
 		if (!ft_found_variable_to_expand(t_cdata))
 			break ;
 	}
@@ -59,9 +59,9 @@ int	ft_find_dollar(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i + 1] != '\0')
 	{
-		if (str[i] == '$')
+		if (str[i] == '$' && str[i + 1] != '\0')
 			return (1);
 		i++;
 	}
