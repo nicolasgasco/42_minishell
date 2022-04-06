@@ -18,7 +18,6 @@ void	ft_expand_variables(t_cdata *t_cdata)
 {
 	while (1)
 	{
-		// ft_print_after_variables_expansion(t_cdata);
 		if (!ft_found_variable_to_expand(t_cdata))
 			break ;
 	}
@@ -108,6 +107,7 @@ char	*ft_expand_var_value(t_cdata *t_cdata, char *str, int start, int end)
 	{
 		var_value = ft_itoa(t_cdata->exit_status);
 		result = ft_splice_var_value(str, var_value, start, end);
+		free(str);
 		free(var_value);
 	}
 	else
