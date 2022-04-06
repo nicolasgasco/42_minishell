@@ -12,6 +12,9 @@
 
 #include "minishell.h"
 
+FILE *output; // TBD
+
+
 /* No arguments accepted, global data initialization, loop initialization */
 int	main(int argc, char *argv[], char *envp[])
 {
@@ -23,6 +26,7 @@ int	main(int argc, char *argv[], char *envp[])
 		return (1);
 	}
 	ft_init_general_data(&t_cdata, envp);
+	output = fopen("output", "w+");
 	ft_start_loop(&t_cdata);
 	ft_free_general_data(&t_cdata);
 	return (0);
@@ -54,7 +58,9 @@ void	ft_start_loop(t_cdata *t_cdata)
 		if (!ft_remove_empty_nodes(t_cdata)
 			&& ft_output_loop_error_message(t_cdata, "Syntax error (e. nodes)"))
 			continue ;
+		fflush(output);
 		ft_start_execution(t_cdata);
+		fflush(output);
 		ft_free_loop_data(t_cdata);
 	}
 }

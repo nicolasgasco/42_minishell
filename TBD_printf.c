@@ -10,120 +10,65 @@
 
 void    ft_print_special_char_detected(void)
 {
-    printf("\033[0;33m");
-    printf("Special character detected.\n\n");
-    printf("\033[0m");
+    fprintf(output, "Special character detected.\n\n");
+    fflush(output);
 }
 
 void    ft_print_syntax_error(void)
 {
-    printf("\033[0;31m");
-    printf("Syntax error.\n");
-    printf("\033[0m");
-    printf("\n__________________________________________________________________________\n\n");
+    fprintf(output, "Syntax error.\n");
+    fprintf(output, "\n__________________________________________________________________________\n\n");
+    fflush(output);
 }
 
 void    ft_print_no_special_char_detected(void)
 {
-    printf("\033[0;33m");
-    printf("No special character detected.\n\n");
-    printf("\033[0m");
+    fprintf(output, "No special character detected.\n\n");
 }
 
 void    ft_print_unclosed_quotes(void)
 {
-    printf("\033[0;33m");
-    printf("Syntax error: Unclosed quotes\n");
-    printf("\033[0m");
-    printf("\n__________________________________________________________________________\n\n");
+    fprintf(output, "Syntax error: Unclosed quotes\n");
 }
 
 void    ft_print_here_doc_detected(void)
 {
-    printf("\033[0;33m");
-    printf("Here document detected.\n\n");
-    printf("\033[0m");
+    fprintf(output, "Here document detected.\n\n");
 }
 
 void    ft_print_unknown_command(void)
 {
-    printf("\033[0;31m");
-    printf("Unknown command.\n");
-    printf("\033[0m");
+    fprintf(output, "Unknown command.\n");
 }
 
 void    ft_print_after_spaces_expansion(t_cdata *t_cdata)
 {
-	printf("\033[0;34m");
-	printf("List after ");
-	printf("\033[0m");
-    printf("\033[0;33m");
-    printf("spaces");
-    printf("\033[0m");
-    printf("\033[0;34m");
-	printf(" expansion");
-	printf("\033[0m");
-	printf(":\n");
+
+    fprintf(output, "List after spaces expansion");
     ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
 }
 
 void    ft_print_after_empty_removal(t_cdata *t_cdata)
 {
-    printf("\033[0;34m");
-	printf("List after removal of ");
-	printf("\033[0m");
-    printf("\033[0;33m");
-    printf("empty");
-    printf("\033[0m");
-    printf("\033[0;34m");
-	printf(" nodes");
-	printf("\033[0m");
-    printf(":\n");
+    fprintf(output, "List after removal of empty nodes:\n");
     ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
 }
 
 void    ft_print_after_quotes_expansion(t_cdata *t_cdata)
 {
-	printf("\033[0;34m");
-	printf("List after ");
-	printf("\033[0m");
-    printf("\033[0;33m");
-    printf("quotes");
-    printf("\033[0m");
-    printf("\033[0;34m");
-	printf(" expansion");
-	printf("\033[0m");
-	printf(":\n");
+    fprintf(output, "List after quotes expansion:\n");
 	ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
 }
 
 void    ft_print_after_variables_expansion(t_cdata *t_cdata)
 {
-	printf("\033[0;34m");
-	printf("List after ");
-	printf("\033[0m");
-    printf("\033[0;33m");
-    printf("variables");
-    printf("\033[0m");
-    printf("\033[0;34m");
-	printf(" expansion");
-	printf("\033[0m");
-	printf(":\n");
+    fprintf(output, "List after variables expansion :\n");
 	ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
 }
 
 void    ft_print_after_special_chars_expansion(t_cdata *t_cdata)
 {
-	printf("\033[0;34m");
-	printf("List after ");
-	printf("\033[0m");
-    printf("\033[0;33m");
-    printf("special chars");
-    printf("\033[0m");
-    printf("\033[0;34m");
-	printf(" expansion");
-	printf("\033[0m");
-	printf(":\n");
+    fprintf(output, " List after special chars expansion:\n");
 	ft_print_quotes_list(t_cdata->t_qdata->quotes_list);
 }
 
@@ -131,19 +76,14 @@ void    ft_print_new_input_header(char *line_read)
 {
     if (*line_read)
     {
-        printf("\n\n--------------------------------------------------------------------------\n");
-        printf("                               New input");
-        printf("\n--------------------------------------------------------------------------\n\n");
-        printf("\033[0;34m");
-        printf("Raw input");
-        printf("\033[0m");
-        printf(":\n\t.%s.\n\n", line_read);
+        fprintf(output, "\n\n--------------------------------------------------------------------------\n");
+        fprintf(output, "                               New input");
+        fprintf(output, "\n--------------------------------------------------------------------------\n\n");
+        fprintf(output, "Raw input:\n\t.%s.\n\n", line_read);
     }
     else
     {
-        printf("\033[0;34m");
-        printf("\nEmpty input.\n\n");
-        printf("\033[0m");   
+        fprintf(output, "\nEmpty input.\n\n");
     }
 }
 
@@ -156,22 +96,19 @@ void    ft_print_quotes_list(struct s_qnode *list)
 	curr = list;
 	while (1)
 	{
-        printf("\t%d) .%s. [%c] \t\t(%d chars)\n", i, curr->str, curr->q_type, curr->length);
+        fprintf(output, "\t%d) .%s. [%c] \t\t(%d chars)\n", i, curr->str, curr->q_type, curr->length);
 		if (curr->next == NULL)
 			break;
 		else
 			curr = curr->next;
 		i++;
 	}
-    printf("\n");
+    fprintf(output, "\n");
 }
 
 void    ft_print_cmd(t_cdata *t_cdata)
 {
-    printf("\033[0;34m");
-    printf("Command");
-    printf("\033[0m");
-    printf(":\n\t.%s.\n\n", t_cdata->cmd);
+    fprintf(output, "Command:\n\t.%s.\n\n", t_cdata->cmd);
 }
 
 void    ft_output_epic_welcome(t_cdata *t_cdata)
@@ -204,21 +141,18 @@ void    ft_print_tokens_list(struct s_tnode *list)
 	
 	i = 0;
 	curr = list;
-	printf("\033[0;34m");
-	printf("Tokens list");
-	printf("\033[0m");
-	printf(":\n");
+    fprintf(output, "Tokens list:\n");
 	while (1)
 	{
 		if (curr->prev)
-        	printf("\t%d) .%s. [%c] (%d chars) [Prev->str is .%s.]\n", i, curr->str, curr->q_type, curr->len, curr->prev->str);
+            fprintf(output, "\t%d) .%s. [%c] (%d chars) [Prev->str is .%s.]\n", i, curr->str, curr->q_type, curr->len, curr->prev->str);
 		else
-			printf("\t%d) .%s. [%c] (%d chars) [Prev is NULL]\n", i, curr->str, curr->q_type, curr->len);
+            fprintf(output, "\t%d) .%s. [%c] (%d chars) [Prev is NULL]\n", i, curr->str, curr->q_type, curr->len);
 		if (curr->next == NULL)
 			break;
 		else
 			curr = curr->next;
 		i++;
 	}
-    printf("\n");
+    fprintf(output, "\n");
 }

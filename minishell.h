@@ -96,6 +96,8 @@ typedef struct CommonData
 	t_qdata			*t_qdata;
 } t_cdata;
 
+extern FILE *output; // TBD
+
 /* Necessary to fix 'implicit declaration' error on MacOs */
 void rl_replace_line (const char *text, int clear_undo);
 
