@@ -1,8 +1,46 @@
 NAME = minishell
 
-SRCS = $(wildcard *.c)
-
-SRCS += $(wildcard libft_custom/*.c)
+SRCS =	TBD_printf.c \
+		cd.c \
+		cd1.c \
+		echo.c \
+		env.c \
+		errors.c \
+		exec.c \
+		exec2.c \
+		exec3.c \
+		exec4.c \
+		exec5.c \
+		exec6.c \
+		exec7.c \
+		exit.c \
+		expansions_empty_nodes.c \
+		expansions_here_docs_0.c \
+		expansions_here_docs_1.c \
+		expansions_here_docs_error.c \
+		expansions_quotes_0.c \
+		expansions_quotes_1.c \
+		expansions_quotes_2.c \
+		expansions_quotes_utils.c \
+		expansions_spaces.c \
+		expansions_spaces_utils.c \
+		expansions_special_chars_0.c \
+		expansions_special_chars_1.c \
+		expansions_special_chars_errors.c \
+		expansions_tokens.c \
+		expansions_vars_0.c \
+		expansions_vars_1.c \
+		export.c \
+		free_0.c \
+		free_1.c \
+		init_0.c \
+		init_1.c \
+		keyboard_events.c \
+		loop_prompt.c \	minishell.c \
+		pwd.c \
+		signals.c \
+		sniper.c \
+		unset.c \
 
 LIBC    = ar -rcs
 FLAGS 	= -Wall -Wextra -Werror -g
@@ -16,7 +54,7 @@ all:
 $(NAME) : $(OBJS)
 			@ echo "Compiling..."
 			@ ${MAKE} -s ${LIBFT}
-			@ $(CC) ${FLAGS} $(OBJS) -I. ./libft/libft.a -lreadline -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include -o $(NAME)
+			@ gcc ${FLAGS} $(OBJS) -I. ./libft/libft.a -lreadline -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include -o $(NAME)
 
 %.o: %.c
 	$(CC) ${CFLAGS} -c $< -o $@
