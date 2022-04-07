@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:21:22 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/05 11:31:57 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:15:13 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	built_cd(char *arg, t_cdata *t_cdata)
 		arg = ms_get_env(t_cdata->envp, "HOME") + 5;
 		if ((arg -5) == NULL)
 		{
-			// printf("cd: HOME not set\n");
+			printf("cd: HOME not set\n");
 			return (1);
 		}
 	}

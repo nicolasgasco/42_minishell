@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 12:42:50 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/05 12:50:54 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:15:08 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ void	free_ex(t_job *job, t_cdata *c_data)
 	ft_free_tab(c_data->envp);
 	ft_free_tab(c_data->envp_export);
 	free_job_lst(job);
-	rl_clear_history();
+	clear_history();
 }
