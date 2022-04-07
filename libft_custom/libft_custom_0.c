@@ -42,7 +42,7 @@ char	*ft_strcat(char *src, char *dest)
 	return (result);
 }
 
-/* 1/3 Ft_strtrim with free on the first string */
+/* 1/4 Ft_strtrim with free on the first string */
 char	*ft_strtrim_free(char *s1, char const *set)
 {
 	int		start;
@@ -53,16 +53,14 @@ char	*ft_strtrim_free(char *s1, char const *set)
 		return (NULL);
 	if (!s1)
 	{
-		res = malloc(1 * sizeof(char));
-		res[0] = '\0';
+		res = ft_create_empty_string();
 		return (res);
 	}
 	end = ft_calc_end(s1, set);
 	start = ft_calc_start(s1, set);
 	if (start > end)
 	{
-		res = malloc(1 * sizeof(char));
-		res[0] = '\0';
+		res = ft_create_empty_string();
 		free(s1);
 		return (res);
 	}
@@ -74,7 +72,17 @@ char	*ft_strtrim_free(char *s1, char const *set)
 	return (res);
 }
 
-/* 2/3 Utility function */
+/* 2/4 Utility function */
+char	*ft_create_empty_string(void)
+{
+	char	*res;
+
+	res = malloc(1 * sizeof(char));
+	res[0] = '\0';
+	return (res);
+}
+
+/* 2/4 Utility function */
 static int	ft_calc_start(char const *s1, char const *set)
 {
 	int	start;
@@ -89,7 +97,7 @@ static int	ft_calc_start(char const *s1, char const *set)
 	return (start);
 }
 
-/* 3/3 Utility function */
+/* 3/4 Utility function */
 static int	ft_calc_end(char const *s1, char const *set)
 {
 	int	end;
@@ -102,18 +110,4 @@ static int	ft_calc_end(char const *s1, char const *set)
 		end--;
 	}
 	return (end);
-}
-
-/* Function to free an array */
-void	ft_free_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
 }

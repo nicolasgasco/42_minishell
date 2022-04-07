@@ -12,8 +12,7 @@
 
 #include "minishell.h"
 
-FILE *output; // TBD
-
+FILE	*output;
 
 /* No arguments accepted, global data initialization, loop initialization */
 int	main(int argc, char *argv[], char *envp[])
@@ -29,6 +28,7 @@ int	main(int argc, char *argv[], char *envp[])
 	output = fopen("output.txt", "w+");
 	fprintf(output, "Opening file for writing output.\n\n");
 	fflush(output);
+	ft_shortcut_events();
 	ft_start_loop(&t_cdata);
 	ft_free_general_data(&t_cdata);
 	fclose(output);
@@ -40,7 +40,6 @@ void	ft_start_loop(t_cdata *t_cdata)
 {
 	while (1)
 	{
-		ft_shortcut_events();
 		ft_init_reset_loop_data(t_cdata);
 		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text)
 			&& ft_output_loop_error_message(t_cdata, "Invalid input"))
@@ -58,14 +57,11 @@ void	ft_start_loop(t_cdata *t_cdata)
 		if (!ft_special_chars_are_valid(t_cdata)
 			&& ft_output_loop_error_message(t_cdata, "Syntax error (s. chars)"))
 			continue ;
-		if (!ft_remove_empty_nodes(t_cdata) 
+		if (!ft_remove_empty_nodes(t_cdata)
 			&& ft_output_loop_error_message(t_cdata, ""))
 			continue ;
-		fflush(output);
 		ft_start_execution(t_cdata);
-		fflush(output);
 		ft_free_loop_data(t_cdata);
-		
 	}
 }
 
@@ -74,14 +70,15 @@ void	ft_start_execution(t_cdata *t_cdata)
 {
 	t_job	*job;
 
+	fflush(output); // TBD
 	ft_create_tokens_list(t_cdata); // Free?
 	printest(t_cdata->tokens_list);
 	test(t_cdata->tokens_list);
 	job = ft_create_exec(job, t_cdata->tokens_list);
 	if (job)
 	{
-		// printf("entra en executor\n");
 		executor(ms_head_list_job(job), t_cdata);
 		free_job_lst(job);
 	}
+	fflush(output); // TBD
 }

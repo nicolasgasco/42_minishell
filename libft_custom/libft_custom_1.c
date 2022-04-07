@@ -12,6 +12,20 @@
 
 #include "../minishell.h"
 
+/* Function to free an array */
+void	ft_free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
 char	*ft_strjoin_free_s1(char *s1, char const *s2)
 {
 	char	*tab;
