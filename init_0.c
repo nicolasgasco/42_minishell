@@ -28,7 +28,6 @@ void	ft_init_general_data(t_cdata	*t_cdata, char **envp)
 	init_envp(envp, t_cdata);
 	ft_init_prompt_data(t_cdata);
 	init_export(t_cdata);
-	ft_output_epic_welcome(t_cdata); // TBD
 }
 
 /* Structure containing information on quotes */
