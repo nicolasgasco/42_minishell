@@ -34,6 +34,7 @@ SRCS =	minishell.c \
 		export.c \
 		free_0.c \
 		free_1.c \
+		ft_getenv.c\
 		init_0.c \
 		init_1.c \
 		keyboard_events.c \
