@@ -86,7 +86,8 @@ char	*ft_add_variable_value(char *str, t_cdata *t_cdata)
 			else
 			{
 				while ((str[i] >= 'A' && str[i] <= 'Z')
-					|| (str[i] >= 'a' && str[i] <= 'z'))
+					|| (str[i] >= 'a' && str[i] <= 'z')
+					|| (str[i] >= '0' && str[i] <= '9'))
 					i++;
 			}
 			break ;
@@ -113,7 +114,7 @@ char	*ft_expand_var_value(t_cdata *t_cdata, char *str, int start, int end)
 	else
 	{
 		var_name = ft_get_var_name(str, start + 1, end);
-		var_value = getenv(var_name);
+		var_value = ft_get_env(var_name, t_cdata->envp_export);
 		if (var_value == NULL)
 			result = ft_remove_var_name(str, start + 1, end);
 		else
