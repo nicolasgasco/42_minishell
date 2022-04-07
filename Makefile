@@ -36,7 +36,6 @@ SRCS =	minishell.c \
 		free_1.c \
 		init_0.c \
 		init_1.c \
-		keyboard_events.c \
 		loop_prompt.c \
 		pwd.c \
 		signals.c \

@@ -87,7 +87,7 @@ void    ft_print_new_input_header(char *line_read)
 	}
 }
 
-void    ft_print_quotes_list(struct s_qnode *list)
+void	ft_print_quotes_list(struct s_qnode *list)
 {
 	struct s_qnode	*curr;
 	int				i;
@@ -111,7 +111,7 @@ void    ft_print_cmd(t_cdata *t_cdata)
 	fprintf(output, "Command:\n\t.%s.\n\n", t_cdata->cmd);
 }
 
-void    ft_output_epic_welcome(t_cdata *t_cdata)
+void	ft_output_epic_welcome(t_cdata *t_cdata)
 {
 	printf("\033[0;36m");
 	printf("\n||WAR MACHINE IS READY||\n\n");
@@ -134,22 +134,24 @@ void    ft_output_epic_welcome(t_cdata *t_cdata)
 	printf("\n__________________________________________________________________________\n\n");
 }
 
-void    ft_print_tokens_list(struct s_tnode *list)
+void	ft_print_tokens_list(struct s_tnode *list)
 {
 	struct s_tnode	*curr;
 	int				i;
-	
+
 	i = 0;
 	curr = list;
 	fprintf(output, "Tokens list:\n");
 	while (1)
 	{
 		if (curr->prev)
-			fprintf(output, "\t%d) ║%s║ [%c] (%d chars) [Prev->str is .%s.]\n", i, curr->str, curr->q_type, curr->len, curr->prev->str);
+			fprintf(output, "\t%d) ║%s║ [%c] (%d chars) [Prev->str is .%s.]\n",
+				i, curr->str, curr->q_type, curr->len, curr->prev->str);
 		else
-			fprintf(output, "\t%d) ║%s║ [%c] (%d chars) [Prev is NULL]\n", i, curr->str, curr->q_type, curr->len);
+			fprintf(output, "\t%d) ║%s║ [%c] (%d chars) [Prev is NULL]\n",
+				i, curr->str, curr->q_type, curr->len);
 		if (curr->next == NULL)
-			break;
+			break ;
 		else
 			curr = curr->next;
 		i++;

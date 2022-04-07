@@ -122,7 +122,6 @@ void	executor(t_job *job, t_cdata *c_data)
 				c_data->exit_status = WEXITSTATUS(status);
 			first = first->next;
 		}
-
 	}
 //	signal
 //	switch 0
