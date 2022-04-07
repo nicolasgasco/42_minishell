@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:38:09 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/05 11:41:08 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:32:05 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,17 @@ int	check_new_line(char *str)
 	i = 0;
 	if (str && str[i])
 	{
-		if (str[i] == '-' && str[i + 1] == 'n' && str[i + 2] == '\0')
+		if (str[i] == '-' && str[i + 1] == 'n')
+		{
+			i++;
+			while (str[i] != '\0')
+			{
+				if (str[i] != 'n' && str[i] != '\0')
+					return (1);
+				i++;
+			}
 			return (0);
+		}
 	}
 	return (1);
 }
