@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:21:22 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/07 11:15:13 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/07 14:41:46 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	built_cd(char *arg, t_cdata *t_cdata)
 		}
 	}
 	getcwd(str, sizeof(str));
-	printf("current directory is %s\n", str);
 	if (chdir(arg) == -1)
 	{
 		if (arg[0] == '\0')
