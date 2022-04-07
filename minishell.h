@@ -103,6 +103,7 @@ typedef struct CommonData
 	char			*cmd;
 	int				syntax_error;
 	char			**paths;
+	int				found_here_doc;
 	struct s_tnode	*tokens_list;
 	t_pdata			*t_pdata;
 	t_qdata			*t_qdata;

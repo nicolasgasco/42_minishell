@@ -22,6 +22,7 @@ int	ft_here_doc_expansion(t_cdata *t_cdata)
 	}
 	if (ft_find_here_marker_str(t_cdata->t_qdata->raw_input))
 	{
+		t_cdata->found_here_doc = 1;
 		ft_print_here_doc_detected(); // TBD
 		// ft_here_doc_loop(t_cdata);
 		// ft_join_after_delimiter(t_cdata);

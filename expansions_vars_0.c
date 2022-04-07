@@ -36,7 +36,7 @@ int	ft_found_variable_to_expand(t_cdata *t_cdata)
 	{
 		if (curr->q_type != '\'')
 		{
-			if (ft_find_dollar(curr->str))
+			if (ft_find_dollar(curr->str) && t_cdata->found_here_doc == 0)
 			{
 				curr->str = ft_add_variable_value(curr->str, t_cdata);
 				curr->q_type = '\"';
