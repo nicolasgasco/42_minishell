@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-t_sig sig_data;
+t_sig g_sigdata;
 
 /* Handle for case when simulation is inside main process */
 void ft_handle_signals(int sig)

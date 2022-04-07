@@ -90,7 +90,7 @@ typedef struct SignalData {
 	int	is_child;
 }	t_sig;
 
-extern t_sig	sig_data;
+extern t_sig	g_sigdata;
 
 /* Highest level struct with data shared by whole program */
 typedef struct CommonData

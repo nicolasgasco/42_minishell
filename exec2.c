@@ -72,7 +72,7 @@ void	init_pipe(t_job *job)
 
 void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 {
-	// sig_data.is_child = 1;
+	// g_sigdata.is_child = 1;
 	job->pid = fork();
 	if (job->pid == -1)
 		printf("Dang! This fork didn't work!");
@@ -89,7 +89,7 @@ void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 		free_fd(first);
 		if (job->cmd && ms_builtins(job->cmd, 1, first, c_data) == 1)
 			execute(job->cmd, first, c_data);
-		// sig_data.is_child = 0;
+		// g_sigdata.is_child = 0;
 	}
 	else
 		ft_ignore_all_signals();
