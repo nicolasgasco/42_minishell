@@ -31,7 +31,7 @@ char	*find_path(char *cmd, t_job *job, t_cdata *c_data)
 	path = NULL;
 	i = find_path_env(c_data);
 	if (c_data->envp[i] == NULL)
-		error(cmd, 1, job);
+		error(cmd, 1, job, c_data);
 	paths = ft_splitc(c_data->envp[i] + 5, ':');
 	i = -1;
 	while (paths[++i])
@@ -51,7 +51,7 @@ char	*find_path(char *cmd, t_job *job, t_cdata *c_data)
 	return (NULL);
 }
 
-void	error(char *arg, int i, t_job *job)
+void	error(char *arg, int i, t_job *job, t_cdata *c_data)
 {
 	if (i == 0)
 	{
@@ -64,10 +64,10 @@ void	error(char *arg, int i, t_job *job)
 	else if (i == 2)
 	{
 		printf("minishell: %s: is a directory\n", arg);
-		free_job_lst(job);
+		free_ex(job, c_data);
 		exit(126);
 	}
-	free_job_lst(job);
+	free_ex(job, c_data);
 	exit (127);
 }
 
@@ -79,13 +79,13 @@ void	execute(char **cmd, t_job *job, t_cdata *c_data)
 	if (ft_strchr(cmd[0], '/') != NULL)
 	{
 		if (access(cmd[0], F_OK) == 0)
-			error(cmd[0], 2, job);
-		error(cmd[0], 1, job);
+			error(cmd[0], 2, job, c_data);
+		error(cmd[0], 1, job, c_data);
 	}
 	path = find_path(cmd[0], job, c_data);
 	if (path && (execve(path, cmd, c_data->envp) == -1))
-		error(cmd[0], 0, job);
-	error(cmd[0], 0, job);
+		error(cmd[0], 0, job, c_data);
+	error(cmd[0], 0, job, c_data);
 }
 
 void	free_fd(t_job *first)

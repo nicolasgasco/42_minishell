@@ -307,14 +307,15 @@ void	execute(char **cmd, t_job *job, t_cdata *c_data);
 void	free_job_lst(t_job *job);
 char	*find_path(char *cmd, t_job *job, t_cdata *c_data);
 int	find_path_env(t_cdata *c_data);
-void	error(char *arg, int i, t_job *job);
+void	error(char *arg, int i, t_job *job, t_cdata *c_data);
 int	make_heredocs(t_job *job, t_cdata *c_data);
 int	check_heredoc(char **redir, int stdin_fd, t_job *job, t_cdata *c_data);
 int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data);
-void	heredoc(char *limiter, int *fd, t_job *job);
+void	heredoc(char *limiter, int *fd, t_job *job, t_cdata *c_data);
 int	check_arg(char *arg, t_cdata *c_data);
 void	built_exit(char **arg, t_job *job, t_cdata *c_data);
 void	free_fd(t_job *first);
+void	free_ex(t_job *job, t_cdata *c_data);
 
 
 

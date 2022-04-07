@@ -65,6 +65,7 @@ void	ft_start_loop(t_cdata *t_cdata)
 		ft_start_execution(t_cdata);
 		fflush(output);
 		ft_free_loop_data(t_cdata);
+		
 	}
 }
 
@@ -81,5 +82,6 @@ void	ft_start_execution(t_cdata *t_cdata)
 	{
 		// printf("entra en executor\n");
 		executor(ms_head_list_job(job), t_cdata);
+		free_job_lst(job);
 	}
 }

@@ -54,7 +54,7 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 		fprintf(output, "Inside %d\n", getpid());
 		fflush(output);
 		ft_shortcut_events_interactive();
-		heredoc(limiter, new_fd, job);
+		heredoc(limiter, new_fd, job, c_data);
 	}
 	else
 		ft_ignore_all_signals();
@@ -71,7 +71,7 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 	return (0);
 }
 
-void	heredoc(char *limiter, int *fd, t_job *job)
+void	heredoc(char *limiter, int *fd, t_job *job, t_cdata *c_data)
 {
 	char	*line;
 //	signal
@@ -89,5 +89,6 @@ void	heredoc(char *limiter, int *fd, t_job *job)
 		line = readline("> ");
 	}
 	free(line);
+	free_ex(job, c_data);
 	exit(EXIT_SUCCESS);
 }

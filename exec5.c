@@ -38,3 +38,11 @@ int	counter_string(struct s_tnode *tok)
 	}
 	return (i);
 }
+
+void	free_ex(t_job *job, t_cdata *c_data)
+{
+	ft_free_tab(c_data->envp);
+	ft_free_tab(c_data->envp_export);
+	free_job_lst(job);
+	rl_clear_history();
+}
