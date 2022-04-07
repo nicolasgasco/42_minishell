@@ -24,6 +24,7 @@ int	ft_found_adjacent_special_chars(t_cdata *t_cdata)
 		{
 			if (ft_is_special_str(curr->str)
 				&& ft_is_special_str(curr->next->str)
+				&& !curr->next->q_type
 				|| ft_found_adjecent_pipes(curr->str))
 				return (1);
 		}
@@ -69,8 +70,11 @@ int	ft_last_node_is_special_char(t_cdata *t_cdata)
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
 	{
-		if (curr->next == NULL && ft_is_special_str(curr->str))
+		if (curr->next == NULL && ft_is_special_str(curr->str)
+			&& !curr->q_type)
+		{
 			return (1);
+		}
 		if (curr->next == NULL)
 			break ;
 		else
