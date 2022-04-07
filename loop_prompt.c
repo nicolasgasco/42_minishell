@@ -16,9 +16,7 @@
 int	ft_get_valid_input(t_cdata *t_cdata, char *prompt_text)
 {
 	char	*line_read;
-	char	*delim;
 
-	delim = t_cdata->t_qdata->delim;
 	line_read = (char *) NULL;
 	line_read = ft_rl_gets(line_read, prompt_text);
 	if (!line_read)

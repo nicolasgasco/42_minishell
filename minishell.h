@@ -112,7 +112,7 @@ typedef struct CommonData
 void			rl_replace_line(const char *text, int clear_undo);
 
 /* Main */
-void			ft_start_loop(t_cdata *t_cdata);
+void			ft_start_loop(t_cdata *t_cdata, char *line);
 void			ft_check_cmd(t_cdata *t_cdata);
 
 /* Init */
