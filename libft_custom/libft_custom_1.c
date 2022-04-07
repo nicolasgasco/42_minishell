@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adel-cor <marvin@42.fr>                      +#+  +:+       +#       */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/05 12:30:43 by adel-cor            #+#    #+#           */
+/*   Updated: 2022/04/05 12:30:44 by adel-cor           ###   ########.fr     */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 char	*ft_strjoin_free_s1(char *s1, char const *s2)
@@ -28,7 +40,6 @@ char	*ft_strjoin_free_s1(char *s1, char const *s2)
 	free(s1);
 	return (tab);
 }
-
 
 static void	swap(char **a, char **b)
 {
