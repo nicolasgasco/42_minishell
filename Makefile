@@ -38,7 +38,8 @@ SRCS =	minishell.c \
 		init_1.c \
 		loop_prompt.c \
 		pwd.c \
-		signals.c \
+		signals_0.c \
+		signals_1.c \
 		sniper.c \
 		unset.c \
 		./libft_custom/libft_custom_0.c \

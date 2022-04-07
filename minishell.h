@@ -26,6 +26,15 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
+extern FILE		*output; // TBD
+
+typedef struct SignalData {
+	int	sig;
+	int	is_child;
+}	t_sig;
+
+extern t_sig	g_sigdata;
+
 typedef struct s_job
 {
 	struct s_job	*previous;
@@ -85,13 +94,6 @@ struct s_tnode {
 	struct s_tnode	*prev;
 };
 
-typedef struct SignalData {
-	int	sig;
-	int	is_child;
-}	t_sig;
-
-extern t_sig	g_sigdata;
-
 /* Highest level struct with data shared by whole program */
 typedef struct CommonData
 {
@@ -105,8 +107,6 @@ typedef struct CommonData
 	t_pdata			*t_pdata;
 	t_qdata			*t_qdata;
 }	t_cdata;
-
-extern FILE		*output; // TBD
 
 /* Necessary to fix 'implicit declaration' error on MacOs */
 void			rl_replace_line(const char *text, int clear_undo);
