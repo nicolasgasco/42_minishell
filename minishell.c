@@ -41,8 +41,7 @@ void	ft_start_loop(t_cdata *t_cdata)
 	{
 		ft_shortcut_events();
 		ft_init_reset_loop_data(t_cdata);
-		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text)
-			&& ft_output_loop_error_message(t_cdata, "Invalid input"))
+		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text))
 			continue ;
 		if (!ft_here_doc_expansion(t_cdata)
 			&& ft_output_loop_error_message(t_cdata, "Syntax error (h. doc)"))
