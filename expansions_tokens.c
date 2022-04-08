@@ -25,8 +25,13 @@ void	ft_create_tokens_list(t_cdata *t_cdata)
 		curr = curr->next;
 	}
 	if (!ft_strcmp(t_cdata->tokens_list->str, "export"))
-		ft_find_quoted_vars(t_cdata->tokens_list); // New function for var_name="var_value"
-	ft_print_tokens_list(t_cdata->tokens_list); // TBD
+	{
+		while (1)
+		{
+			if (!ft_find_quoted_vars(t_cdata))
+				break;
+		}
+	}
 }
 
 void	ft_add_token_to_list(t_cdata *t_cdata, char *s, char q_type)

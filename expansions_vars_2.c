@@ -13,21 +13,27 @@
 #include "minishell.h"
 
 /* Look for env vars declarations separated by quotes expansion */
-void	ft_find_quoted_vars(struct s_tnode *curr)
+int	ft_find_quoted_vars(t_cdata *t_cdata)
 {
+	struct s_tnode	*curr;
+
+	curr = t_cdata->tokens_list;
 	while (1)
 	{
 		if (curr->str[curr->len - 1] == '=')
 		{
 			if (curr->next)
+			{
 				ft_join_var_name_value(curr);
+				return (1);
+			}
 		}
 		if (curr->next == NULL)
-		{
 			break;
-		}
-		curr = curr->next;
+		else
+			curr = curr->next;
 	}
+	return (0);
 }
 
 /* Join the two nodes making up the env var declaration */
@@ -39,8 +45,14 @@ void	ft_join_var_name_value(struct s_tnode *curr)
 	str_temp = ft_strjoin(curr->str, curr->next->str);
 	free(curr->str);
 	curr->str = str_temp;
-	node_temp = curr->next;
-	curr->next = curr->next->next;
-	free(node_temp->str);
-	free(node_temp);
+	curr->len = ft_strlen(str_temp);
+	if (curr->next->next)
+		node_temp = curr->next->next;
+	else
+		node_temp = NULL;
+	if (node_temp)
+		node_temp->prev = curr;
+	free(curr->next->str);
+	free(curr->next);
+	curr->next = node_temp;
 }

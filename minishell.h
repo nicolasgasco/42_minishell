@@ -184,7 +184,7 @@ char			*ft_get_var_name(char *str, int start, int end);
 char			*ft_splice_var_value(char *str, char *var, int start, int end);
 void			ft_splice_var_value_utility(char *result, char *var, int *x);
 char			*ft_remove_var_name(char *str, int start, int end);
-void			ft_find_quoted_vars(struct s_tnode *curr);
+int				ft_find_quoted_vars(t_cdata *t_cdata);
 void			ft_join_var_name_value(struct s_tnode *curr);
 
 /* Expansion - Here document */
