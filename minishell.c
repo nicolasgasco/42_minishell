@@ -28,7 +28,6 @@ int	main(int argc, char *argv[], char *envp[])
 	output = fopen("output.txt", "w+");
 	fprintf(output, "Opening file for writing output.\n\n");
 	fflush(output);
-	ft_shortcut_events();
 	ft_start_loop(&t_cdata);
 	ft_free_general_data(&t_cdata);
 	fclose(output);
@@ -40,6 +39,7 @@ void	ft_start_loop(t_cdata *t_cdata)
 {
 	while (1)
 	{
+		ft_shortcut_events();
 		ft_init_reset_loop_data(t_cdata);
 		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text)
 			&& ft_output_loop_error_message(t_cdata, "Invalid input"))

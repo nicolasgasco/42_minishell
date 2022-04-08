@@ -12,6 +12,34 @@
 
 #include "minishell.h"
 
+/* Handle for case when here docs is active */
+void	ft_handle_signals_here_docs(int sig)
+{
+	fprintf(output, "Handler. Here doc. Minishell IS interactive (%d)\n", getpid()); // TBD
+	fflush(output); // TBD
+	if (sig == SIGINT)
+	{
+		fprintf(output, "SIGINT or SIGQUIT in here doc (%d)\n", getpid()); // TBD
+		fflush(output); // TBD
+		printf("\n");
+		exit(3);
+	}
+}
+
+/* Case used for here docs */
+void	ft_shortcut_events_here_docs(void)
+{
+	struct sigaction	sa_heredoc;
+
+	fprintf(output, "Initializer. Here doc. Minishell IS interactive (%d)\n", getpid()); // TBD
+	fflush(output); // TBD	ft_shortcut_events();
+
+	memset(&sa_heredoc, 0, sizeof(struct sigaction));
+	sa_heredoc.sa_handler = &ft_handle_signals_here_docs;
+	ft_ignore_signal(sa_heredoc, SIGQUIT);
+	sigaction(SIGINT, &sa_heredoc, NULL);
+}
+
 /* Make a process ignore all signals */
 void	ft_ignore_all_signals(void)
 {

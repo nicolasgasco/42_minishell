@@ -53,7 +53,7 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 	{
 		fprintf(output, "Inside %d\n", getpid());
 		fflush(output);
-		ft_shortcut_events_interactive();
+		ft_shortcut_events_here_docs();
 		heredoc(limiter, new_fd, job, c_data);
 	}
 	else

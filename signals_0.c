@@ -25,24 +25,9 @@ void	ft_handle_signals(int sig)
 		fflush(output);
 		printf("\n");
 		rl_on_new_line();
-		// catch signal
 		rl_replace_line("", 0);
 		rl_redisplay();
 		return ;
-	}
-}
-
-/* Handle for case when simulation is inside child process */
-void	ft_handle_signals_interactive(int sig)
-{
-	fprintf(output, "Handler. Child process. Minishell IS interactive (%d)\n", getpid()); // TBD
-	fflush(output); // TBD
-	if (sig == SIGQUIT || sig == SIGINT)
-	{
-		fprintf(output, "SIGINT or SIGQUIT in child process (%d)\n", getpid()); // TBD
-		fflush(output); // TBD
-		printf("\n");
-		// exit(3);
 	}
 }
 
@@ -57,6 +42,25 @@ void	ft_shortcut_events(void)
 	ft_ignore_signal(sa, SIGQUIT);
 	sa.sa_handler = &ft_handle_signals;
 	sigaction(SIGINT, &sa, NULL);
+}
+
+/* Handle for case when simulation is inside child process */
+void	ft_handle_signals_interactive(int sig)
+{
+	fprintf(output, "Handler. Child process. Minishell IS interactive (%d)\n", getpid()); // TBD
+	fflush(output); // TBD
+	if (sig == SIGINT)
+	{
+		fprintf(output, "SIGINT in child process (%d)\n", getpid()); // TBD
+		fflush(output); // TBD
+		printf("\n");
+	}
+	else if (sig == SIGQUIT)
+	{
+		fprintf(output, "SIGQUIT in child process (%d)\n", getpid()); // TBD
+		fflush(output); // TBD
+		printf("\n");
+	}
 }
 
 /* Case when simulation is inside child process) */

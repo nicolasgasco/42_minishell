@@ -76,9 +76,9 @@ void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 	job->pid = fork();
 	if (job->pid == -1)
 		printf("Dang! This fork didn't work!");
+	ft_shortcut_events_interactive();
 	if (job->pid == 0)
 	{
-		ft_shortcut_events_interactive();
 		if (job->previous != NULL)
 			dup2(job->previous->fd[0], STDIN_FILENO);
 		if (job->next != NULL)
@@ -91,8 +91,6 @@ void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 			execute(job->cmd, first, c_data);
 		// g_sigdata.is_child = 0;
 	}
-	else
-		ft_ignore_all_signals();
 	if (job->previous != NULL)
 		close(job->previous->fd[0]);
 	close(job->fd[1]);
