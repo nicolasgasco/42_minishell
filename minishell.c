@@ -44,17 +44,17 @@ void	ft_start_loop(t_cdata *t_cdata)
 		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text))
 			continue ;
 		if (!ft_here_doc_expansion(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "Syntax error (h. doc)"))
+			&& ft_output_loop_error_message(t_cdata, "h. doc"))
 			continue ;
 		ft_expand_quotes(t_cdata);
 		if (!ft_expanded_quotes_are_valid(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "Syntax error (quotes)"))
+			&& ft_output_loop_error_message(t_cdata, "quotes"))
 			continue ;
 		ft_expand_spaces(t_cdata);
 		ft_expand_variables(t_cdata);
 		ft_expand_special_chars(t_cdata);
 		if (!ft_special_chars_are_valid(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "Syntax error (s. chars)"))
+			&& ft_output_loop_error_message(t_cdata, "s. chars"))
 			continue ;
 		if (!ft_remove_empty_nodes(t_cdata)
 			&& ft_output_loop_error_message(t_cdata, ""))
