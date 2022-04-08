@@ -70,7 +70,8 @@ void	ft_start_execution(t_cdata *t_cdata)
 	t_job	*job;
 
 	fflush(output); // TBD
-	ft_create_tokens_list(t_cdata); // Free?
+	ft_create_tokens_list(t_cdata);
+	ft_find_quoted_vars(t_cdata->tokens_list); // New function for var_name="var_value"
 	printest(t_cdata->tokens_list);
 	test(t_cdata->tokens_list);
 	job = ft_create_exec(job, t_cdata->tokens_list);

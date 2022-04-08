@@ -31,6 +31,7 @@ SRCS =	minishell.c \
 		expansions_tokens.c \
 		expansions_vars_0.c \
 		expansions_vars_1.c \
+		expansions_vars_2.c \
 		export.c \
 		free_0.c \
 		free_1.c \
