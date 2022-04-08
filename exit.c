@@ -18,7 +18,7 @@ int	check_arg(char *arg, t_cdata *c_data)
 	long long	exit_code;
 
 	i = 0;
-	while (arg[i] == ' ')
+	while (ft_isspace(arg[i]))
 		i++;
 	if (arg[i] && (arg[i] == '+' || arg[i] == '-'))
 		i++;
