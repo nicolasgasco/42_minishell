@@ -122,6 +122,7 @@ char	*ft_expand_var_value(t_cdata *t_cdata, char *str, int start, int end)
 			result = ft_splice_var_value(str, var_value, start, end);
 		free(str);
 		free(var_name);
+		free(var_value);
 	}
 	return (result);
 }
