@@ -251,6 +251,7 @@ void			ft_sort_tab(char **arr);
 char			**ft_splitc(char const *s, char c);
 long long		ft_atoll(const char *nptr);
 int				ft_isllong(char *str);
+int				ft_isalldigit(char *str);	
 
 /*Builtins */
 int				built_envp(t_cdata *t_cdata);

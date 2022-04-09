@@ -22,7 +22,7 @@ int	check_arg(char *arg, t_cdata *c_data)
 		i++;
 	if (arg[i] && (arg[i] == '+' || arg[i] == '-'))
 		i++;
-	if (ft_isdigit(arg[i]) == 0 || ft_isllong(arg) != 0)
+	if (ft_isalldigit(arg + i) == 1 || ft_isllong(arg) != 0)
 	{
 		printf("minishell: exit: %s: numeric argument required\n", arg);
 		c_data->exit_status = 255;
@@ -38,6 +38,7 @@ int	check_arg(char *arg, t_cdata *c_data)
 void	built_exit(char **arg, t_job *job, t_cdata *c_data)
 {
 	int	i;
+	printf("arg[0] es %s\n", arg[0]);
 
 	i = 0;
 	printf("exit\n");
