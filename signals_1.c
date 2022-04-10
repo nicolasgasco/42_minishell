@@ -33,7 +33,6 @@ void	ft_shortcut_events_here_docs(void)
 
 	fprintf(output, "Initializer. Here doc. Minishell IS interactive (%d)\n", getpid()); // TBD
 	fflush(output); // TBD	ft_shortcut_events();
-
 	memset(&sa_heredoc, 0, sizeof(struct sigaction));
 	sa_heredoc.sa_handler = &ft_handle_signals_here_docs;
 	ft_ignore_signal(sa_heredoc, SIGQUIT);
