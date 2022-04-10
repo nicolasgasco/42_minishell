@@ -18,7 +18,7 @@ int	ft_remove_empty_nodes(t_cdata *t_cdata)
 
 	while (1)
 	{
-		result = found_empty_node_to_remove(t_cdata);
+		result = ft_found_empty_node_to_remove(t_cdata);
 		if (result == 0)
 			break ;
 		else if (result == -1)
@@ -29,7 +29,7 @@ int	ft_remove_empty_nodes(t_cdata *t_cdata)
 }
 
 /* Removing a single node contaning an empty string */
-int	found_empty_node_to_remove(t_cdata *t_cdata)
+int	ft_found_empty_node_to_remove(t_cdata *t_cdata)
 {
 	struct s_qnode	*curr;
 	int				i;
@@ -38,21 +38,28 @@ int	found_empty_node_to_remove(t_cdata *t_cdata)
 	i = 0;
 	found_cmd = 0;
 	curr = t_cdata->t_qdata->quotes_list;
-	if (!*(curr->str) && !curr->q_type && curr->next == NULL)
-	{
-		t_cdata->syntax_error = 1 ;
-		return (-1);
-	}
+	if (!*(curr->str) && curr->next == NULL)
+		return (ft_found_empty_node_to_remove_lonely_node(t_cdata, curr));
 	while (1)
 	{
 		if (*(curr->str) && !found_cmd)
 			found_cmd = 1;
-		else if (!*(curr->str) && (!curr->q_type || !found_cmd))
+		else if (!*(curr->str) && (!curr->q_type || (!found_cmd && !curr->space_right)))
 			return ft_remove_node_with_index(i, &t_cdata->t_qdata->quotes_list);
 		if (curr->next == NULL)
 			break ;
 		curr = curr->next;
 		i++;
+	}
+	return (0);
+}
+
+int	ft_found_empty_node_to_remove_lonely_node(t_cdata *t_cdata, struct s_qnode *curr)
+{
+	if (!curr->q_type)
+	{
+		t_cdata->syntax_error = 1 ;
+		return (-1);
 	}
 	return (0);
 }

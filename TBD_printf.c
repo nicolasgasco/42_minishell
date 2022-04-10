@@ -96,7 +96,7 @@ void	ft_print_quotes_list(struct s_qnode *list)
 	curr = list;
 	while (1)
 	{
-		fprintf(output, "\t%d) ║%s║ [%c] \t\t(%d chars)\n", i, curr->str, curr->q_type, curr->length);
+		fprintf(output, "\t%d) ║%s║ [%c] \t\t(%d chars, with space: %d)\n", i, curr->str, curr->q_type, curr->length, curr->space_right);
 		if (curr->next == NULL)
 			break;
 		else
@@ -145,11 +145,11 @@ void	ft_print_tokens_list(struct s_tnode *list)
 	while (1)
 	{
 		if (curr->prev)
-			fprintf(output, "\t%d) ║%s║ [%c] (%d chars) [Prev->str is .%s.]\n",
-				i, curr->str, curr->q_type, curr->len, curr->prev->str);
+			fprintf(output, "\t%d) ║%s║ [%c, with space: %d] (%d chars) [Prev->str is .%s.]\n",
+				i, curr->str, curr->q_type, curr->space_right, curr->len, curr->prev->str);
 		else
-			fprintf(output, "\t%d) ║%s║ [%c] (%d chars) [Prev is NULL]\n",
-				i, curr->str, curr->q_type, curr->len);
+			fprintf(output, "\t%d) ║%s║ [%c, with space: %d] (%d chars) [Prev is NULL]\n",
+				i, curr->str, curr->q_type, curr->space_right, curr->len);
 		if (curr->next == NULL)
 			break ;
 		else

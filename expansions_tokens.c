@@ -19,7 +19,7 @@ void	ft_create_tokens_list(t_cdata *t_cdata)
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
 	{
-		ft_add_token_to_list(t_cdata, curr->str, curr->q_type);
+		ft_add_token_to_list(t_cdata, curr);
 		if (curr->next == NULL)
 			break ;
 		curr = curr->next;
@@ -34,7 +34,7 @@ void	ft_create_tokens_list(t_cdata *t_cdata)
 	}
 }
 
-void	ft_add_token_to_list(t_cdata *t_cdata, char *s, char q_type)
+void	ft_add_token_to_list(t_cdata *t_cdata, struct s_qnode *origin)
 {
 	struct s_tnode	*new_node;
 	struct s_tnode	*curr;
@@ -43,9 +43,10 @@ void	ft_add_token_to_list(t_cdata *t_cdata, char *s, char q_type)
 	new_node = (struct s_tnode *)malloc(sizeof(struct s_tnode));
 	if (new_node == NULL)
 		exit(1);
-	new_node->str = ft_strdup(s);
-	new_node->len = ft_strlen(s);
-	new_node->q_type = q_type;
+	new_node->str = ft_strdup(origin->str);
+	new_node->len = ft_strlen(origin->str);
+	new_node->q_type = origin->q_type;
+	new_node->space_right = origin->space_right;
 	new_node->next = NULL;
 	while (curr && curr->next != NULL)
 		curr = curr->next;

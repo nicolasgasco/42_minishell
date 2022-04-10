@@ -60,6 +60,7 @@ typedef enum e_type
 struct s_qnode {
 	int				length;
 	char			q_type;
+	int				space_right;
 	char			*str;
 	struct s_qnode	*next;
 };
@@ -90,6 +91,7 @@ struct s_tnode {
 	int				len;
 	char			q_type;
 	t_type			type;
+	int				space_right;
 	struct s_tnode	*next;
 	struct s_tnode	*prev;
 };
@@ -163,7 +165,8 @@ char			*ft_convert_list_to_str(t_qdata *t_qdata);
 /* Expansions - Spaces */
 void			ft_expand_spaces(t_cdata *t_cdata);
 int				ft_remove_empty_nodes(t_cdata *t_cdata);
-int				found_empty_node_to_remove(t_cdata *t_cdata);
+int				ft_found_empty_node_to_remove(t_cdata *t_cdata);
+int				ft_found_empty_node_to_remove_lonely_node(t_cdata *t_cdata, struct s_qnode *curr);
 int				ft_remove_node_with_index(int index, struct s_qnode **root);
 void			ft_split_and_generate_spaced_node(struct s_qnode *curr);
 char			*ft_create_rest_str(char *curr_str, int t_len);
@@ -220,7 +223,7 @@ int				ft_last_node_is_special_char(t_cdata *t_cdata);
 
 /* Tokens list */
 void			ft_create_tokens_list(t_cdata *t_cdata);
-void			ft_add_token_to_list(t_cdata *t_cdata, char *s, char q_type);
+void			ft_add_token_to_list(t_cdata *t_cdata, struct s_qnode *origin);
 
 /* Errors */
 int				ft_output_loop_error_message(t_cdata *t_cdata, char *message);
