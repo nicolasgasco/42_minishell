@@ -74,7 +74,7 @@ void	ft_add_node_quotes(t_qdata *t_qdata, int end, char quote)
 		exit(1);
 	new_node->str = ft_write_str_to_node(t_qdata, end);
 	if (t_qdata->raw_input[end + 1] && ft_isspace(t_qdata->raw_input[end + 1]))
-		new_node->space_right = 1;
+		new_node->is_spaced = 1;
 	new_node->length = ft_strlen(new_node->str);
 	new_node->q_type = quote;
 	new_node->next = NULL;

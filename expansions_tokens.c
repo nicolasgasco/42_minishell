@@ -46,7 +46,7 @@ void	ft_add_token_to_list(t_cdata *t_cdata, struct s_qnode *origin)
 	new_node->str = ft_strdup(origin->str);
 	new_node->len = ft_strlen(origin->str);
 	new_node->q_type = origin->q_type;
-	new_node->space_right = origin->space_right;
+	new_node->is_spaced = origin->is_spaced;
 	new_node->next = NULL;
 	while (curr && curr->next != NULL)
 		curr = curr->next;

@@ -60,7 +60,7 @@ typedef enum e_type
 struct s_qnode {
 	int				length;
 	char			q_type;
-	int				space_right;
+	int				is_spaced;
 	char			*str;
 	struct s_qnode	*next;
 };
@@ -91,7 +91,7 @@ struct s_tnode {
 	int				len;
 	char			q_type;
 	t_type			type;
-	int				space_right;
+	int				is_spaced;
 	struct s_tnode	*next;
 	struct s_tnode	*prev;
 };

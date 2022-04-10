@@ -102,9 +102,9 @@ char *curr_str, char *next_str, char *rest)
 	new_node2->str = rest;
 	new_node2->length = ft_strlen(new_node2->str);
 	new_node2->next = curr->next;
-	new_node2->space_right = curr->space_right;
-	new_node1->space_right = 0;
-	curr->space_right = 0;
+	new_node2->is_spaced = curr->is_spaced;
+	new_node1->is_spaced = 0;
+	curr->is_spaced = 0;
 	curr->next = new_node1;
 	new_node1->next = new_node2;
 }
