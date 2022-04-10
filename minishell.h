@@ -164,7 +164,7 @@ char			*ft_convert_list_to_str(t_qdata *t_qdata);
 void			ft_expand_spaces(t_cdata *t_cdata);
 int				ft_remove_empty_nodes(t_cdata *t_cdata);
 int				found_empty_node_to_remove(t_cdata *t_cdata);
-void			ft_remove_node_with_index(int index, struct s_qnode **root);
+int				ft_remove_node_with_index(int index, struct s_qnode **root);
 void			ft_split_and_generate_spaced_node(struct s_qnode *curr);
 char			*ft_create_rest_str(char *curr_str, int t_len);
 int				ft_has_spaces(char *str);
