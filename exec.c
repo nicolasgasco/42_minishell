@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:48:45 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/05 11:52:29 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/10 16:28:19 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ t_job	*ft_create_exec(t_job *job, struct s_tnode *token)
 		}
 		token = token->next;
 	}
-	// printf("sale del bucle\n");
 	free_token_lst(ms_head_list(token));
 	return (ms_head_list_job(job));
 }			
