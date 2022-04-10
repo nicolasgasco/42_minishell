@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 12:26:44 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/07 18:51:21 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/10 16:33:06 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,8 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 	int		new_fd[2];
 	pid_t	pid;
 	int		wstatus;
-//	signal
+
 	pipe(new_fd);
-	// g_sigdata.is_child = 1;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -59,8 +58,6 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 	else
 		ft_ignore_all_signals();
 	waitpid(pid, &wstatus, 0);
-	// g_sigdata.is_child = 0;
-//	signal
 	if (WIFEXITED(wstatus))
 		c_data->exit_status = WEXITSTATUS(wstatus);
 	dup2(new_fd[0], fd);
@@ -74,7 +71,7 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 void	heredoc(char *limiter, int *fd, t_job *job, t_cdata *c_data)
 {
 	char	*line;
-//	signal
+
 	line = readline("> ");
 	while (line)
 	{
@@ -84,11 +81,10 @@ void	heredoc(char *limiter, int *fd, t_job *job, t_cdata *c_data)
 			close(fd[1]);
 			break ;
 		}
-		if(ft_find_dollar(line))
+		if (ft_find_dollar(line))
 		{
 		line = ft_add_variable_value(line, c_data);
 		}
-
 		ft_putendl_fd(line, fd[1]);
 		free(line);
 		line = readline("> ");

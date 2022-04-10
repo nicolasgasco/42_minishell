@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 12:00:49 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/05 12:24:12 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/10 18:09:30 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	init_pipe(t_job *job)
 
 void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 {
-	// g_sigdata.is_child = 1;
 	job->pid = fork();
 	if (job->pid == -1)
 		printf("Dang! This fork didn't work!");
@@ -89,7 +88,6 @@ void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 		free_fd(first);
 		if (job->cmd && ms_builtins(job->cmd, 1, first, c_data) == 1)
 			execute(job->cmd, first, c_data);
-		// g_sigdata.is_child = 0;
 	}
 	if (job->previous != NULL)
 		close(job->previous->fd[0]);
@@ -107,6 +105,7 @@ void	executor(t_job *job, t_cdata *c_data)
 		return ;
 	if (job && job->cmd)
 	{
+//		mini_exec(job, first, c_data);
 		while (job)
 		{
 			child_process(job, first, c_data);
@@ -118,9 +117,12 @@ void	executor(t_job *job, t_cdata *c_data)
 			waitpid(first->pid, &status, 0);
 			if (WIFEXITED(status))
 				c_data->exit_status = WEXITSTATUS(status);
+			else if(WIFSIGNALED(status))
+			{
+				c_data->exit_status = 128 + WTERMSIG(status);
+				ex_stat(c_data, status);
+			}
 			first = first->next;
 		}
 	}
-//	signal
-//	switch 0
 }
