@@ -1417,146 +1417,68 @@ echo \$$\$$
                                                        [FAIL]
 ########################################## preprocess/quote ##########################################
 'echo' 'bonjour'
-                                                                              [PASS]
 'echo' 'je' 'suis' 'charles'
-                                                                  [PASS]
 "echo" "bonjour"
-                                                                              [PASS]
 "echo" "je" "suis" "charles"
-                                                                  [PASS]
-echo je'suis'"charles"
-                                                                        [FAIL]
+echo je'suis'"charles" --> error!
 echo "je"suis'charles'
-                                                                        [FAIL]
 echo 'je'"suis"charles
-                                                                        [FAIL]
-echo "\""
-
-echo "\$"
-
-echo "\\"
-
-echo "\a"
-                                                                                     [PASS]
-echo "\A"
-                                                                                     [PASS]
 ls ""
-    
 ls ''
-    
 ls "" "" "" '' """"
-                                                                           [FAIL]
 ls '' '' '''' ''
-                                                                              [FAIL]
 '     echo' bonjour
-                                                                           [FAIL]
 'echo     ' bonjour
-                                                                           [FAIL]
 "     echo" bonjour
-                                                                           [FAIL]
 "echo     " bonjour
-                                                                           [FAIL]
-''echo bonjour
-                                                                                [FAIL]
+''echo bonjour --> ERROR
 ""echo bonjour
-                                                                                [FAIL]
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''echo bonjour
-                        [FAIL]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""echo bonjour
-                        [FAIL]
 echo'' bonjour
-                                                                                [FAIL]
 echo"" bonjour
-                                                                                [FAIL]
 echo'''''''''''''''''''''''''''''''''''''''''''''''''''''''''' bonjour
-                        [FAIL]
 echo"""""""""""""""""""""""""""""""""""""""""""""""""""""""""" bonjour
-                        [FAIL]
 ec''ho bonjour
-                                                                                [FAIL]
 ec""ho bonjour
-                                                                                [FAIL]
 ec''''''''''''''''''''''''''''''''''''''''''''''''''''''''''ho bonjour
-                        [FAIL]
 ec""""""""""""""""""""""""""""""""""""""""""""""""""""""""""ho bonjour
-                        [FAIL]
 '''''''e''''''''''c''''''''''''h''''''''o''''''''''''''''''''' bonjour
-                        [FAIL]
 """""""e""""""""""c""""""""""""h""""""""o""""""""""""""""""""" bonjour
-                        [FAIL]
 echo '"'
-                                                                                      [PASS]
 echo '""""""""""""""""""""""""""'
-                                                             [PASS]
 echo "'"
-                                                                                      [PASS]
 echo "''''''''''''''''''''''''''"
-                                                             [PASS]
 echo '
-   
 echo "
-   
 echo '''
- 
 echo """
- 
 echo '''''''''''''''''''''''''''''''''''''''''''
-                                              [FAIL]
 echo """""""""""""""""""""""""""""""""""""""""""
-                                              [FAIL]
-echo 'AH\'
-                                                                                    [PASS]
-echo "AH\"
-echo "AH\""
-                                                                                   [FAIL]
-echo '\''
-
-echo "\""
-
-echo "\\""
 echo bonjour > "fi le"
-                                                                        [FAIL]
 echo bonjour > 'fi le'
-                                                                        [FAIL]
+
 ######################################### preprocess/spaces ##########################################
 echo foo
-                                                                                      [PASS]
 echo                    foo
-                                                                   [PASS]
              echo foo
-                                                                         [PASS]
 echo foo             
-                                                                         [PASS]
          echo           foo             
-                                                      [PASS]
 echo										foo
-                                                                   [FAIL]
 						echo	foo
-                                                                         [FAIL]
 echo	foo						
-                                                                         [FAIL]
 				echo				foo				
-                                                               [FAIL]
  echo foo
-                                                                                   [FAIL]
 
 echo
 foo
-                                                                                   [FAIL]
  echo foo
-                                                                                   [FAIL]
-\vecho\vfoo
-                                                                                   [FAIL]
-	 \v echo\v	 \vfoo
-                                                                       [FAIL]
+echofoo
 
          
                                           
-                                                    [FAIL]
 																					
-                                                    [FAIL]
             			           			       
-                                                    [FAIL]
 
 Summary:
 builtin/cd ...................................................................    2 [PASS]   82 [FAIL]
