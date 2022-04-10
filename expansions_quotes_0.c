@@ -38,7 +38,6 @@ void	ft_tokenize_quotes(t_qdata *t_qdata)
 	int	i;
 
 	i = 1;
-
 	if (t_qdata->raw_input[0] == '\'')
 		t_qdata->s_open = 1;
 	else if (t_qdata->raw_input[0] == '\"')

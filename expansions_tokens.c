@@ -29,7 +29,7 @@ void	ft_create_tokens_list(t_cdata *t_cdata)
 		while (1)
 		{
 			if (!ft_find_quoted_vars(t_cdata))
-				break;
+				break ;
 		}
 	}
 }
