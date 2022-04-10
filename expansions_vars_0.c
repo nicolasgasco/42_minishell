@@ -87,8 +87,7 @@ char	*ft_add_variable_value(char *str, t_cdata *t_cdata)
 			{
 				while ((str[i] >= 'A' && str[i] <= 'Z')
 					|| (str[i] >= 'a' && str[i] <= 'z')
-					|| (str[i] >= '0' && str[i] <= '9')
-					|| (str[i] == '_'))
+					|| (str[i] >= '0' && str[i] <= '9') || (str[i] == '_'))
 					i++;
 			}
 			break ;
