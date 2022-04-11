@@ -245,8 +245,6 @@ int				ft_isspace(char c);
 
 /* Libft */
 char			**ft_splitc(char const *s, char c);
-char			*ft_strtrim_free(char *s1, char const *set);
-char			*ft_create_empty_string(void);
 void			ft_free_tab(char **tab);
 char			*ft_strjoin_free_s1(char *s1, char const *s2);
 void			ft_sort_tab(char **arr);

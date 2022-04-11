@@ -35,7 +35,7 @@ int	ft_found_space_to_split(t_cdata *t_cdata)
 		{
 			if (ft_isspace(curr->str[curr->length - 1]))
 				curr->is_spaced = 1;
-			curr->str = ft_strtrim_free(curr->str, " \t\r\n\v\f");
+			curr->str = ft_strtrim(curr->str, " \t\r\n\v\f");
 			curr->length = ft_strlen(curr->str);
 			if (ft_has_spaces(curr->str))
 			{

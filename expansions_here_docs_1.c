@@ -16,9 +16,7 @@
 char	*ft_extract_delim(t_cdata *t_cdata)
 {
 	int		i;
-	char	*result;
 	char	*raw_input;
-	char	*raw_input_temp;
 
 	raw_input = t_cdata->t_qdata->raw_input;
 	i = 0;
