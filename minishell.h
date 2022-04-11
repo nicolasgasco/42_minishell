@@ -30,13 +30,6 @@ extern FILE		*output; // TBD
 
 extern int		*g_ex_status;
 
-typedef struct SignalData {
-	int	sig;
-	int	is_child;
-}	t_sig;
-
-extern t_sig	g_sigdata;
-
 typedef struct s_job
 {
 	struct s_job	*previous;
