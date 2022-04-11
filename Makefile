@@ -48,16 +48,16 @@ SRCS =	minishell.c \
 		./libft_custom/libft_custom_3.c \
 
 
-FLAGS 	= -Wall -Wextra -Werror -g
+FLAGS 	= -Wall -Wextra -Werror
 OBJS    = $(SRCS:.c=.o)
 LIBFT 	=  -C ./libft
 
 all:	
 		@ $(MAKE) -s $(NAME)
-		@ echo "Compiled..."
+		@ echo "Compiled... ✅"
 
 $(NAME) : $(OBJS)
-			@ echo "Compiling..."
+			@ echo -e "\nCompiling Minishell by \033[1;33mToni Del Corral\033[0m and \033[1;33mNicolas Gasco\033[0m... 🐚"
 			@ ${MAKE} -s ${LIBFT}
 			@ gcc ${FLAGS} $(OBJS) -I. ./libft/libft.a -lreadline -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include -o $(NAME)
 
@@ -69,7 +69,7 @@ clean:
 		@ rm -rf *.dSYM
 		@ rm -rf $(OBJS)
 		@ ${MAKE} clean ${LIBFT}
-		@ echo "Cleaned"
+		@ echo "Cleaned 🧹"
 
 fclean: 
 		@ echo "Cleaning objects and program..."
@@ -77,7 +77,7 @@ fclean:
 		@ rm -rf $(OBJS)
 		@ rm -rf $(NAME)
 		@ ${MAKE} fclean ${LIBFT}
-		@ echo "Cleaned"
+		@ echo "Cleaned 🧹"
 
 re:		fclean all
 
