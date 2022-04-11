@@ -70,16 +70,10 @@ void	ft_add_node_quotes(t_qdata *t_qdata, int end, char quote)
 
 	curr = t_qdata->quotes_list;
 	new_node = (struct s_qnode *)malloc(sizeof(struct s_qnode));
-	memset(new_node, 0, sizeof(struct s_qnode));
 	if (new_node == NULL)
 		exit(1);
-	new_node->str = ft_write_str_to_node(t_qdata, end);
-	if ((quote && t_qdata->raw_input[end + 1] && ft_isspace(t_qdata->raw_input[end + 1]))
-		|| (!quote && t_qdata->raw_input[end] && ft_isspace(t_qdata->raw_input[end])))
-		new_node->is_spaced = 1;
-	new_node->length = ft_strlen(new_node->str);
-	new_node->q_type = quote;
-	new_node->next = NULL;
+	memset(new_node, 0, sizeof(struct s_qnode));
+	ft_popoulate_new_node_quotes(new_node, t_qdata, end, quote);
 	i = 0;
 	while (curr && curr->next != NULL)
 	{
@@ -90,6 +84,18 @@ void	ft_add_node_quotes(t_qdata *t_qdata, int end, char quote)
 		curr->next = new_node;
 	else
 		t_qdata->quotes_list = new_node;
+}
+
+/* Util function to add all relevant proprierties to quoted node */
+void	ft_popoulate_new_node_quotes(struct s_qnode *new_node, t_qdata *t_qdata, int end, char quote)
+{
+	new_node->str = ft_write_str_to_node(t_qdata, end);
+	if ((quote && t_qdata->raw_input[end + 1] && ft_isspace(t_qdata->raw_input[end + 1]))
+		|| (!quote && t_qdata->raw_input[end] && ft_isspace(t_qdata->raw_input[end])))
+		new_node->is_spaced = 1;
+	new_node->length = ft_strlen(new_node->str);
+	new_node->q_type = quote;
+	new_node->next = NULL;
 }
 
 /* Three cases: quoted string, quoted string but empty, unquoted string */

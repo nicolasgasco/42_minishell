@@ -154,6 +154,8 @@ char			*ft_create_quoted_token_empty(char *input, int start);
 char			*ft_create_unquoted_token(char *input, int start, int len);
 void			ft_deallocate_quotes_list(struct s_qnode **quotes_list);
 char			*ft_convert_list_to_str(t_qdata *t_qdata);
+void			ft_popoulate_new_node_quotes(struct s_qnode *new_node,
+					t_qdata *t_qdata, int end, char quote);
 
 /* Expansions - Spaces */
 void			ft_expand_spaces(t_cdata *t_cdata);
