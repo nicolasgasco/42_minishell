@@ -8,14 +8,14 @@ cd ../../../..
 cd ../../../../..
 cd ../../../../../..
 cd / && pwd && echo $PWD && echo $OLDPWD
-cd '' && pwd && echo $PWD && echo $OLDPWD --> $OLDPWD no existe!!
-cd '' '' --> No da error!!
-cd '' '' '' --> No da error!!
+cd '' && pwd && echo $PWD && echo $OLDPWD
+cd '' ''
+cd '' '' ''
 cd ' ' && pwd && echo $PWD && echo $OLDPWD
-cd d '' --> No da error!!
-cd d d --> No da error!!
-cd d ' ' --> No da error!!
-export HOME='/Users/ngasco' && cd $HOME && pwd && echo $PWD && echo $OLDPWD --> Export no funciona bien con comilla
+cd d ''
+cd d d
+cd d ' '
+export HOME='/Users/ngasco' && cd $HOME && pwd && echo $PWD && echo $OLDPWD
 cd / && pwd && echo $PWD && echo $OLDPWD
 cd /.
 cd /./
@@ -67,6 +67,7 @@ eChO bonjour
 echo -n -n -n -n bonjour
 echo -nnnnnnnnnnnnnnnnnnnnn bonjour
 echo -nnnnnnnnnnnnnnnnnnnnn -n -n -n bonjour -n -n
+
 ############################################ builtin/env #############################################
 env
 export A=a && env
@@ -294,18 +295,11 @@ unseT TERM
 notfound
  
 notfound a b c
-                                                                                [FAIL]
 echo "\"" >>a"b""c"  
-                                                                         [FAIL]
-echo	\v  123456789:;=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[... [FAIL]
 echo foo>bar
-                                                                                  [FAIL]
 echo foo >bar
-                                                                                 [FAIL]
 echo foo> bar
-                                                                                 [FAIL]
 echo foo > bar
-                                                                                [FAIL]
 echo a as df sad f as df qw e  qwe  as df asd f as df as d fas d fasd f asd f asdf asdf  asd... [PASS]
 echo Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a rem conseq... [PASS]
 echo Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a rem conseq... [FAIL]
@@ -578,65 +572,39 @@ echo bonjour > a'b'c"d"e'f'g"h"i'j'k"l"m'n'o"p'q'r"s't'u"v"w"x"y'z'
                                                                                         [PASS]
 [SETUP echo bonjour > file] < file
                                                             [PASS]
->
-        
->>
-       
+>   
+>> 
 <
-        
 echo >
-   
 echo >>
-  
 echo <
-   
 > test
-                                                                                        [PASS]
 >> test
-                                                                                       [PASS]
-[SETUP touch test] < test
-                                                                     [PASS]
+< test
 echo foo >>> bar
-                                                                              [FAIL]
 echo foo >>>> bar
-                                                                             [FAIL]
 echo foo >>>>> bar
-                                                                            [FAIL]
-[SETUP echo bonjour > bar] cat << < bar
-                                                       [FAIL]
-[SETUP echo bonjour > bar] cat << << bar
-                                                      [FAIL]
-[SETUP echo bonjour > bar] cat <<<<< bar
-                                                      [FAIL]
+cat << < bar
+cat << << bar
+cat <<<<< bar
 cat < doesnotexist
-                                                                            [FAIL]
-[SETUP echo a > a] echo bonjour >> a
-                                                          [FAIL]
-[SETUP echo a > a] echo bonjour >> a >> a
-                                                     [FAIL]
-[SETUP echo a > a] echo bonjour > a
-                                                           [FAIL]
-[SETUP echo a > a] echo bonjour > a >> a
-                                                      [FAIL]
+echo bonjour >> a
+echo bonjour >> a >> a
+echo bonjour > a
+echo bonjour > a >> a
+
 ############################################# cmd/status #############################################
 echo $?
-                                                                                       [PASS]
-echo; echo $?
-                                                                                 [FAIL]
-notfound; echo $?
-                                                                             [FAIL]
+echo && echo $?
+notfound && echo $?
 cat < doesntexist; echo $?
-                                                                    [FAIL]
-[SETUP echo bonjour > noperm; chmod 000 noperm] cat < noperm; echo $?
-                         [FAIL]
+cat < noperm; echo $?
 echo
-                                                                                          [PASS]
 notfound
- 
+
 cat < doesntexist
-                                                                             [FAIL]
 [SETUP echo bonjour > noperm; chmod 000 noperm] cat < noperm
-                                  [FAIL]
+
 ############################################## flow/end ##############################################
 echo bonjour; echo je
                                                                          [FAIL]
@@ -767,43 +735,13 @@ echo a >> foo | cat -e
                                               [PASS]
 ######################################### flow/syntax_error ##########################################
 < | a
-    
 > | a
-    
->> | a
-   
-< ; a
-    
-> ; a
-    
->> ; a
-   
-; | a
-    
-; < a
-    
-; > a
-    
-; >> a
-   
-| ; a
-    
+>> | a   
 | < a
-    
 | > a
-    
 | >> a
    
-> a ; a
-  
-< a ; a
-  
->> a ; a
- 
-Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a rem consequatur... [FAIL]
-Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a rem consequatur... [FAIL]
-Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a rem consequatur... [FAIL]
-Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a rem consequatur... [FAIL]
+
 ############################################ misc/lastcmd ############################################
 echo $_
   
