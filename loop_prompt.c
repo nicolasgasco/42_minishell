@@ -6,7 +6,7 @@
 /*   By: ngasco <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 12:03:16 by ngasco            #+#    #+#             */
-/*   Updated: 2022/03/14 12:03:17 by ngasco           ###   ########.fr       */
+/*   Updated: 2022/04/11 11:42:40 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_get_valid_input(t_cdata *t_cdata, char *prompt_text)
 		ft_free_general_data(t_cdata);
 		printf("exit\n");
 		fclose(output);
-		exit(3);
+		exit(t_cdata->exit_status);
 	}
 	ft_print_new_input_header(line_read); // TBD
 	t_cdata->t_qdata->raw_input = ft_strdup(line_read);
