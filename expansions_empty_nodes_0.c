@@ -45,7 +45,8 @@ int	ft_found_empty_node_to_remove(t_cdata *t_cdata)
 		if (*(curr->str) && !found_cmd)
 			found_cmd = 1;
 		else if (!*(curr->str) && (!curr->q_type || !curr->is_spaced))
-			return ft_remove_node_with_index(i, &t_cdata->t_qdata->quotes_list);
+			return (ft_remove_node_with_index(i,
+					&t_cdata->t_qdata->quotes_list));
 		if (curr->next == NULL)
 			break ;
 		curr = curr->next;
@@ -54,7 +55,8 @@ int	ft_found_empty_node_to_remove(t_cdata *t_cdata)
 	return (0);
 }
 
-int	ft_found_empty_node_to_remove_lonely_node(t_cdata *t_cdata, struct s_qnode *curr)
+int	ft_found_empty_node_to_remove_lonely_node(t_cdata *t_cdata,
+	struct s_qnode *curr)
 {
 	if (!curr->q_type)
 	{
@@ -78,8 +80,7 @@ int	ft_remove_node_with_index(int index, struct s_qnode **root)
 	{
 		to_remove = *root;
 		*root = (*root)->next;
-		free(to_remove->str);
-		free(to_remove);
+		ft_remove_node_with_index_free_util(to_remove);
 		return (1);
 	}
 	while (i < index)
@@ -89,7 +90,13 @@ int	ft_remove_node_with_index(int index, struct s_qnode **root)
 	}
 	to_remove = curr->next;
 	curr->next = curr->next->next;
+	ft_remove_node_with_index_free_util(to_remove);
+	return (1);
+}
+
+/* Util function to shorten function above */
+void	ft_remove_node_with_index_free_util(struct s_qnode *to_remove)
+{
 	free(to_remove->str);
 	free(to_remove);
-	return (1);
 }

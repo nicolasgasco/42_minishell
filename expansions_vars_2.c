@@ -29,7 +29,7 @@ int	ft_find_quoted_vars(t_cdata *t_cdata)
 			}
 		}
 		if (curr->next == NULL)
-			break;
+			break ;
 		else
 			curr = curr->next;
 	}
