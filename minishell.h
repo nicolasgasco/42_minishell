@@ -189,12 +189,10 @@ void			ft_join_var_name_value(struct s_tnode *curr);
 
 /* Expansion - Here document */
 int				ft_here_doc_expansion(t_cdata *t_cdata);
-void			ft_join_after_delimiter(t_cdata *t_cdata);
 int				ft_found_lonely_here_marker(char *str);
 int				ft_found_here_marker_without_cmd(char *str);
 void			ft_expand_here_doc(t_cdata *t_cdata);
 int				ft_find_here_marker_str(char *str);
-void			ft_here_doc_loop(t_cdata *t_cdata);
 char			*ft_extract_delim(t_cdata *t_cdata);
 char			*ft_remove_delim(t_cdata *t_cdata, int i);
 void			ft_remove_delim_from_raw_input(t_cdata *t_cdata,
@@ -317,6 +315,7 @@ int				check_heredoc(char **redir, int stdin_fd,
 int				redir_heredoc(char *limiter, int fd,
 					t_job *job, t_cdata *c_data);
 void			heredoc(char *limiter, int *fd, t_job *job, t_cdata *c_data);
+int				ft_delim_is_quoted(t_cdata *c_data);
 int				check_arg(char *arg, t_cdata *c_data);
 void			built_exit(char **arg, t_job *job, t_cdata *c_data);
 void			free_fd(t_job *first);
