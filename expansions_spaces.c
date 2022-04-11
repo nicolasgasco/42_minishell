@@ -27,9 +27,7 @@ void	ft_expand_spaces(t_cdata *t_cdata)
 int	ft_found_space_to_split(t_cdata *t_cdata)
 {
 	struct s_qnode	*curr;
-	int				found_space;
 
-	found_space = 0;
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
 	{
@@ -41,9 +39,8 @@ int	ft_found_space_to_split(t_cdata *t_cdata)
 			curr->length = ft_strlen(curr->str);
 			if (ft_has_spaces(curr->str))
 			{
-				found_space = 1;
 				ft_split_and_generate_spaced_node(curr);
-				break ;
+				return (1);
 			}
 		}
 		if (curr->next == NULL)
@@ -51,7 +48,7 @@ int	ft_found_space_to_split(t_cdata *t_cdata)
 		else
 			curr = curr->next;
 	}
-	return (found_space);
+	return (0);
 }
 
 /* Split string and generate a new node with expanded spaces */
