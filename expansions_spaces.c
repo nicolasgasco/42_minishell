@@ -27,6 +27,7 @@ void	ft_expand_spaces(t_cdata *t_cdata)
 int	ft_found_space_to_split(t_cdata *t_cdata)
 {
 	struct s_qnode	*curr;
+	char			*temp;
 
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
@@ -35,7 +36,9 @@ int	ft_found_space_to_split(t_cdata *t_cdata)
 		{
 			if (ft_isspace(curr->str[curr->length - 1]))
 				curr->is_spaced = 1;
-			curr->str = ft_strtrim(curr->str, " \t\r\n\v\f");
+			temp = ft_strtrim(curr->str, " \t\r\n\v\f");
+			free(curr->str);
+			curr->str = temp;
 			curr->length = ft_strlen(curr->str);
 			if (ft_has_spaces(curr->str))
 			{
