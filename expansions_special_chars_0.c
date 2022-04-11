@@ -20,7 +20,7 @@ void	ft_expand_special_chars(t_cdata *t_cdata)
 	ft_expand_special_char(t_cdata, "<");
 	ft_expand_special_char(t_cdata, ">");
 	ft_expand_special_char(t_cdata, "|");
-		ft_print_after_special_chars_expansion(t_cdata); // TBD
+	ft_print_after_special_chars_expansion(t_cdata); // TBD
 	ft_remove_empty_nodes(t_cdata);
 	ft_join_spaceless_nodes(t_cdata);
 }
