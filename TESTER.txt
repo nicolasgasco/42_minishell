@@ -505,49 +505,26 @@ cat < test"sticked"
  < test"sticked" cat
 echo > test'yo'"sticked" bonjour
 > test'yo'"sticked" echo bonjour
-                                                              [FAIL]
 echo bonjour >> test'yo'"sticked"
-                                                             [FAIL]
 echo >> test'yo'"sticked" bonjour
-                                                             [FAIL]
 >> test'yo'"sticked" echo bonjour
-                                                             [FAIL]
-[SETUP echo bonjour > test'yo'"sticked"] cat < test'yo'"sticked"
-                              [FAIL]
-[SETUP echo bonjour > test'yo'"sticked"] < test'yo'"sticked" cat
-                              [FAIL]
+cat < test'yo'"sticked"
+< test'yo'"sticked" cat
 echo bonjour > test > je > suis
-                                                               [FAIL]
 echo > test > je bonjour > suis
-                                                               [FAIL]
 > test echo bonjour > je > suis
-                                                               [FAIL]
 echo bonjour >> test > je >> suis
-                                                             [FAIL]
 echo >> test bonjour > je > suis
-                                                              [FAIL]
 >> test echo > je bonjour > suis
-                                                              [FAIL]
-[SETUP echo bonjour > test; echo salut > je] cat < test < je
-                                  [PASS]
+cat < test < je
 echo bonjour>test>je>suis
-                                                                     [FAIL]
 >test echo bonjour>je>suis
-                                                                    [FAIL]
 echo bonjour>>test>je>>suis
-                                                                   [FAIL]
-[SETUP echo bonjour > test; echo salut > je] cat<test<je
-                                      [PASS]
 echo bonjour > a'b'c'd'e'f'g'h'i'j'k'l'm'n'o'p'q'r's't'u'v'w'x'y'z'
-                           [FAIL]
 echo bonjour > a"b"c"d"e"f"g"h"i"j"k"l"m"n"o"p"q"r"s"t"u"v"w"x"y"z"
-                           [FAIL]
 echo bonjour > a'b'c"d"e'f'g"h"i'j'k"l"m'n'o"p'q'r"s't'u"v"w"x"y'z'
-                           [FAIL]
 > file
-                                                                                        [PASS]
-[SETUP echo bonjour > file] < file
-                                                            [PASS]
+ < file
 >   
 >> 
 <
