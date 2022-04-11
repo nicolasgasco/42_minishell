@@ -16,7 +16,8 @@ SRCS =	minishell.c \
 		exec7.c \
 		exec8.c \
 		exit.c \
-		expansions_empty_nodes.c \
+		expansions_empty_nodes_0.c \
+		expansions_empty_nodes_1.c \
 		expansions_here_docs_0.c \
 		expansions_here_docs_1.c \
 		expansions_here_docs_error.c \

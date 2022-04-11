@@ -44,7 +44,7 @@ int	ft_found_empty_node_to_remove(t_cdata *t_cdata)
 	{
 		if (*(curr->str) && !found_cmd)
 			found_cmd = 1;
-		else if (!*(curr->str) && (!curr->q_type || (!found_cmd && !curr->is_spaced)))
+		else if (!*(curr->str) && (!curr->q_type || !curr->is_spaced))
 			return ft_remove_node_with_index(i, &t_cdata->t_qdata->quotes_list);
 		if (curr->next == NULL)
 			break ;
