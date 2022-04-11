@@ -81,10 +81,8 @@ void	heredoc(char *limiter, int *fd, t_job *job, t_cdata *c_data)
 			close(fd[1]);
 			break ;
 		}
-		if (ft_find_dollar(line))
-		{
-		line = ft_add_variable_value(line, c_data);
-		}
+		if (ft_find_dollar(line) && !ft_delim_is_quoted(c_data))
+			line = ft_add_variable_value(line, c_data);
 		ft_putendl_fd(line, fd[1]);
 		free(line);
 		line = readline("> ");
@@ -92,4 +90,24 @@ void	heredoc(char *limiter, int *fd, t_job *job, t_cdata *c_data)
 	free(line);
 	free_ex(job, c_data);
 	exit(EXIT_SUCCESS);
+}
+
+int	ft_delim_is_quoted(t_cdata *c_data)
+{
+	struct s_tnode	*curr;
+
+	curr = c_data->tokens_list;
+	while (1)
+	{
+		if (!strcmp(curr->str, "<<"))
+		{
+			if (curr->next->q_type == '\0')
+				return (0);
+			return (1);
+		}
+		if (curr->next == NULL)
+			break;
+		curr = curr->next;
+	}
+	return (0);
 }
