@@ -41,7 +41,7 @@ void	ft_add_token_to_list(t_cdata *t_cdata, struct s_qnode *origin)
 
 	curr = t_cdata->tokens_list;
 	new_node = (struct s_tnode *)malloc(sizeof(struct s_tnode));
-	memset(new_node, 0, sizeof(struct s_tnode *));
+	memset(new_node, 0, sizeof(struct s_tnode));
 	if (new_node == NULL)
 		exit(1);
 	new_node->str = ft_strdup(origin->str);

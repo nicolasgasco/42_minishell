@@ -24,7 +24,7 @@ void	ft_init_reset_loop_data(t_cdata *t_cdata)
 // Structure with global data
 void	ft_init_general_data(t_cdata	*t_cdata, char **envp)
 {
-	memset(t_cdata, 0, sizeof(*t_cdata));
+	memset(t_cdata, 0, sizeof(t_cdata));
 	init_envp(envp, t_cdata);
 	ft_init_prompt_data(t_cdata);
 	init_export(t_cdata);

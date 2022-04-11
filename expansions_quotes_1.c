@@ -70,7 +70,7 @@ void	ft_add_node_quotes(t_qdata *t_qdata, int end, char quote)
 
 	curr = t_qdata->quotes_list;
 	new_node = (struct s_qnode *)malloc(sizeof(struct s_qnode));
-	memset(new_node, 0, sizeof(struct s_qnode *));
+	memset(new_node, 0, sizeof(struct s_qnode));
 	if (new_node == NULL)
 		exit(1);
 	new_node->str = ft_write_str_to_node(t_qdata, end);
