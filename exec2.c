@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 12:00:49 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/10 18:09:30 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/11 10:42:24 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ void	executor(t_job *job, t_cdata *c_data)
 		return ;
 	if (job && job->cmd)
 	{
-//		mini_exec(job, first, c_data);
-		while (job)
+		mini_exec(job, first, c_data);
+/*		while (job)
 		{
 			child_process(job, first, c_data);
 			job = job->next;
@@ -123,6 +123,6 @@ void	executor(t_job *job, t_cdata *c_data)
 				ex_stat(c_data, status);
 			}
 			first = first->next;
-		}
+		}*/
 	}
 }

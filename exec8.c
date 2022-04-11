@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec8.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adel-cor <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/11 10:13:53 by adel-cor          #+#    #+#             */
+/*   Updated: 2022/04/11 10:17:41 by adel-cor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void ex_stat(t_cdata *c_data, int status)
@@ -33,6 +45,6 @@ void	mini_exec(t_job *job, t_job *first, t_cdata *c_data)
 			first = first->next;
 		}
 	}
-		free_job_lst((ms_head_list_job(job)));
+		free_job_lst((ms_head_list_job(first)));
 }
 
