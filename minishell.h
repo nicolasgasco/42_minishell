@@ -28,7 +28,7 @@
 
 extern FILE		*output; // TBD
 
-extern	int		*g_ex_status;
+extern int		*g_ex_status;
 
 typedef struct SignalData {
 	int	sig;
@@ -168,7 +168,8 @@ char			*ft_convert_list_to_str(t_qdata *t_qdata);
 void			ft_expand_spaces(t_cdata *t_cdata);
 int				ft_remove_empty_nodes(t_cdata *t_cdata);
 int				ft_found_empty_node_to_remove(t_cdata *t_cdata);
-int				ft_found_empty_node_to_remove_lonely_node(t_cdata *t_cdata, struct s_qnode *curr);
+int				ft_found_empty_node_to_remove_lonely_node(t_cdata *t_cdata,
+					struct s_qnode *curr);
 int				ft_remove_node_with_index(int index, struct s_qnode **root);
 void			ft_split_and_generate_spaced_node(struct s_qnode *curr);
 char			*ft_create_rest_str(char *curr_str, int t_len);
@@ -223,7 +224,7 @@ int				ft_is_special_str(char *str);
 int				ft_found_adjecent_pipes(char *str);
 int				ft_last_node_is_special_char(t_cdata *t_cdata);
 void			ft_join_spaceless_nodes(t_cdata *t_cdata);
-int 			ft_found_spaceless_nodes(t_cdata *t_cdata);
+int				ft_found_spaceless_nodes(t_cdata *t_cdata);
 void			ft_join_nodes(struct s_qnode *curr);
 int				ft_found_one_special_char(char *str);
 
