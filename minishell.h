@@ -278,7 +278,6 @@ int				env_compare(char **env, char **arg, int i);
 /* TBD */
 void			ft_print_quotes_list(struct s_qnode *list);
 void			ft_print_tokens_list(struct s_tnode *list);
-void			ft_output_epic_welcome(t_cdata *t_cdata);
 void			ft_print_unclosed_quotes(void);
 void			ft_print_here_doc_detected(void);
 void			ft_print_after_spaces_expansion(t_cdata *t_cdata);
