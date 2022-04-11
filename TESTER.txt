@@ -76,6 +76,7 @@ Env
 enV
 Env
 enV
+
 ############################################ builtin/exit ############################################
 exit
 exit 1
@@ -295,14 +296,15 @@ unseT TERM
 notfound
  
 notfound a b c
-echo "\"" >>a"b""c"  
+echo "'" >>a"b""c"  
 echo foo>bar
 echo foo >bar
 echo foo> bar
 echo foo > bar
-echo a as df sad f as df qw e  qwe  as df asd f as df as d fas d fasd f asd f asdf asdf  asd... [PASS]
-echo Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a rem conseq... [PASS]
-echo Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a rem conseq... [FAIL]
+echo a as df sad f as df qw e  qwe  as df asd f as df as d fas d fasd f asd f asdf asdf 
+echo Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a rem
+echo Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a rem
+
 ############################################ cmd/cmd_path ############################################
 [SETUP touch a b c] /bin/ls
                                                                    [FAIL]
@@ -605,133 +607,33 @@ notfound
 cat < doesntexist
 [SETUP echo bonjour > noperm; chmod 000 noperm] cat < noperm
 
-############################################## flow/end ##############################################
-echo bonjour; echo je
-                                                                         [FAIL]
-echo bonjour ;echo je
-                                                                         [FAIL]
-echo bonjour ; echo je
-                                                                        [FAIL]
-echo bonjour;
-                                                                                 [FAIL]
-echo; 
-   
-echo ; 
-  
-echo ;
-   
-; echo
-   
- ;echo
-   
- ; echo
-  
-echo a; echo b; echo c; echo d; echo e; echo f; echo g; echo h; echo i;echo j; echo k; echo ... [FAIL]
-echo a ; echo b; echo c ;echo d     ;   echo e   ;echo f;        echo g  ;echo h; echo i;ech... [FAIL]
-ls doesnotexists ; echo bonjour
-                                                               [FAIL]
-ls doesnotexists; echo bonjour
-                                                                [FAIL]
-echo bonjour; ls doesnotexists
-                                                                [FAIL]
-echo a ; ;
-echo a ; ;
-;
-        
-; ;
-      
-; ; ;
-    
-echo a ; ; echo b
-                                                                             [FAIL]
-;;
-       
-;;;
-      
-;;;;;
-    
-echo a ;; echo b
-                                                                              [FAIL]
-echo a ;;;;; echo b
-                                                                           [FAIL]
-[SETUP touch a b c] ls  ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; l... [FAIL]
-[SETUP touch a b c] ls  ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; l... [FAIL]
-[SETUP touch a b c] ls  ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; l... [FAIL]
-[SETUP touch a b c] ls  ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; ls ; l... [FAIL]
 ############################################# flow/pipe ##############################################
 cat /etc/shells | head -c 10
-                                                                  [PASS]
 cat -e /etc/shells | head -c 10
-                                                               [PASS]
 cat -e /etc/shells | cat -e | head -c 10
-                                                      [PASS]
 cat -e /etc/shells | cat -e | cat -e | head -c 10
-                                             [PASS]
 cat -e /dev/random | head -c 10
-                                                               [PASS]
 cat -e /dev/random | cat -e | head -c 10
-                                                      [PASS]
 cat -e /dev/random | cat -e | cat -e | head -c 10
-                                             [PASS]
 echo bonjour | cat
-                                                                            [PASS]
 echo bonjour | cat -e
-                                                                         [PASS]
 echo bonjour | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e
-                   [PASS]
-[SETUP touch a b c d; mkdir m1 m2 m3] ls | cat -e
-                                             [FAIL]
-[SETUP touch a b c d; mkdir m1 m2 m3] ls -l | cat -e
-                                          [FAIL]
-[SETUP touch a b c d; mkdir m1 m2 m3] ls -l | cat -e | cat | cat | cat
-                        [FAIL]
-[SETUP touch a b c d; mkdir m1 m2 m3] ls -l | cat -e | cat -e | cat -e | cat -e
-               [FAIL]
-[SETUP touch a b c d; mkdir m1 m2 m3; echo bonjour > a] ls -l | cat -e < a
-                    [PASS]
 echo|
-    
 echo |
-   
 echo | 
-  
 |cat
-     
 | cat
-    
  | cat
-   
-echo a | export A=a; echo $A
-                                                                  [FAIL]
-export A=a | cat; echo $A
-                                                                     [FAIL]
 echo bonjour | | cat -e
-                                                                       [FAIL]
 echo bonjour | asdf
-                                                                           [FAIL]
 asdf | echo bonjour
-                                                                           [PASS]
 echo a ||| echo b
-                                                                             [FAIL]
-[SETUP touch a b c] ls  | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | l... [FAIL]
-[SETUP touch a b c] ls  | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | l... [FAIL]
-echo bonjour  | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat ... [PASS]
-echo bonjour  | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat ... [PASS]
 ls asdfasdf | echo a
-                                                                          [PASS]
 echo a | ls asdfasdf
-                                                                          [FAIL]
-ls asdfasdf | echo a; echo b
-                                                                  [FAIL]
-echo a | ls asdfasdf; echo b
-                                                                  [FAIL]
 echo a > foo | cat -e
-                                                                         [PASS]
 echo a >> foo | cat -e
-                                                                        [PASS]
-[SETUP echo b > foo] echo a | cat -e < foo
-                                                    [PASS]
-[SETUP echo b > foo] echo a > bar | cat -e < foo
+echo a | cat -e < foo
+echo a > bar | cat -e < foo
                                               [PASS]
 ######################################### flow/syntax_error ##########################################
 < | a
@@ -857,25 +759,6 @@ echo $A$B
 echo $A$B$C
 echo $A$B$C$D
 [EXPORTS A='bonjour\je'] echo [$A]
-                                                            [PASS]
-[EXPORTS A='\b\\o\\
-j\\\\\\\our\\je\\\\'] echo [$A]
-                                          [PASS]
-[EXPORTS A='   \b\\o\\
-j\\\\\\\our\\je\\\\'] echo [$A]
-                                       [FAIL]
-[EXPORTS A='\b\\o\\
-j\\\\\\\our\\je\\\\   '] echo [$A]
-                                       [FAIL]
-[EXPORTS A='  \b\\o\\
-j\\\\\\\our\\je\\\\ '] echo [$A]
-                                       [FAIL]
-[EXPORTS A='a  \b\\o\\
-j\\\\\\\our\\je\\\\ b'] echo [$A]
-                                     [FAIL]
-[EXPORTS A=' a  \b\\o\\
-j\\\\\\\our\\je\\\\ b '] echo [$A]
-                                   [FAIL]
 [EXPORTS A=' '] echo [$A]
                                                                      [PASS]
 [EXPORTS A='    '] echo [$A]
@@ -883,12 +766,6 @@ j\\\\\\\our\\je\\\\ b '] echo [$A]
 [EXPORTS A='\ '] echo [$A]
                                                                     [PASS]
 [EXPORTS A=' \  '] echo [$A]
-                                                                  [FAIL]
-[EXPORTS A='bonjour'] echo \ \ \ \ \ \ \ $A\ \ \ \ \ \ 
-                                       [FAIL]
-[EXPORTS A='bonjour je suis'] echo \ \ \ \ \ \ \ $A\ \ \ \ \ \ 
-                               [FAIL]
-[EXPORTS A='  bonjour je suis  '] echo \ \ \ \ \ \ \ $A\ \ \ \ \ \ 
                            [FAIL]
 [EXPORTS A='bonjour je suis splited'] echo $A
                                                  [PASS]
@@ -922,9 +799,6 @@ j\\\\\\\our\\je\\\\ b '] echo [$A]
                               [FAIL]
 [EXPORTS A='   bonjour     je     suis    splited   '] echo $A$A$A
                             [FAIL]
-[EXPORTS A=''Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a re... [PASS]
-[EXPORTS A=''Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a re... [PASS]
-[EXPORTS A=''Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a re... [PASS]
 [EXPORTS ECHO='echo'] $ECHO $ECHO
                                                              [PASS]
 [EXPORTS A='ec' B='ho'] $A$B bonjour
@@ -1012,7 +886,7 @@ echo \$$\$$
 'echo' 'je' 'suis' 'charles'
 "echo" "bonjour"
 "echo" "je" "suis" "charles"
-echo je'suis'"charles" --> error!
+echo je'suis'"charles"
 echo "je"suis'charles'
 echo 'je'"suis"charles
 ls ""
@@ -1023,7 +897,7 @@ ls '' '' '''' ''
 'echo     ' bonjour
 "     echo" bonjour
 "echo     " bonjour
-''echo bonjour --> ERROR
+''echo bonjour
 ""echo bonjour
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''echo bonjour
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""echo bonjour
@@ -1066,34 +940,3 @@ echo
 foo
  echo foo
 echofoo
-
-         
-                                          
-																					
-            			           			       
-
-Summary:
-builtin/cd ...................................................................    2 [PASS]   82 [FAIL]
-builtin/echo .................................................................   29 [PASS]   10 [FAIL]
-builtin/env ..................................................................    0 [PASS]    8 [FAIL]
-builtin/exit .................................................................    0 [PASS]   81 [FAIL]
-builtin/export ...............................................................    2 [PASS]   70 [FAIL]
-builtin/pwd ..................................................................   10 [PASS]    4 [FAIL]
-builtin/unset ................................................................    3 [PASS]   25 [FAIL]
-cmd/cmd ......................................................................    2 [PASS]    9 [FAIL]
-cmd/cmd_path .................................................................    0 [PASS]   91 [FAIL]
-cmd/redirection ..............................................................    8 [PASS]   57 [FAIL]
-cmd/status ...................................................................    2 [PASS]    7 [FAIL]
-flow/end .....................................................................    0 [PASS]   30 [FAIL]
-flow/pipe ....................................................................   19 [PASS]   20 [FAIL]
-flow/syntax_error ............................................................    0 [PASS]   21 [FAIL]
-misc/lastcmd .................................................................    0 [PASS]   10 [FAIL]
-misc/shlvl ...................................................................    0 [PASS]   66 [FAIL]
-path/path ....................................................................    0 [PASS]   50 [FAIL]
-path/path_variable ...........................................................   24 [PASS]   25 [FAIL]
-preprocess/escape ............................................................   19 [PASS]   32 [FAIL]
-preprocess/interpolation .....................................................   34 [PASS]   63 [FAIL]
-preprocess/quote .............................................................   11 [PASS]   41 [FAIL]
-preprocess/spaces ............................................................    5 [PASS]   13 [FAIL]
-TOTAL ........................................................................  170 [PASS]  815 [FAIL]
-See /Users/ngasco/Documents/minishell/minishell_test.log for more information
