@@ -41,16 +41,16 @@ int	built_echo(char **arg)
 
 	x = 1;
 	i = 0;
-	if (!check_new_line(arg[1]))
-	{
-		x = 2;
-		i = 1;
-	}
 	while (arg[x])
 	{
-		printf("%s", arg[x]);
-		if (arg[x + 1] != NULL)
-			printf(" ");
+		if (!check_new_line(arg[x]))
+			i++;
+		else
+		{
+			printf("%s", arg[x]);
+			if (arg[x + 1] != NULL)
+				printf(" ");
+		}
 		x++;
 	}
 	if (!i)
