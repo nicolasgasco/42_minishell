@@ -31,7 +31,8 @@ int	ft_found_spaceless_nodes(t_cdata *t_cdata)
 	{
 		if (curr->next)
 		{
-			if (!curr->is_spaced && !ft_found_one_special_char(curr->next->str))
+			if (!curr->is_spaced && !ft_found_one_special_char(curr->str)
+					&& !ft_found_one_special_char(curr->next->str))
 			{
 				ft_join_nodes(curr);
 				return (1);
