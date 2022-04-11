@@ -37,7 +37,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 /* Input is collected, tokenized, expanded, and sent for execution */
 void	ft_start_loop(t_cdata *t_cdata)
-{
+{	
 	while (1)
 	{
 		ft_shortcut_events();
@@ -67,6 +67,7 @@ void	ft_start_execution(t_cdata *t_cdata)
 {
 	t_job	*job;
 
+	job = NULL;
 	fflush(output); // TBD
 	ft_create_tokens_list(t_cdata);
 	ft_print_tokens_list(t_cdata->tokens_list);

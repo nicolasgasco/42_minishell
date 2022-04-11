@@ -53,7 +53,7 @@ SRCS =	minishell.c \
 
 
 LIBC    = ar -rcs
-FLAGS 	= -Wall -Wextra -Werror -g
+FLAGS 	= -Wall -Wextra -Werror
 OBJS    = $(SRCS:.c=.o)
 LIBFT 	=  -C ./libft
 
@@ -67,7 +67,7 @@ $(NAME) : $(OBJS)
 			@ gcc ${FLAGS} $(OBJS) -I. ./libft/libft.a -lreadline -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include -o $(NAME)
 
 %.o: %.c
-	$(CC) ${CFLAGS} -c $< -o $@
+	gcc ${FLAGS} -c $< -o $@
 	
 clean:
 		@ echo "Cleaning objects..."
