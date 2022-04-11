@@ -740,241 +740,20 @@ echo a >> foo | cat -e
 | < a
 | > a
 | >> a
-   
 
-############################################ misc/lastcmd ############################################
-echo $_
-  
-echo; echo $_
-                                                                                 [FAIL]
-env; echo $_
-                                                                                  [FAIL]
-export A=a; echo $_
-                                                                           [FAIL]
-unset A; echo $_
-                                                                              [FAIL]
-echo a b c d; echo $_
-                                                                         [FAIL]
-cat -e /etc/shells; echo $_
-                                                                   [FAIL]
-echo a; echo "$_"
-                                                                             [FAIL]
-echo a; echo '$_'
-                                                                             [FAIL]
-echo a; echo "@$_@"
-                                                                           [FAIL]
-############################################# misc/shlvl #############################################
-echo $SHLVL
-                                                                                   [FAIL]
-[EXPORTS SHLVL=''] echo $SHLVL
-                                                                [FAIL]
-[EXPORTS SHLVL=' 1'] echo $SHLVL
-                                                              [FAIL]
-[EXPORTS SHLVL=' 2'] echo $SHLVL
-                                                              [FAIL]
-[EXPORTS SHLVL=' 3'] echo $SHLVL
-                                                              [FAIL]
-[EXPORTS SHLVL=' ' 3''] echo $SHLVL
-                                                           [FAIL]
-[EXPORTS SHLVL=' '	3''] echo $SHLVL
-                                                          [FAIL]
-[EXPORTS SHLVL=' '	   3''] echo $SHLVL
-                                                     [FAIL]
-[EXPORTS SHLVL=' '3 ''] echo $SHLVL
-                                                           [FAIL]
-[EXPORTS SHLVL=' '3	''] echo $SHLVL
-                                                          [FAIL]
-[EXPORTS SHLVL=' '3 ''] echo $SHLVL
-                                                          [FAIL]
-[EXPORTS SHLVL=' '3	   ''] echo $SHLVL
-                                                     [FAIL]
-[EXPORTS SHLVL=' '3     a''] echo $SHLVL
-                                                      [FAIL]
-[EXPORTS SHLVL=' '3			a''] echo $SHLVL
-                                                     [FAIL]
-[EXPORTS SHLVL=' 0'] echo $SHLVL
-                                                              [FAIL]
-[EXPORTS SHLVL=' -0'] echo $SHLVL
-                                                             [FAIL]
-[EXPORTS SHLVL=' -1'] echo $SHLVL
-                                                             [FAIL]
-[EXPORTS SHLVL=' 255'] echo $SHLVL
-                                                            [FAIL]
-[EXPORTS SHLVL=' 256'] echo $SHLVL
-                                                            [FAIL]
-[EXPORTS SHLVL=' 2000000'] echo $SHLVL
-                                                        [FAIL]
-[EXPORTS SHLVL=' -2000000'] echo $SHLVL
-                                                       [FAIL]
-[EXPORTS SHLVL=' 2147483647'] echo $SHLVL
-                                                     [FAIL]
-[EXPORTS SHLVL=' -2147483648'] echo $SHLVL
-                                                    [FAIL]
-[EXPORTS SHLVL=' 2147483648'] echo $SHLVL
-                                                     [FAIL]
-[EXPORTS SHLVL=' -2147483649'] echo $SHLVL
-                                                    [FAIL]
-[EXPORTS SHLVL=' 3147483648'] echo $SHLVL
-                                                     [FAIL]
-[EXPORTS SHLVL=' -3147483649'] echo $SHLVL
-                                                    [FAIL]
-[EXPORTS SHLVL=' 4294967295'] echo $SHLVL
-                                                     [FAIL]
-[EXPORTS SHLVL=' 4294967296'] echo $SHLVL
-                                                     [FAIL]
-[EXPORTS SHLVL=' -9223372036854775808'] echo $SHLVL
-                                           [FAIL]
-[EXPORTS SHLVL=' 9223372036854775807'] echo $SHLVL
-                                            [FAIL]
-[EXPORTS SHLVL=' -9223372036854775809'] echo $SHLVL
-                                           [FAIL]
-[EXPORTS SHLVL=' 9223372036854775808'] echo $SHLVL
-                                            [FAIL]
-[EXPORTS SHLVL=' 18446744073709551615'] echo $SHLVL
-                                           [FAIL]
-[EXPORTS SHLVL=' 18446744073709551616'] echo $SHLVL
-                                           [FAIL]
-[EXPORTS SHLVL=' +1'] echo $SHLVL
-                                                             [FAIL]
-[EXPORTS SHLVL=' +2'] echo $SHLVL
-                                                             [FAIL]
-[EXPORTS SHLVL=' +3'] echo $SHLVL
-                                                             [FAIL]
-[EXPORTS SHLVL=' +0'] echo $SHLVL
-                                                             [FAIL]
-[EXPORTS SHLVL=' +255'] echo $SHLVL
-                                                           [FAIL]
-[EXPORTS SHLVL=' +256'] echo $SHLVL
-                                                           [FAIL]
-[EXPORTS SHLVL=' +2000000'] echo $SHLVL
-                                                       [FAIL]
-[EXPORTS SHLVL=' +2147483647'] echo $SHLVL
-                                                    [FAIL]
-[EXPORTS SHLVL=' ++1'] echo $SHLVL
-                                                            [FAIL]
-[EXPORTS SHLVL=' ++2'] echo $SHLVL
-                                                            [FAIL]
-[EXPORTS SHLVL=' ++3'] echo $SHLVL
-                                                            [FAIL]
-[EXPORTS SHLVL=' ++0'] echo $SHLVL
-                                                            [FAIL]
-[EXPORTS SHLVL=' ++255'] echo $SHLVL
-                                                          [FAIL]
-[EXPORTS SHLVL=' ++256'] echo $SHLVL
-                                                          [FAIL]
-[EXPORTS SHLVL=' ++2000000'] echo $SHLVL
-                                                      [FAIL]
-[EXPORTS SHLVL=' ++2147483647'] echo $SHLVL
-                                                   [FAIL]
-[EXPORTS SHLVL=' --1'] echo $SHLVL
-                                                            [FAIL]
-[EXPORTS SHLVL=' --2'] echo $SHLVL
-                                                            [FAIL]
-[EXPORTS SHLVL=' --3'] echo $SHLVL
-                                                            [FAIL]
-[EXPORTS SHLVL=' --0'] echo $SHLVL
-                                                            [FAIL]
-[EXPORTS SHLVL=' --255'] echo $SHLVL
-                                                          [FAIL]
-[EXPORTS SHLVL=' --256'] echo $SHLVL
-                                                          [FAIL]
-[EXPORTS SHLVL=' --2000000'] echo $SHLVL
-                                                      [FAIL]
-[EXPORTS SHLVL=' --2147483647'] echo $SHLVL
-                                                   [FAIL]
-[EXPORTS SHLVL=' bonjour'] echo $SHLVL
-                                                        [FAIL]
-[EXPORTS SHLVL=' 0_'] echo $SHLVL
-                                                             [FAIL]
-[EXPORTS SHLVL=' _0'] echo $SHLVL
-                                                             [FAIL]
-[EXPORTS SHLVL=' 0123456789'] echo $SHLVL
-                                                     [FAIL]
-[EXPORTS SHLVL=' -0123456789'] echo $SHLVL
-                                                    [FAIL]
-[EXPORTS SHLVL=' 00000000000000000000000000000000000000000000001'] echo $SHLVL
-                [FAIL]
-[EXPORTS SHLVL=' 000000000000000000000000000000000000000000000000000000000000000000000000000... [FAIL]
-############################################# path/path ##############################################
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 000 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 001 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 002 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 003 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 004 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 005 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 006 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 007 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 010 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 020 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 030 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 040 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 050 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 060 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 070 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 100 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 200 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 300 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 400 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 500 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 600 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 700 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 755 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 644 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 311 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 111 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 222 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 333 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 0777 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 1000 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 2000 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 3000 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 4000 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 5000 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 6000 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 7000 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 1777 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 2777 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 3777 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 4777 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 5777 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 6777 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 7777 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 0000 ./path/a] [EXPORTS PATH='path'... [FAIL]
-[SETUP mkdir path && cp /usr/bin/which ./path/a && chmod 000 ./path/a] [EXPORTS PATH='path']... [FAIL]
-[SETUP mkdir path && ln -s /usr/bin/which ./path/b] [EXPORTS PATH='path'] b
-                   [FAIL]
-[SETUP mkdir path && mkfifo path/a] a
-                                                         [FAIL]
-[SETUP mkdir path && mkfifo path/a && chmod 777 path/a] a
-                                     [FAIL]
-[SETUP mkdir path1 path2 && cp /usr/bin/which path1/a&& cp /usr/bin/which path2/a && chmod 0... [FAIL]
-[SETUP mkdir -p path/a; cp /usr/bin/which path/a/b] [EXPORTS PATH='path'] a/b
-                 [FAIL]
 ######################################### path/path_variable #########################################
 [EXPORTS PATH='doesnotexits'] echo $PATH
-                                                      [PASS]
 [EXPORTS PATH='doesnotexits:asdfasdfas'] echo $PATH
-                                           [PASS]
 [EXPORTS PATH='a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:x:y:z'] echo $PATH
-               [PASS]
 [EXPORTS PATH='________'] echo $PATH
-                                                          [PASS]
 [EXPORTS PATH='        '] echo $PATH
-                                                          [FAIL]
 [EXPORTS PATH='   :    '] echo $PATH
-                                                          [FAIL]
 [EXPORTS PATH='     /bin      '] echo $PATH
-                                                   [FAIL]
 [EXPORTS PATH='     /sbin      '] echo $PATH
-                                                  [FAIL]
 [EXPORTS PATH='/bin:/bin:/bin:/bin'] echo $PATH
-                                               [PASS]
 [EXPORTS PATH='/sbin:/sbin:/sbin:/sbin'] echo $PATH
-                                           [PASS]
 [EXPORTS PATH=''] echo $PATH
-                                                                  [PASS]
 [EXPORTS PATH=':'] echo $PATH
-                                                                 [PASS]
 [EXPORTS PATH=':::::::::::::::::::'] echo $PATH
                                                [PASS]
 [EXPORTS PATH='/asdfasdf'] echo $PATH
@@ -1052,156 +831,31 @@ echo bonjour' > somecmd; chmod +x somecmd] [EXPORTS PATH=':/bin:'] s... [PASS]
                                                                       [FAIL]
 [EXPORTS PATH=''] wHoami
                                                                       [FAIL]
-######################################### preprocess/escape ##########################################
-echo \a
-  
-\e\c\h\o bonjour
-                                                                              [FAIL]
-echo charles\ 
-                                                                                [FAIL]
-echo \ \ jesuis\ \ charles
-                                                                    [FAIL]
-echo \ \ jesuis\; \ charles
-                                                                   [FAIL]
-echo \ \ jesuis\&\& \ charles
-                                                                 [FAIL]
-echo \ \ jesuis\|\| \ charles
-                                                                 [FAIL]
-echo \ \ jesuis \|\| \ charles
-                                                                [FAIL]
-echo \ \ jesuis\; \ charles
-                                                                   [FAIL]
-echo \ \ \ \ \ \ \ \ 
-                                                                         [FAIL]
-echo \ \ \ \ \ \ \ \               \ \ \ \ \ \ 
-                                               [FAIL]
-echo \$PATH
-                                                                                   [FAIL]
-echo \$\P\A	\H
-                                                                               [FAIL]
-echo\ bonjour
-                                                                                 [FAIL]
-\ echo bonjour
-                                                                                [FAIL]
- \ echo bonjour
-                                                                               [FAIL]
-                 \ echo bonjour
-                                                               [FAIL]
- \                 echo bonjour
-                                                               [FAIL]
-                 \                    echo bonjour
-                                            [FAIL]
-/bin/echo " \  "
-                                                                              [PASS]
-/bin/echo " \" "
-                                                                              [FAIL]
-/bin/echo " \' "
-                                                                              [PASS]
-/bin/echo " \a "
-                                                                              [PASS]
-/bin/echo " \b "
-                                                                              [PASS]
-/bin/echo " \| "
-                                                                              [PASS]
-/bin/echo " \! "
-                                                                              [PASS]
-/bin/echo " \@ "
-                                                                              [PASS]
-/bin/echo " \$ "
-                                                                              [FAIL]
-/bin/echo " \$LESS "
-                                                                          [FAIL]
-/bin/echo " \$? "
-                                                                             [FAIL]
-/bin/echo " \\ "
-                                                                              [FAIL]
-/bin/echo " \\\ "
-                                                                             [FAIL]
-/bin/echo " \\\\ "
-                                                                            [FAIL]
-/bin/echo " \\\\\ "
-                                                                           [FAIL]
-/bin/echo " \\\\\\ "
-                                                                          [FAIL]
-/bin/echo " \\\\\\\ "
-                                                                         [FAIL]
-/bin/echo " \\\\\\\\ "
-                                                                        [FAIL]
-/bin/echo ' \  '
-                                                                              [PASS]
-/bin/echo ' \" '
-                                                                              [PASS]
-/bin/echo ' \a '
-                                                                              [PASS]
-/bin/echo ' \b '
-                                                                              [PASS]
-/bin/echo ' \| '
-                                                                              [PASS]
-/bin/echo ' \! '
-                                                                              [PASS]
-/bin/echo ' \@ '
-                                                                              [PASS]
-/bin/echo ' \$ '
-                                                                              [PASS]
-/bin/echo ' $LESS '
-                                                                           [PASS]
-/bin/echo ' \$? '
-                                                                             [PASS]
-/bin/echo ' \\ '
-                                                                              [PASS]
-/bin/echo ' \\\ '
-                                                                             [PASS]
-echo \
-   
-echo "\""'bonjour'
-                                                                            [FAIL]
+
 ###################################### preprocess/interpolation ######################################
 [EXPORTS TEST='bonjour'] echo $TEST
-                                                           [PASS]
 [EXPORTS TEST='bonjour'] echo $TES
-                                                            [PASS]
 [EXPORTS TEST='bonjour'] echo $TEST_
-                                                          [FAIL]
 [EXPORTS TEST='bonjour'] echo "|$TEST|"
-                                                       [PASS]
 [EXPORTS TEST='bonjour'] echo "|$TES|"
-                                                        [PASS]
 [EXPORTS TEST='bonjour'] echo "|$TEST_|"
-                                                      [FAIL]
 [EXPORTS TEST='bonjour'] echo '|$TEST|'
-                                                       [PASS]
 [EXPORTS TEST='bonjour'] echo '|$TES|'
-                                                        [PASS]
 [EXPORTS TEST='bonjour'] echo '|$TEST_|'
-                                                      [PASS]
 [EXPORTS A='foo' B='bar' C='baz'] echo $A$B$C
-                                                 [PASS]
 [EXPORTS A='foo' B='bar' C='baz'] echo "$A$B$C"
-                                               [PASS]
 [EXPORTS A='foo' B='bar' C='baz'] echo '$A$B$C'
-                                               [PASS]
 [EXPORTS A='foo' B='bar' C='baz'] echo $A,$B,$C
-                                               [PASS]
 [EXPORTS A='foo' B='bar' C='baz'] echo "$A,$B,$C"
-                                             [PASS]
 [EXPORTS A='foo' B='bar' C='baz'] echo '$A,$B,$C'
-                                             [PASS]
 [EXPORTS A='foo' B='bar' C='baz'] echo $A"$B"$C"A"$B"$C"
-                                      [FAIL]
 [EXPORTS A='foo' B='bar' C='baz'] echo $A'$B'$C'A'$B'$C'
-                                      [FAIL]
 [EXPORTS A='foo ' B=' bar  ' C='baz '] echo $A"$B"$C"A"$B"$C"
-                                 [FAIL]
 [EXPORTS A='foo ' B=' bar  ' C='baz '] echo $A'$B'$C'A'$B'$C'
-                                 [FAIL]
 echo $A
-                                                                                       [PASS]
 echo $A$B
-                                                                                     [PASS]
 echo $A$B$C
-                                                                                   [PASS]
 echo $A$B$C$D
-                                                                                 [PASS]
 [EXPORTS A='bonjour\je'] echo [$A]
                                                             [PASS]
 [EXPORTS A='\b\\o\\
