@@ -6,7 +6,7 @@
 /*   By: adel-cor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:13:53 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/11 12:21:01 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/11 13:34:08 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,11 @@ void	mini_exec(t_job *job, t_job *first, t_cdata *c_data)
 		}
 	}
 }
+
+void	ft_put_error(char *str1, char *str2, char *str3, int fd)
+{
+	ft_putendl_fd(str1, fd);
+	ft_putendl_fd(str2, fd);
+	ft_putendl_fd(str3, fd);
+}
+

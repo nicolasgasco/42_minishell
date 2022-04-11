@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 12:00:49 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/11 10:42:24 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/11 13:09:07 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 {
 	job->pid = fork();
 	if (job->pid == -1)
-		printf("Dang! This fork didn't work!");
+		ft_putendl_fd("Dang! This fork didn't work!", 2);
 	ft_shortcut_events_interactive();
 	if (job->pid == 0)
 	{

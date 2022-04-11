@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 12:59:57 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/05 13:10:30 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/11 13:33:20 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	open_file(char *argv, int i, int quit)
 	if (file == -1)
 	{
 		if (access(argv, F_OK) == 0)
-			printf("minishell: %s Is a directory\n", argv);
+			ft_put_error("minishell: ", argv, "Is a directory\n", 2);
 		else
-			printf("minishell: no such file or directory: %s\n", argv);
+			ft_put_error("minishell: ", argv, "no such file or directory\n", 2);
 		if (quit == 0)
 			exit(1);
 	}

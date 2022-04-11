@@ -6,7 +6,7 @@
 /*   By: ngasco <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:14:58 by ngasco            #+#    #+#             */
-/*   Updated: 2022/04/11 09:44:29 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/11 13:29:53 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,5 +327,6 @@ void			free_ex(t_job *job, t_cdata *c_data);
 char			*ft_get_env(char *var_name, char **env);
 void			mini_exec(t_job *job, t_job *first, t_cdata *c_data);
 void			ex_stat(t_cdata *c_data, int status);
+void			ft_put_error(char *str1, char *str2, char *str3, int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:21:22 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/07 14:41:46 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/11 13:04:16 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ int	built_cd(char *arg, t_cdata *t_cdata)
 	{
 		if (arg[0] == '\0')
 			return (1);
-		printf("cd %s : No such file or directory\n", arg);
+		ft_putendl_fd("cd ", 2);
+		ft_putendl_fd(arg, 2);
+		ft_putendl_fd(" : No such file or directory\n", 2);
 		return (1);
 	}
 	set_pwd("OLDPWD=", str, t_cdata);
