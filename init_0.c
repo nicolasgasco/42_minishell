@@ -18,17 +18,16 @@ void	ft_init_reset_loop_data(t_cdata *t_cdata)
 	t_cdata->syntax_error = 0;
 	t_cdata->tokens_list = NULL;
 	ft_init_quotes_data(t_cdata);
-	// memset(&g_sigdata, 0, sizeof(t_sig));
 }
 
 // Structure with global data
-void	ft_init_general_data(t_cdata	*t_cdata, char **envp)
+void	ft_init_general_data(t_cdata *c_data, char **envp)
 {
-	memset(t_cdata, 0, sizeof(t_cdata));
-	init_envp(envp, t_cdata);
-	ft_init_prompt_data(t_cdata);
-	init_export(t_cdata);
-	ft_output_epic_welcome(t_cdata); // TBD
+	memset(c_data, 0, sizeof(t_cdata));
+	init_envp(envp, c_data);
+	ft_init_prompt_data(c_data);
+	init_export(c_data);
+	ft_output_epic_welcome(c_data); // TBD
 }
 
 /* Structure containing information on quotes */
