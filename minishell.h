@@ -227,7 +227,7 @@ void			ft_create_tokens_list(t_cdata *t_cdata);
 void			ft_add_token_to_list(t_cdata *t_cdata, struct s_qnode *origin);
 
 /* Errors */
-int				ft_output_loop_error_message(t_cdata *t_cdata, char *message);
+int				ft_output_loop_err(t_cdata *t_cdata);
 
 /* Signals */
 void			ft_shortcut_events(void);

@@ -43,21 +43,18 @@ void	ft_start_loop(t_cdata *t_cdata)
 		ft_init_reset_loop_data(t_cdata);
 		if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_text))
 			continue ;
-		if (!ft_here_doc_expansion(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "h. doc"))
+		if (!ft_here_doc_expansion(t_cdata) && ft_output_loop_err(t_cdata))
 			continue ;
 		ft_expand_quotes(t_cdata);
 		if (!ft_expanded_quotes_are_valid(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "quotes"))
+			&& ft_output_loop_err(t_cdata))
 			continue ;
 		ft_expand_spaces(t_cdata);
 		ft_expand_variables(t_cdata);
 		ft_expand_special_chars(t_cdata);
-		if (!ft_special_chars_are_valid(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, "s. chars"))
+		if (!ft_special_chars_are_valid(t_cdata) && ft_output_loop_err(t_cdata))
 			continue ;
-		if (!ft_remove_empty_nodes(t_cdata)
-			&& ft_output_loop_error_message(t_cdata, ""))
+		if (!ft_remove_empty_nodes(t_cdata) && ft_output_loop_err(t_cdata))
 			continue ;
 		ft_start_execution(t_cdata);
 		ft_free_loop_data(t_cdata);

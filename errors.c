@@ -12,13 +12,12 @@
 
 #include "minishell.h"
 
-int	ft_output_loop_error_message(t_cdata *t_cdata, char *message)
+int	ft_output_loop_err(t_cdata *t_cdata)
 {
 	if (t_cdata->syntax_error == 1)
 	{
 		ft_free_quotes_data(t_cdata);
-		if (*message)
-			printf("Syntax error: %s\n", message);
+		write(2, "Syntax error\n", 13);
 	}
 	return (1);
 }
