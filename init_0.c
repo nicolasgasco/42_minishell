@@ -37,7 +37,6 @@ void	ft_init_quotes_data(t_cdata *t_cdata)
 	memset(t_cdata->t_qdata, 0, sizeof(t_qdata));
 }
 
-/* TODO has leaks */
 void	init_envp(char **envp, t_cdata *t_cdata)
 {
 	int	i;
@@ -52,7 +51,6 @@ void	init_envp(char **envp, t_cdata *t_cdata)
 	t_cdata->envp[i] = NULL;
 }
 
-/* TODO has leaks */
 void	init_export(t_cdata *t_cdata)
 {
 	int		i;

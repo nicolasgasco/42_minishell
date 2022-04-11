@@ -24,7 +24,6 @@ int	ft_remove_empty_nodes(t_cdata *t_cdata)
 		else if (result == -1)
 			return (0);
 	}
-	ft_print_after_empty_removal(t_cdata); // TBD
 	return (1);
 }
 

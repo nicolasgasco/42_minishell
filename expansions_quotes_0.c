@@ -16,10 +16,7 @@
 int	ft_expanded_quotes_are_valid(t_cdata *t_cdata)
 {
 	if (t_cdata->syntax_error)
-	{
-		ft_print_unclosed_quotes(); // TBD
 		return (0);
-	}
 	return (1);
 }
 
@@ -27,7 +24,6 @@ int	ft_expanded_quotes_are_valid(t_cdata *t_cdata)
 void	ft_expand_quotes(t_cdata *t_cdata)
 {
 	ft_tokenize_quotes(t_cdata->t_qdata);
-	ft_print_after_quotes_expansion(t_cdata); // TBD
 	if (t_cdata->t_qdata->d_open || t_cdata->t_qdata->s_open)
 		t_cdata->syntax_error = 1;
 }

@@ -1,7 +1,6 @@
 NAME = minishell
 
 SRCS =	minishell.c \
-		TBD_printf.c \
 		cd.c \
 		cd1.c \
 		echo.c \
@@ -18,13 +17,10 @@ SRCS =	minishell.c \
 		exit.c \
 		expansions_empty_nodes_0.c \
 		expansions_empty_nodes_1.c \
-		expansions_here_docs_0.c \
-		expansions_here_docs_1.c \
-		expansions_here_docs_error.c \
+		expansions_here_docs.c \
 		expansions_quotes_0.c \
 		expansions_quotes_1.c \
 		expansions_quotes_2.c \
-		expansions_quotes_utils.c \
 		expansions_spaces.c \
 		expansions_spaces_utils.c \
 		expansions_special_chars_0.c \

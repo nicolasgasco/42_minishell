@@ -50,8 +50,6 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 	pid = fork();
 	if (pid == 0)
 	{
-		fprintf(output, "Inside %d\n", getpid());
-		fflush(output);
 		ft_shortcut_events_here_docs();
 		heredoc(limiter, new_fd, job, c_data);
 	}

@@ -26,8 +26,6 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-extern FILE		*output; // TBD
-
 extern int		g_ex_status;
 
 typedef struct s_job
@@ -189,15 +187,8 @@ void			ft_join_var_name_value(struct s_tnode *curr);
 
 /* Expansion - Here document */
 int				ft_here_doc_expansion(t_cdata *t_cdata);
-int				ft_found_lonely_here_marker(char *str);
-int				ft_found_here_marker_without_cmd(char *str);
-void			ft_expand_here_doc(t_cdata *t_cdata);
 int				ft_find_here_marker_str(char *str);
-char			*ft_extract_delim(t_cdata *t_cdata);
-char			*ft_remove_delim(t_cdata *t_cdata, int i);
-void			ft_remove_delim_from_raw_input(t_cdata *t_cdata,
-					int delimiter_start);
-int				ft_calc_delimiter_end(char *raw_input, int start);
+int				ft_found_lonely_here_marker(char *str);
 
 /* Expansions - Special characters */
 void			ft_expand_special_chars(t_cdata *t_cdata);
@@ -264,21 +255,6 @@ void			ms_set_env(char **env, char *value, t_cdata *t_cdata);
 char			**ms_matrix_add_line(char **matrix, char *new_line);
 int				built_unset(char **arg, t_cdata *t_cdata);
 int				env_compare(char **env, char **arg, int i);
-
-/* TBD */
-void			ft_print_quotes_list(struct s_qnode *list);
-void			ft_print_tokens_list(struct s_tnode *list);
-void			ft_print_unclosed_quotes(void);
-void			ft_print_here_doc_detected(void);
-void			ft_print_after_spaces_expansion(t_cdata *t_cdata);
-void			ft_print_after_quotes_expansion(t_cdata *t_cdata);
-void			ft_print_after_variables_expansion(t_cdata *t_cdata);
-void			ft_print_new_input_header(char *line_read);
-void			ft_print_after_empty_removal(t_cdata *t_cdata);
-void			ft_expand_special_chars(t_cdata *t_cdata);
-int				ft_detect_special_chars(t_cdata *t_cdata, char *s);
-int				ft_found_special_character(char c);
-void			ft_print_after_special_chars_expansion(t_cdata *t_cdata);
 
 /* Execution */
 void			test(struct s_tnode *test);

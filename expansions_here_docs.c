@@ -23,8 +23,6 @@ int	ft_here_doc_expansion(t_cdata *t_cdata)
 	if (ft_find_here_marker_str(t_cdata->t_qdata->raw_input))
 	{
 		t_cdata->found_here_doc = 1;
-		// printf(".%s.\n", ft_extract_delim(t_cdata));
-		ft_print_here_doc_detected(); // TBD
 		if (t_cdata->syntax_error == 1)
 			return (0);
 	}
@@ -58,5 +56,20 @@ int	ft_find_here_marker_str(char *str)
 	}
 	if (str[i] == '<' && str[i + 1] == '<' && str[i - 1] != '<' && !found_quote)
 		return (1);
+	return (0);
+}
+
+/* Checks for case when input is just << with no content */
+int	ft_found_lonely_here_marker(char *str)
+{
+	char	*temp;
+
+	temp = ft_strtrim(str, "\n\t ");
+	if (ft_strcmp(temp, "<<") == 0)
+	{
+		free(temp);
+		return (1);
+	}
+	free(temp);
 	return (0);
 }

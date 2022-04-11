@@ -20,10 +20,8 @@ void	ft_expand_special_chars(t_cdata *t_cdata)
 	ft_expand_special_char(t_cdata, "<");
 	ft_expand_special_char(t_cdata, ">");
 	ft_expand_special_char(t_cdata, "|");
-	ft_print_after_special_chars_expansion(t_cdata); // TBD
 	ft_remove_empty_nodes(t_cdata);
 	ft_join_spaceless_nodes(t_cdata);
-	ft_print_after_special_chars_expansion(t_cdata); // TBD	
 }
 
 /* Checking for >>, <, and > */
@@ -37,10 +35,7 @@ int	ft_special_chars_are_valid(t_cdata *t_cdata)
 		return (0);
 	}	
 	else
-	{
-		ft_print_after_special_chars_expansion(t_cdata); // TBD
 		return (1);
-	}
 }
 
 /* Expansion of >> */
@@ -48,7 +43,6 @@ int	ft_expand_special_char(t_cdata *t_cdata, char *set)
 {
 	while (1)
 	{
-		// ft_print_after_special_chars_expansion(t_cdata); // TBD
 		if (!ft_found_special_chars_set(t_cdata, set))
 			break ;
 	}

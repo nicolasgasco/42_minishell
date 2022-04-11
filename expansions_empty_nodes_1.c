@@ -18,7 +18,6 @@ void	ft_join_spaceless_nodes(t_cdata *t_cdata)
 	{
 		if (ft_found_spaceless_nodes(t_cdata) == 0)
 			break ;
-		ft_print_after_empty_removal(t_cdata); // TBD
 	}
 }
 

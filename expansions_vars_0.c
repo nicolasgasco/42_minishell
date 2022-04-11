@@ -21,7 +21,6 @@ void	ft_expand_variables(t_cdata *t_cdata)
 		if (!ft_found_variable_to_expand(t_cdata))
 			break ;
 	}
-	ft_print_after_variables_expansion(t_cdata);
 }
 
 /* 2/4 Linked list is iterated to expand variables */

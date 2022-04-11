@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-FILE	*output;
 int		g_ex_status;
 
 /* No arguments accepted, global data initialization, loop initialization */
@@ -22,16 +21,12 @@ int	main(int argc, char *argv[], char *envp[])
 
 	if (argc != 1 || argv[1])
 	{
-		printf("Error: arguments\n");
+		write(2, "Error: arguments\n", 17);
 		return (1);
 	}
 	ft_init_general_data(&t_cdata, envp);
-	output = fopen("output.txt", "w+");
-	fprintf(output, "Opening file for writing output.\n\n");
-	fflush(output);
 	ft_start_loop(&t_cdata);
 	ft_free_general_data(&t_cdata);
-	fclose(output);
 	return (0);
 }
 
@@ -68,9 +63,7 @@ void	ft_start_execution(t_cdata *t_cdata)
 	t_job	*job;
 
 	job = NULL;
-	fflush(output); // TBD
 	ft_create_tokens_list(t_cdata);
-	ft_print_tokens_list(t_cdata->tokens_list);
 	printest(t_cdata->tokens_list);
 	test(t_cdata->tokens_list);
 	job = ft_create_exec(job, t_cdata->tokens_list);
@@ -79,5 +72,4 @@ void	ft_start_execution(t_cdata *t_cdata)
 		executor(ms_head_list_job(job), t_cdata);
 		free_job_lst(job);
 	}
-	fflush(output); // TBD
 }

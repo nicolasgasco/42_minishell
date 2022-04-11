@@ -15,12 +15,8 @@
 /* Handle for case when here docs is active */
 void	ft_handle_signals_here_docs(int sig)
 {
-	fprintf(output, "Handler. Here doc. Minishell IS interactive (%d)\n", getpid()); // TBD
-	fflush(output); // TBD
 	if (sig == SIGINT)
 	{
-		fprintf(output, "SIGINT or SIGQUIT in here doc (%d)\n", getpid()); // TBD
-		fflush(output); // TBD
 		printf("\n");
 		exit(g_ex_status);
 	}
@@ -31,8 +27,6 @@ void	ft_shortcut_events_here_docs(void)
 {
 	struct sigaction	sa_heredoc;
 
-	fprintf(output, "Initializer. Here doc. Minishell IS interactive (%d)\n", getpid()); // TBD
-	fflush(output); // TBD	ft_shortcut_events();
 	memset(&sa_heredoc, 0, sizeof(struct sigaction));
 	sa_heredoc.sa_handler = &ft_handle_signals_here_docs;
 	ft_ignore_signal(sa_heredoc, SIGQUIT);
@@ -44,8 +38,6 @@ void	ft_ignore_all_signals(void)
 {
 	struct sigaction	sa;
 
-	fprintf(output, "Initializer child. Minishell IS interactive (%d)\n",
-		getpid());
 	memset(&sa, 0, sizeof(struct sigaction));
 	ft_ignore_signal(sa, SIGQUIT);
 	ft_ignore_signal(sa, SIGINT);
