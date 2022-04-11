@@ -79,3 +79,12 @@ int	ft_found_special_chars_set(t_cdata *t_cdata, char *set)
 	}
 	return (0);
 }
+
+int	ft_found_one_special_char(char *str)
+{
+	if ((ft_has_special_char(str, "<")) || (ft_has_special_char(str, ">"))
+		|| (ft_has_special_char(str, "<<")) || (ft_has_special_char(str, ">>"))
+		|| (ft_has_special_char(str, "|")))
+		return (1);
+	return (0);
+}

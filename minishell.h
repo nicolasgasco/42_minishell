@@ -28,6 +28,8 @@
 
 extern FILE		*output; // TBD
 
+extern	int		*g_ex_status;
+
 typedef struct SignalData {
 	int	sig;
 	int	is_child;
@@ -223,6 +225,7 @@ int				ft_last_node_is_special_char(t_cdata *t_cdata);
 void			ft_join_spaceless_nodes(t_cdata *t_cdata);
 int 			ft_found_spaceless_nodes(t_cdata *t_cdata);
 void			ft_join_nodes(struct s_qnode *curr);
+int				ft_found_one_special_char(char *str);
 
 /* Tokens list */
 void			ft_create_tokens_list(t_cdata *t_cdata);
