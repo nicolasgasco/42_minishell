@@ -23,48 +23,12 @@ int	ft_here_doc_expansion(t_cdata *t_cdata)
 	if (ft_find_here_marker_str(t_cdata->t_qdata->raw_input))
 	{
 		t_cdata->found_here_doc = 1;
+		// printf(".%s.\n", ft_extract_delim(t_cdata));
 		ft_print_here_doc_detected(); // TBD
-		// ft_here_doc_loop(t_cdata);
-		// ft_join_after_delimiter(t_cdata);
 		if (t_cdata->syntax_error == 1)
 			return (0);
 	}
 	return (1);
-}
-
-/* Initialize loop to collect input untill delimiter is found */
-void	ft_here_doc_loop(t_cdata *t_cdata)
-{
-	int	i;
-
-	i = 0;
-	t_cdata->t_qdata->delim = ft_extract_delim(t_cdata);
-	if (!ft_strlen(t_cdata->t_qdata->delim))
-		t_cdata->syntax_error = 1;
-	else
-	{
-		while (1)
-		{
-			if (!ft_get_valid_input(t_cdata, t_cdata->t_pdata->prompt_nl_text))
-				break ;
-			i++;
-		}
-	}
-}
-
-/* Join raw input and text after delimiter */
-void	ft_join_after_delimiter(t_cdata *t_cdata)
-{
-	char	*after_delim_temp;
-	char	*raw_input_temp;
-
-	after_delim_temp = t_cdata->t_qdata->after_delim;
-	t_cdata->t_qdata->after_delim = ft_strjoin(" ", after_delim_temp);
-	free(after_delim_temp);
-	raw_input_temp = t_cdata->t_qdata->raw_input;
-	t_cdata->t_qdata->raw_input = ft_strjoin(raw_input_temp,
-			t_cdata->t_qdata->after_delim);
-	free(raw_input_temp);
 }
 
 /* Look for Here document in a string */
