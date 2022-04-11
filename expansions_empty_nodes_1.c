@@ -22,9 +22,9 @@ void	ft_join_spaceless_nodes(t_cdata *t_cdata)
 	}
 }
 
-int ft_found_spaceless_nodes(t_cdata *t_cdata)
+int	ft_found_spaceless_nodes(t_cdata *t_cdata)
 {
-	struct s_qnode  *curr;
+	struct s_qnode	*curr;
 
 	curr = t_cdata->t_qdata->quotes_list;
 	while (1)
@@ -38,16 +38,16 @@ int ft_found_spaceless_nodes(t_cdata *t_cdata)
 			}
 		}
 		if (curr->next == NULL)
-			break;
+			break ;
 		curr = curr->next;
 	}
 	return (0);
 }
 
-void    ft_join_nodes(struct s_qnode *curr)
+void	ft_join_nodes(struct s_qnode *curr)
 {
-	char            *temp;
-	struct s_qnode  *node_temp;
+	char			*temp;
+	struct s_qnode	*node_temp;
 
 	temp = ft_strdup(curr->str);
 	free(curr->str);
