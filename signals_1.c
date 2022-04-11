@@ -22,7 +22,7 @@ void	ft_handle_signals_here_docs(int sig)
 		fprintf(output, "SIGINT or SIGQUIT in here doc (%d)\n", getpid()); // TBD
 		fflush(output); // TBD
 		printf("\n");
-		exit(3);
+		exit(g_ex_status);
 	}
 }
 

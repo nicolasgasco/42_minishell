@@ -38,10 +38,12 @@ void	mini_exec(t_job *job, t_job *first, t_cdata *c_data)
 			if (WIFEXITED(status))
 			{
 				c_data->exit_status = WEXITSTATUS(status);
+				g_ex_status = WEXITSTATUS(status);
 			}
 			else if (WIFSIGNALED(status))
 			{
 				c_data->exit_status = 128 + WTERMSIG(status);
+				g_ex_status = 128 + WTERMSIG(status);
 				ex_stat(c_data, status);
 			}
 			first = first->next;

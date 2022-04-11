@@ -28,7 +28,7 @@
 
 extern FILE		*output; // TBD
 
-extern int		*g_ex_status;
+extern int		g_ex_status;
 
 typedef struct s_job
 {

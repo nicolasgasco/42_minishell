@@ -25,7 +25,7 @@ int	ft_get_valid_input(t_cdata *t_cdata, char *prompt_text)
 		ft_free_general_data(t_cdata);
 		printf("exit\n");
 		fclose(output);
-		exit(t_cdata->exit_status);
+		exit(g_ex_status);
 	}
 	ft_print_new_input_header(line_read); // TBD
 	t_cdata->t_qdata->raw_input = ft_strdup(line_read);

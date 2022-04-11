@@ -13,6 +13,7 @@
 #include "minishell.h"
 
 FILE	*output;
+int		g_ex_status;
 
 /* No arguments accepted, global data initialization, loop initialization */
 int	main(int argc, char *argv[], char *envp[])
