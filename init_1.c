@@ -25,7 +25,7 @@ void	ft_init_prompt_data(t_cdata *t_cdata)
 	else
 		t_cdata->t_pdata->username = ft_strdup(getenv("USER"));
 	if (!getenv("HOSTNAME"))
-		t_cdata->t_pdata->hostname = ft_strdup("os");
+		t_cdata->t_pdata->hostname = ft_strdup("minishell");
 	else
 		t_cdata->t_pdata->hostname = ft_strdup(getenv("HOSTNAME"));
 	username = t_cdata->t_pdata->username;

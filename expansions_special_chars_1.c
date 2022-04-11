@@ -97,14 +97,22 @@ char *curr_str, char *next_str, char *rest)
 	free(curr->str);
 	curr->str = curr_str;
 	curr->length = ft_strlen(curr_str);
+	curr->is_spaced = 0;
 	new_node1->str = next_str;
 	new_node1->length = ft_strlen(new_node1->str);
-	new_node2->str = rest;
-	new_node2->length = ft_strlen(new_node2->str);
-	new_node2->next = curr->next;
-	new_node2->is_spaced = curr->is_spaced;
-	new_node1->is_spaced = 0;
-	curr->is_spaced = 0;
+	if (*rest)
+	{
+		new_node2->str = rest;
+		new_node2->length = ft_strlen(new_node2->str);
+		new_node2->next = curr->next;
+		new_node2->is_spaced = curr->is_spaced;
+		new_node1->next = new_node2;
+		new_node1->is_spaced = 0;
+	}
+	else
+	{
+		new_node1->next = curr->next;
+		new_node1->is_spaced = curr->is_spaced;
+	}
 	curr->next = new_node1;
-	new_node1->next = new_node2;
 }

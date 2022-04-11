@@ -72,9 +72,7 @@ int	ft_last_node_is_special_char(t_cdata *t_cdata)
 	{
 		if (curr->next == NULL && ft_is_special_str(curr->str)
 			&& !curr->q_type)
-		{
 			return (1);
-		}
 		if (curr->next == NULL)
 			break ;
 		else
