@@ -52,8 +52,7 @@ SRCS =	minishell.c \
 		./libft_custom/libft_custom_3.c \
 
 
-LIBC    = ar -rcs
-FLAGS 	= -Wall -Wextra -Werror
+FLAGS 	= -Wall -Wextra -Werror -g
 OBJS    = $(SRCS:.c=.o)
 LIBFT 	=  -C ./libft
 
