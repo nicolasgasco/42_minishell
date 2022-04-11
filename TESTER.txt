@@ -235,7 +235,7 @@ pwd
 [SETUP cd $HOME] pwd
 pwd | cat -e
 [EXPORTS PWD='/etc'] pwd
-unset PWD; pwd; echo $PWD
+unset PWD && pwd && echo $PWD
 export PWD=foo; pwd; echo $PWD
 Pwd
 pwD
@@ -301,9 +301,6 @@ echo foo>bar
 echo foo >bar
 echo foo> bar
 echo foo > bar
-echo a as df sad f as df qw e  qwe  as df asd f as df as d fas d fasd f asd f asdf asdf 
-echo Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a rem
-echo Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut a rem
 
 ############################################ cmd/cmd_path ############################################
 [SETUP touch a b c] /bin/ls
@@ -483,53 +480,30 @@ echo Mollitia asperiores assumenda excepturi et ipsa. Nihil corporis facere aut 
                                       [FAIL]
 [SETUP echo > somefile && chmod 000 somefile] ./someFILE
                                       [FAIL]
+
 ########################################## cmd/redirection ###########################################
 echo bonjour > test
-                                                                           [FAIL]
 echo > test bonjour
-                                                                           [FAIL]
 > test echo bonjour
-                                                                           [FAIL]
 echo bonjour >> test
-                                                                          [FAIL]
 echo >> test bonjour
-                                                                          [FAIL]
 >> test echo bonjour
-                                                                          [FAIL]
-[SETUP echo bonjour > test] cat < test
-                                                        [PASS]
-echo bonjour > test
-                                                                           [FAIL]
+cat < test
 echo > test'sticked' bonjour
-                                                                  [FAIL]
 > test'sticked' echo bonjour
-                                                                  [FAIL]
 echo bonjour >> test'sticked'
-                                                                 [FAIL]
 echo >> test'sticked' bonjour
-                                                                 [FAIL]
 >> test'sticked' echo bonjour
-                                                                 [FAIL]
-[SETUP echo bonjour > test'sticked'] cat < test'sticked'
-                                      [FAIL]
-[SETUP echo bonjour > test'sticked'] < test'sticked' cat
-                                      [FAIL]
+cat < test'sticked'
+< test'sticked' cat
 echo > test"sticked" bonjour
-                                                                  [FAIL]
 > test"sticked" echo bonjour
-                                                                  [FAIL]
 echo bonjour >> test"sticked"
-                                                                 [FAIL]
 echo >> test"sticked" bonjour
-                                                                 [FAIL]
 >> test"sticked" echo bonjour
-                                                                 [FAIL]
-[SETUP echo bonjour > test"sticked"] cat < test"sticked"
-                                      [FAIL]
-[SETUP echo bonjour > test"sticked"] < test"sticked" cat
-                                      [FAIL]
+cat < test"sticked"
+ < test"sticked" cat
 echo > test'yo'"sticked" bonjour
-                                                              [FAIL]
 > test'yo'"sticked" echo bonjour
                                                               [FAIL]
 echo bonjour >> test'yo'"sticked"
