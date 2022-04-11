@@ -78,7 +78,6 @@ void	ft_split_s_char_node(struct s_qnode *curr, int len, char *set, int i)
 	token = (char *)malloc(sizeof(char) * (i + 1));
 	ft_strlcpy(token, curr->str, i + 1);
 	rest = ft_substr(curr->str, i + len, (ft_strlen(curr->str) - i - len));
-	symbol = (char *)malloc(sizeof(char) * ft_strlen(set) + 1);
 	symbol = ft_strdup(set);
 	ft_add_special_char_nodes(curr, token, symbol, rest);
 }
@@ -113,6 +112,7 @@ char *curr_str, char *next_str, char *rest)
 	{
 		new_node1->next = curr->next;
 		new_node1->is_spaced = curr->is_spaced;
+		free(new_node2);
 	}
 	curr->next = new_node1;
 }
