@@ -221,6 +221,7 @@ void			ft_join_spaceless_nodes(t_cdata *t_cdata);
 int				ft_found_spaceless_nodes(t_cdata *t_cdata);
 void			ft_join_nodes(struct s_qnode *curr);
 int				ft_found_one_special_char(char *str);
+int				ft_first_node_is_pipe(t_cdata *t_cdata);
 
 /* Tokens list */
 void			ft_create_tokens_list(t_cdata *t_cdata);

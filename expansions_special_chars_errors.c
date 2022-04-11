@@ -80,3 +80,14 @@ int	ft_last_node_is_special_char(t_cdata *t_cdata)
 	}
 	return (0);
 }
+
+/* Check if first node is a pipe */
+int	ft_first_node_is_pipe(t_cdata *t_cdata)
+{
+	struct s_qnode	*curr;
+
+	curr = t_cdata->t_qdata->quotes_list;
+	if (!strncmp(curr->str, "|", 1))
+		return (1);
+	return (0);
+}

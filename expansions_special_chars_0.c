@@ -30,7 +30,8 @@ void	ft_expand_special_chars(t_cdata *t_cdata)
 int	ft_special_chars_are_valid(t_cdata *t_cdata)
 {
 	if (ft_last_node_is_special_char(t_cdata)
-		|| ft_found_adjacent_special_chars(t_cdata))
+		|| ft_found_adjacent_special_chars(t_cdata)
+		|| ft_first_node_is_pipe(t_cdata))
 	{
 		t_cdata->syntax_error = 1;
 		return (0);
