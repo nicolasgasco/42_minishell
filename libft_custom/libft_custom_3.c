@@ -20,9 +20,7 @@ int	ft_isalldigit(char *str)
 	while (str[i] != '\0')
 	{
 		if (ft_isdigit(str[i]) == 0)
-		{
 			return (0);
-		}
 		i++;
 	}
 	return (1);
@@ -30,7 +28,7 @@ int	ft_isalldigit(char *str)
 
 void	ft_putendl_fdnl(char *str, int fd)
 {
-	if(!str)
+	if (!str)
 		return ;
 	while (*str)
 	{
