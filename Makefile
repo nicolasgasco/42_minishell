@@ -25,6 +25,7 @@ SRCS =	minishell.c \
 		expansions_spaces_utils.c \
 		expansions_special_chars_0.c \
 		expansions_special_chars_1.c \
+		expansions_special_chars_2.c \
 		expansions_special_chars_errors.c \
 		expansions_tokens.c \
 		expansions_vars_0.c \
