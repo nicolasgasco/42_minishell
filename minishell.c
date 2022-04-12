@@ -50,7 +50,7 @@ void	ft_start_loop(t_cdata *t_cdata)
 		ft_expand_special_chars(t_cdata);
 		if (!ft_special_chars_are_valid(t_cdata) && ft_output_loop_err(t_cdata))
 			continue ;
-		if (!ft_remove_empty_nodes(t_cdata) && ft_output_loop_err(t_cdata))
+		if (!ft_remove_empty_nodes(t_cdata))
 			continue ;
 		ft_start_execution(t_cdata);
 		ft_free_loop_data(t_cdata);
