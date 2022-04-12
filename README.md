@@ -34,3 +34,8 @@ The shell must:
 - Export and unset<br />
 ![Screenshot of export and unset examples](https://res.cloudinary.com/ngasco/image/upload/v1649785877/42/minishell/Screenshot_from_2022-04-12_19-47-39_isuenb.png
  "Screenshot of export and unset examples")
+ <br />
+
+- Export and unset<br />
+![Screenshot of export and unset examples](https://res.cloudinary.com/ngasco/image/upload/v1649785877/42/minishell/Screenshot_from_2022-04-12_19-47-39_isuenb.png
+ "Screenshot of export and unset examples")
