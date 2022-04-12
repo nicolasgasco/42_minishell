@@ -6,7 +6,7 @@
 /*   By: ngasco <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:14:58 by ngasco            #+#    #+#             */
-/*   Updated: 2022/04/12 10:17:54 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/12 11:54:38 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,7 +295,7 @@ int				redir_heredoc(char *limiter, int fd,
 void			heredoc(char *limiter, int *fd, t_job *job, t_cdata *c_data);
 int				ft_delim_is_quoted(t_cdata *c_data);
 int				check_arg(char *arg);
-void			built_exit(char **arg, t_cdata *c_data);
+void			built_exit(char **arg);
 void			free_fd(t_job *first);
 void			free_ex(t_job *job, t_cdata *c_data);
 char			*ft_get_env(char *var_name, char **env);

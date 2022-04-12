@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:11:11 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/12 10:31:30 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/12 11:55:26 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_arg(char *arg)
 	return (0);
 }
 
-void	built_exit(char **arg, t_cdata *c_data)
+void	built_exit(char **arg)
 {
 	int	i;
 
@@ -45,7 +45,7 @@ void	built_exit(char **arg, t_cdata *c_data)
 	ft_putendl_fd("exit\n", 2);
 	if (arg[0])
 	{
-		i = check_arg(arg[0], c_data);
+		i = check_arg(arg[0]);
 		if (arg[1] && i == 0)
 		{
 			ft_putendl_fd("minishell: exit: too many arguments\n", 2);
