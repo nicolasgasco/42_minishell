@@ -144,6 +144,8 @@ void			ft_tokenization_logic_unopened(t_qdata *t_qdata, int i,
 					char quote);
 void			ft_tokenization_logic_opened(t_qdata *t_qdata, int i,
 					char quote);
+void			ft_tokenization_logic_unopened_single_quote(t_qdata *t_qdata,
+					int i);
 char			*ft_strcat(char *src, char *dest);
 
 /* Expansions - quotes (list) */
@@ -170,6 +172,7 @@ int				ft_has_spaces(char *str);
 int				ft_isspace(char c);
 int				ft_calc_spaces_token_len(char *str);
 int				ft_found_space_to_split(t_cdata *t_cdata);
+void			ft_found_space_to_split_trim(struct s_qnode *curr);
 int				ft_isspace(char c);
 void			ft_remove_node_with_index_free_util(struct s_qnode *to_remove);
 
@@ -204,8 +207,8 @@ void			ft_split_s_char_node(struct s_qnode *curr, int len,
 					char *set, int i);
 void			ft_add_special_char_nodes(struct s_qnode *curr, char *curr_str,
 					char *next_str, char *rest);
-void    		ft_populate_new_node_2(struct s_qnode *new_node1, struct s_qnode *curr,
-					char *rest);
+void			ft_populate_new_node_2(struct s_qnode *new_node1,
+					struct s_qnode *curr, char *rest);
 int				ft_found_adjacent_special_chars(t_cdata *t_cdata);
 int				ft_is_special_str(char *str);
 int				ft_found_adjecent_pipes(char *str);

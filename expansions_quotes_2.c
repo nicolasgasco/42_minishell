@@ -12,6 +12,24 @@
 
 #include "minishell.h"
 
+/* Three cases: quoted string, quoted string but empty, unquoted string */
+char	*ft_write_str_to_node(t_qdata *t_qdata, int end)
+{
+	if (end - t_qdata->start > 1)
+		return (ft_create_quoted_token(t_qdata->raw_input,
+				t_qdata->start, end - t_qdata->start));
+	else
+	{
+		if (t_qdata->raw_input[t_qdata->start] == '\''
+			|| t_qdata->raw_input[t_qdata->start] == '\"')
+			return ((ft_create_quoted_token_empty(t_qdata->raw_input,
+						t_qdata->start)));
+		else
+			return (ft_create_unquoted_token(t_qdata->raw_input, t_qdata->start,
+					end - t_qdata->start));
+	}
+}
+
 /* a) Actual token text is written into node ignoring quotes */
 char	*ft_create_quoted_token(char *input, int start, int len)
 {

@@ -23,8 +23,8 @@ int	ft_found_adjacent_special_chars(t_cdata *t_cdata)
 		if (curr->next)
 		{
 			if ((ft_is_special_str(curr->str)
-				&& ft_is_special_str(curr->next->str)
-				&& !curr->next->q_type)
+					&& ft_is_special_str(curr->next->str)
+					&& !curr->next->q_type)
 				|| ft_found_adjecent_pipes(curr->str))
 				return (1);
 		}

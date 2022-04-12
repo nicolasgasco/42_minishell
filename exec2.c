@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 12:00:49 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/12 10:23:52 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/12 12:07:13 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ms_builtins(char **arg, int i, t_job *job, t_cdata *c_data)
 		else if (ft_strcmp(arg[0], "env") == 0)
 			g_ex_status = built_envp(c_data);
 		else if (ft_strcmp(arg[0], "exit") == 0)
-			built_exit(arg + 1, c_data);
+			built_exit(arg + 1);
 		else
 			return (1);
 	}
@@ -99,7 +99,6 @@ void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 void	executor(t_job *job, t_cdata *c_data)
 {
 	t_job	*first;
-//	int		status;
 
 	first = job;
 	init_pipe(first);
@@ -108,23 +107,5 @@ void	executor(t_job *job, t_cdata *c_data)
 	if (job && job->cmd)
 	{
 		mini_exec(job, first, c_data);
-/*		while (job)
-		{
-			child_process(job, first, c_data);
-			job = job->next;
-			first = ms_head_list_job(first);
-		}
-		while (first)
-		{
-			waitpid(first->pid, &status, 0);
-			if (WIFEXITED(status))
-				g_ex_status = WEXITSTATUS(status);
-			else if(WIFSIGNALED(status))
-			{
-				g_ex_status = 128 + WTERMSIG(status);
-				ex_stat(c_data, status);
-			}
-			first = first->next;
-		}*/
 	}
 }

@@ -58,7 +58,7 @@ all:
 		@ echo "Compiled... ✅"
 
 $(NAME) : $(OBJS)
-			@ echo -e "\nCompiling Minishell by \033[1;33mToni Del Corral\033[0m and \033[1;33mNicolas Gasco\033[0m... 🐚"
+			@ echo "\nCompiling Minishell by \033[1;33mToni Del Corral\033[0m and \033[1;33mNicolas Gasco\033[0m... 🐚"
 			@ ${MAKE} -s ${LIBFT}
 			@ gcc ${FLAGS} $(OBJS) -I. ./libft/libft.a -lreadline -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include -o $(NAME)
 
