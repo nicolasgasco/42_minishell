@@ -51,9 +51,9 @@ int	ft_found_space_to_split(t_cdata *t_cdata)
 }
 
 /* Util function to trim without generating leaks */
-void	ft_found_space_to_split_trim(struct s_qnode	*curr)
+void	ft_found_space_to_split_trim(struct s_qnode *curr)
 {
-	char			*temp;
+	char	*temp;
 
 	temp = ft_strtrim(curr->str, " \t\r\n\v\f");
 	free(curr->str);
