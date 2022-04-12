@@ -18,6 +18,7 @@ The shell must:
 ## Examples
 
 - \>\> redirection
+&nbsp;
 ![Screenshot of >> redirection example](https://res.cloudinary.com/ngasco/image/upload/v1649785877/42/minishell/Screenshot_from_2022-04-12_19-49-10_lyhc3p.png "Screenshot of >> redirection example")
 
 - Here doc
