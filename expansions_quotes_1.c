@@ -87,11 +87,14 @@ void	ft_add_node_quotes(t_qdata *t_qdata, int end, char quote)
 }
 
 /* Util function to add all relevant proprierties to quoted node */
-void	ft_popoulate_new_node_quotes(struct s_qnode *new_node, t_qdata *t_qdata, int end, char quote)
+void	ft_popoulate_new_node_quotes(struct s_qnode *new_node, t_qdata *t_qdata,
+		int end, char quote)
 {
 	new_node->str = ft_write_str_to_node(t_qdata, end);
-	if ((quote && t_qdata->raw_input[end + 1] && ft_isspace(t_qdata->raw_input[end + 1]))
-		|| (!quote && t_qdata->raw_input[end] && ft_isspace(t_qdata->raw_input[end])))
+	if ((quote && t_qdata->raw_input[end + 1]
+			&& ft_isspace(t_qdata->raw_input[end + 1]))
+		|| (!quote && t_qdata->raw_input[end]
+			&& ft_isspace(t_qdata->raw_input[end])))
 		new_node->is_spaced = 1;
 	new_node->length = ft_strlen(new_node->str);
 	new_node->q_type = quote;
