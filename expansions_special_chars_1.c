@@ -100,6 +100,7 @@ char *curr_str, char *next_str, char *rest)
 	new_node1->length = ft_strlen(new_node1->str);
 	if (*rest)
 	{
+		free(rest);
 		new_node2->str = rest;
 		new_node2->length = ft_strlen(new_node2->str);
 		new_node2->next = curr->next;
@@ -113,6 +114,7 @@ char *curr_str, char *next_str, char *rest)
 		new_node1->next = curr->next;
 		new_node1->is_spaced = curr->is_spaced;
 		curr->is_spaced = 0;
+		free(rest);
 		free(new_node2);
 	}
 	curr->next = new_node1;
