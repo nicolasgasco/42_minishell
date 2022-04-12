@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:11:11 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/11 12:58:07 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:31:30 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_arg(char *arg, t_cdata *c_data)
 	return (0);
 }
 
-void	built_exit(char **arg, t_job *job, t_cdata *c_data)
+void	built_exit(char **arg, t_cdata *c_data)
 {
 	int	i;
 

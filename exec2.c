@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 12:00:49 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/11 13:09:07 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:23:52 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ms_builtins(char **arg, int i, t_job *job, t_cdata *c_data)
 		else if (ft_strcmp(arg[0], "env") == 0)
 			c_data->exit_status = built_envp(c_data);
 		else if (ft_strcmp(arg[0], "exit") == 0)
-			built_exit(arg + 1, job, c_data);
+			built_exit(arg + 1, c_data);
 		else
 			return (1);
 	}
@@ -74,7 +74,7 @@ void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 {
 	job->pid = fork();
 	if (job->pid == -1)
-		ft_putendl_fd("Dang! This fork didn't work!", 2);
+		ft_putendl_fdnl("Dang! This fork didn't work!", 2);
 	ft_shortcut_events_interactive();
 	if (job->pid == 0)
 	{
@@ -97,7 +97,7 @@ void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 void	executor(t_job *job, t_cdata *c_data)
 {
 	t_job	*first;
-	int		status;
+//	int		status;
 
 	first = job;
 	init_pipe(first);

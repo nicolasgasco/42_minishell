@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 12:26:44 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/11 13:09:34 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:25:00 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	heredoc(char *limiter, int *fd, t_job *job, t_cdata *c_data)
 		}
 		if (ft_find_dollar(line) && !ft_delim_is_quoted(c_data))
 			line = ft_add_variable_value(line, c_data);
-		ft_putendl_fd(line, fd[1]);
+		ft_putendl_fdnl(line, fd[1]);
 		free(line);
 		line = readline("> ");
 	}

@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 12:51:38 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/11 13:33:02 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:30:09 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void	error(char *arg, int i, t_job *job, t_cdata *c_data)
 	{
 		ft_putendl_fd("minishell: ", 2);
 		ft_putendl_fd(arg, 2);
-		ft_putendl_fd("No such file or directory\n", 2);
+		ft_putendl_fd(": No such file or directory\n", 2);
 	}
 	else if (i == 2)
 	{
 		ft_putendl_fd("minishell: ", 2);
 		ft_putendl_fd(arg, 2);
-		ft_putendl_fd("is a directory\n", 2);
+		ft_putendl_fd(": is a directory\n", 2);
 		free_ex(job, c_data);
 		exit(126);
 	}
