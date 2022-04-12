@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 12:26:44 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/12 10:25:00 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/12 12:14:36 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	ft_delim_is_quoted(t_cdata *c_data)
 			return (1);
 		}
 		if (curr->next == NULL)
-			break;
+			break ;
 		curr = curr->next;
 	}
 	return (0);

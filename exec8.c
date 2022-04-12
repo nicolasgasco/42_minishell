@@ -6,7 +6,7 @@
 /*   By: adel-cor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:13:53 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/12 10:48:54 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/12 12:13:12 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,3 @@ void	ft_put_error(char *str1, char *str2, char *str3, int fd)
 	ft_putendl_fd(str2, fd);
 	ft_putendl_fd(str3, fd);
 }
-

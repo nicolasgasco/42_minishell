@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:34:50 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/12 10:48:19 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/12 12:14:10 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	check_unset_arg(char *arg)
 	{
 		if ((ft_isalnum(arg[i]) == 0 && arg[i] != '_') || arg[i] == '=')
 		{
-			ft_put_error("unset: '", arg,"': not a valid identifier\n", 2);
+			ft_put_error("unset: '", arg, "': not a valid identifier\n", 2);
 			return (1);
 		}
 		i++;
