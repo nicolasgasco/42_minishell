@@ -26,6 +26,11 @@ The shell must:
  "Screenshot of Here doc")
 <br />
 
-- Here doc<br />
+- Echo<br />
 ![Screenshot of echo examples](https://res.cloudinary.com/ngasco/image/upload/v1649785877/42/minishell/Screenshot_from_2022-04-12_19-45-13_immcih.png
  "Screenshot of echo examples")
+<br />
+
+- Export and unset<br />
+![Screenshot of export and unset examples](https://res.cloudinary.com/ngasco/image/upload/v1649785877/42/minishell/Screenshot_from_2022-04-12_19-47-39_isuenb.png
+ "Screenshot of export and unset examples")
