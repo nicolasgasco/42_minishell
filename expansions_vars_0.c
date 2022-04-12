@@ -39,9 +39,6 @@ int	ft_found_variable_to_expand(t_cdata *t_cdata)
 			{
 				curr->str = ft_add_variable_value(curr->str, t_cdata);
 				curr->length = ft_strlen(curr->str);
-				// if (!ft_find_dollar(curr->str))
-				// 	curr->q_type = '\'';
-				// curr->is_spaced = 1;
 				found_var = 1;
 			}
 		}
