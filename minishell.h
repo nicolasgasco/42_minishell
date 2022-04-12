@@ -170,6 +170,7 @@ int				ft_has_spaces(char *str);
 int				ft_isspace(char c);
 int				ft_calc_spaces_token_len(char *str);
 int				ft_found_space_to_split(t_cdata *t_cdata);
+void			ft_found_space_to_split_trim(struct s_qnode	*curr);
 int				ft_isspace(char c);
 void			ft_remove_node_with_index_free_util(struct s_qnode *to_remove);
 
