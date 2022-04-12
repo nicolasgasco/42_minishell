@@ -144,6 +144,8 @@ void			ft_tokenization_logic_unopened(t_qdata *t_qdata, int i,
 					char quote);
 void			ft_tokenization_logic_opened(t_qdata *t_qdata, int i,
 					char quote);
+void			ft_tokenization_logic_unopened_single_quote(t_qdata *t_qdata,
+					int i);
 char			*ft_strcat(char *src, char *dest);
 
 /* Expansions - quotes (list) */

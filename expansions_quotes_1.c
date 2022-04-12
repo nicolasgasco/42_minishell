@@ -18,15 +18,7 @@ void	ft_tokenization_logic_unopened(t_qdata *t_qdata, int i, char quote)
 	if (quote == '\'')
 	{
 		if (t_qdata->start < i)
-		{
-			if (t_qdata->d_open == 1)
-				ft_add_node_quotes(t_qdata, i, '\0');
-			else if (t_qdata->d_open == 0)
-			{
-				t_qdata->s_open = 1;
-				ft_add_node_quotes(t_qdata, i, '\0');
-			}
-		}
+			ft_tokenization_logic_unopened_single_quote(t_qdata, i);
 	}
 	else if (quote == '\"')
 	{
@@ -41,6 +33,18 @@ void	ft_tokenization_logic_unopened(t_qdata *t_qdata, int i, char quote)
 		}
 	}
 	t_qdata->start = i;
+}
+
+/* Util for function above encapsulating code for single quote case */
+void	ft_tokenization_logic_unopened_single_quote(t_qdata *t_qdata, int i)
+{
+	if (t_qdata->d_open == 1)
+		ft_add_node_quotes(t_qdata, i, '\0');
+	else if (t_qdata->d_open == 0)
+	{
+		t_qdata->s_open = 1;
+		ft_add_node_quotes(t_qdata, i, '\0');
+	}
 }
 
 /* 2b Logic for substrings that are preceded by an opening quote */
@@ -99,22 +103,4 @@ void	ft_popoulate_new_node_quotes(struct s_qnode *new_node, t_qdata *t_qdata,
 	new_node->length = ft_strlen(new_node->str);
 	new_node->q_type = quote;
 	new_node->next = NULL;
-}
-
-/* Three cases: quoted string, quoted string but empty, unquoted string */
-char	*ft_write_str_to_node(t_qdata *t_qdata, int end)
-{
-	if (end - t_qdata->start > 1)
-		return (ft_create_quoted_token(t_qdata->raw_input,
-				t_qdata->start, end - t_qdata->start));
-	else
-	{
-		if (t_qdata->raw_input[t_qdata->start] == '\''
-			|| t_qdata->raw_input[t_qdata->start] == '\"')
-			return ((ft_create_quoted_token_empty(t_qdata->raw_input,
-						t_qdata->start)));
-		else
-			return (ft_create_unquoted_token(t_qdata->raw_input, t_qdata->start,
-					end - t_qdata->start));
-	}
 }
