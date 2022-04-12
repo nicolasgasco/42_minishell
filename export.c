@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:13:20 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/11 13:34:49 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:44:55 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ms_check_export_arg(char *arg)
 	i = 0;
 	if (ft_isalpha(arg[i]) == 0 && arg[i] != '_')
 	{
-		printf("export: '%s': not a valid identifier\n", arg);
+		ft_put_error("export: '", arg, "': not a valid identifier\n", 2);
 		return (1);
 	}
 	i++;
@@ -27,7 +27,7 @@ int	ms_check_export_arg(char *arg)
 	{
 		if (ft_isalnum(arg[i]) == 0 && arg[i] != '_')
 		{
-			printf("export: '%s': not a valid identifier\n", arg);
+			ft_put_error("export: '", arg, "': not a valid identifier\n", 2);
 			return (1);
 		}
 		i++;

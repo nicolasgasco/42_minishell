@@ -39,7 +39,9 @@ void	ft_shortcut_events(void)
 /* Handle for case when simulation is inside child process */
 void	ft_handle_signals_interactive(int sig)
 {
-	if (sig == SIGINT || sig == SIGQUIT)
+	if (sig == SIGINT)
+		printf("\n");
+	else if (sig == SIGQUIT)
 		printf("\n");
 }
 

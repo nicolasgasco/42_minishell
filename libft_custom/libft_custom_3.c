@@ -6,7 +6,7 @@
 /*   By: adel-cor <adel-cor@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 17:22:04 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/11 10:41:17 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:19:58 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,20 @@ int	ft_isalldigit(char *str)
 	while (str[i] != '\0')
 	{
 		if (ft_isdigit(str[i]) == 0)
-		{
 			return (0);
-		}
 		i++;
 	}
 	return (1);
+}
+
+void	ft_putendl_fdnl(char *str, int fd)
+{
+	if (!str)
+		return ;
+	while (*str)
+	{
+		ft_putchar_fd(*str, fd);
+		str++;
+	}
+	ft_putchar_fd('\n', fd);
 }

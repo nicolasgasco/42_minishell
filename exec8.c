@@ -6,17 +6,17 @@
 /*   By: adel-cor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:13:53 by adel-cor          #+#    #+#             */
-/*   Updated: 2022/04/11 13:34:08 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:48:54 by adel-cor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ex_stat(t_cdata *c_data, int status)
+void	ex_stat(int g_ex_status)
 {
-	if (c_data->exit_status == 131)
+	if (g_ex_status == 131)
 		write(1, "Quit: 3\n", 8);
-	if (c_data->exit_status == 130)
+	if (g_ex_status == 130)
 		write(1, "\n", 1);
 }
 
@@ -36,15 +36,11 @@ void	mini_exec(t_job *job, t_job *first, t_cdata *c_data)
 		{
 			waitpid(first->pid, &status, 0);
 			if (WIFEXITED(status))
-			{
-				c_data->exit_status = WEXITSTATUS(status);
 				g_ex_status = WEXITSTATUS(status);
-			}
 			else if (WIFSIGNALED(status))
 			{
-				c_data->exit_status = 128 + WTERMSIG(status);
 				g_ex_status = 128 + WTERMSIG(status);
-				ex_stat(c_data, status);
+				ex_stat(g_ex_status);
 			}
 			first = first->next;
 		}
