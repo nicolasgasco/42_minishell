@@ -18,6 +18,7 @@ void	ft_init_reset_loop_data(t_cdata *t_cdata)
 	t_cdata->syntax_error = 0;
 	t_cdata->tokens_list = NULL;
 	t_cdata->found_here_doc = 0;
+	g_ex_status = 0;
 	ft_init_quotes_data(t_cdata);
 }
 

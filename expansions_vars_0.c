@@ -107,7 +107,7 @@ char	*ft_expand_var_value(t_cdata *t_cdata, char *str, int start, int end)
 
 	if (str[start + 1] == '?')
 	{
-		var_value = ft_itoa(t_cdata->exit_status);
+		var_value = ft_itoa(g_ex_status);
 		result = ft_splice_var_value(str, var_value, start, end);
 		free(str);
 		free(var_value);

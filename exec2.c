@@ -17,17 +17,17 @@ int	ms_builtins(char **arg, int i, t_job *job, t_cdata *c_data)
 	if (arg)
 	{
 		if (ft_strcmp(arg[0], "echo") == 0)
-			c_data->exit_status = built_echo(arg);
+			g_ex_status = built_echo(arg);
 		else if (ft_strcmp(arg[0], "cd") == 0)
-			c_data->exit_status = built_cd(arg[1], c_data);
+			g_ex_status = built_cd(arg[1], c_data);
 		else if (ft_strcmp(arg[0], "pwd") == 0)
-			c_data->exit_status = built_pwd();
+			g_ex_status = built_pwd();
 		else if (ft_strcmp(arg[0], "export") == 0)
-			c_data->exit_status = built_export(arg + 1, c_data);
+			g_ex_status = built_export(arg + 1, c_data);
 		else if (ft_strcmp(arg[0], "unset") == 0)
-			c_data->exit_status = built_unset(arg + 1, c_data);
+			g_ex_status = built_unset(arg + 1, c_data);
 		else if (ft_strcmp(arg[0], "env") == 0)
-			c_data->exit_status = built_envp(c_data);
+			g_ex_status = built_envp(c_data);
 		else if (ft_strcmp(arg[0], "exit") == 0)
 			built_exit(arg + 1, c_data);
 		else
@@ -75,9 +75,9 @@ void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 	job->pid = fork();
 	if (job->pid == -1)
 		ft_putendl_fdnl("Dang! This fork didn't work!", 2);
-	ft_shortcut_events_interactive();
 	if (job->pid == 0)
 	{
+		ft_shortcut_events_interactive();
 		if (job->previous != NULL)
 			dup2(job->previous->fd[0], STDIN_FILENO);
 		if (job->next != NULL)
@@ -89,6 +89,8 @@ void	child_process(t_job *job, t_job *first, t_cdata *c_data)
 		if (job->cmd && ms_builtins(job->cmd, 1, first, c_data) == 1)
 			execute(job->cmd, first, c_data);
 	}
+	else
+		ft_ignore_all_signals();
 	if (job->previous != NULL)
 		close(job->previous->fd[0]);
 	close(job->fd[1]);
@@ -116,10 +118,10 @@ void	executor(t_job *job, t_cdata *c_data)
 		{
 			waitpid(first->pid, &status, 0);
 			if (WIFEXITED(status))
-				c_data->exit_status = WEXITSTATUS(status);
+				g_ex_status = WEXITSTATUS(status);
 			else if(WIFSIGNALED(status))
 			{
-				c_data->exit_status = 128 + WTERMSIG(status);
+				g_ex_status = 128 + WTERMSIG(status);
 				ex_stat(c_data, status);
 			}
 			first = first->next;

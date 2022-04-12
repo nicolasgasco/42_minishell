@@ -57,7 +57,7 @@ int	redir_heredoc(char *limiter, int fd, t_job *job, t_cdata *c_data)
 		ft_ignore_all_signals();
 	waitpid(pid, &wstatus, 0);
 	if (WIFEXITED(wstatus))
-		c_data->exit_status = WEXITSTATUS(wstatus);
+		g_ex_status = WEXITSTATUS(wstatus);
 	dup2(new_fd[0], fd);
 	close(new_fd[1]);
 	close(new_fd[0]);
