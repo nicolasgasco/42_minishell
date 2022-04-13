@@ -14,6 +14,17 @@ The shell must:
 - execute pipes
 - Catch `ctrl-C`, `ctrl-D`, and `ctrl-\` signals
 
+## Run the program
+
+### Unix
+Clone the repository and open it
+```
+# You might need to run this on MacOs
+brew install readline
+
+make
+./minishell
+```
 
 ## Examples
 
